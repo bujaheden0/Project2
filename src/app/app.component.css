@@ -1,0 +1,11 @@
+.header{
+    background: linear-gradient(to right ,#184e68,#4db780);
+}
+
+.navbar-brand{
+    color:white;
+}
+
+.navbar-brand:hover{
+    color:white;
+}

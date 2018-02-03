@@ -1,0 +1,20 @@
+.landPage1{
+    padding: 200px 0;
+}
+
+.landPage1 h1{
+    margin-bottom: 15px;
+}
+
+.landPage1 hr{
+    margin: 30px 0px; 
+}
+
+.btn-outline-primary:focus, .btn-outline-danger:focus{
+    box-shadow: none;
+}
+
+
+
+
+
