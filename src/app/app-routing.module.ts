@@ -4,9 +4,11 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { LandingPageComponent }  from './landing-page/landing-page.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { SignInComponent } from './sign-in/sign-in.component';
 const routes: Routes = [
   { path: '', component: LandingPageComponent},
-  { path: 'signup', component : SignUpComponent}
+  { path: 'signup', component : SignUpComponent},
+  { path: 'signin', component : SignInComponent}
 ];
 
 @NgModule({

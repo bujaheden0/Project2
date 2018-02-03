@@ -1,8 +1,8 @@
-.signUp{
+.signIn{
     margin-top: 20px;
 }
 
-.signUp-form{
+.signIn-form{
     margin: 0 auto;
 }
 .line{
@@ -14,20 +14,20 @@
     border-width: 0px 1px 0px 0px;
     border-color: rgba(0, 0, 0, 0.125);
     width: 30px;
-    height: 520px;
+    height: 220px;
     position: fixed;
     
 }
 
 
-.regis2{
+.signIn2{
     text-align: center;
     line-height: 75px;
-    margin-top: 34%;
+    margin-top: 6%;
     margin-left: 40px;
 }
 
-.regis2 a.btn{
+.signIn2 a.btn{
     width: 270px;
 }
 
