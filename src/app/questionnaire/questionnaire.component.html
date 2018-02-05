@@ -1,0 +1,36 @@
+
+<div class="container">
+  <div class="card">
+    <div class="card-block">     
+      <form>
+        <fieldset>
+
+         
+            <div id="q1" class="q" *ngFor="let question of questions; let i = index">
+              <div class="qt" style="padding-bottom:5px">
+                <div class="n">{{question.id}}</div>
+                <div class="t" id="q1t" tabindex="0">{{question.name}}</div>
+              </div>
+              <div style="position:relative">
+                <div class="opt" tabindex="0" data-listnav="12" onclick="quizQuestionSelect(this);return false" style="">
+                  <label style="display:block;padding:4px;cursor:pointer;">
+                    <input type="radio" name="q1" value="1" style="border:0;background:transparent;margin:0px;"> &nbsp;{{question.Choice1}}
+                  </label></div>
+                  <div class="opt" tabindex="0" data-listnav="12" onclick="quizQuestionSelect(this);return false" style="">
+                    <label style="display:block;padding:4px;cursor:pointer;">
+                      <input type="radio" name="q1" value="2" style="border:0;background:transparent;margin:0px;"> &nbsp;{{question.Choice2}}
+                    </label></div>
+                  </div>
+                  <div style="clear:left">                    
+                  </div>
+                </div>
+      
+        </fieldset>
+      <div id="submitbutton" style="display: block;">
+        <input type="submit" class="qbutton" value="Submit your answers">
+      </div>
+      </form>
+      
+    </div>
+  </div>
+</div>

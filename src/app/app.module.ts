@@ -9,6 +9,7 @@ import { AppRoutingModule } from './/app-routing.module';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { LoadingPageComponent } from './loading-page/loading-page.component';
 import { SignInComponent } from './sign-in/sign-in.component';
+import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { SignInComponent } from './sign-in/sign-in.component';
     LandingPageComponent,
     SignUpComponent,
     LoadingPageComponent,
-    SignInComponent
+    SignInComponent,
+    QuestionnaireComponent
   ],
   imports: [
     BrowserModule,
