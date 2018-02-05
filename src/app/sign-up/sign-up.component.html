@@ -1,6 +1,6 @@
 <div class="signUp">
-  <div class="container" [@slideUp]>
-    <div class="signUp-form" id="slideUp">
+  <div class="container" @signupTrigger>
+    <div class="signUp-form">
       <div class="card">
           <div class="card-header">
               สมัครสมาชิก
@@ -9,18 +9,18 @@
             <div class="row justify-content-md-center">
             <div class="col-sm-12 col-lg-5">
               <div class="regis1">
-              <form>
-                <div class="form-group col-lg-10 ">
+              <form [formGroup]="form">
+                <div class="form-group col-lg-10" formGroupName="name">
                   <label for="formGroupExampleInput">ชื่อ</label>
-                  <input type="text" class="form-control" id="formGroupExampleInput">
+                  <input type="text" class="form-control" id="formGroupExampleInput" formControlName="first">
                 </div>
-                <div class="form-group col-lg-10">
+                <div class="form-group col-lg-10" formGroupName="name">
                   <label for="formGroupExampleInput2">นามสกุล</label>
-                  <input type="text" class="form-control" id="formGroupExampleInput2">
+                  <input type="text" class="form-control" id="formGroupExampleInput2" formControlName="last">
                 </div>
                 <div class="form-group col-lg-10">
                     <label for="formGroupExampleInput2">อีเมลล์</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput2">
+                    <input type="text" class="form-control" id="formGroupExampleInput2" formControlName="email">
                   </div>
                   <div class="form-group col-lg-10 ">
                       <label for="formGroupExampleInput2">ไอดี</label>

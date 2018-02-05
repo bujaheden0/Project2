@@ -2,10 +2,21 @@
     background: linear-gradient(to right ,#184e68,#4db780);
 }
 
-.navbar-brand{
+.header a.nav-link{
+    color:#d6d8db;
+}
+
+a.navbar-brand{
     color:white;
 }
 
-.navbar-brand:hover{
+.navbar-brand:hover, .header a:hover , .navbar-brand:focus{
     color:white;
+}
+
+.divide{
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.125);
+    margin: 0px 2px;
 }
