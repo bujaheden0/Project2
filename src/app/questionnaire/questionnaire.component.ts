@@ -13,6 +13,9 @@ export class QuestionnaireComponent implements OnInit {
   questions = QUESTIONS;
   selectedQuestion: Question;
   count = 0;
+  pb = 2.5;
+  percent: string;
+  
   constructor() { }
 
   ngOnInit() {
@@ -23,5 +26,8 @@ export class QuestionnaireComponent implements OnInit {
   }
   nextquestion(){
     this.count++;
+    this.pb = this.pb + 2.5;
+    this.percent = this.pb + "%";
   }
+
 }
