@@ -10,6 +10,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { LoadingPageComponent } from './loading-page/loading-page.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { QuestionnaireComponent } from './questionnaire/questionnaire.component'
     SignUpComponent,
     LoadingPageComponent,
     SignInComponent,
-    QuestionnaireComponent
+    QuestionnaireComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

@@ -6,35 +6,58 @@
               สมัครสมาชิก
           </div>
           <div class="card-block">
+              <div class="alert alert-success" role="alert" *ngIf="this.isValid" @slideSuceeded>
+                  <strong>สำเร็จ</strong> กรุณาตรวจสอบอีเมล์ของท่านเพื่อทำการยืนยันการสมัครสมาชิก
+                </div>
             <div class="row justify-content-md-center">
             <div class="col-sm-12 col-lg-5">
               <div class="regis1">
-              <form [formGroup]="form">
-                <div class="form-group col-lg-10" formGroupName="name">
+              <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="form-group col-lg-10" [ngClass]="ValidatorDisplayCss('firstname')">
                   <label for="formGroupExampleInput">ชื่อ</label>
-                  <input type="text" class="form-control" id="formGroupExampleInput" formControlName="first">
+                  <input type="text" class="form-control" [ngClass]="validatorInputCss('firstname')" id="formGroupExampleInput" formControlName="firstname" required>
+                  <div class="form-control-feedback"
+                      *ngIf="this.form.controls.firstname.errors && (this.form.controls.firstname.touched || this.form.controls.firstname.dirty)">
+                       <p *ngIf="this.form.controls.firstname.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                      </div>
                 </div>
-                <div class="form-group col-lg-10" formGroupName="name">
+                <div class="form-group col-lg-10" [ngClass]="ValidatorDisplayCss('lastname')">
                   <label for="formGroupExampleInput2">นามสกุล</label>
-                  <input type="text" class="form-control" id="formGroupExampleInput2" formControlName="last">
+                  <input type="text" class="form-control" [ngClass]="validatorInputCss('lastname')" id="formGroupExampleInput2" formControlName="lastname">
+                  <div class="form-control-feedback"
+                      *ngIf="this.form.controls.lastname.errors && (this.form.controls.lastname.touched || this.form.controls.lastname.dirty)">
+                       <p *ngIf="this.form.controls.lastname.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                  </div>
                 </div>
-                <div class="form-group col-lg-10">
+                <div class="form-group col-lg-10" [ngClass]="ValidatorDisplayCss('email')">
                     <label for="formGroupExampleInput2">อีเมลล์</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput2" formControlName="email">
+                    <input type="email" class="form-control" [ngClass]="validatorInputCss('email')" id="formGroupExampleInput2" formControlName="email">
+                    <div class="form-control-feedback"
+                      *ngIf="this.form.controls.email.errors && (this.form.controls.email.touched || this.form.controls.email.dirty)">
+                       <p *ngIf="this.form.controls.email.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                    </div>
                   </div>
-                  <div class="form-group col-lg-10 ">
+                  <div class="form-group col-lg-10 " [ngClass]="ValidatorDisplayCss('username')">
                       <label for="formGroupExampleInput2">ไอดี</label>
-                      <input type="text" class="form-control" id="formGroupExampleInput2">
+                      <input type="text" class="form-control" [ngClass]="validatorInputCss('username')" id="formGroupExampleInput2" formControlName="username" pattern="^[a-z0-9_-]{8,15}$">
+                      <div class="form-control-feedback"
+                      *ngIf="this.form.controls.username.errors && (this.form.controls.username.touched || this.form.controls.username.dirty)">
+                       <p *ngIf="this.form.controls.username.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                      </div>
                   </div>
-                  <div class="form-group col-lg-10">
+                  <div class="form-group col-lg-10" [ngClass]="ValidatorDisplayCss('password')">
                       <label for="formGroupExampleInput2">รหัสผ่าน</label>
-                      <input type="text" class="form-control" id="formGroupExampleInput2" aria-describedby="passwordHelp">
+                      <input type="text" class="form-control" [ngClass]="validatorInputCss('password')" id="formGroupExampleInput2" aria-describedby="passwordHelp" formControlName="password">
+                      <div class="form-control-feedback"
+                      *ngIf="this.form.controls.password.errors && (this.form.controls.password.touched || this.form.controls.password.dirty)">
+                       <p *ngIf="this.form.controls.password.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                      </div>
                       <small id="passwordHelp" class="form-text text-muted">( อย่างน้อย 6 ตัวอักษร รวมทั้งตัวเลข )</small>
                     </div>
                   <div class="form-group ml-3">
                     <div class="row justify-content-start">
                       <div class="col">
-                          <button class="btn btn-outline-primary">ตกลง</button>
+                          <button class="btn btn-outline-primary" type="submit">ตกลง</button>
                           <button class="btn btn-outline-danger">ยกเลิก</button>
                       </div>
                     </div>
