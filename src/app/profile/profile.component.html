@@ -1,141 +1,145 @@
 <div class="signUp">
-  <div class="container"@signupTrigger>
-    <div class="signUp-form"> 
+  <div class="container" @signupTrigger>
+    <div class="signUp-form">
       <div class="card">
-          <div class="card-header">
-              ประวัติส่วนตัว
-          </div>  
-          <div class="card-block">
-            <form>
-                  <div class="form-group">
-                    <label for="exampleFormControlFile1">รูปประจำตัว</label>
-                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+        <div class="card-header">
+          ประวัติส่วนตัว
+        </div>
+        <div class="card-block">
+          <form>
+            <div class="form-group col-lg-10">
+              <label for="exampleFormControlFile1">รูปประจำตัว</label>
+              <input type="file" class="form-control-file" id="exampleFormControlFile1">
+            </div>
+          </form>
+          <form>
+            <div class="form-group col-lg-10">
+              <div class="row">
+                <legend class="col-form-label col-sm-2 pt-0">ศาสนา</legend>
+                <div class="col-sm-10">
+                  <div class="form-check ">
+                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1">
+                    <label class="form-check-label" for="gridRadios1">
+                      พุทธ
+                    </label>
                   </div>
-            </form>
-            <form>
-                <div class="form-group row">
-                    <div>
-                      <legend class="col-form-label col-sm-2 pt-0">ศาสนา</legend>
-                    </div>
-                        <div class="form-check ">
-                          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1">
-                          <label class="form-check-label" for="gridRadios1">
-                            พุทธ
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
-                          <label class="form-check-label" for="gridRadios2">
-                            อิสลาม
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3">
-                          <label class="form-check-label" for="gridRadios3">
-                            คริสต์
-                          </label>
-                        </div>
-                      
-                    </div>
-                
-                <div class="form-group">
-                    <div class="row">
-                      <legend class="col-form-label col-sm-2 pt-0">เพศ</legend>
-                      
-                        <div class="form-check ">
-                          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1">
-                          <label class="form-check-label" for="gridRadios1">
-                            ชาย
-                          </label>
-                        </div>
-                        <div class="form-check">
-                          <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
-                          <label class="form-check-label" for="gridRadios2">
-                            หญิง
-                          </label>
-                        </div>
-                    </div>
-                </div>
-                <form>
-                    <div class="form-group">
-                      <label for="exampleFormControlInput1">Email address</label>
-                      <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleFormControlSelect1">เวลาเข้านอน</label>
-                      <select class="form-control" id="exampleFormControlSelect1">
-                        <option>20.00 - 21.00</option>
-                        <option>21.00 - 22.00</option>
-                        <option>22.00 - 23.00</option>
-                        <option>23.00 - 0.00</option>
-                        <option>0.00 - 1.00</option>
-                      </select>
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleFormControlTextarea1">ที่อยู่ปัจจุบัน</label>
-                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                    </div>
-                </form>
-            </form>
-            <form>
-              <div class="form-group row">
-                <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
-                <div class="col-sm-10">
-                  <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
-                </div>
-              </div>
-              <div class="form-group row">
-                <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
-                <div class="col-sm-10">
-                  <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
-                </div>
-              </div>
-              <fieldset class="form-group">
-                <div class="row">
-                  <legend class="col-form-label col-sm-2 pt-0">Radios</legend>
-                  <div class="col-sm-10">
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked>
-                      <label class="form-check-label" for="gridRadios1">
-                        First radio
-                      </label>
-                    </div>
-                    <div class="form-check">
-                      <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
-                      <label class="form-check-label" for="gridRadios2">
-                        Second radio
-                      </label>
-                    </div>
-                    <div class="form-check disabled">
-                      <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3" disabled>
-                      <label class="form-check-label" for="gridRadios3">
-                        Third disabled radio
-                      </label>
-                    </div>
-                  </div>
-                </div>
-              </fieldset>
-              <div class="form-group row">
-                <div class="col-sm-2">Checkbox</div>
-                <div class="col-sm-10">
                   <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="gridCheck1">
-                    <label class="form-check-label" for="gridCheck1">
-                      Example checkbox
+                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2">
+                    <label class="form-check-label" for="gridRadios2">
+                      อิสลาม
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3">
+                    <label class="form-check-label" for="gridRadios3">
+                      คริสต์
                     </label>
                   </div>
                 </div>
               </div>
-              <div class="form-group row">
+            </div>
+          </form>
+          <form>
+            <div class="form-group col-lg-10">
+              <div class="row">
+                <legend class="col-form-label col-sm-2 pt-0">เพศ</legend>
                 <div class="col-sm-10">
-                  <button type="submit" class="btn btn-primary">Sign in</button>
+                  <div class="form-check ">
+                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios4" value="option4">
+                    <label class="form-check-label" for="gridRadios4">
+                      ชาย
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios5" value="option5">
+                    <label class="form-check-label" for="gridRadios5">
+                      หญิง
+                    </label>
+                  </div>
                 </div>
               </div>
-              </form>
-          
-          
+            </div>
+          </form>
+          <div class="form-group col-lg-10" [ngClass]="ValidatorDisplayCss('firstname')">
+            <label for="formGroupExampleInput">วันเกิด</label>
+            <input type="text" class="form-control" [ngClass]="validatorInputCss('firstname')" id="formGroupExampleInput" formControlName="firstname"
+              required>
+            <div class="form-control-feedback" *ngIf="this.form.controls.firstname.errors && (this.form.controls.firstname.touched || this.form.controls.firstname.dirty)">
+              <p *ngIf="this.form.controls.firstname.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+            </div>
           </div>
+            <form>
+
+              <div class="form-group col-lg-10">
+                <label for="exampleFormControlSelect1">เวลาเข้านอน</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                  <option>20.00 - 21.00</option>
+                  <option>21.00 - 22.00</option>
+                  <option>22.00 - 23.00</option>
+                  <option>23.00 - 0.00</option>
+                  <option>0.00 - 1.00</option>
+                </select>
+              </div>
+              <div class="form-group col-lg-10">
+                <label for="exampleFormControlSelect1">งบประมาณหอที่รับไหว</label>
+                <select class="form-control" id="exampleFormControlSelect1">
+                  <option>น้อยกว่า 2000</option>
+                  <option>2000-4000</option>
+                  <option>4000-6000</option>
+                  <option>6000-8000</option>
+                  <option>มากกว่า 8000</option>
+                </select>
+              </div>
+              <div class="form-group col-lg-10">
+                <label for="exampleFormControlTextarea1">ที่อยู่ปัจจุบัน</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+              </div>
+            </form>
+            <div class="form-group col-lg-10" [ngClass]="ValidatorDisplayCss('firstname')">
+              <label for="formGroupExampleInput">อาชีพ</label>
+              <input type="text" class="form-control" [ngClass]="validatorInputCss('firstname')" id="formGroupExampleInput" formControlName="firstname"
+                required>
+              <div class="form-control-feedback" *ngIf="this.form.controls.firstname.errors && (this.form.controls.firstname.touched || this.form.controls.firstname.dirty)">
+                <p *ngIf="this.form.controls.firstname.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+              </div>
+            </div>
+            <div class="form-group col-lg-10" [ngClass]="ValidatorDisplayCss('firstname')">
+              <label for="formGroupExampleInput">งานอดิเรกเวลาอยู่ที่ห้อง</label>
+              <input type="text" class="form-control" [ngClass]="validatorInputCss('firstname')" id="formGroupExampleInput" formControlName="firstname"
+                required>
+              <div class="form-control-feedback" *ngIf="this.form.controls.firstname.errors && (this.form.controls.firstname.touched || this.form.controls.firstname.dirty)">
+                <p *ngIf="this.form.controls.firstname.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+              </div>
+            </div>
+            <div class="form-group col-lg-10">
+              <label for="exampleFormControlTextarea1">รายละเอียดเพื่มเติมที่สำคัญ</label>
+              <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="ไม่ชอบคนสูบบหรี่ , เเพ้เเป้ง" rows="3"></textarea>
+            </div>
+            <div class="form-group col-lg-10">
+              <label for="exampleFormControlInput1">Email address</label>
+              <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+            </div>
+            <div class="form-group col-lg-10" [ngClass]="ValidatorDisplayCss('firstname')">
+              <label for="formGroupExampleInput">Facebook</label>
+              <input type="text" class="form-control" [ngClass]="validatorInputCss('firstname')" id="formGroupExampleInput" formControlName="firstname"
+                required>
+              <div class="form-control-feedback" *ngIf="this.form.controls.firstname.errors && (this.form.controls.firstname.touched || this.form.controls.firstname.dirty)">
+                <p *ngIf="this.form.controls.firstname.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+              </div>
+            </div>
+            <div class="form-group col-lg-10" [ngClass]="ValidatorDisplayCss('firstname')">
+              <label for="formGroupExampleInput">เบอร์โทรศัพท์</label>
+              <input type="text" class="form-control" [ngClass]="validatorInputCss('firstname')" id="formGroupExampleInput" placeholder="012-3456789"
+                formControlName="firstname" required>
+              <div class="form-control-feedback" *ngIf="this.form.controls.firstname.errors && (this.form.controls.firstname.touched || this.form.controls.firstname.dirty)">
+                <p *ngIf="this.form.controls.firstname.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">Sign in</button>
+
+          </div>
+
+        </div>
       </div>
     </div>
   </div>
-</div>
