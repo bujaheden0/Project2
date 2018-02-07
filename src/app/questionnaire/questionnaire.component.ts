@@ -20,10 +20,6 @@ export class QuestionnaireComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  onSelect(question: Question): void {
-    this.selectedQuestion = question;
-  }
   nextquestion(){
     this.count++;
     this.pb = this.pb + 2.5;

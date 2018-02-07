@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators,NgForm } from '@angular/forms';
 import { group,trigger,style,transition,animate,keyframes,query,stagger,state } from '@angular/animations';
+
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -57,19 +58,57 @@ export class SignUpComponent implements OnInit {
   }
   createFormValidate(){
     this.form = this.fb.group({
-      firstname: [null, [Validators.required, Validators.minLength(2),Validators.pattern(/([a-zA-Zก-๙])/)]],
-      lastname: [null, [Validators.required, Validators.minLength(2)]],
-      email:[null,[Validators.required, Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]],
-      username:[null, [Validators.required, Validators.pattern("^[a-z0-9_-]{10,15}$")]],
-      password:[null, [Validators.required, Validators.minLength(6)]]
+      firstname: [null, 
+                [
+                  Validators.required,
+                  Validators.pattern(/^[A-Za-zก-๗]{2,15}$/)
+                ]
+              ],
+      lastname: [null, 
+                [
+                  Validators.required, 
+                  Validators.pattern(/^[A-Za-zก-๗]{2,15}$/)
+                ]
+              ],
+      email:[null,
+                [
+                  Validators.required, 
+                  Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
+                ]
+              ],
+      username:[null, 
+                [
+                  Validators.required, 
+                  Validators.minLength(8),
+                  Validators.pattern(/^[A-Za-z0-9]+(?:[_-][A-Za-z0-9]+)*$/)
+                ]
+              ],
+      password:[null, 
+              [
+                Validators.required, 
+                Validators.minLength(8),
+                Validators.pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)]]
     })
   }
 
   onSubmit(){
-    console.log(this.form);
-    if(this.form.valid){
-      this.isValid = true;
+      if(this.form.valid){
+        this.isValid = true;
+      }else{
+        this.validateAllFormFields(this.form);
+      }
+    }
+
+    validateAllFormFields(formGroup : FormGroup){
+      Object.keys(formGroup.controls).forEach(field => {
+        const control = formGroup.get(field);
+        if (control instanceof FormControl) {
+          control.markAsTouched({ onlySelf: true });
+        } else if (control instanceof FormGroup) {
+          this.validateAllFormFields(control);
+        }
+      })
     }
   }
 
-}
+

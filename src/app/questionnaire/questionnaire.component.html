@@ -1,63 +1,56 @@
-
 <div class="container">
   <div class="card">
-    <div class="card-block">     
-      <form >
-        <fieldset>
+    <div class="card-block">
+      <form>
         <div class="count" *ngFor="let question of questions; let i = index">
-            <div class="count2" *ngIf="count === i">
-            <div id="q1" class="q"  *ngIf="question == questions[count]">
+          <div class="count2" *ngIf="count === i">
+            <div id="q1" class="q" *ngIf="question == questions[count]">
               <div class="qt" style="padding-bottom:5px">
                 <div class="n">{{i+1}}</div>
                 <div class="t" id="q1t" tabindex="0">{{question.name}}</div>
               </div>
               <div style="position:relative">
-                <div class="opt" tabindex="0" data-listnav="12" (click)="nextquestion()" style="">
+                <div class="opt" tabindex="0" data-listnav="12" (click)="nextquestion()" style="" data-toggle="modal" data-target="#exampleModal">
                   <label style="display:block;padding:4px;cursor:pointer;">
                     <input type="radio" name="q1" value="1" style="border:0;background:transparent;margin:0px;"> &nbsp;{{question.Choice1}}
-                  </label></div>
-                  <div class="opt" tabindex="0" data-listnav="12" (click)="nextquestion()" style="">
-                    <label style="display:block;padding:4px;cursor:pointer;">
-                      <input type="radio" name="q1" value="2" style="border:0;background:transparent;margin:0px;"> &nbsp;{{question.Choice2}}
-                    </label></div>
-                  </div>
-                  <div style="clear:left">                    
-                  </div>
+                  </label>
+                </div>
+                <div class="opt" tabindex="0" data-listnav="12" (click)="nextquestion()" style="" data-toggle="modal" data-target="#exampleModal">
+                  <label style="display:block;padding:4px;cursor:pointer;">
+                    <input type="radio" name="q1" value="2" style="border:0;background:transparent;margin:0px;"> &nbsp;{{question.Choice2}}
+                  </label>
                 </div>
               </div>
+              <div style="clear:left">
+              </div>
+            </div>
+          </div>
         </div>
-        </fieldset>
-        </form>
-        <div class="check" *ngIf="count === 40">
-          <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" positon="center">
-  Launch demo modal
-</button>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+      </form>  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="count === 40">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...sdsdsdsdsds4s5d4s5d4s5d4s54ds54d5s4d5s4d
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" routerLink="/questionnaire">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
-        </div>
       <div class="progress">
-        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" [style.width]="percent"></div>
-      </div>   
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0"
+          aria-valuemax="100" [style.width]="percent"></div>
+      </div>
     </div>
   </div>
 </div>
