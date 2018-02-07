@@ -10,6 +10,9 @@
                 <div class="alert alert-success col-11" *ngIf="this.isValid" role="alert"  @slideSuceeded>
                     <strong>สำเร็จ</strong> กรุณาตรวจสอบอีเมล์ของท่านเพื่อทำการยืนยันการสมัครสมาชิก
                   </div>
+                  <div class="alert alert-danger col-11" *ngIf="this.errorMessage === false" role="alert"  @slideSuceeded>
+                    <strong>สำเร็จ</strong> กรุณาตรวจสอบอีเมล์ของท่านเพื่อทำการยืนยันการสมัครสมาชิก
+                  </div>
             </div>
             <div class="row justify-content-md-center">
             <div class="col-sm-12 col-lg-5">
