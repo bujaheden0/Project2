@@ -13,7 +13,7 @@ export class QuestionnaireComponent implements OnInit {
   questions = QUESTIONS;
   selectedQuestion: Question;
   count = 0;
-  pb = 2.5;
+  pb = 0;
   percent: string;
   
   constructor() { }
