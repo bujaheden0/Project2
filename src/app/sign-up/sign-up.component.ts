@@ -94,11 +94,7 @@ export class SignUpComponent implements OnInit {
   }
 
   onSubmit(){
-<<<<<<< HEAD
     console.log(this.form)
-=======
-    console.log(this.form);
->>>>>>> b6eff20cf92b36339ee0e93c2bcce884bb346c5a
       if(this.form.valid){
         const user = {
           firstname : this.form.controls.firstname.value,

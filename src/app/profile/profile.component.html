@@ -86,7 +86,7 @@
               <div class="form-group row">
                 <label for="example-email-input" class="col-2 col-form-label">Email</label>
                 <div class="col-10" [ngClass]="ValidatorDisplayCss('email')">
-                  <input class="form-control" type="email" placeholder="name@example.com" [ngClass]="ValidatorDisplayCss('email')" id="example-email-input"
+                  <input class="form-control form-control-danger" type="email" placeholder="name@example.com" [ngClass]="ValidatorDisplayCss('email')" id="example-email-input"
                     formControlName="email">
                   <div class="form-control-feedback" *ngIf="this.form.controls.email.errors && (this.form.controls.email.touched || this.form.controls.email.dirty)">
                     <p *ngIf="this.form.controls.email.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
