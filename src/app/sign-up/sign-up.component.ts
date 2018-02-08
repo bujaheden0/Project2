@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators,NgForm } from '@angular/forms';
 import { group,trigger,style,transition,animate,keyframes,query,stagger,state } from '@angular/animations';
+import { RegisterService } from '../register.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -21,7 +22,7 @@ import { group,trigger,style,transition,animate,keyframes,query,stagger,state } 
     trigger('slideSuceeded', [
       transition('void => *',[
       style({ opacity: 0, transform: 'translateY(-20px)'}),
-      animate(1000)
+      animate(300)
       ])
     ])
   
@@ -31,8 +32,9 @@ import { group,trigger,style,transition,animate,keyframes,query,stagger,state } 
 export class SignUpComponent implements OnInit {
 
   form: FormGroup;
+  errorMessage = Boolean;
   isValid = false;
-  constructor(private fb: FormBuilder) { 
+  constructor(private fb: FormBuilder, private registerService : RegisterService) { 
       
   }
 
@@ -92,9 +94,24 @@ export class SignUpComponent implements OnInit {
   }
 
   onSubmit(){
+<<<<<<< HEAD
     console.log(this.form)
+=======
+    console.log(this.form);
+>>>>>>> b6eff20cf92b36339ee0e93c2bcce884bb346c5a
       if(this.form.valid){
-        this.isValid = true;
+        const user = {
+          firstname : this.form.controls.firstname.value,
+          lastname  : this.form.controls.lastname.value,
+          email     : this.form.controls.email.value,
+          username  : this.form.controls.username.value,
+          password  : this.form.controls.password.value,
+        }
+        this.registerService.register(user).subscribe(res => {
+            this.errorMessage = res;
+            console.log(this.errorMessage);
+        })
+
       }else{
         this.validateAllFormFields(this.form);
       }

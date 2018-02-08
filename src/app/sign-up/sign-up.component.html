@@ -6,11 +6,12 @@
               สมัครสมาชิก
           </div>
           <div class="card-block">
-            <div class="row justify-content-center">
-                <div class="alert alert-success col-11" *ngIf="this.isValid" role="alert"  @slideSuceeded>
+                <div class="alert alert-success" *ngIf="this.errorMessage === true" role="alert"  @slideSuceeded>
                     <strong>สำเร็จ</strong> กรุณาตรวจสอบอีเมล์ของท่านเพื่อทำการยืนยันการสมัครสมาชิก
                   </div>
-            </div>
+                  <div class="alert alert-danger" *ngIf="this.errorMessage === false" role="alert"  @slideSuceeded>
+                    <strong>ผิดพลาด</strong> Email หรือ Username นี้มีอยู่แล้วกรุณาตรวจสอบใหม่
+                  </div>
             <div class="row justify-content-md-center">
             <div class="col-sm-12 col-lg-5">
               <div class="regis1">
@@ -21,6 +22,7 @@
                   <div class="form-control-feedback"
                       *ngIf="this.form.controls.firstname.errors && (this.form.controls.firstname.touched || this.form.controls.firstname.dirty)">
                        <p *ngIf="this.form.controls.firstname.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                       <p *ngIf="this.form.controls.firstname.errors.pattern">ข้อมูลไม่ถูกต้อง</p>
                        <p *ngIf="checkFirstname">รูปแบบของข้อมูลไม่ถูกต้อง</p>
 
                       </div>
