@@ -7,12 +7,15 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
 import { ProfileComponent } from './profile/profile.component';
+import {TestValidateComponent} from './test-validate/test-validate.component';
+
 const routes: Routes = [
   { path: '', component: LandingPageComponent},
   { path: 'signup', component : SignUpComponent},
   { path: 'signin', component : SignInComponent},
   { path: 'questionnaire', component : QuestionnaireComponent},
-  { path: 'profile', component : ProfileComponent}
+  { path: 'profile', component : ProfileComponent},
+  { path: 'test', component : TestValidateComponent}
 ];
 
 @NgModule({

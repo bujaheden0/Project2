@@ -12,6 +12,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterService } from './register.service';
+import { TestValidateComponent } from './test-validate/test-validate.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { RegisterService } from './register.service';
     LoadingPageComponent,
     SignInComponent,
     QuestionnaireComponent,
-    ProfileComponent
+    ProfileComponent,
+    TestValidateComponent
   ],
   imports: [
     BrowserModule,
