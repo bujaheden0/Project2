@@ -15,23 +15,26 @@ export class QuestionnaireComponent implements OnInit {
   count = 0;
   pb = 0;
   percent: string;
-  type1: string="";
-  type2: string="";
-  type3: string="";
-  type4: string="";
+  type1: string = "";
+  type2: string = "";
+  type3: string = "";
+  type4: string = "";
   score1 = 0;
   score2 = 0;
-  habit :string ="";
+  habit: string = "";
+  habitdetail: string = "";
 
   constructor() { }
 
   ngOnInit() {
+
   }
+
   nextquestion1() {
     this.count++;
     this.pb = this.pb + 2.5;
     this.percent = this.pb + "%";
-    
+
 
     if (this.count == 2) {
       this.score1 == this.score1;
@@ -78,9 +81,14 @@ export class QuestionnaireComponent implements OnInit {
       console.log(this.type4);
       this.score1 = 0;
     }
-    this.habit = this.type1+this.type2+this.type3+this.type4;
+    this.habit = this.type1 + this.type2 + this.type3 + this.type4;
     console.log(this.habit)
-    
+    if (this.habit = "ESTJ") {
+      this.habitdetail = "คุณชอบลุยงาน คุณอยากจะลงมือทำงานให้เสร็จ ไม่ชอบรีรอ คุณใช้เหตุผลและการวิเคราะห์เป็นกฎเกณฑ์ในการดำเนินชีวิตคุณ คุณตัดสินใจไวและมักจะวางแผนในการทำงาน คุณยึดมั่นต่อคำสัญญา เมื่อรับปากใครแล้วก็จะต้องทำให้ได้";
+    }
+    for(var i=0;this.questions.length>=i;i++){
+      console.log(this.questions[i]);
+    }
   }
 
   nextquestion2() {
@@ -133,8 +141,10 @@ export class QuestionnaireComponent implements OnInit {
       console.log(this.type4);
       this.score2 = 0;
     }
-    this.habit = this.type1+this.type2+this.type3+this.type4;
+    this.habit = this.type1 + this.type2 + this.type3 + this.type4;
     console.log(this.habit)
   }
-  
+  if(habit = "ESTJ") {
+    this.habitdetail = "คุณชอบลุยงาน คุณอยากจะลงมือทำงานให้เสร็จ ไม่ชอบรีรอ คุณใช้เหตุผลและการวิเคราะห์เป็นกฎเกณฑ์ในการดำเนินชีวิตคุณ คุณตัดสินใจไวและมักจะวางแผนในการทำงาน คุณยึดมั่นต่อคำสัญญา เมื่อรับปากใครแล้วก็จะต้องทำให้ได้";
+  }
 }
