@@ -92,6 +92,7 @@ export class SignUpComponent implements OnInit {
   }
 
   onSubmit(){
+    console.log(this.form)
       if(this.form.valid){
         this.isValid = true;
       }else{
