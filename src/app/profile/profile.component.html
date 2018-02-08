@@ -50,7 +50,7 @@
               <div class="form-group row">
                 <label for="example-date-input" class="col-2 col-form-label">วันเกิด</label>
                 <div class="col-10">
-                  <input class="form-control" type="date" value="2011-08-19" id="example-date-input">
+                  <input class="form-control" type="date"  id="example-date-input">
                 </div>
               </div>
               <fieldset class="form-group row">
@@ -84,27 +84,15 @@
                 </div>
               </fieldset>
               <div class="form-group row">
-                <label for="example-email-input" class="col-2 col-form-label">Email</label>
-                <div class="col-10" [ngClass]="ValidatorDisplayCss('email')">
-                  <input class="form-control form-control-danger" type="email" placeholder="name@example.com" [ngClass]="ValidatorDisplayCss('email')" id="example-email-input"
-                    formControlName="email">
-                  <div class="form-control-feedback" *ngIf="this.form.controls.email.errors && (this.form.controls.email.touched || this.form.controls.email.dirty)">
-                    <p *ngIf="this.form.controls.email.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
-                    <p *ngIf="email">รูปแบบของข้อมูลไม่ถูกต้อง</p>
-
-                  </div>
-                </div>
-              </div>
-              <div class="form-group row">
                 <label for="example-text-input" class="col-2 col-form-label">Facebook</label>
                 <div class="col-10">
-                  <input class="form-control" type="text" value="Artisanal kale" id="example-text-input">
+                  <input class="form-control" formControlName="facebook" type="text" placeholder="Artisanal kale" id="example-text-input">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="example-tel-input" class="col-2 col-form-label">เบอร์โทรศัพท์</label>
                 <div class="col-10">
-                  <input class="form-control" type="tel" value="555-5555555" id="example-tel-input">
+                  <input class="form-control" type="tel" placeholder="555-5555555" id="example-tel-input">
                 </div>
               </div>
               <div class="form-group row">
@@ -116,13 +104,16 @@
               <div class="form-group row">
                 <label for="example-time-input" class="col-2 col-form-label">ช่วงเวลานอน</label>
                 <div class="col-10">
-                  <input class="form-control" type="time" value="13:00:00" id="example-time-input">
+                  <input class="form-control" type="time" value="22:00:00" id="example-time-input">
                 </div>
               </div>
               <div class="form-group row">
                 <label for="example-text-input" class="col-8 col-form-label">งานอดิเรกเวลาอยู่ที่ห้อง</label>
-
-                <input class="form-control" type="text" value="ดูหนัง" id="example-text-input">
+                <input class="form-control" type="text" placeholder="ดูหนัง" id="example-text-input">
+              </div>
+              <div class="form-group row">
+                <label for="exampleFormControlTextarea1" class="col-8 col-form-label">ที่อยู่ปัจจุบัน</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="111 ม.0 ต.ตำบล อ.อำเภอ จ.จังหวัด 00000" rows="3"></textarea>
               </div>
               <div class="form-group row">
                 <label for="exampleFormControlTextarea1" class="col-8 col-form-label">รายละเอียดเพื่มเติมที่สำคัญ</label>
