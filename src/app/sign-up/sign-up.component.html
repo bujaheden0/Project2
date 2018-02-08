@@ -6,14 +6,12 @@
               สมัครสมาชิก
           </div>
           <div class="card-block">
-            <div class="row justify-content-center">
-                <div class="alert alert-success col-11" *ngIf="this.isValid" role="alert"  @slideSuceeded>
+                <div class="alert alert-success" *ngIf="this.errorMessage === true" role="alert"  @slideSuceeded>
                     <strong>สำเร็จ</strong> กรุณาตรวจสอบอีเมล์ของท่านเพื่อทำการยืนยันการสมัครสมาชิก
                   </div>
-                  <div class="alert alert-danger col-11" *ngIf="this.errorMessage === false" role="alert"  @slideSuceeded>
-                    <strong>สำเร็จ</strong> กรุณาตรวจสอบอีเมล์ของท่านเพื่อทำการยืนยันการสมัครสมาชิก
+                  <div class="alert alert-danger" *ngIf="this.errorMessage === false" role="alert"  @slideSuceeded>
+                    <strong>ผิดพลาด</strong> Email หรือ Username นี้มีอยู่แล้วกรุณาตรวจสอบใหม่
                   </div>
-            </div>
             <div class="row justify-content-md-center">
             <div class="col-sm-12 col-lg-5">
               <div class="regis1">

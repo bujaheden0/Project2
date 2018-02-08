@@ -22,7 +22,7 @@ import { RegisterService } from '../register.service';
     trigger('slideSuceeded', [
       transition('void => *',[
       style({ opacity: 0, transform: 'translateY(-20px)'}),
-      animate(1000)
+      animate(300)
       ])
     ])
   
@@ -32,7 +32,7 @@ import { RegisterService } from '../register.service';
 export class SignUpComponent implements OnInit {
 
   form: FormGroup;
-  errorMessage: Boolean;
+  errorMessage = Boolean;
   isValid = false;
   constructor(private fb: FormBuilder, private registerService : RegisterService) { 
       
