@@ -85,8 +85,14 @@
               </fieldset>
               <div class="form-group row">
                 <label for="example-email-input" class="col-2 col-form-label">Email</label>
-                <div class="col-10">
-                  <input class="form-control" type="email" value="bootstrap@example.com" placeholder="name@example.com" id="example-email-input">
+                <div class="col-10" [ngClass]="ValidatorDisplayCss('email')">
+                  <input class="form-control" type="email" placeholder="name@example.com" [ngClass]="ValidatorDisplayCss('email')" id="example-email-input"
+                    formControlName="email">
+                  <div class="form-control-feedback" *ngIf="this.form.controls.email.errors && (this.form.controls.email.touched || this.form.controls.email.dirty)">
+                    <p *ngIf="this.form.controls.email.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                    <p *ngIf="email">รูปแบบของข้อมูลไม่ถูกต้อง</p>
+
+                  </div>
                 </div>
               </div>
               <div class="form-group row">
@@ -108,7 +114,7 @@
                 </div>
               </div>
               <div class="form-group row">
-                <label for="example-time-input" class="col-2 col-form-label">Time</label>
+                <label for="example-time-input" class="col-2 col-form-label">ช่วงเวลานอน</label>
                 <div class="col-10">
                   <input class="form-control" type="time" value="13:00:00" id="example-time-input">
                 </div>
@@ -126,7 +132,16 @@
               <button type="submit" class="btn btn-primary">Sign in</button>
 
             </div>
-            <div class="c2cYd1"><div class="cnHBqi">ราคา</div><div class="c2uiAC"><div class="c1vuTH"><input type="number" min="0" class="c30Om7" placeholder="ต่ำสุด" value="" pattern="[0-9]*"><div class="c1DHiF">-</div><input type="number" min="0" class="c30Om7" placeholder="สูงสุด" value="" pattern="[0-9]*"><button type="button" class="ant-btn c3R9mX ant-btn-primary ant-btn-icon-only"><i class="anticon anticon-caret-right"></i></button></div></div></div>
+            <div class="col-lg-6">
+              <div class="cnHBqi">ราคา</div>
+              <div class="c2uiAC">
+                <div class="c1vuTH">
+                  <input type="number" min="0" class="c30Om7" placeholder="ต่ำสุด" value="" pattern="[0-9]*">
+                  <div class="c1DHiF">-</div>
+                  <input type="number" min="0" class="c30Om7" placeholder="สูงสุด" value="" pattern="[0-9]*">
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
