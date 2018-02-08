@@ -7,10 +7,7 @@ exports.register = function(req, res){
         lastname  : req.body.lastname,
         username  : req.body.username,
         password  : req.body.password,
-        email     : req.body.email,
-        details : {
-            religion : req.body.religion
-        }
+        email     : req.body.email
     });
 
     users.save((err) => {

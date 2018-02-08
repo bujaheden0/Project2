@@ -22,6 +22,7 @@
                   <div class="form-control-feedback"
                       *ngIf="this.form.controls.firstname.errors && (this.form.controls.firstname.touched || this.form.controls.firstname.dirty)">
                        <p *ngIf="this.form.controls.firstname.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                       <p *ngIf="this.form.controls.firstname.errors.pattern">ข้อมูลไม่ถูกต้อง</p>
                        <p *ngIf="checkFirstname">รูปแบบของข้อมูลไม่ถูกต้อง</p>
 
                       </div>
