@@ -7,4 +7,7 @@ export class Question {
 
 export class Mbti {
   id: number;
+  name: string;
+  title: string;
+  detail: string;
 }
