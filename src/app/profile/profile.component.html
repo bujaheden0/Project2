@@ -84,65 +84,85 @@
 
                   </div>
                 </fieldset>
-                
+
                 <div class="form-group row" [ngClass]="ValidatorDisplayCss('facebook')">
-                  <label for="example-text-input" class="col-2 col-form-label" >Facebook</label>
-                  <div class="form-group col-10 ">
-                    <input type="text" class="form-control" [ngClass]="validatorInputCss('facebook')" id="example-text-input" formControlName="facebook" 
-                       required>
+                  <label for="example-text-input" class="col-2 col-form-label">Facebook</label>
+                  <div class="col-10 ">
+                    <input type="text" class="form-control" [ngClass]="validatorInputCss('facebook')" id="example-text-input" formControlName="facebook"
+                      required>
                     <div class="form-control-feedback" *ngIf="this.form.controls.facebook.errors && (this.form.controls.facebook.touched || this.form.controls.facebook.dirty)">
                       <p *ngIf="this.form.controls.facebook.errors.required ">กรุณากรอกข้อมูลให้ครบถ้วน</p>
                     </div>
                   </div>
                 </div>
-              <div class="form-group row">
-                <label for="example-tel-input" class="col-2 col-form-label">เบอร์โทรศัพท์</label>
-                <div class="col-10">
-                  <input class="form-control" type="tel" placeholder="555-5555555" id="example-tel-input">
+                <div class="form-group row" [ngClass]="ValidatorDisplayCss('tel')">
+                  <label for="example-text-input" class="col-2 col-form-label">เบอร์โทรศัพท์</label>
+                  <div class="col-10">
+                    <input type="text" class="form-control" [ngClass]="validatorInputCss('tel')" placeholder="555-5555555" id="example-text-input"
+                      formControlName="tel" required>
+                    <div class="form-control-feedback" *ngIf="this.form.controls.tel.errors && (this.form.controls.tel.touched || this.form.controls.tel.dirty)">
+                      <p *ngIf="this.form.controls.tel.errors.required ">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div class="form-group row">
-                <label for="example-text-input" class="col-2 col-form-label">อาชีพ</label>
-                <div class="col-10">
-                  <input class="form-control" type="text" placeholder="นักศึกษา" id="example-text-input">
+                <div class="form-group row" [ngClass]="ValidatorDisplayCss('occupation')">
+                  <label for="example-text-input" class="col-2 col-form-label">อาชีพ</label>
+                  <div class="col-10">
+                    <input class="form-control" type="text" placeholder="นักศึกษา" [ngClass]="validatorInputCss('occupation')" id="example-text-input"
+                      formControlName="occupation" required>
+                    <div class="form-control-feedback" *ngIf="this.form.controls.occupation.errors && (this.form.controls.occupation.touched || this.form.controls.occupation.dirty)">
+                      <p *ngIf="this.form.controls.occupation.errors.required ">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-              <div class="form-group row">
-                <label for="example-time-input" class="col-2 col-form-label">ช่วงเวลานอน</label>
-                <div class="col-10">
-                  <input class="form-control" type="time" value="22:00:00" id="example-time-input">
+                <div class="form-group row">
+                  <label for="example-time-input" class="col-2 col-form-label">ช่วงเวลานอน</label>
+                  <div class="col-10">
+                    <input class="form-control" type="time" value="22:00:00" id="example-time-input">
+                  </div>
                 </div>
-              </div>
-              <div class="form-group row">
-                <label for="example-text-input" class="col-8 col-form-label">งานอดิเรกเวลาอยู่ที่ห้อง</label>
-                <input class="form-control" type="text" placeholder="ดูหนัง" id="example-text-input">
-              </div>
-              <div class="form-group row">
-                <label for="exampleFormControlTextarea1" class="col-8 col-form-label">ที่อยู่ปัจจุบัน</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="111 ม.0 ต.ตำบล อ.อำเภอ จ.จังหวัด 00000" rows="3"></textarea>
-              </div>
-              <div class="form-group row">
-                <label for="exampleFormControlTextarea1" class="col-8 col-form-label">รายละเอียดเพื่มเติมที่สำคัญ</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="ไม่ชอบคนสูบบหรี่ , เเพ้เเป้ง" rows="3"></textarea>
-              </div>
+                <div class="form-group row" [ngClass]="ValidatorDisplayCss('hobbies')">
+                  <label for="example-text-input" class="col-8 col-form-label">งานอดิเรกเวลาอยู่ที่ห้อง</label>
+                  <input class="form-control" type="text" placeholder="ดูหนัง" [ngClass]="validatorInputCss('hobbies')" id="example-text-input"
+                    formControlName="hobbies" required>
+                  <div class="form-control-feedback" *ngIf="this.form.controls.hobbies.errors && (this.form.controls.hobbies.touched || this.form.controls.hobbies.dirty)">
+                    <p *ngIf="this.form.controls.hobbies.errors.required ">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                  </div>
+                </div>
+                <div class="form-group row" [ngClass]="ValidatorDisplayCss('address')">
+                  <label for="exampleFormControlTextarea1" class="col-8 col-form-label">ที่อยู่ปัจจุบัน</label>
+                  <textarea class="form-control" placeholder="111 ม.0 ต.ตำบล อ.อำเภอ จ.จังหวัด 00000" rows="3" [ngClass]="validatorInputCss('address')"
+                    id="exampleFormControlTextarea1" formControlName="address" required></textarea>
+                  <div class="form-control-feedback" *ngIf="this.form.controls.address.errors && (this.form.controls.address.touched || this.form.controls.address.dirty)">
+                    <p *ngIf="this.form.controls.address.errors.required ">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                  </div>
+                </div>
+                <div class="form-group row" [ngClass]="ValidatorDisplayCss('descriptions')">
+                  <label for="exampleFormControlTextarea1" class="col-8 col-form-label">รายละเอียดเพื่มเติมที่สำคัญ</label>
+                  <textarea class="form-control" placeholder="ไม่ชอบคนสูบบหรี่ , เเพ้เเป้ง" rows="3" [ngClass]="validatorInputCss('descriptions')"
+                    id="exampleFormControlTextarea1" formControlName="descriptions" required></textarea>
+                  <div class="form-control-feedback" *ngIf="this.form.controls.descriptions.errors && (this.form.controls.descriptions.touched || this.form.controls.descriptions.dirty)">
+                    <p *ngIf="this.form.controls.descriptions.errors.required ">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                  </div>
+                </div>
 
-              <button type="submit" class="btn btn-primary">Sign in</button>
+                <button type="submit" class="btn btn-primary">Sign in</button>
 
-            </div>
-            <div class="col-lg-6">
-              <div class="cnHBqi">ราคา</div>
-              <div class="c2uiAC">
-                <div class="c1vuTH">
-                  <input type="number" min="0" class="c30Om7" placeholder="ต่ำสุด" value="" pattern="[0-9]*">
-                  <div class="c1DHiF">-</div>
-                  <input type="number" min="0" class="c30Om7" placeholder="สูงสุด" value="" pattern="[0-9]*">
+              </div>
+              <div class="col-lg-6">
+                <div class="cnHBqi">ราคา</div>
+                <div class="c2uiAC">
+                  <div class="c1vuTH">
+                    <input type="number" min="0" class="c30Om7" placeholder="ต่ำสุด" value="" pattern="[0-9]*">
+                    <div class="c1DHiF">-</div>
+                    <input type="number" min="0" class="c30Om7" placeholder="สูงสุด" value="" pattern="[0-9]*">
+                  </div>
                 </div>
               </div>
             </div>
+          </form>
         </div>
-        </form>
       </div>
     </div>
   </div>
-</div>
 </div>

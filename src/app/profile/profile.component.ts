@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators,NgForm } from '@angular/forms';
-import { group,trigger,style,transition,animate,keyframes,query,stagger,state } from '@angular/animations';
+import { FormBuilder, FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
+import { group, trigger, style, transition, animate, keyframes, query, stagger, state } from '@angular/animations';
 import { RegisterService } from '../register.service';
 
 @Component({
@@ -9,32 +9,32 @@ import { RegisterService } from '../register.service';
   styleUrls: ['./profile.component.css'],
   animations: [
     trigger('signupTrigger', [
-      transition(':enter',[
-        style({ opacity:0 , transform: 'translateY(+20px)'}),
+      transition(':enter', [
+        style({ opacity: 0, transform: 'translateY(+20px)' }),
         animate(100)
       ]),
-      transition(':leave',[
-        style({ opacity:0 , transform: 'translateY(-20px)'}),
+      transition(':leave', [
+        style({ opacity: 0, transform: 'translateY(-20px)' }),
         animate(500)
       ])
     ]),
 
     trigger('slideSuceeded', [
-      transition('void => *',[
-      style({ opacity: 0, transform: 'translateY(-20px)'}),
-      animate(300)
+      transition('void => *', [
+        style({ opacity: 0, transform: 'translateY(-20px)' }),
+        animate(300)
       ])
     ])
-  
-    
+
+
   ]
 })
 export class ProfileComponent implements OnInit {
   form: FormGroup;
   errorMessage = Boolean;
   isValid = false;
-  constructor(private fb: FormBuilder, private registerService : RegisterService) { 
-      
+  constructor(private fb: FormBuilder, private registerService: RegisterService) {
+
   }
 
 
@@ -46,14 +46,14 @@ export class ProfileComponent implements OnInit {
     return !this.form.get(field).valid && this.form.get(field).touched
   }
 
-  ValidatorDisplayCss(field: string){
+  ValidatorDisplayCss(field: string) {
     return {
-      'has-danger':  this.isFieldNotValid(field)
+      'has-danger': this.isFieldNotValid(field)
     };
   }
 
-  validatorInputCss(field: string){
-    return{
+  validatorInputCss(field: string) {
+    return {
       'form-control-danger': this.isFieldNotValid(field)
     }
   }
@@ -91,30 +91,68 @@ export class ProfileComponent implements OnInit {
           Validators.pattern(/^[A-Za-z0-9]+(?:[_-][A-Za-z0-9]+)*$/)
         ]
       ],
-      telephone: [null,
+      tel: [null,
         [
           Validators.required,
           Validators.minLength(8),
-          Validators.pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)]]
+          Validators.pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)]],
+      occupation: [null,
+        [
+          Validators.required,
+          Validators.minLength(8),
+          Validators.pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)]],
+      sleep_time: [null,
+        [
+          Validators.required,
+          Validators.minLength(8),
+          Validators.pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)]],
+      hobbies: [null,
+        [
+          Validators.required,
+          Validators.minLength(8),
+          Validators.pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)]],
+      address: [null,
+        [
+          Validators.required,
+          Validators.minLength(8),
+          Validators.pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)]],
+      descriptions: [null,
+        [
+          Validators.required,
+          Validators.minLength(8),
+          Validators.pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)]],
+      price: [null,
+        [
+          Validators.required,
+          Validators.minLength(8),
+          Validators.pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)]],
+
     });
   }
 
   onSubmit() {
     console.log(this.form)
-    if(this.form.valid){
+    if (this.form.valid) {
       const user = {
-        facebook : this.form.controls.facebook.value,
-        lastname  : this.form.controls.lastname.value,
-        email     : this.form.controls.email.value,
-        username  : this.form.controls.username.value,
-        password  : this.form.controls.password.value,
+        image: this.form.controls.image.value,
+        religion: this.form.controls.religion.value,
+        gender: this.form.controls.gender.value,
+        birthday: this.form.controls.birthday.value,
+        facebook: this.form.controls.facebook.value,
+        tel: this.form.controls.tel.value,
+        occupation: this.form.controls.occupation.value,
+        sleep_time: this.form.controls.sleep_time.value,
+        hobbies: this.form.controls.hobbies.value,
+        address: this.form.controls.address.value,
+        descriptions: this.form.controls.descriptions.value,
+        price: this.form.controls.price.value
       }
       this.registerService.register(user).subscribe(res => {
-          this.errorMessage = res;
-          console.log(this.errorMessage);
+        this.errorMessage = res;
+        console.log(this.errorMessage);
       })
 
-    }else{
+    } else {
       this.validateAllFormFields(this.form);
     }
   }
