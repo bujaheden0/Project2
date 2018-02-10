@@ -23,10 +23,10 @@ export class QuestionnaireComponent implements OnInit {
   type4: string = "";
   score1 = 0;
   score2 = 0;
-  habit: string = "";
+  public habit: string = "";
   habittitle: string = "";
   habitdetail: string = "";
-  
+
   constructor() { }
 
   ngOnInit() {
@@ -85,15 +85,15 @@ export class QuestionnaireComponent implements OnInit {
       this.score1 = 0;
     }
     this.habit = this.type1 + this.type2 + this.type3 + this.type4;
-    for(let mbti of this.mbtis){
+    for (let mbti of this.mbtis) {
       //console.log(mbti.name);
-      if(this.habit == mbti.name){
+      if (this.habit === mbti.name) {
         this.habittitle = mbti.title;
         this.habitdetail = mbti.detail;
-        
+
       }
     }
-    
+
   }
 
   nextquestion2() {
@@ -148,8 +148,13 @@ export class QuestionnaireComponent implements OnInit {
     }
     this.habit = this.type1 + this.type2 + this.type3 + this.type4;
     console.log(this.habit)
+    for (let mbti of this.mbtis) {
+      //console.log(mbti.name);
+      if (this.habit === mbti.name) {
+        this.habittitle = mbti.title;
+        this.habitdetail = mbti.detail;
+      }
+    }
   }
-  if(habit = "ESTJ") {
-    this.habitdetail = "คุณชอบลุยงาน คุณอยากจะลงมือทำงานให้เสร็จ ไม่ชอบรีรอ คุณใช้เหตุผลและการวิเคราะห์เป็นกฎเกณฑ์ในการดำเนินชีวิตคุณ คุณตัดสินใจไวและมักจะวางแผนในการทำงาน คุณยึดมั่นต่อคำสัญญา เมื่อรับปากใครแล้วก็จะต้องทำให้ได้";
-  }
+
 }
