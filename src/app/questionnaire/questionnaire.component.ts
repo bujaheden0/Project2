@@ -157,4 +157,14 @@ export class QuestionnaireComponent implements OnInit {
     }
   }
 
+  Cancel() {
+    this.count = 0;
+    this.habit = "";
+    this.habittitle = "";
+    this.habitdetail = ""
+    this.type1 = "";
+    this.type2 = "";
+    this.type3 = "";
+    this.type4 = "";
+  }
 }
