@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Question } from '../question';
 import { QUESTIONS } from '../mock-queslist';
+import { MBTIS } from '../mock-mbtilist';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 
@@ -11,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class QuestionnaireComponent implements OnInit {
   questions = QUESTIONS;
+  mbtis = MBTIS;
   selectedQuestion: Question;
   count = 0;
   pb = 0;
@@ -21,7 +23,8 @@ export class QuestionnaireComponent implements OnInit {
   type4: string = "";
   score1 = 0;
   score2 = 0;
-  habit: string = "";
+  public habit: string = "";
+  habittitle: string = "";
   habitdetail: string = "";
 
   constructor() { }
@@ -82,13 +85,15 @@ export class QuestionnaireComponent implements OnInit {
       this.score1 = 0;
     }
     this.habit = this.type1 + this.type2 + this.type3 + this.type4;
-    console.log(this.habit)
-    if (this.habit = "ESTJ") {
-      this.habitdetail = "คุณชอบลุยงาน คุณอยากจะลงมือทำงานให้เสร็จ ไม่ชอบรีรอ คุณใช้เหตุผลและการวิเคราะห์เป็นกฎเกณฑ์ในการดำเนินชีวิตคุณ คุณตัดสินใจไวและมักจะวางแผนในการทำงาน คุณยึดมั่นต่อคำสัญญา เมื่อรับปากใครแล้วก็จะต้องทำให้ได้";
+    for (let mbti of this.mbtis) {
+      //console.log(mbti.name);
+      if (this.habit === mbti.name) {
+        this.habittitle = mbti.title;
+        this.habitdetail = mbti.detail;
+
+      }
     }
-    for(var i=0;this.questions.length>=i;i++){
-      console.log(this.questions[i]);
-    }
+
   }
 
   nextquestion2() {
@@ -143,8 +148,13 @@ export class QuestionnaireComponent implements OnInit {
     }
     this.habit = this.type1 + this.type2 + this.type3 + this.type4;
     console.log(this.habit)
+    for (let mbti of this.mbtis) {
+      //console.log(mbti.name);
+      if (this.habit === mbti.name) {
+        this.habittitle = mbti.title;
+        this.habitdetail = mbti.detail;
+      }
+    }
   }
-  if(habit = "ESTJ") {
-    this.habitdetail = "คุณชอบลุยงาน คุณอยากจะลงมือทำงานให้เสร็จ ไม่ชอบรีรอ คุณใช้เหตุผลและการวิเคราะห์เป็นกฎเกณฑ์ในการดำเนินชีวิตคุณ คุณตัดสินใจไวและมักจะวางแผนในการทำงาน คุณยึดมั่นต่อคำสัญญา เมื่อรับปากใครแล้วก็จะต้องทำให้ได้";
-  }
+
 }
