@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+<<<<<<< HEAD
 import { FormBuilder, FormGroup, FormControl, Validators,NgForm } from '@angular/forms';
 import { group,trigger,style,transition,animate,keyframes,query,stagger,state } from '@angular/animations';
+=======
+import { FormBuilder, FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
+import { group, trigger, style, transition, animate, keyframes, query, stagger, state } from '@angular/animations';
+>>>>>>> 76651fb3638286d2f11d8d8fd5bbfb6c4b08b7ac
 import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
@@ -33,9 +38,15 @@ export class ProfileComponent implements OnInit {
   form: FormGroup;
   errorMessage = Boolean;
   isValid = false;
+<<<<<<< HEAD
   UserDetails : Object;
   constructor(private fb: FormBuilder, private auth : AuthenticationService) { 
       
+=======
+  UserDetails: Object;
+  constructor(private fb: FormBuilder, private auth: AuthenticationService) {
+
+>>>>>>> 76651fb3638286d2f11d8d8fd5bbfb6c4b08b7ac
   }
 
 
@@ -73,7 +84,7 @@ export class ProfileComponent implements OnInit {
       religion: [null,
         [
           Validators.required,
-          Validators.pattern(/^[A-Za-zก-๗]{2,15}$/)
+
         ]
       ],
       gender: [null,
@@ -92,20 +103,17 @@ export class ProfileComponent implements OnInit {
       facebook: [null,
         [
           Validators.required,
-          Validators.minLength(8),
-          Validators.pattern(/^[A-Za-z0-9]+(?:[_-][A-Za-z0-9]+)*$/)
+
         ]
       ],
       tel: [null,
         [
           Validators.required,
-          Validators.minLength(8),
-          Validators.pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)]],
+          Validators.pattern(/^[0-9]{10,10}$/)]],
       occupation: [null,
         [
           Validators.required,
-          Validators.minLength(8),
-          Validators.pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)]],
+          ]],
       sleep_time: [null,
         [
           Validators.required,
@@ -114,18 +122,16 @@ export class ProfileComponent implements OnInit {
       hobbies: [null,
         [
           Validators.required,
-          Validators.minLength(8),
-          Validators.pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)]],
+          ]],
       address: [null,
         [
           Validators.required,
-          Validators.minLength(8),
-          Validators.pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)]],
+          Validators.pattern(/^(?=.*[0-9])(?=.*[ต])(?=.*[อ])(?=.*[จ])(?=.*[.])[a-zA-Zก-๗0-9!@#$%^&*. ]{6,160}$/)
+          ]],
       descriptions: [null,
         [
           Validators.required,
-          Validators.minLength(8),
-          Validators.pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)]],
+          ]],
       price: [null,
         [
           Validators.required,
