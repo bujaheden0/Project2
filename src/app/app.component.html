@@ -6,7 +6,7 @@
       </button>
       <a class="navbar-brand" routerLink="/">RoommateFinder</a>
       <div class="collapse navbar-collapse" id="navbarSupportedContent" aria-controls="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ml-auto" *ngIf="!auth.loggedIn()">
           <li class="nav-item">
             <a class="nav-link" routerLink="/signup"><i class="fas fa-user-plus"></i>  Sign Up</a>
           </li>
@@ -14,6 +14,11 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" routerLink="/signin"><i class="fas fa-sign-in-alt"></i>  Sign In</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto" *ngIf="auth.loggedIn()">
+          <li class="nav-item" *ngIf="UserDetails">
+            <a class="nav-link" routerLink="/signup">{{ UserDetails.firstname }} {{ UserDetails.lastname }} </a>
           </li>
         </ul>
       </div>

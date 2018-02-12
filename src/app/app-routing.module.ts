@@ -9,6 +9,7 @@ import { QuestionnaireComponent } from './questionnaire/questionnaire.component'
 import { ProfileComponent } from './profile/profile.component';
 import {TestValidateComponent} from './test-validate/test-validate.component';
 
+
 const routes: Routes = [
   { path: '', component: LandingPageComponent},
   { path: 'signup', component : SignUpComponent},

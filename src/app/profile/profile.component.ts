@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators,NgForm } from '@angular/forms';
 import { group,trigger,style,transition,animate,keyframes,query,stagger,state } from '@angular/animations';
-import { RegisterService } from '../register.service';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-profile',
@@ -33,13 +33,18 @@ export class ProfileComponent implements OnInit {
   form: FormGroup;
   errorMessage = Boolean;
   isValid = false;
-  constructor(private fb: FormBuilder, private registerService : RegisterService) { 
+  UserDetails : Object;
+  constructor(private fb: FormBuilder, private auth : AuthenticationService) { 
       
   }
 
 
   ngOnInit() {
     this.createFormValidate();
+    this.auth.getProfile().subscribe(user => {
+      this.UserDetails = user;
+      console.log(this.UserDetails);
+    })
   }
 
   isFieldNotValid(field: string) {
@@ -109,10 +114,7 @@ export class ProfileComponent implements OnInit {
         username  : this.form.controls.username.value,
         password  : this.form.controls.password.value,
       }
-      this.registerService.register(user).subscribe(res => {
-          this.errorMessage = res;
-          console.log(this.errorMessage);
-      })
+
 
     }else{
       this.validateAllFormFields(this.form);

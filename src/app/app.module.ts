@@ -11,7 +11,7 @@ import { LoadingPageComponent } from './loading-page/loading-page.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
 import { ProfileComponent } from './profile/profile.component';
-import { RegisterService } from './register.service';
+import { AuthenticationService } from './services/authentication.service';
 import { TestValidateComponent } from './test-validate/test-validate.component';
 
 
@@ -34,7 +34,7 @@ import { TestValidateComponent } from './test-validate/test-validate.component';
     ReactiveFormsModule,
     HttpModule
   ],
-  providers: [ RegisterService ],
+  providers: [ AuthenticationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 const schema = mongoose.Schema;
 const userSchema = new schema({
     firstname : String,
@@ -88,4 +89,31 @@ const userSchema = new schema({
 
 });
 
+
+userSchema.pre('save', function(next){
+    if(this.password){
+    this.salt = bcrypt.genSaltSync(10);
+    this.hash = bcrypt.hashSync(this.password,this.salt);
+    this.password = this.hash;
+    }
+    next();
+});
+
+userSchema.methods.verifyPassword = function(candidatePassword, hash){
+    return bcrypt.compareSync(candidatePassword, hash);
+}
+
+userSchema.methods.generateJwt = function() {
+    var expiry = new Date();
+    expiry.setDate(expiry.getDate() + 7);
+  
+    return jwt.sign({
+      _id: this._id,
+      email: this.email,
+      name: this.firstname  + " " + this.lastname,
+      username: this.username,
+      exp: parseInt(expiry.getTime() / 1000),
+    }, "MY_SECRET"); // DO NOT KEEP YOUR SECRET IN THE CODE!
+  };
+  
 mongoose.model('User', userSchema);

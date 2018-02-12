@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators,NgForm } from '@angular/forms';
 import { group,trigger,style,transition,animate,keyframes,query,stagger,state } from '@angular/animations';
-import { RegisterService } from '../register.service';
+import { AuthenticationService} from '../services/authentication.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -30,11 +30,11 @@ import { RegisterService } from '../register.service';
   ]
 })
 export class SignUpComponent implements OnInit {
-
+  
   form: FormGroup;
-  errorMessage = Boolean;
+  errorMessage = Object;
   isValid = false;
-  constructor(private fb: FormBuilder, private registerService : RegisterService) { 
+  constructor(private fb: FormBuilder, private authenticationService : AuthenticationService) { 
       
   }
 
@@ -94,7 +94,6 @@ export class SignUpComponent implements OnInit {
   }
 
   onSubmit(){
-    console.log(this.form)
       if(this.form.valid){
         const user = {
           firstname : this.form.controls.firstname.value,
@@ -103,9 +102,8 @@ export class SignUpComponent implements OnInit {
           username  : this.form.controls.username.value,
           password  : this.form.controls.password.value,
         }
-        this.registerService.register(user).subscribe(res => {
-            this.errorMessage = res;
-            console.log(this.errorMessage);
+        this.authenticationService.register(user).subscribe(res => {
+              this.errorMessage = res;
         })
 
       }else{

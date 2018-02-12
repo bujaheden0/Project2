@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger,style,transition,animate,keyframes,query,stagger } from '@angular/animations';
+import { AuthenticationService } from '../services/authentication.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
@@ -17,10 +19,25 @@ import { trigger,style,transition,animate,keyframes,query,stagger } from '@angul
   ]
 })
 export class SignInComponent implements OnInit {
-
-  constructor() { }
+  username : String;
+  password : String;
+  constructor(private authenticationService : AuthenticationService,
+              private router: Router) { }
 
   ngOnInit() {
   }
 
+  onLoginSubmit(){
+    const user = {
+      username : this.username,
+      password : this.password
+    }
+
+    this.authenticationService.login(user).subscribe(res => {
+      if(res.success){
+        this.authenticationService.storeUserData(res.token)
+        this.router.navigateByUrl('/profile');
+      }
+    })
+  }
 }
