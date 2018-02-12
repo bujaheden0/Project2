@@ -4,10 +4,3 @@ export class Question {
   Choice1: string;
   Choice2: string;
 }
-
-export class Mbti {
-  id: number;
-  name: string;
-  title: string;
-  detail: string;
-}
