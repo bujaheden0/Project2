@@ -1,17 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators,NgForm } from '@angular/forms';
 import { group,trigger,style,transition,animate,keyframes,query,stagger,state } from '@angular/animations';
-<<<<<<< HEAD
 import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
-=======
-=======
-import { FormBuilder, FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
-import { group, trigger, style, transition, animate, keyframes, query, stagger, state } from '@angular/animations';
->>>>>>> 76651fb3638286d2f11d8d8fd5bbfb6c4b08b7ac
-import { AuthenticationService } from '../services/authentication.service';
 
->>>>>>> aa9229d601aba0bd27f9a943af1c5a450ed1e8db
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
