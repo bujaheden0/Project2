@@ -1,14 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-<<<<<<< HEAD
 import { FormBuilder, FormGroup, FormControl, Validators,NgForm } from '@angular/forms';
 import { group,trigger,style,transition,animate,keyframes,query,stagger,state } from '@angular/animations';
 import { AuthenticationService } from '../services/authentication.service';
-=======
-import { FormBuilder, FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
-import { group, trigger, style, transition, animate, keyframes, query, stagger, state } from '@angular/animations';
-import { RegisterService } from '../register.service';
->>>>>>> 8d9533f02c17e72f47df02f78d1f5da283d6a866
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -39,23 +33,14 @@ export class ProfileComponent implements OnInit {
   form: FormGroup;
   errorMessage = Boolean;
   isValid = false;
-<<<<<<< HEAD
   UserDetails : Object;
-  constructor(private fb: FormBuilder, private auth : AuthenticationService) { 
+  constructor(private fb: FormBuilder, private auth : AuthenticationService,private router : Router) { 
       
-=======
-  constructor(private fb: FormBuilder, private registerService: RegisterService) {
-
->>>>>>> 8d9533f02c17e72f47df02f78d1f5da283d6a866
   }
 
 
   ngOnInit() {
     this.createFormValidate();
-    this.auth.getProfile().subscribe(user => {
-      this.UserDetails = user;
-      console.log(this.UserDetails);
-    })
   }
 
   isFieldNotValid(field: string) {
@@ -163,14 +148,6 @@ export class ProfileComponent implements OnInit {
         descriptions: this.form.controls.descriptions.value,
         price: this.form.controls.price.value
       }
-<<<<<<< HEAD
-
-=======
-      this.registerService.register(user).subscribe(res => {
-        this.errorMessage = res;
-        console.log(this.errorMessage);
-      })
->>>>>>> 8d9533f02c17e72f47df02f78d1f5da283d6a866
 
     } else {
       this.validateAllFormFields(this.form);

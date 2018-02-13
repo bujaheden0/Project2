@@ -16,8 +16,9 @@ export class AuthenticationService {
     return this.http.post('/api/user/login', data).map(res => res.json());
   }
 
-  storeUserData(token){
+  storeUserData(token, user){
     localStorage.setItem('id_token', token);
+    localStorage.setItem('user', JSON.stringify(user));
     this.authToken = token;
   }
 
@@ -37,7 +38,6 @@ export class AuthenticationService {
   }
 
   loggedIn() {
-    console.log(tokenNotExpired('id_token'));
     return tokenNotExpired('id_token');
   }
 

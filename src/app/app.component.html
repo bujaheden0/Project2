@@ -17,8 +17,8 @@
           </li>
         </ul>
         <ul class="navbar-nav ml-auto" *ngIf="auth.loggedIn()">
-          <li class="nav-item" *ngIf="UserDetails">
-            <a class="nav-link" routerLink="/signup">{{ UserDetails.firstname }} {{ UserDetails.lastname }} </a>
+          <li class="nav-item" >
+            <a class="nav-link" routerLink="/signup">{{ userDetails.firstname }}  {{ userDetails.lastname}}</a>
           </li>
         </ul>
       </div>

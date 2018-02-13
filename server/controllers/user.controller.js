@@ -46,7 +46,14 @@ exports.login = function(req, res){
           res.json({
             success : true,
             message : "Loggin successfully",
-            token : "Bearer " + token
+            user : {
+              id : user._id,
+              email : user.email,
+              username : user.username,
+              firstname : user.firstname,
+              lastname : user.lastname
+            },
+            token : token
           });
 
           

@@ -25,6 +25,7 @@ export class SignInComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
+    console.log("Something");
   }
 
   onLoginSubmit(){
@@ -35,8 +36,10 @@ export class SignInComponent implements OnInit {
 
     this.authenticationService.login(user).subscribe(res => {
       if(res.success){
-        this.authenticationService.storeUserData(res.token)
-        this.router.navigateByUrl('/profile');
+        this.authenticationService.storeUserData(res.token, res.user)
+        if(this.authenticationService.loggedIn){
+          this.router.navigate(['/profile']);
+        }
       }
     })
   }

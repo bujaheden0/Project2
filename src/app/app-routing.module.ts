@@ -8,6 +8,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
 import { ProfileComponent } from './profile/profile.component';
 import {TestValidateComponent} from './test-validate/test-validate.component';
+import { AuthenticationService } from './services/authentication.service';
 
 
 const routes: Routes = [
@@ -15,7 +16,7 @@ const routes: Routes = [
   { path: 'signup', component : SignUpComponent},
   { path: 'signin', component : SignInComponent},
   { path: 'questionnaire', component : QuestionnaireComponent},
-  { path: 'profile', component : ProfileComponent},
+  { path: 'profile', component : ProfileComponent },
   { path: 'test', component : TestValidateComponent}
 ];
 
@@ -28,4 +29,7 @@ const routes: Routes = [
   declarations: []
 })
 
-export class AppRoutingModule { }
+export class AppRoutingModule { 
+
+
+}

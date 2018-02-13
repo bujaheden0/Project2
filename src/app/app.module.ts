@@ -12,6 +12,7 @@ import { SignInComponent } from './sign-in/sign-in.component';
 import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthenticationService } from './services/authentication.service';
+import { AuthGuard } from './services/auth-guard.service';
 import { TestValidateComponent } from './test-validate/test-validate.component';
 
 
@@ -34,7 +35,7 @@ import { TestValidateComponent } from './test-validate/test-validate.component';
     ReactiveFormsModule,
     HttpModule
   ],
-  providers: [ AuthenticationService],
+  providers: [ AuthenticationService,AuthGuard ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
