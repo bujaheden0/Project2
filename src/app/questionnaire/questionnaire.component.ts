@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Question } from '../question';
 import { QUESTIONS } from '../mock-queslist';
-import { MBTIS } from '../mock-mbtilist';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
+import { Mbti16typedatailService } from '../services/mbti16typedatail.service';
 
 @Component({
   selector: 'app-questionnaire',
@@ -12,7 +12,6 @@ import { Router } from '@angular/router';
 })
 export class QuestionnaireComponent implements OnInit {
   questions = QUESTIONS;
-  mbtis = MBTIS;
   selectedQuestion: Question;
   count = 0;
   pb = 0;
@@ -24,13 +23,12 @@ export class QuestionnaireComponent implements OnInit {
   score1 = 0;
   score2 = 0;
   public habit: string = "";
-  habittitle: string = "";
   habitdetail: string = "";
 
-  constructor() { }
+  constructor(private mbtiservice : Mbti16typedatailService) { }
 
   ngOnInit() {
-
+    
   }
 
   nextquestion1() {
@@ -83,17 +81,46 @@ export class QuestionnaireComponent implements OnInit {
       }
       console.log(this.type4);
       this.score1 = 0;
+      
     }
+    
     this.habit = this.type1 + this.type2 + this.type3 + this.type4;
-    for (let mbti of this.mbtis) {
-      //console.log(mbti.name);
-      if (this.habit === mbti.name) {
-        this.habittitle = mbti.title;
-        this.habitdetail = mbti.detail;
+    // for (let mbti of this.mbtis) {
+    //   //console.log(mbti.name);
+    //   if (this.habit === mbti.name) {
+    //     this.habittitle = mbti.title;
+    //     this.habitdetail = mbti.detail;
 
-      }
+    //   }
+    // }
+    if(this.habit.length == 4){
+      this.mbtiservice.getmbtitype(this.habit).subscribe(result => {
+        let displays =  result.split("\n");
+        let bigTab = "";
+        let smallTab = "";
+        const space = "&nbsp;";
+        for(let i = 0; i< 10 ; i++){
+          smallTab = smallTab +space;
+        }
+        bigTab = smallTab + smallTab;
+
+        displays[0] = displays[0].bold();
+        for(let i = 0 ; i< displays.length; i++){
+          let tab : string;
+          if(i==0){
+            tab = bigTab;
+          }else{
+            tab = smallTab;
+          }
+          displays[i] = displays[i].replace("    ",tab);
+          displays[i] = displays[i].replace("ข้อแนะนำ:", "ข้อแนะนำ:".bold());
+          displays[i] = displays[i].replace("อาชีพที่เหมาะสมกับลักษณะบุคลิกภาพ :", "อาชีพที่เหมาะสมกับลักษณะบุคลิกภาพ :".bold());
+          // console.log("line"+i+" "+displays[i]);
+        }
+        this.habitdetail = displays.join("<br>");
+         console.log(this.habitdetail);
+      });
     }
-
   }
 
   nextquestion2() {
@@ -148,13 +175,52 @@ export class QuestionnaireComponent implements OnInit {
     }
     this.habit = this.type1 + this.type2 + this.type3 + this.type4;
     console.log(this.habit)
-    for (let mbti of this.mbtis) {
-      //console.log(mbti.name);
-      if (this.habit === mbti.name) {
-        this.habittitle = mbti.title;
-        this.habitdetail = mbti.detail;
-      }
+    // for (let mbti of this.mbtis) {
+    //   //console.log(mbti.name);
+    //   if (this.habit === mbti.name) {
+    //     this.habittitle = mbti.title;
+    //     this.habitdetail = mbti.detail;
+    //   }
+    // }
+    if(this.habit.length == 4){
+      this.mbtiservice.getmbtitype(this.habit).subscribe(result => {
+        let displays =  result.split("\n");
+        let bigTab = "";
+        let smallTab = "";
+        const space = "&nbsp;";
+        for(let i = 0; i< 10 ; i++){
+          smallTab = smallTab +space;
+        }
+        bigTab = smallTab + smallTab;
+
+        displays[0] = displays[0].bold();
+        for(let i = 0 ; i< displays.length; i++){
+          let tab : string;
+          if(i==0){
+            tab = bigTab;
+          }else{
+            tab = smallTab;
+          }
+          displays[i] = displays[i].replace("    ",tab);
+          displays[i] = displays[i].replace("ข้อแนะนำ:", "ข้อแนะนำ:".bold());
+          displays[i] = displays[i].replace("ข้อควรระวัง:", "ข้อควรระวัง:".bold());
+          displays[i] = displays[i].replace("อาชีพที่เหมาะสมกับลักษณะบุคลิกภาพ :", "อาชีพที่เหมาะสมกับลักษณะบุคลิกภาพ :".bold());
+          // console.log("line"+i+" "+displays[i]);
+        }
+        this.habitdetail = displays.join("<br>");
+         console.log(this.habitdetail);
+      });
     }
   }
 
+  Cancel() {
+    this.count = 0;
+    this.habit = "";
+    this.habitdetail = ""
+    this.type1 = "";
+    this.type2 = "";
+    this.type3 = "";
+    this.type4 = "";
+    this.pb = 0;
+  }
 }

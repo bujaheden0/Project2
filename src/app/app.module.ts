@@ -14,7 +14,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { AuthenticationService } from './services/authentication.service';
 import { AuthGuard } from './services/auth-guard.service';
 import { TestValidateComponent } from './test-validate/test-validate.component';
-
+import { Mbti16typedatailService } from './services/mbti16typedatail.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -33,9 +34,10 @@ import { TestValidateComponent } from './test-validate/test-validate.component';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpModule
+    HttpModule,
+    HttpClientModule
   ],
-  providers: [ AuthenticationService,AuthGuard ],
+  providers: [ AuthenticationService,AuthGuard, Mbti16typedatailService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

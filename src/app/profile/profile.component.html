@@ -6,30 +6,32 @@
           ประวัติส่วนตัว 
         </div>
         <div class="card-block">
-          <form [formGroup]="form">
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <div class="row">
               <div class="col-lg-6">
                 <form>
-                    <div class="form-group">
-                        <label for="exampleFormControlFile1">รูปประจำตัว</label>
-                        <input type="file" class="form-control-file" id="exampleFormControlFile1">
-                      </div>
-    
+                  <div class="form-group">
+                    <label for="exampleFormControlFile1">รูปประจำตัว</label>
+                    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                  </div>
+
                 </form>
-                <div class="form-group">
-                  <form class="form-inline">
+                <div class="form-group" >
+                  <form class="form-inline"  >
                     <label class="mr-sm-2" for="inlineFormCustomSelect">ศาสนา</label>
-                    <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
+                    <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect" [ngClass]="validatorInputCss('religion')" 
+                    required>
                       <option selected>เลือก...</option>
                       <option value="1">พุทธ</option>
                       <option value="2">อิสลาม</option>
                       <option value="3">คริสต์</option>
                     </select>
+                   
 
                     <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
                       <input type="checkbox" class="custom-control-input">
                       <span class="custom-control-indicator"></span>
-                      <span class="custom-control-description">คุณยินดีที่จะอยู่กับศาสนาตรงข้ามด้วย</span>
+                      <span class="custom-control-description">คุณยินดีที่จะอยู่กับศาสนาอื่นด้วย</span>
                     </label>
                   </form>
                 </div>
@@ -49,10 +51,14 @@
                     </label>
                   </form>
                 </div>
-                <div class="form-group row">
+                <div class="form-group row" [ngClass]="ValidatorDisplayCss('birthday')">
                   <label for="example-date-input" class="col-2 col-form-label">วันเกิด</label>
                   <div class="col-10">
-                    <input class="form-control" type="date" id="example-date-input">
+                    <input class="form-control" type="date" [ngClass]="validatorInputCss('birthday')"formControlName="birthday"
+                    id="example-date-input" required>
+                    <div class="form-control-feedback" *ngIf="this.form.controls.birthday.errors && (this.form.controls.birthday.touched || this.form.controls.birthday.dirty)">
+                        <p *ngIf="this.form.controls.birthday.errors.required ">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                      </div>
                   </div>
                 </div>
                 <fieldset class="form-group row">
@@ -92,7 +98,7 @@
                 <div class="form-group row" [ngClass]="ValidatorDisplayCss('tel')">
                   <label for="example-text-input" class="col-2 col-form-label">เบอร์โทรศัพท์</label>
                   <div class="col-10">
-                    <input type="text" class="form-control" [ngClass]="validatorInputCss('tel')" placeholder="555-5555555" id="example-text-input"
+                    <input type="text" class="form-control" [ngClass]="validatorInputCss('tel')" placeholder="0881231234" id="example-text-input"
                       formControlName="tel" required>
                     <div class="form-control-feedback" *ngIf="this.form.controls.tel.errors && (this.form.controls.tel.touched || this.form.controls.tel.dirty)">
                       <p *ngIf="this.form.controls.tel.errors.required ">กรุณากรอกข้อมูลให้ครบถ้วน</p>
@@ -109,12 +115,36 @@
                     </div>
                   </div>
                 </div>
-                <div class="form-group row">
+                <div class="form-group row " >
                   <label for="example-time-input" class="col-2 col-form-label">ช่วงเวลานอน</label>
                   <div class="col-10">
-                    <input class="form-control" type="time" value="22:00:00" id="example-time-input">
+                    <input class="form-control" type="time" value="22:00:00"id="example-time-input" >
+                    
                   </div>
                 </div>
+
+
+
+
+              </div>
+              <div class="col-sm-1 hidden-md-down">
+                <div class="divider">
+                </div>
+              </div>
+              <div class="col-lg-5 ">
+                <div class="form-group row">
+                  <label for="example-number-input" class="col-6 col-form-label">ราคาหอพัก</label>
+                  <div class="row">
+                    <div class="col-lg-5">
+                      <input class="form-control" type="number" id="example-number-input" min="0" placeholder="ต่ำสุด" value="0" pattern="[0-9]*">
+                    </div>
+                    <div class="col-lg-1">-</div>
+                    <div class="col-lg-5">
+                      <input class="form-control" type="number" id="example-number-input" min="0" placeholder="สูงสุด" value="10000" pattern="[0-9]*">
+                    </div>
+                  </div>
+                </div>
+
                 <div class="form-group row" [ngClass]="ValidatorDisplayCss('hobbies')">
                   <label for="example-text-input" class="col-8 col-form-label">งานอดิเรกเวลาอยู่ที่ห้อง</label>
                   <input class="form-control" type="text" placeholder="ดูหนัง" [ngClass]="validatorInputCss('hobbies')" id="example-text-input"
@@ -133,25 +163,16 @@
                 </div>
                 <div class="form-group row" [ngClass]="ValidatorDisplayCss('descriptions')">
                   <label for="exampleFormControlTextarea1" class="col-8 col-form-label">รายละเอียดเพื่มเติมที่สำคัญ</label>
-                  <textarea class="form-control" placeholder="ไม่ชอบคนสูบบหรี่ , เเพ้เเป้ง" rows="3" [ngClass]="validatorInputCss('descriptions')"
+                  <textarea class="form-control" placeholder="ไม่ชอบคนสูบบหรี่ , เเพ้เเป้ง" rows="5" [ngClass]="validatorInputCss('descriptions')"
                     id="exampleFormControlTextarea1" formControlName="descriptions" required></textarea>
                   <div class="form-control-feedback" *ngIf="this.form.controls.descriptions.errors && (this.form.controls.descriptions.touched || this.form.controls.descriptions.dirty)">
                     <p *ngIf="this.form.controls.descriptions.errors.required ">กรุณากรอกข้อมูลให้ครบถ้วน</p>
                   </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Sign in</button>
-
               </div>
-              <div class="col-lg-6">
-                <div class="cnHBqi">ราคา</div>
-                <div class="c2uiAC">
-                  <div class="c1vuTH">
-                    <input type="number" min="0" class="c30Om7" placeholder="ต่ำสุด" value="" pattern="[0-9]*">
-                    <div class="c1DHiF">-</div>
-                    <input type="number" min="0" class="c30Om7" placeholder="สูงสุด" value="" pattern="[0-9]*">
-                  </div>
-                </div>
+              <div class="b">
+                <button type="submit" class="btn btn-primary">Sign in</button>
               </div>
             </div>
           </form>

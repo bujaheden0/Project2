@@ -2,30 +2,31 @@
   <div class="card">
     <div class="card-block">
       <form>
-        <div class="count" *ngFor="let question of questions; let i = index">
-          <div class="count2" *ngIf="count === i">
-            <div id="q1" class="q" *ngIf="question == questions[count]">
+        
+        <!-- <div class="count" *ngFor="let question of questions; let i = index">
+          <div class="count2" *ngIf="count === i"> -->
+            <div id="q1" class="q" *ngIf="count < 40">
               <div class="qt" style="padding-bottom:5px">
-                <div class="n">{{i+1}}</div>
-                <div class="t" id="q1t" tabindex="0">{{question.name}}</div>
+                <div class="n">{{count+1}}</div>
+                <div class="t" id="q1t" tabindex="0">{{questions[count].name}}</div>
               </div>
               <div style="position:relative">
-                <div class="opt" tabindex="0" data-listnav="12" (click)="nextquestion1()" style="" data-toggle="modal" data-target="#exampleModal">
+                <div class="opt" tabindex="0" data-listnav="12"  style="" data-toggle="modal" data-target="#exampleModal">
                   <label style="display:block;padding:4px;cursor:pointer;">
-                    <input type="radio" name="q1" value="1" style="border:0;background:transparent;margin:0px;"> &nbsp;{{question.Choice1}}
+                    <input type="button" name="q1" value="1" style="border:0;background:transparent;margin:0px;" (click)="nextquestion1()"> &nbsp;{{questions[count].Choice1}}
                   </label>
                 </div>
-                <div class="opt" tabindex="0" data-listnav="12" (click)="nextquestion2()" style="" data-toggle="modal" data-target="#exampleModal">
+                <div class="opt" tabindex="0" data-listnav="12"  style="" data-toggle="modal" data-target="#exampleModal">
                   <label style="display:block;padding:4px;cursor:pointer;">
-                    <input type="radio" name="q1" value="2" style="border:0;background:transparent;margin:0px;"> &nbsp;{{question.Choice2}}
+                    <input type="button" name="q1" value="2" style="border:0;background:transparent;margin:0px;" (click)="nextquestion2()"> &nbsp;{{questions[count].Choice2}}
                   </label>
                 </div>
               </div>
               <div style="clear:left">
               </div>
             </div>
-          </div>
-        </div>
+          <!-- </div>
+        </div> -->
       </form>
 
       <!-- Modal -->
@@ -35,7 +36,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="exampleModalLongTitle">{{habit}}</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="Cancel()">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
@@ -43,15 +44,14 @@
               <div class="row">
                 
                   <div class="mbti">
-                    <div [innerHTML]="habittitle"></div>
                     <div [innerHTML]="habitdetail"></div>
                   </div>
                 
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="Cancel()">ทำอีกครั้ง</button>
+              <a routerLink="/" class="btn btn-primary">ตกลง</a>
             </div>
           </div>
         </div>

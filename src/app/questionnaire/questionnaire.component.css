@@ -1,5 +1,6 @@
 .card{
     text-align: left;
+    margin-top: 10px;
 }
 
 .q{
@@ -12,6 +13,7 @@
     -webkit-transition: opacity .25s;
     transition: opacity .25s;
     line-height: 2.2em;
+    
     
 }
 .n{
