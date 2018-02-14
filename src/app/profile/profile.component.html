@@ -3,7 +3,7 @@
     <div class="signUp-form">
       <div class="card">
         <div class="card-header">
-          ประวัติส่วนตัว 
+          ประวัติส่วนตัว
         </div>
         <div class="card-block">
           <form [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -16,49 +16,49 @@
                   </div>
 
                 </form>
-                <div class="form-group" >
-                  <form class="form-inline"  >
+                <div class="form-group">
+                  <form class="form-inline">
                     <label class="mr-sm-2" for="inlineFormCustomSelect">ศาสนา</label>
-                    <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect" [ngClass]="validatorInputCss('religion')" 
-                    required>
+                    <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect" [ngClass]="validatorInputCss('religion')"
+                      required>
                       <option selected>เลือก...</option>
                       <option value="1">พุทธ</option>
                       <option value="2">อิสลาม</option>
                       <option value="3">คริสต์</option>
+                      <option value="4">อื่นๆ</option>
                     </select>
-                   
 
-                    <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-                      <input type="checkbox" class="custom-control-input">
-                      <span class="custom-control-indicator"></span>
-                      <span class="custom-control-description">คุณยินดีที่จะอยู่กับศาสนาอื่นด้วย</span>
-                    </label>
+                    <div class="c">
+                      <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+                        <input type="checkbox" class="custom-control-input">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description">คุณยินดีที่จะอยู่กับศาสนาอื่นด้วย</span>
+                      </label>
+                    </div>
                   </form>
                 </div>
                 <div class="form-group">
                   <form class="form-inline">
                     <label class="mr-sm-4" for="inlineFormCustomSelect">เพศ</label>
-                    <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
-                      <option selected>เลือก...</option>
-                      <option value="1">ชาย</option>
-                      <option value="2">หญิง</option>
-                    </select>
-
-                    <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-                      <input type="checkbox" class="custom-control-input">
-                      <span class="custom-control-indicator"></span>
-                      <span class="custom-control-description">คุณยินดีที่จะอยู่กับเพศตรงข้ามด้วย</span>
-                    </label>
+                    <input class="form-check-input " type="radio" name="gridRadios" id="gridRadios1" value="option1"> ชาย
+                    <input class="form-check-input " type="radio" name="gridRadios" id="gridRadios2" value="option2"> หญิง
+                    <div class="c">
+                      <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+                        <input type="checkbox" class="custom-control-input">
+                        <span class="custom-control-indicator"></span>
+                        <span class="custom-control-description">คุณยินดีที่จะอยู่กับเพศตรงข้ามด้วย</span>
+                      </label>
+                    </div>
                   </form>
                 </div>
                 <div class="form-group row" [ngClass]="ValidatorDisplayCss('birthday')">
                   <label for="example-date-input" class="col-2 col-form-label">วันเกิด</label>
                   <div class="col-10">
-                    <input class="form-control" type="date" [ngClass]="validatorInputCss('birthday')"formControlName="birthday"
-                    id="example-date-input" required>
+                    <input class="form-control" type="date" [ngClass]="validatorInputCss('birthday')" formControlName="birthday" id="example-date-input"
+                      required>
                     <div class="form-control-feedback" *ngIf="this.form.controls.birthday.errors && (this.form.controls.birthday.touched || this.form.controls.birthday.dirty)">
-                        <p *ngIf="this.form.controls.birthday.errors.required ">กรุณากรอกข้อมูลให้ครบถ้วน</p>
-                      </div>
+                      <p *ngIf="this.form.controls.birthday.errors.required ">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                    </div>
                   </div>
                 </div>
                 <fieldset class="form-group row">
@@ -115,11 +115,11 @@
                     </div>
                   </div>
                 </div>
-                <div class="form-group row " >
-                  <label for="example-time-input" class="col-2 col-form-label">ช่วงเวลานอน</label>
+                <div class="form-group row ">
+                  <label for="example-time-input" class="col-2 col-form-label">เวลาเรื่มเข้านอน</label>
                   <div class="col-10">
-                    <input class="form-control" type="time" value="22:00:00"id="example-time-input" >
-                    
+                    <input class="form-control" type="time" value="22:00:00" id="example-time-input">
+
                   </div>
                 </div>
 
