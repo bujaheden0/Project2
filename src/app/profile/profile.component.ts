@@ -141,12 +141,18 @@ export class ProfileComponent implements OnInit {
         sleep_time: this.form.controls.sleep_time.value,
         hobbies: this.form.controls.hobbies.value,
         address: this.form.controls.address.value,
-        descriptions: this.form.controls.descriptions.value,
+       descriptions: this.form.controls.descriptions.value,
         price: this.form.controls.price.value
       }
+        this.auth.profile(user).subscribe(res => {
+          this.errorMessage = res;
+          console.log(user);
+        })
+      
 
     } else {
       this.validateAllFormFields(this.form);
+      console.log(this.form.controls.price.value);
     }
   }
 

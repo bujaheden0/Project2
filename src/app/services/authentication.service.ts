@@ -12,6 +12,10 @@ export class AuthenticationService {
     return this.http.post('/api/user/regis', data).map(res => res.json());
   }
 
+  profile(data){
+    return this.http.post('/api/user/profile', data).map(res => res.json());
+  }
+
   login(data){
     return this.http.post('/api/user/login', data).map(res => res.json());
   }
