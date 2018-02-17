@@ -16,6 +16,7 @@ import { AuthGuard } from './services/auth-guard.service';
 import { TestValidateComponent } from './test-validate/test-validate.component';
 import { Mbti16typedatailService } from './services/mbti16typedatail.service';
 import { HttpClientModule } from '@angular/common/http';
+import { MapComponent } from './map/map.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { HttpClientModule } from '@angular/common/http';
     SignInComponent,
     QuestionnaireComponent,
     ProfileComponent,
-    TestValidateComponent
+    TestValidateComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,

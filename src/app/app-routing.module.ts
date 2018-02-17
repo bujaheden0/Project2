@@ -9,6 +9,7 @@ import { QuestionnaireComponent } from './questionnaire/questionnaire.component'
 import { ProfileComponent } from './profile/profile.component';
 import {TestValidateComponent} from './test-validate/test-validate.component';
 import { AuthenticationService } from './services/authentication.service';
+import { MapComponent } from './map/map.component';
 
 
 const routes: Routes = [
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'signin', component : SignInComponent},
   { path: 'questionnaire', component : QuestionnaireComponent},
   { path: 'profile', component : ProfileComponent },
-  { path: 'test', component : TestValidateComponent}
+  { path: 'test', component : TestValidateComponent},
+  { path: 'map', component : MapComponent}
 ];
 
 @NgModule({
