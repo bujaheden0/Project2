@@ -6,10 +6,10 @@
     </h1>
     <div class="location">
 
-      <form class="form-inline">
-        <label class="mr-sm-2" for="inlineFormCustomSelect">Preference</label>
+      <form class="form-inline" >
+        <label class="mr-sm-2" for="inlineFormCustomSelect">เลือกอำเภอ</label>
         <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect" [(ngModel)]="Province" name="Province">
-          <option selected="selected">Choose...</option>
+          <!-- <option selected disabled>Choose...</option> -->
           <option [ngValue]="location" *ngFor="let location of locations">{{location.name}}</option>
           <!-- <option value="2">Two</option>
           <option value="3">Three</option> -->

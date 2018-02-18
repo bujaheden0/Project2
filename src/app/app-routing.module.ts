@@ -10,6 +10,7 @@ import { ProfileComponent } from './profile/profile.component';
 import {TestValidateComponent} from './test-validate/test-validate.component';
 import { AuthenticationService } from './services/authentication.service';
 import { HeaderComponent } from './header/header.component';
+import { MapComponent } from './map/map.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent},
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'profile', component : ProfileComponent },
   { path: 'test', component : TestValidateComponent},
   { path: 'head', component: HeaderComponent},
+  { path: 'map', component: MapComponent},
   { path: 'passport/:id', component: LandingPageComponent }
 ];
 

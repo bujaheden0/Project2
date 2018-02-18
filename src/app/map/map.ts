@@ -3,4 +3,5 @@ export class Location {
     name: string;
     Lat: number;
     Lng:number;
+    zoom: number;
   }

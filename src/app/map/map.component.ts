@@ -20,8 +20,7 @@ export class MapComponent implements OnInit {
   longitude: number;
   locations = LOCATIONS;
   form: FormGroup;
-  Province: string;
-  
+  Province;
 
   ngOnInit() {
     var myLatLng = { lat: 7.895167, lng: 98.352083 };
@@ -114,9 +113,11 @@ export class MapComponent implements OnInit {
     // this.map.setCenter({ lat: 13.926706, lng: 100.629410 });
     // this.map.setZoom(7);
     var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 13,
+      zoom: this.Province.zoom,
       center: { lat: this.Province.Lat, lng: this.Province.Lng },
     });
+
   }
 
 }
+
