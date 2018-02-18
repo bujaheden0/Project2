@@ -113,12 +113,6 @@ export class SignUpComponent implements OnInit {
       }
     }
 
-    onLoginFacebook(){
-      this.authenticationService.loginFacebook().subscribe(res => {
-        console.log(res.json());
-      })
-      console.log("On login");
-    }
 
     validateAllFormFields(formGroup : FormGroup){
       Object.keys(formGroup.controls).forEach(field => {

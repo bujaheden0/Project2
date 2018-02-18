@@ -26,9 +26,6 @@ export class SignInComponent implements OnInit {
 
   ngOnInit() {
     console.log("Something");
-    this.authenticationService.loginFacebook().subscribe(res => {
-      console.log(res);
-    });
   }
 
   onLoginSubmit(){
