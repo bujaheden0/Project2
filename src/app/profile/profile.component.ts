@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators,NgForm } from '@angular/forms';
 import { group,trigger,style,transition,animate,keyframes,query,stagger,state } from '@angular/animations';
-import { AuthenticationService } from '../services/authentication.service';
 import { Router } from '@angular/router';
+import { AuthenticationService } from '../services/authentication.service';
+
 
 @Component({
   selector: 'app-profile',
@@ -34,9 +35,9 @@ export class ProfileComponent implements OnInit {
   form: FormGroup;
   errorMessage = Boolean;
   isValid = false;
-  UserDetails : Object;
-  constructor(private fb: FormBuilder, private auth : AuthenticationService,private router : Router) { 
-      
+  UserDetails: Object;
+  constructor(private fb: FormBuilder, private auth: AuthenticationService, private router: Router) {
+
   }
 
 
@@ -61,12 +62,12 @@ export class ProfileComponent implements OnInit {
   }
   createFormValidate() {
     this.form = this.fb.group({
-      image: [null,
-        [
-          Validators.required,
-          Validators.pattern(/^[A-Za-zก-๗]{2,15}$/)
-        ]
-      ],
+      // image: [null,
+      //   [
+      //     Validators.required,
+      //     Validators.pattern(/^[A-Za-zก-๗]{2,15}$/)
+      //   ]
+      // ],
       religion: [null,
         [
           Validators.required,
@@ -76,7 +77,7 @@ export class ProfileComponent implements OnInit {
       gender: [null,
         [
           Validators.required,
-          Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
+          //Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
         ]
       ],
       birthday: [null,
@@ -99,30 +100,38 @@ export class ProfileComponent implements OnInit {
       occupation: [null,
         [
           Validators.required,
-          ]],
+        ]],
       sleep_time: [null,
         [
           Validators.required,
-          Validators.minLength(8),
-          Validators.pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)]],
+          // Validators.minLength(8),
+          //Validators.pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)
+        ]],
       hobbies: [null,
         [
           Validators.required,
-          ]],
+        ]],
       address: [null,
         [
           Validators.required,
           Validators.pattern(/^(?=.*[0-9])(?=.*[ต])(?=.*[อ])(?=.*[จ])(?=.*[.])[a-zA-Zก-๗0-9!@#$%^&*. ]{6,160}$/)
-          ]],
+        ]],
       descriptions: [null,
         [
           Validators.required,
-          ]],
-      price: [null,
+        ]],
+      minPrice: [0,
         [
           Validators.required,
-          Validators.minLength(8),
-          Validators.pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)]],
+          //Validators.minLength(8),
+          //Validators.pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)
+        ]],
+      maxPrice: [10000,
+        [
+          Validators.required,
+          //Validators.minLength(8),
+          //Validators.pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)
+        ]],
 
     });
   }
@@ -131,7 +140,7 @@ export class ProfileComponent implements OnInit {
     console.log(this.form)
     if (this.form.valid) {
       const user = {
-        image: this.form.controls.image.value,
+        //image: this.form.controls.image.value,
         religion: this.form.controls.religion.value,
         gender: this.form.controls.gender.value,
         birthday: this.form.controls.birthday.value,
@@ -141,14 +150,15 @@ export class ProfileComponent implements OnInit {
         sleep_time: this.form.controls.sleep_time.value,
         hobbies: this.form.controls.hobbies.value,
         address: this.form.controls.address.value,
-       descriptions: this.form.controls.descriptions.value,
-        price: this.form.controls.price.value
+        descriptions: this.form.controls.descriptions.value,
+        minPrice: this.form.controls.minPrice.value,
+        maxPrice: this.form.controls.maxPrice.value
       }
-        this.auth.profile(user).subscribe(res => {
-          this.errorMessage = res;
-          console.log(user);
-        })
-      
+      this.auth.profile(user).subscribe(res => {
+        this.errorMessage = res;
+        console.log(user);
+      })
+
 
     } else {
       this.validateAllFormFields(this.form);

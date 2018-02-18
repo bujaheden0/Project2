@@ -80,6 +80,35 @@ exports.profileRead = function(req, res) {
 
 };
 
+exports.saveOAuthUserProfile = function(req, profile, done){
+  User.findOne({
+    provider: profile.provider,
+    providerId: profile.providerId
+  }, function(err, user){
+      if (err) return done(err);
+      else {
+          if (!user){
+            const possibleUsername = profile.username 
+            || ( profile.email ? profile.email.split('@')[0] : '');
+            User.findUniqueUsername(possibleUsername, null, function(availableUsername){
+              profile.username = availableUsername;
+              user = new User(profile);
+              user.save(function(err){
+                if (err) {
+                   res.json({success : false , message : "Cannot save facebook Account"}),
+                   res.status(500);
+                }
+                return done(err, user);
+              })
+            }) // findUniqueUsername
+
+          } else {
+              
+              return done(err, user);
+          }
+      }
+  });
+}
 
 
 
