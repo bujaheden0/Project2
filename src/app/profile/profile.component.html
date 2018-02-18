@@ -16,16 +16,17 @@
                   </div>
 
                 </form>
+                
                 <div class="form-group">
-                  <form class="form-inline">
+                  <form class="form-inline" [formGroup]="form">
                     <label class="mr-sm-2" for="inlineFormCustomSelect">ศาสนา</label>
                     <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect" [ngClass]="validatorInputCss('religion')"
-                      required>
+                    formControlName="religion" required>
                       <option selected>เลือก...</option>
-                      <option value="1">พุทธ</option>
-                      <option value="2">อิสลาม</option>
-                      <option value="3">คริสต์</option>
-                      <option value="4">อื่นๆ</option>
+                      <option value="พุทธ">พุทธ</option>
+                      <option value="อิสลาม">อิสลาม</option>
+                      <option value="คริสต์">คริสต์</option>
+                      <option value="อื่นๆ">อื่นๆ</option>
                     </select>
 
                     <div class="c">
@@ -38,10 +39,12 @@
                   </form>
                 </div>
                 <div class="form-group">
-                  <form class="form-inline">
+                  <form class="form-inline" [formGroup]="form">
                     <label class="mr-sm-4" for="inlineFormCustomSelect">เพศ</label>
-                    <input class="form-check-input " type="radio" name="gridRadios" id="gridRadios1" value="option1"> ชาย
-                    <input class="form-check-input " type="radio" name="gridRadios" id="gridRadios2" value="option2"> หญิง
+                    <input class="form-check-input " type="radio"  id="gridRadios1" [ngClass]="validatorInputCss('gender')"
+                    formControlName="gender" value="ชาย"> ชาย
+                    <input class="form-check-input " type="radio"  id="gridRadios2" [ngClass]="validatorInputCss('gender')"
+                    formControlName="gender" value="หญิง"> หญิง
                     <div class="c">
                       <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
                         <input type="checkbox" class="custom-control-input">
@@ -84,7 +87,28 @@
 
                   </div>
                 </fieldset>
-
+                <!-- 
+                 
+                <div class="form-group row" [ngClass]="ValidatorDisplayCss('sleep_time')">
+                  <label for="example-text-input" class="col-2 col-form-label">sleep_time</label>
+                  <div class="col-10 ">
+                    <input type="text" class="form-control" [ngClass]="validatorInputCss('sleep_time')" id="example-text-input" formControlName="sleep_time"
+                      required>
+                    <div class="form-control-feedback" *ngIf="this.form.controls.sleep_time.errors && (this.form.controls.sleep_time.touched || this.form.controls.sleep_time.dirty)">
+                      <p *ngIf="this.form.controls.sleep_time.errors.required ">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row" [ngClass]="ValidatorDisplayCss('price')">
+                  <label for="example-text-input" class="col-2 col-form-label">price</label>
+                  <div class="col-10 ">
+                    <input type="text" class="form-control" [ngClass]="validatorInputCss('price')" id="example-text-input" formControlName="price"
+                      required>
+                    <div class="form-control-feedback" *ngIf="this.form.controls.price.errors && (this.form.controls.price.touched || this.form.controls.price.dirty)">
+                      <p *ngIf="this.form.controls.price.errors.required ">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                    </div>
+                  </div>
+                </div> -->
                 <div class="form-group row" [ngClass]="ValidatorDisplayCss('facebook')">
                   <label for="example-text-input" class="col-2 col-form-label">Facebook</label>
                   <div class="col-10 ">
@@ -118,8 +142,11 @@
                 <div class="form-group row ">
                   <label for="example-time-input" class="col-2 col-form-label">เวลาเรื่มเข้านอน</label>
                   <div class="col-10">
-                    <input class="form-control" type="time" value="22:00:00" id="example-time-input">
-
+                    <input class="form-control" type="time" [ngClass]="validatorInputCss('sleep_time')"
+                    formControlName="sleep_time" required>
+                    <div class="form-control-feedback" *ngIf="this.form.controls.occupation.errors && (this.form.controls.occupation.touched || this.form.controls.occupation.dirty)">
+                      <p *ngIf="this.form.controls.occupation.errors.required ">กรุณากรอกข้อมูลให้ครบถ้วน</p>
+                    </div>
                   </div>
                 </div>
 
