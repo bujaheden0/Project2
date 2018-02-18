@@ -8,4 +8,6 @@ module.exports = function(app){
     app.post('/api/user/regis', user.register);
     app.post('/api/user/login', user.login);
     app.get('/api/user/login', auth, user.profileRead);
+    app.post('/api/user/profile', user.profile);
+    
 }
