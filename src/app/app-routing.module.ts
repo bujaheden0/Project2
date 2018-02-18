@@ -9,7 +9,7 @@ import { QuestionnaireComponent } from './questionnaire/questionnaire.component'
 import { ProfileComponent } from './profile/profile.component';
 import {TestValidateComponent} from './test-validate/test-validate.component';
 import { AuthenticationService } from './services/authentication.service';
-
+import { HeaderComponent } from './header/header.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent},
@@ -17,7 +17,9 @@ const routes: Routes = [
   { path: 'signin', component : SignInComponent},
   { path: 'questionnaire', component : QuestionnaireComponent},
   { path: 'profile', component : ProfileComponent },
-  { path: 'test', component : TestValidateComponent}
+  { path: 'test', component : TestValidateComponent},
+  { path: 'head', component: HeaderComponent},
+  { path: 'passport/:id', component: LandingPageComponent }
 ];
 
 @NgModule({

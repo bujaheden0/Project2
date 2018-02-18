@@ -26,6 +26,9 @@ export class SignInComponent implements OnInit {
 
   ngOnInit() {
     console.log("Something");
+    this.authenticationService.loginFacebook().subscribe(res => {
+      console.log(res);
+    });
   }
 
   onLoginSubmit(){
@@ -38,7 +41,7 @@ export class SignInComponent implements OnInit {
       if(res.success){
         this.authenticationService.storeUserData(res.token, res.user)
         if(this.authenticationService.loggedIn){
-          this.router.navigate(['/profile']);
+          this.router.navigate(['/']);
         }
       }
     })

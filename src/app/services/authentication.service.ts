@@ -6,7 +6,12 @@ import { tokenNotExpired } from 'angular2-jwt';
 @Injectable()
 export class AuthenticationService {
   authToken : any;
-  constructor(private http : Http) { }
+  userDetails : Object;
+  constructor(private http : Http) { 
+    if(this.loggedIn()){
+      this.getCurrentUser();
+    }
+  }
 
   register(data){
     return this.http.post('/api/user/regis', data).map(res => res.json());
@@ -14,6 +19,10 @@ export class AuthenticationService {
 
   login(data){
     return this.http.post('/api/user/login', data).map(res => res.json());
+  }
+
+  getUserFacebook(){
+    return this.http.get('/api/oauth/facebook/callback').map(res => res.json());
   }
 
   storeUserData(token, user){
@@ -25,7 +34,7 @@ export class AuthenticationService {
   
   loadToken() {
       const token = localStorage.getItem('id_token');
-      this.authToken = token;
+      this.authToken = "Bearer " + token;
   }
 
   getProfile() {
@@ -37,8 +46,20 @@ export class AuthenticationService {
       .map(res => res.json());
   }
 
+  getCurrentUser(){
+      this.userDetails = JSON.parse(localStorage.getItem('user'));
+      console.log(this.userDetails);
+      return this.userDetails;
+  }
+
+
+
+
+
   loggedIn() {
+    
     return tokenNotExpired('id_token');
   }
 
+  
 }
