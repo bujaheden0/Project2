@@ -16,7 +16,11 @@ import { AuthGuard } from './services/auth-guard.service';
 import { TestValidateComponent } from './test-validate/test-validate.component';
 import { Mbti16typedatailService } from './services/mbti16typedatail.service';
 import { HttpClientModule } from '@angular/common/http';
+<<<<<<< HEAD
 import { HeaderComponent } from './header/header.component';
+=======
+import { MapComponent } from './map/map.component';
+>>>>>>> 93da64a4231f3f5e6674621de0eba562d9a65340
 
 @NgModule({
   declarations: [
@@ -28,7 +32,11 @@ import { HeaderComponent } from './header/header.component';
     QuestionnaireComponent,
     ProfileComponent,
     TestValidateComponent,
+<<<<<<< HEAD
     HeaderComponent
+=======
+    MapComponent
+>>>>>>> 93da64a4231f3f5e6674621de0eba562d9a65340
   ],
   imports: [
     BrowserModule,

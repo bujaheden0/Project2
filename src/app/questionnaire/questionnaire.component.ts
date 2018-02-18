@@ -113,7 +113,8 @@ export class QuestionnaireComponent implements OnInit {
             tab = smallTab;
           }
           displays[i] = displays[i].replace("    ",tab);
-          displays[i] = displays[i].replace("ข้อแนะนำ:", "ข้อแนะนำ:".bold());
+          displays[i] = displays[i].replace("ข้อควรระวัง :", "ข้อควรระวัง :".bold());
+          displays[i] = displays[i].replace("ข้อแนะนำ:", "ข้อแนะนำ:".bold());          
           displays[i] = displays[i].replace("อาชีพที่เหมาะสมกับลักษณะบุคลิกภาพ :", "อาชีพที่เหมาะสมกับลักษณะบุคลิกภาพ :".bold());
           // console.log("line"+i+" "+displays[i]);
         }

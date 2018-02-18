@@ -12,6 +12,7 @@
   },
   "private": true,
   "dependencies": {
+    "@agm/core": "^1.0.0-beta.2",
     "@angular-devkit/core": "0.0.29",
     "@angular/animations": "^5.0.0",
     "@angular/common": "^5.0.0",
@@ -22,6 +23,8 @@
     "@angular/platform-browser": "^5.0.0",
     "@angular/platform-browser-dynamic": "^5.0.0",
     "@angular/router": "^5.0.0",
+    "@types/googlemaps": "^3.30.7",
+    "angular-maps": "^0.8.2",
     "angular2-jwt": "^0.2.3",
     "bcrypt": "^1.0.3",
     "bcryptjs": "^2.4.3",
