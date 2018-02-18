@@ -11,7 +11,11 @@ import {TestValidateComponent} from './test-validate/test-validate.component';
 import { AuthenticationService } from './services/authentication.service';
 import { HeaderComponent } from './header/header.component';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { PassportComponent } from './passport/passport.component';
+=======
+import { MapComponent } from './map/map.component';
+>>>>>>> bbb80c0264fcf3f95fe375e83942b09b521dbc8c
 =======
 import { MapComponent } from './map/map.component';
 >>>>>>> bbb80c0264fcf3f95fe375e83942b09b521dbc8c
@@ -25,8 +29,11 @@ const routes: Routes = [
   { path: 'test', component : TestValidateComponent},
   { path: 'head', component: HeaderComponent},
 <<<<<<< HEAD
+<<<<<<< HEAD
   { path: 'passport/:id/:userId', component: PassportComponent }
 =======
+=======
+>>>>>>> bbb80c0264fcf3f95fe375e83942b09b521dbc8c
   { path: 'map', component: MapComponent},
   { path: 'passport/:id', component: LandingPageComponent }
 >>>>>>> bbb80c0264fcf3f95fe375e83942b09b521dbc8c
