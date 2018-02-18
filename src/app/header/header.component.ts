@@ -11,14 +11,9 @@ export class HeaderComponent implements OnInit {
   constructor(public auth : AuthenticationService) { }
 
   ngOnInit() {
-    this.getCurrentUser();
-    console.log("I am a header");
-  }
-
-  getCurrentUser(){
-    if(this.auth.loggedIn){
-      this.currentUser = JSON.parse(localStorage.getItem('user'));
-      //console.log(this.currentUser);
+    if(this.auth.loggedIn()){
+      console.log(this.auth.userDetails);
     }
   }
+
 }

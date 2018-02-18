@@ -9,7 +9,9 @@ module.exports = function(app){
     app.post('/api/user/regis', user.register);
     app.post('/api/user/login', user.login);
     app.get('/api/user/login', auth, user.profileRead);
+    
     app.get('/api/oauth/facebook', passport.authenticate('facebook'));
+    app.post('/api/user/detail', user.getProfile);
     // app.get('/api/oauth/facebook/callback',
     // passport.authenticate('facebook', {
     //     successRedirect : '/',
@@ -20,7 +22,10 @@ module.exports = function(app){
 
     app.get('/api/oauth/facebook/callback', (req, res, next) => {
         passport.authenticate('facebook', (err,user) => {
-            res.redirect('/passport/' + user.providerData.accessToken.id);
+            if(user){
+                token = user.generateJwt();
+            }
+            res.redirect('/passport/' + token +"/" + user._id);
         })(req, res, next);
     });
 

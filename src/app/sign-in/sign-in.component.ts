@@ -37,7 +37,8 @@ export class SignInComponent implements OnInit {
     this.authenticationService.login(user).subscribe(res => {
       if(res.success){
         this.authenticationService.storeUserData(res.token, res.user)
-        if(this.authenticationService.loggedIn){
+        if(this.authenticationService.loggedIn()){
+          this.authenticationService.getCurrentUser();
           this.router.navigate(['/']);
         }
       }

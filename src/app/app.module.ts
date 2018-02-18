@@ -18,6 +18,7 @@ import { Mbti16typedatailService } from './services/mbti16typedatail.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './header/header.component';
 import { MapComponent } from './map/map.component';
+import { PassportComponent } from './passport/passport.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { MapComponent } from './map/map.component';
     ProfileComponent,
     TestValidateComponent,
     HeaderComponent,
-    MapComponent
+    MapComponent,
+    PassportComponent
   ],
   imports: [
     BrowserModule,

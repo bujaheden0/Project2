@@ -25,15 +25,19 @@ export class AuthenticationService {
     return this.http.post('/api/user/login', data).map(res => res.json());
   }
 
-  getUserFacebook(){
-    return this.http.get('/api/oauth/facebook/callback').map(res => res.json());
+  getFaceBookUser(data){
+    return this.http.post('/api/user/detail', data).map(res => res.json());
   }
+
+
 
   storeUserData(token, user){
     localStorage.setItem('id_token', token);
     localStorage.setItem('user', JSON.stringify(user));
     this.authToken = token;
   }
+
+
 
   
   loadToken() {
@@ -61,7 +65,6 @@ export class AuthenticationService {
 
 
   loggedIn() {
-    
     return tokenNotExpired('id_token');
   }
 

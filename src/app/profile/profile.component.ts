@@ -36,7 +36,6 @@ export class ProfileComponent implements OnInit {
   errorMessage = Boolean;
   isValid = false;
   UserDetails: Object;
-  religion: String;
   constructor(private fb: FormBuilder, private auth: AuthenticationService, private router: Router) {
 
   }
@@ -121,13 +120,13 @@ export class ProfileComponent implements OnInit {
         [
           Validators.required,
         ]],
-      minPrice: [null,
+      minPrice: [0,
         [
           Validators.required,
           //Validators.minLength(8),
           //Validators.pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)
         ]],
-      maxPrice: [null,
+      maxPrice: [10000,
         [
           Validators.required,
           //Validators.minLength(8),
@@ -141,7 +140,7 @@ export class ProfileComponent implements OnInit {
     console.log(this.form)
     if (this.form.valid) {
       const user = {
-        image: this.form.controls.image.value,
+        //image: this.form.controls.image.value,
         religion: this.form.controls.religion.value,
         gender: this.form.controls.gender.value,
         birthday: this.form.controls.birthday.value,

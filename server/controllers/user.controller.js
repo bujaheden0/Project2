@@ -64,6 +64,27 @@ exports.login = function(req, res){
       })(req, res);
 }
 
+exports.getProfile = function(req, res){
+  console.log(req.body);
+  User.findOne({ _id : req.body.userId},function(err,user){
+    if(err) throw(err);
+    if(user){
+      res.status(200);
+          res.json({
+            success : true,
+            message : "Loggin successfully",
+            user : {
+              id : user._id,
+              email : user.email,
+              username : user.username,
+              firstname : user.firstname,
+              lastname : user.lastname
+            }
+       });
+    }
+  })
+}
+
 exports.profileRead = function(req, res) {
   console.log(req.payload);
   if (!req.payload._id) {
