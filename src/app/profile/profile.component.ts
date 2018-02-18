@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
-import { group, trigger, style, transition, animate, keyframes, query, stagger, state } from '@angular/animations';
-import { AuthenticationService } from '../services/authentication.service';
+import { FormBuilder, FormGroup, FormControl, Validators,NgForm } from '@angular/forms';
+import { group,trigger,style,transition,animate,keyframes,query,stagger,state } from '@angular/animations';
 import { Router } from '@angular/router';
+import { AuthenticationService } from '../services/authentication.service';
+
 
 @Component({
   selector: 'app-profile',

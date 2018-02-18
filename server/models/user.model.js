@@ -85,7 +85,16 @@ const userSchema = new schema({
     habit : {
         type : String,
         default : ""
-    }
+    },
+    providerId : {
+        type : String,
+        default : ""
+    },
+    provider : {
+        type : String,
+        default : ""
+    },
+    providerData:{}
 
 });
 
@@ -115,5 +124,21 @@ userSchema.methods.generateJwt = function() {
       exp: parseInt(expiry.getTime() / 1000),
     }, "MY_SECRET"); // DO NOT KEEP YOUR SECRET IN THE CODE!
   };
+
+  userSchema.statics.findUniqueUsername = function(username, suffix, callback){
+      var _this = this;
+      const possibleUsername = username + (suffix || '');
+      _this.findOne({
+          username: possibleUsername
+      }, function(err, user){
+          if(!err){
+              if(!user) callback(possibleUsername);
+              else return _this.findUniqueUsername(username, (suffix || 0) + 1, callback);
+          } else {
+              callback(null);
+          }
+      }
+    )
+  }
   
 mongoose.model('User', userSchema);

@@ -9,10 +9,11 @@ module.exports = function(){
     });
 
     passport.deserializeUser(function(id, done){
-        User.findOne({ _id: id}, username , function(err, user){
+        User.findOne({ _id: id}, function(err, user){
             done(err, user);
         });
     })
 
     require('./strategies/local')();
+    require('./strategies/facebook')();
 }

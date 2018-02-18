@@ -4,12 +4,12 @@ const path       = require('path');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const passport = require('passport');
-//const cors       = require('cors');
+const cors       = require('cors');
 module.exports = function(){
 
     const app  = express();
     app.use(morgan('dev'));
-    //app.use(cors());
+    app.use(cors());
     app.use(express.static(path.join(__dirname,'../.././dist')));
     app.use(session({
         secret: 'secret_key',

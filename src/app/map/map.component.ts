@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewChild } from '@angular/core';
-import { } from '@types/googlemaps';
+import {  } from '@types/googlemaps';
 
 @Component({
   selector: 'app-map',

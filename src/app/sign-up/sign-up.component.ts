@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject} from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators,NgForm } from '@angular/forms';
 import { group,trigger,style,transition,animate,keyframes,query,stagger,state } from '@angular/animations';
 import { AuthenticationService} from '../services/authentication.service';
@@ -34,6 +34,7 @@ export class SignUpComponent implements OnInit {
   form: FormGroup;
   errorMessage = Object;
   isValid = false;
+  UserDetails : Object;
   constructor(private fb: FormBuilder, private authenticationService : AuthenticationService) { 
       
   }
@@ -111,6 +112,7 @@ export class SignUpComponent implements OnInit {
         this.validateAllFormFields(this.form);
       }
     }
+
 
     validateAllFormFields(formGroup : FormGroup){
       Object.keys(formGroup.controls).forEach(field => {
