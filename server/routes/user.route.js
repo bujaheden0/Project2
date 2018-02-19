@@ -9,6 +9,7 @@ module.exports = function(app){
     app.post('/api/user/regis', user.register);
     app.post('/api/user/login', user.login);
     app.get('/api/user/login', auth, user.profileRead);
+    app.post('/api/user/profile',user.UpdateProfiles);
     
     app.get('/api/oauth/facebook', passport.authenticate('facebook'));
     app.post('/api/user/detail', user.getProfile);
