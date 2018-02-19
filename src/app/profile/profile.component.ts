@@ -35,7 +35,6 @@ export class ProfileComponent implements OnInit {
   form: FormGroup;
   errorMessage = Boolean;
   isValid = false;
-  UserDetails: Object;
   constructor(private fb: FormBuilder, private auth: AuthenticationService, private router: Router) {
 
   }
@@ -141,6 +140,7 @@ export class ProfileComponent implements OnInit {
     if (this.form.valid) {
       const user = {
         //image: this.form.controls.image.value,
+        userDetails: this.auth.userDetails,
         religion: this.form.controls.religion.value,
         gender: this.form.controls.gender.value,
         birthday: this.form.controls.birthday.value,
@@ -154,9 +154,10 @@ export class ProfileComponent implements OnInit {
         minPrice: this.form.controls.minPrice.value,
         maxPrice: this.form.controls.maxPrice.value
       }
-      this.auth.profile(user).subscribe(res => {
-        this.errorMessage = res;
-        console.log(user);
+      console.log(user);
+      
+       this.auth.profile(user).subscribe(res => {
+        console.log(res);
       })
 
 

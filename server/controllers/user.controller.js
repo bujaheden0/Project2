@@ -1,3 +1,4 @@
+
 const User = require('mongoose').model('User');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
@@ -131,5 +132,13 @@ exports.saveOAuthUserProfile = function(req, profile, done){
   });
 }
 
+exports.UpdateProfiles = function(req,res){
+  User.update({ _id: req.body.userDetails.id }, { $set: { 'details.facebook' : req.body.facebook
+  
+  }}, function(err,user){
+    if(err)res.send(err);
+    res.send(user);
+  });
+}
 
 
