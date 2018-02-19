@@ -11,28 +11,26 @@ module.exports = function(app){
     app.get('/api/user/login', auth, user.profileRead);
     app.post('/api/user/profile',user.UpdateProfiles);
     
-    app.get('/api/oauth/facebook', passport.authenticate('facebook'));
+    app.get('/api/oauth/facebook', passport.authenticate('facebook' ,{ scope : ['public_profile', 'email'] }));
+    app.get('/api/oauth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+    app.get('/api/oauth/google/callback', (req, res, next) => {
+        passport.authenticate('google', (err,user) => {
+            if(user){
+                token = user.generateJwt();
+                res.redirect('/passport/' + token +"/" + user._id);
+            }
+            
+        })(req, res, next);
+    });
     app.post('/api/user/detail', user.getProfile);
-    // app.get('/api/oauth/facebook/callback',
-    // passport.authenticate('facebook', {
-    //     successRedirect : '/',
-    //     failureRedirect : '/signin'
-    // }, function(req,res){
-    //     res.json({success: true, mse: "COMPLETED"});
-    // }));
-
     app.get('/api/oauth/facebook/callback', (req, res, next) => {
         passport.authenticate('facebook', (err,user) => {
             if(user){
                 token = user.generateJwt();
+                res.redirect('/passport/' + token +"/" + user._id);
             }
-            res.redirect('/passport/' + token +"/" + user._id);
+            
         })(req, res, next);
     });
 
-    // app.get('/api/oauth/facebook/callback',
-    //     passport.authenticate('facebook', { failureRedirect: '/signin' }),
-    //         function(req, res, user) {
-    //         res.redirect('/passport/' +  + '/' +  req.providerData.accessToken.userId);
-    //     });
 }
