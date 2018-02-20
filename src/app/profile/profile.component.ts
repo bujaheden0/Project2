@@ -143,7 +143,14 @@ export class ProfileComponent implements OnInit {
           //Validators.minLength(8),
           //Validators.pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)
         ]],
-      g_range: [0,
+      b_status: [false,
+        [
+          Validators.required,
+          //Validators.minLength(8),
+          //Validators.pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)
+        ]],
+
+      b_range: [0,
         [
           Validators.required,
           //Validators.minLength(8),
@@ -173,7 +180,8 @@ export class ProfileComponent implements OnInit {
         maxPrice: this.form.controls.maxPrice.value,
         r_status: this.form.controls.r_status.value,
         g_status: this.form.controls.g_status.value,
-        g_range: this.form.controls.g_range.value,
+        b_status: this.form.controls.b_status.value,
+        b_range: this.form.controls.b_range.value,
       }
       console.log(user);
 

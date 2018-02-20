@@ -35,11 +35,11 @@ const userSchema = new schema({
             type  : String,
             default : ""
         },
-        g_status : {
+        b_status : {
             type : Boolean,
             default : false
         },
-        g_range : {
+        b_range : {
             type : Number,
             default : 0
         },

@@ -149,7 +149,8 @@ exports.UpdateProfiles = function (req, res) {
       'details.price.max': req.body.maxPrice,
       'details.r_status': req.body.r_status,
       'details.g_status' : req.body.g_status,
-      'details.g_range': req.body.g_range,
+      'details.b_range': req.body.b_status,
+      'details.b_range': req.body.b_range,
     }
   }, function (err, user) {
     if (err) res.send(err);
