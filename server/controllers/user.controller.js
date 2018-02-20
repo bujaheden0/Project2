@@ -150,7 +150,6 @@ exports.UpdateProfiles = function (req, res) {
       'details.r_status': req.body.r_status,
       'details.g_status' : req.body.g_status,
       'details.g_range': req.body.g_range,
-
     }
   }, function (err, user) {
     if (err) res.send(err);
