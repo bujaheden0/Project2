@@ -137,7 +137,7 @@ exports.UpdateProfiles = function (req, res) {
     $set: {
       'details.religion': req.body.religion,
       'details.gender': req.body.gender,
-      'details.birthday': req.body.birthday,
+      'details.birthDate': req.body.birthday,
       'details.facebook': req.body.facebook,
       'details.tel': req.body.tel,
       'details.occupation': req.body.occupation,
@@ -147,7 +147,9 @@ exports.UpdateProfiles = function (req, res) {
       'details.descriptions': req.body.descriptions,
       'details.price.min': req.body.minPrice,
       'details.price.max': req.body.maxPrice,
-
+      'details.r_status': req.body.r_status,
+      'details.g_status' : req.body.g_status,
+      'details.g_range': req.body.g_range,
 
     }
   }, function (err, user) {
