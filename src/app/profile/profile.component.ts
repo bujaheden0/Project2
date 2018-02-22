@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl, Validators,NgForm } from '@angular/forms';
-import { group,trigger,style,transition,animate,keyframes,query,stagger,state } from '@angular/animations';
+import { FormBuilder, FormGroup, FormControl, Validators, NgForm } from '@angular/forms';
+import { group, trigger, style, transition, animate, keyframes, query, stagger, state } from '@angular/animations';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../services/authentication.service';
 
@@ -82,8 +82,8 @@ export class ProfileComponent implements OnInit {
       birthday: [null,
         [
           Validators.required,
-          Validators.minLength(8),
-          Validators.pattern(/^[A-Za-z0-9]+(?:[_-][A-Za-z0-9]+)*$/)
+          //Validators.minLength(8),
+          //Validators.pattern(/^[A-Za-z0-9]+(?:[_-][A-Za-z0-9]+)*$/)
         ]
       ],
       facebook: [null,
@@ -131,6 +131,31 @@ export class ProfileComponent implements OnInit {
           //Validators.minLength(8),
           //Validators.pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)
         ]],
+      r_status: [false,
+        [
+          Validators.required,
+          //Validators.minLength(8),
+          //Validators.pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)
+        ]],
+      g_status: [false,
+        [
+          Validators.required,
+          //Validators.minLength(8),
+          //Validators.pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)
+        ]],
+      b_status: [false,
+        [
+          Validators.required,
+          //Validators.minLength(8),
+          //Validators.pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)
+        ]],
+
+      b_range: [0,
+        [
+          Validators.required,
+          //Validators.minLength(8),
+          //Validators.pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)
+        ]],
 
     });
   }
@@ -152,11 +177,15 @@ export class ProfileComponent implements OnInit {
         address: this.form.controls.address.value,
         descriptions: this.form.controls.descriptions.value,
         minPrice: this.form.controls.minPrice.value,
-        maxPrice: this.form.controls.maxPrice.value
+        maxPrice: this.form.controls.maxPrice.value,
+        r_status: this.form.controls.r_status.value,
+        g_status: this.form.controls.g_status.value,
+        b_status: this.form.controls.b_status.value,
+        b_range: this.form.controls.b_range.value,
       }
       console.log(user);
-      
-       this.auth.profile(user).subscribe(res => {
+
+      this.auth.profile(user).subscribe(res => {
         console.log(res);
       })
 

@@ -35,7 +35,7 @@
 
                     <div class="c">
                       <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-                        <input type="checkbox" class="custom-control-input">
+                        <input type="checkbox" class="custom-control-input" formControlName="r_status" value="true">
                         <span class="custom-control-indicator"></span>
                         <span class="custom-control-description">คุณยินดีที่จะอยู่กับศาสนาอื่นด้วย</span>
                       </label>
@@ -54,7 +54,7 @@
                     </div>
                     <div class="c">
                       <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-                        <input type="checkbox" class="custom-control-input">
+                        <input type="checkbox" class="custom-control-input" formControlName="g_status" value="true">
                         <span class="custom-control-indicator"></span>
                         <span class="custom-control-description">คุณยินดีที่จะอยู่กับเพศตรงข้ามด้วย</span>
                       </label>
@@ -76,7 +76,7 @@
                   <div class="col-sm-10">
                     <div class="form-check">
                       <label class="form-check-label">
-                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1" checked> ไม่สนใจเรื่องอายุ
+                        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" formControlName="b_status" value="true" checked> ไม่สนใจเรื่องอายุ
                       </label>
                     </div>
                     <div class="row">
@@ -88,7 +88,7 @@
                         </div>
                       </div>
                       <div class="col-sm-3">
-                        <input type="number" min="0" class="form-control form-control-sm" placeholder="0" value="0" pattern="[0-9]*">
+                        <input type="number" min="0" class="form-control form-control-sm" formControlName="b_range" value="0" pattern="[0-9]*">
                       </div>
                     </div>
 

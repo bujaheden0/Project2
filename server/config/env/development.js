@@ -10,5 +10,10 @@ module.exports =  {
         clientID : '59950765134-5vn63kn8b2oi2n2kkuvikg0dvlfjjmc4.apps.googleusercontent.com',
         clientSecret : 'dvGrvdBvNlLLcTpn9v6OSuoJ',
         callbackUrl : 'http://localhost:4200/api/oauth/google/callback'
+    },
+    nexmo : {
+        apiKey : 'f5ae8142',
+        apiSecret : '4b0aaa4024f53c09',
+        apiNumber : '14155551234'
     }
 }

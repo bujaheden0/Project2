@@ -1,6 +1,10 @@
 const user = require('../controllers/user.controller');
 const jwt = require('express-jwt');
 const passport = require('passport');
+const config = require('../config/env/development');
+const Nexmo = require('../config/verify');
+
+nexmo = Nexmo.nexmo;
 module.exports = function(app){
     const auth = jwt({
         secret: 'MY_SECRET',
@@ -33,5 +37,22 @@ module.exports = function(app){
             
         })(req, res, next);
     });
+
+    
+    app.post('/api/send/otp', (req, res) => {
+        nexmo.message.sendSms(
+            config.nexmo.apiNumber, '66902599621', 2526, {type: 'unicode'},
+          (err, responseData) => {
+            if (err) {
+              console.log(err);
+            } else {
+              console.dir(responseData);
+              // Optional: add socket.io -- will explain later
+            }
+          }
+        );
+       });
+
+    
 
 }

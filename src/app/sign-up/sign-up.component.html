@@ -17,8 +17,8 @@
               <div class="regis1">
               <form [formGroup]="form" (ngSubmit)="onSubmit()">
                 <div class="form-group col-lg-10" [ngClass]="ValidatorDisplayCss('firstname')">
-                  <label for="formGroupExampleInput">ชื่อ</label>
-                  <input type="text" class="form-control" [ngClass]="validatorInputCss('firstname')" id="formGroupExampleInput" formControlName="firstname" required>
+                  <label for="firstname">ชื่อ</label>
+                  <input type="text" class="form-control" [ngClass]="validatorInputCss('firstname')" id="firstname" formControlName="firstname" required>
                   <div class="form-control-feedback"
                       *ngIf="this.form.controls.firstname.errors && (this.form.controls.firstname.touched || this.form.controls.firstname.dirty)">
                        <p *ngIf="this.form.controls.firstname.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
@@ -28,8 +28,8 @@
                       </div>
                 </div>
                 <div class="form-group col-lg-10" [ngClass]="ValidatorDisplayCss('lastname')">
-                  <label for="formGroupExampleInput2">นามสกุล</label>
-                  <input type="text" class="form-control" [ngClass]="validatorInputCss('lastname')" id="formGroupExampleInput2" formControlName="lastname">
+                  <label for="lastname">นามสกุล</label>
+                  <input type="text" class="form-control" [ngClass]="validatorInputCss('lastname')" id="lastname" formControlName="lastname">
                   <div class="form-control-feedback"
                       *ngIf="this.form.controls.lastname.errors && (this.form.controls.lastname.touched || this.form.controls.lastname.dirty)">
                        <p *ngIf="this.form.controls.lastname.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
@@ -37,29 +37,33 @@
                   </div>
                 </div>
                 <div class="form-group col-lg-10" [ngClass]="ValidatorDisplayCss('email')">
-                    <label for="formGroupExampleInput2">อีเมลล์</label>
-                    <input type="email" class="form-control" [ngClass]="validatorInputCss('email')" id="formGroupExampleInput2" formControlName="email">
+                    <label for="email">อีเมลล์</label>
+                    <input type="email" class="form-control" [ngClass]="validatorInputCss('email')" id="email" formControlName="email">
                     <div class="form-control-feedback"
                       *ngIf="this.form.controls.email.errors && (this.form.controls.email.touched || this.form.controls.email.dirty)">
                        <p *ngIf="this.form.controls.email.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
                     </div>
                   </div>
                   <div class="form-group col-lg-10 " [ngClass]="ValidatorDisplayCss('username')">
-                      <label for="formGroupExampleInput2">ไอดี</label>
-                      <input type="text" class="form-control" [ngClass]="validatorInputCss('username')" id="formGroupExampleInput2" formControlName="username" pattern="^[a-z0-9_-]{8,15}$">
+                      <label for="username">ไอดี</label>
+                      <input type="text" class="form-control" [ngClass]="validatorInputCss('username')" id="username" formControlName="username">
                       <div class="form-control-feedback"
                       *ngIf="this.form.controls.username.errors && (this.form.controls.username.touched || this.form.controls.username.dirty)">
                        <p *ngIf="this.form.controls.username.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
                       </div>
                   </div>
                   <div class="form-group col-lg-10" [ngClass]="ValidatorDisplayCss('password')">
-                      <label for="formGroupExampleInput2">รหัสผ่าน</label>
-                      <input type="text" class="form-control" [ngClass]="validatorInputCss('password')" id="formGroupExampleInput2" aria-describedby="passwordHelp" formControlName="password">
+                      <label for="password">รหัสผ่าน</label>
+                      <input type="password" class="form-control" [ngClass]="validatorInputCss('password')" id="password" aria-describedby="passwordHelp" formControlName="password">
                       <div class="form-control-feedback"
                       *ngIf="this.form.controls.password.errors && (this.form.controls.password.touched || this.form.controls.password.dirty)">
                        <p *ngIf="this.form.controls.password.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
                       </div>
                       <small id="passwordHelp" class="form-text text-muted">( อย่างน้อย 6 ตัวอักษร รวมทั้งตัวเลขและอักขระพิเศษ)</small>
+                    </div>
+                    <div class="form-group col-lg-10" [ngClass]="ValidatorDisplayCss('tel')">
+                      <label for="tel">เบอร์โทรศัพท์</label>
+                      <input type="text" class="form-control" [ngClass]="validatorInputCss('tel')" id="tel"  formControlName="tel">
                     </div>
                   <div class="form-group ml-3">
                     <div class="row">
@@ -83,6 +87,25 @@
             </div>
             </div>
           </div>
+          <div class="modal fade Show" id="myModal"  role="dialog">
+              <div class="modal-dialog fade show" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    ...
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div><!-- Card -->
       </div>

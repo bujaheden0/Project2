@@ -7,18 +7,26 @@
       <a class="navbar-brand" routerLink="/">RoommateFinder</a>
       <div class="collapse navbar-collapse" id="navbarSupportedContent" aria-controls="navbarSupportedContent">
         <ul class="navbar-nav ml-auto" *ngIf="!auth.loggedIn()">
-          <li class="nav-item">
+          <li class="sign-up nav-item">
             <a class="nav-link" routerLink="/signup"><i class="fas fa-user-plus"></i>  Sign Up</a>
           </li>
           <li class="divide">
           </li>
-          <li class="nav-item">
+          <li class="sign-in nav-item">
             <a class="nav-link" routerLink="/signin"><i class="fas fa-sign-in-alt"></i> Sign In</a>
           </li>
         </ul>
         <ul class="navbar-nav ml-auto" *ngIf="auth.loggedIn() && auth.userDetails ">
           <li class="nav-item" >
-            <a class="nav-link" routerLink="/signup">{{ auth.userDetails.firstname}} {{ auth.userDetails.lastname }}</a>
+            <a class="currentUser nav-link">{{ auth.userDetails.firstname}} {{ auth.userDetails.lastname }}</a>
+          </li>
+          <li class="nav-item">
+            <a href="" class="dropdown dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+            <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="#">Profile setting</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="" (click)="onLogOut()">Logout</a>
+              </div>
           </li>
         </ul>
       </div>

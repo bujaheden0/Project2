@@ -14,6 +14,15 @@ const userSchema = new schema({
         type : String,
         unique  : true
     },
+    tel : {
+        type : String,
+        unique : true,
+        defaule : ""
+    },
+    verify : {
+        type : Boolean,
+        default : false
+    },
     details : {
         religion : {
             type: String,
@@ -35,19 +44,15 @@ const userSchema = new schema({
             type  : String,
             default : ""
         },
-        g_status : {
+        b_status : {
             type : Boolean,
             default : false
         },
-        g_range : {
+        b_range : {
             type : Number,
             default : 0
         },
         facebook : {
-            type : String,
-            default : ""
-        },
-        tel : {
             type : String,
             default : ""
         },
