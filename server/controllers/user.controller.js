@@ -156,4 +156,16 @@ exports.UpdateProfiles = function (req, res) {
   });
 }
 
+exports.UpdateHabit = function (req, res) {
+  console.log('dfd');
+  User.update({ _id: req.body.userDetails.id }, {
+    $set: {
+      habit: req.body.habit,
+    }
+  }, function (err, user) {
+    if (err) res.send(err);
+    res.send(user);
+  });
+}
+
 

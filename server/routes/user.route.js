@@ -10,6 +10,7 @@ module.exports = function(app){
     app.post('/api/user/login', user.login);
     app.get('/api/user/login', auth, user.profileRead);
     app.post('/api/user/profile',user.UpdateProfiles);
+    app.post('/api/user/habit',user.UpdateHabit);
     
     app.get('/api/oauth/facebook', passport.authenticate('facebook' ,{ scope : ['public_profile', 'email'] }));
     app.get('/api/oauth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
