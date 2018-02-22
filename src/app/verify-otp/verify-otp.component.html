@@ -1,0 +1,26 @@
+<div class="verify">
+  <div class="container">
+    <div class="verify-form">
+      <div class="card">
+          <div class="card-header">
+              ยืนยันการสมัครสมาชิก
+          </div>
+          <div class="card-block">
+              <div class="verify1">
+              
+                  <div class="row justify-content-center">
+                      <form (ngSubmit)="onVerifySubmit()" class="form-inline justify-content-center">
+                          <input class="form-control mr-2 col-md-1" type="number" [(ngModel)]="verifynum1"  name="verifynum1">
+                          <input class="form-control mr-2 col-md-1" type="number" [(ngModel)]="verifynum2"  name="verifynum2">
+                          <input class="form-control mr-2 col-md-1" type="number" [(ngModel)]="verifynum3"  name="verifynum3">
+                          <input class="form-control mr-2 col-md-1" type="number" [(ngModel)]="verifynum4"  name="verifynum4">
+                          <button class="btn btn-outline-primary" type="submit">ยืนยัน</button>
+                      </form>
+                  </div>
+              
+            </div>
+          </div>
+        </div><!-- Card -->
+      </div>
+  </div>
+</div>

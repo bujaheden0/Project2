@@ -2,7 +2,7 @@ import { Component, OnInit, Inject} from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators,NgForm } from '@angular/forms';
 import { group,trigger,style,transition,animate,keyframes,query,stagger,state } from '@angular/animations';
 import { AuthenticationService} from '../services/authentication.service';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -35,7 +35,9 @@ export class SignUpComponent implements OnInit {
   errorMessage = Object;
   isValid = false;
   UserDetails : Object;
-  constructor(private fb: FormBuilder, private authenticationService : AuthenticationService) { 
+  constructor(private fb: FormBuilder, 
+              private authenticationService : AuthenticationService,
+              private router : Router) { 
       
   }
 
@@ -90,7 +92,11 @@ export class SignUpComponent implements OnInit {
               [
                 Validators.required, 
                 Validators.minLength(8),
-                Validators.pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)]]
+                Validators.pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)]
+              ],
+          tel:[null,
+                Validators.required
+              ]
     })
   }
 
@@ -103,9 +109,13 @@ export class SignUpComponent implements OnInit {
           email     : this.form.controls.email.value,
           username  : this.form.controls.username.value,
           password  : this.form.controls.password.value,
+          tel       : this.form.controls.tel.value
         }
         this.authenticationService.register(user).subscribe(res => {
               this.errorMessage = res;
+        if(res.success){
+          this.router.navigate(['/verify'])
+        }
         })
 
       }else{

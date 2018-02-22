@@ -22,6 +22,7 @@ module.exports = function(){
     app.use(passport.session());
     require('./passport')(passport);
     require('../routes/user.route')(app);
+    require('../routes/verify.route')(app);
     return app;
 
 

@@ -1,7 +1,7 @@
-
 const User = require('mongoose').model('User');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
+const sendOtp = require('./verify.controller');
 
 exports.register = function (req, res) {
   const users = new User({
@@ -9,8 +9,14 @@ exports.register = function (req, res) {
     lastname: req.body.lastname,
     username: req.body.username,
     password: req.body.password,
-    email: req.body.email
+    email: req.body.email,
+    tel: req.body.tel
   });
+  const userDataforOtp = {
+    username : req.body.username,
+    password : req.body.password,
+    tel      : req.body.tel
+  }
   users.save((err) => {
     if (err) {
       if (err.name === 'MongoError' && err.code === 11000) {
@@ -24,11 +30,12 @@ exports.register = function (req, res) {
       success: true,
       message: 'การสมัครสมาชิกของท่านเสร็จสมบูรณ์'
     });
+    sendOtp.sendOtpMessage(userDataforOtp);
   });
+  
 }// Register
 
 exports.login = function (req, res) {
-
   passport.authenticate('local', function (err, user, info) {
     var token;
 
@@ -39,10 +46,8 @@ exports.login = function (req, res) {
     }
 
     // If a user is found
-    if (user) {
+    if (user && user.verify) {
       token = user.generateJwt();
-      const decode = jwt.verify(token, 'MY_SECRET')
-      console.log(decode);
       res.status(200);
       res.json({
         success: true,
@@ -58,6 +63,18 @@ exports.login = function (req, res) {
       });
 
 
+    } else if(user && !user.verify) {
+        res.json({
+          success : false,
+          verify : false,
+          message : "Loggin not successfull",
+        })
+        userData = {
+          username : user.username,
+          password : req.body.password,
+          tel      : user.tel
+        }
+        sendOtp.sendOtpMessage(userData)
     } else {
       // If user is not found
       res.status(401).json(info);
@@ -157,5 +174,6 @@ exports.UpdateProfiles = function (req, res) {
     res.send(user);
   });
 }
+
 
 

@@ -41,6 +41,8 @@ export class SignInComponent implements OnInit {
           this.authenticationService.getCurrentUser();
           this.router.navigate(['/']);
         }
+      } else if(!res.success && !res.verify){
+        this.router.navigate(['/verify']);
       }
     })
   }
