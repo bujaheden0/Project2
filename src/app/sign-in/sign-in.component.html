@@ -6,6 +6,12 @@
                 เข้าสู่ระบบ
             </div>
             <div class="card-block">
+                <div class="alert alert-success" *ngIf="this.responseMessage.success" role="alert"  @slideSuceeded>
+                    <strong>สำเร็จ</strong> {{ responseMessage.message }}
+                  </div>
+                  <div class="alert alert-danger" *ngIf="this.responseMessage.success === false" role="alert"  @slideSuceeded>
+                    <strong>ผิดพลาด</strong>   {{ responseMessage.message }}
+                  </div>
               <div class="row justify-content-md-center">
               <div class="col-sm-12 col-lg-5">
                 <div class="signIn1">
@@ -21,8 +27,7 @@
                     <div class="form-group ml-3">
                       <div class="row ">
                         <div class="col">
-                            <button class="btn btn-outline-primary" type="submit">ตกลง</button>
-                            <button class="btn btn-outline-danger">ยกเลิก</button>
+                            <button class="btn btn-outline-primary" type="submit"><i class="fas fa-check-circle"></i> ตกลง</button>
                         </div>
                       </div>
                     </div>
