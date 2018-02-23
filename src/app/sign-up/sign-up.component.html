@@ -12,53 +12,55 @@
                   <div class="alert alert-danger" *ngIf="this.errorMessage.success === false" role="alert"  @slideSuceeded>
                     <strong>ผิดพลาด</strong>  {{ errorMessage.message }}
                   </div>
+                  <div class="alert alert-danger" *ngIf="this.isNotValid" role="alert"  @slideSuceeded>
+                    <strong>ผิดพลาด</strong>   กรุณากรอกข้อมูลให้ครบถ้วน 
+                  </div>
             <div class="row justify-content-md-center">
             <div class="col-sm-12 col-lg-5">
               <div class="regis1">
               <form [formGroup]="form" (ngSubmit)="onSubmit()">
-                <div class="form-group col-lg-10" [ngClass]="ValidatorDisplayCss('firstname')">
+                <div class="form-group  col-lg-10" [ngClass]="ValidatorDisplayCss('firstname')">
                   <label for="firstname">ชื่อ</label>
                   <input type="text" class="form-control" [ngClass]="validatorInputCss('firstname')" id="firstname" formControlName="firstname" required>
-                  <div class="form-control-feedback"
+                  <!--<div class="form-control-feedback"
                       *ngIf="this.form.controls.firstname.errors && (this.form.controls.firstname.touched || this.form.controls.firstname.dirty)">
                        <p *ngIf="this.form.controls.firstname.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
                        <p *ngIf="this.form.controls.firstname.errors.pattern">ข้อมูลไม่ถูกต้อง</p>
                        <p *ngIf="checkFirstname">รูปแบบของข้อมูลไม่ถูกต้อง</p>
-
-                      </div>
+                  </div>-->
                 </div>
                 <div class="form-group col-lg-10" [ngClass]="ValidatorDisplayCss('lastname')">
                   <label for="lastname">นามสกุล</label>
                   <input type="text" class="form-control" [ngClass]="validatorInputCss('lastname')" id="lastname" formControlName="lastname">
-                  <div class="form-control-feedback"
+                  <!--<div class="form-control-feedback"
                       *ngIf="this.form.controls.lastname.errors && (this.form.controls.lastname.touched || this.form.controls.lastname.dirty)">
                        <p *ngIf="this.form.controls.lastname.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
                        <p *ngIf="this.form.controls.lastname.errors.pattern">รูปแบบของข้อมูลไม่ถูกต้อง</p>
-                  </div>
+                  </div>-->
                 </div>
                 <div class="form-group col-lg-10" [ngClass]="ValidatorDisplayCss('email')">
                     <label for="email">อีเมลล์</label>
                     <input type="email" class="form-control" [ngClass]="validatorInputCss('email')" id="email" formControlName="email">
-                    <div class="form-control-feedback"
+                    <!--<div class="form-control-feedback"
                       *ngIf="this.form.controls.email.errors && (this.form.controls.email.touched || this.form.controls.email.dirty)">
                        <p *ngIf="this.form.controls.email.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
-                    </div>
+                    </div>-->
                   </div>
                   <div class="form-group col-lg-10 " [ngClass]="ValidatorDisplayCss('username')">
                       <label for="username">ไอดี</label>
                       <input type="text" class="form-control" [ngClass]="validatorInputCss('username')" id="username" formControlName="username">
-                      <div class="form-control-feedback"
+                      <!--<div class="form-control-feedback"
                       *ngIf="this.form.controls.username.errors && (this.form.controls.username.touched || this.form.controls.username.dirty)">
                        <p *ngIf="this.form.controls.username.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
-                      </div>
+                      </div>-->
                   </div>
                   <div class="form-group col-lg-10" [ngClass]="ValidatorDisplayCss('password')">
                       <label for="password">รหัสผ่าน</label>
-                      <input type="password" class="form-control" [ngClass]="validatorInputCss('password')" id="password" aria-describedby="passwordHelp" formControlName="password">
-                      <div class="form-control-feedback"
+                      <input type="password" class="form-control" [ngClass]="validatorInputCss('password')" id="password" aria-describedby="passwordHelp" formControlName="password" data-toggle="tooltip" data-placement="left" title="Tooltip on left">
+                      <!--<div class="form-control-feedback"
                       *ngIf="this.form.controls.password.errors && (this.form.controls.password.touched || this.form.controls.password.dirty)">
                        <p *ngIf="this.form.controls.password.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
-                      </div>
+                      </div>-->
                       <small id="passwordHelp" class="form-text text-muted">( อย่างน้อย 6 ตัวอักษร รวมทั้งตัวเลขและอักขระพิเศษ)</small>
                     </div>
                     <div class="form-group col-lg-10" [ngClass]="ValidatorDisplayCss('tel')">
@@ -68,7 +70,7 @@
                   <div class="form-group ml-3">
                     <div class="row">
                       <div class="col">
-                          <button class="btn btn-outline-primary" type="submit">สมัครสมาชิก</button>
+                          <button class="btn btn-outline-primary" type="submit"><i class="fas fa-check-circle"></i> สมัครสมาชิก</button>
                       </div>
                     </div>
                   </div>
@@ -82,30 +84,11 @@
             </div>
             <div class="col-sm-5 hidden-md-down">
               <div class="regis2">
-              <a  href="/api/oauth/facebook" type="submit" class="btn btn-primary"><i class="fab fa-facebook-f"></i>  สมัครสมาชิกด้วย Facebook</a><br>
+              <a  href="/api/oauth/facebook"  class="btn btn-primary"><i class="fab fa-facebook-f"></i>  สมัครสมาชิกด้วย Facebook</a><br>
               <a href="/api/oauth/google" class="btn btn-danger"><i class="fab fa-google-plus-g"></i>  สมัครสมาชิกด้วย Google</a>
             </div>
             </div>
           </div>
-          <div class="modal fade Show" id="myModal"  role="dialog">
-              <div class="modal-dialog fade show" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    ...
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div><!-- Card -->
       </div>

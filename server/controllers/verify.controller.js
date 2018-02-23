@@ -9,16 +9,18 @@ function randomOtpNumber(){
   return randomOtp;
 }
 
+exports.keepUserData = function (user){
+  userData = user;
+}
+
 exports.sendOtpMessage = function(req, res){
-    username  = req.username;
-    password  = req.password;
-    console.log(req);
-    console.log(username);
-    console.log(password);
-    telephoneNumber = req.tel;
-    telephoneNumber = telephoneNumber.slice(1,10);
-    telephoneNumber = "66" + telephoneNumber;
+    userData = this.userData;
+    console.log(userData);
+    username = userData.username;
+    password = userData.password;
+    telephoneNumber = userData.tel;
     otpNumber = randomOtpNumber();
+    //send SMS OTP
     nexmo.message.sendSms(
       config.nexmo.apiNumber, telephoneNumber, otpNumber, {type: 'unicode'},
     (err, responseData) => {
@@ -26,6 +28,10 @@ exports.sendOtpMessage = function(req, res){
         console.log(err);
       } else {
         console.dir(responseData);
+        res.json({
+          success : true,
+          message : "ส่งรหัสผ่าน OTP ให้ท่านเรียบร้อยกรุณาตรวจสอบข้อความทางโทรศัพท์"
+        })
       }
     }
   );
@@ -45,7 +51,7 @@ exports.compareOtpNumber = function (req,res){
         if(user){
           res.json({
             success : true,
-            message : "Completed",
+            message : "รหัสผ่านถูกต้องการยืนยันตัวตนเสร็จสมบูรณ์",
             data : data
           });
         }
@@ -53,14 +59,15 @@ exports.compareOtpNumber = function (req,res){
   }else {
     res.json({
       success : false,
-      message : "Otp is not matched"
+      message : "รหัสผ่านไม่ถูกต้องกรุณาลองใหม่อีกครั้ง"
     })
     res.status(500)
   }
 } else {
   res.json({
     success : false,
-    message : "No OTP From user"
+    message : "ท่านกรอกรหัสผ่านไม่ครบ กรุณากรอกรหัสผ่านให้ครบด้วย"
   })
 }
 }
+

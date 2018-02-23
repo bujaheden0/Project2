@@ -10,4 +10,7 @@ export class VerifyOtpService {
     return this.http.post('/api/user/verifyOtp', data).map(res => res.json());
   }
 
+  getOtp(){
+    return this.http.get('/api/user/getOtp').map(res => res.json());
+  }
 }

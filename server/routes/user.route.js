@@ -39,15 +39,19 @@ module.exports = function(app){
     });
 
     
-    app.post('/api/send/otp', (req, res) => {
+    app.get('/api/send/otp', (req, res) => {
         nexmo.message.sendSms(
-            config.nexmo.apiNumber, '66902599621', 2526, {type: 'unicode'},
+            config.nexmo.apiNumber, '66902599621', 1111, {type: 'unicode'},
           (err, responseData) => {
             if (err) {
               console.log(err);
             } else {
               console.dir(responseData);
               // Optional: add socket.io -- will explain later
+              res.json({
+                  success : true,
+                  message : "COMPLETED"
+              })
             }
           }
         );
