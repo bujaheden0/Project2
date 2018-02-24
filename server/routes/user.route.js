@@ -1,15 +1,11 @@
 const user = require('../controllers/user.controller');
 const jwt = require('express-jwt');
 const passport = require('passport');
-<<<<<<< HEAD
-module.exports = function (app) {
-=======
 const config = require('../config/env/development');
 const Nexmo = require('../config/verify');
 
 nexmo = Nexmo.nexmo;
 module.exports = function(app){
->>>>>>> 8592e9ae464423d9bd212e192ae27c53358e4a61
     const auth = jwt({
         secret: 'MY_SECRET',
         userProperty: 'payload'
