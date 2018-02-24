@@ -69,9 +69,6 @@ export class AuthenticationService {
     return tokenNotExpired('id_token');
   }
 
-<<<<<<< HEAD
-
-=======
   logOut(){
     this.authToken = null;
     this.userDetails = null;
@@ -79,5 +76,4 @@ export class AuthenticationService {
   }
 
   
->>>>>>> 8592e9ae464423d9bd212e192ae27c53358e4a61
 }
