@@ -10,7 +10,7 @@ exports.register = function (req, res) {
     username: req.body.username,
     password: req.body.password,
     email: req.body.email,
-    tel: req.body.tel
+    tel: req.body.tel,
   });
   const userDataforOtp = {
     username : req.body.username,
@@ -173,6 +173,7 @@ exports.UpdateProfiles = function (req, res) {
       'details.g_status': req.body.g_status,
       'details.b_range': req.body.b_status,
       'details.b_range': req.body.b_range,
+      'profile_status': req.body.profile_status,
     }
   }, function (err, user) {
     if (err) res.send(err);

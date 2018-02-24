@@ -61,23 +61,23 @@ export class ProfileComponent implements OnInit {
       'form-control-danger': this.isFieldNotValid(field)
     }
   }
-  descriptions(req1,req2,req3,req4,req5){
-    if(req1==true){
+  descriptions(req1, req2, req3, req4, req5) {
+    if (req1 == true) {
       req1 = "สูบบุหรี่ได้";
-    }else{req1 = "";}
-    if(req2==true){
+    } else { req1 = ""; }
+    if (req2 == true) {
       req2 = "ละเลยการทำความสะอาดได้";
-    }else{req2 = "";}
-    if(req3==true){
+    } else { req2 = ""; }
+    if (req3 == true) {
       req3 = "เลี้ยงสัตว์ได้";
-    }else{req3 = "";}
-    if(req4==true){
+    } else { req3 = ""; }
+    if (req4 == true) {
       req4 = "ส่งเสียงดังได้";
-    }else{req4 = "";}
-    if(req5==true){
+    } else { req4 = ""; }
+    if (req5 == true) {
       req5 = "พาเพื่อนเข้าห้องได้";
-    }else{req5 = "";}
-    return req1+" "+req2+" "+req3+" "+req4+" "+req5;
+    } else { req5 = ""; }
+    return req1 + " " + req2 + " " + req3 + " " + req4 + " " + req5;
   }
 
   createFormValidate() {
@@ -198,6 +198,10 @@ export class ProfileComponent implements OnInit {
           //Validators.minLength(8),
           //Validators.pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)
         ]],
+      profile_status: [false,
+        [
+          //Validators.required,
+        ]],
 
     });
   }
@@ -206,6 +210,7 @@ export class ProfileComponent implements OnInit {
     //this.form.controls.descriptions.value+this.form.controls.descriptions1.value+this.form.controls.descriptions2.value+this.form.controls.descriptions3.value+this.form.controls.descriptions4.value+this.form.controls.descriptions5.value
     console.log(this.form)
     if (this.form.valid) {
+      
       const user = {
         //image: this.form.controls.image.value,
         userDetails: this.auth.userDetails,
@@ -218,13 +223,14 @@ export class ProfileComponent implements OnInit {
         sleep_time: this.form.controls.sleep_time.value,
         hobbies: this.form.controls.hobbies.value,
         address: this.form.controls.address.value,
-        descriptions: this.descriptions(this.form.controls.descriptions1.value,this.form.controls.descriptions2.value,this.form.controls.descriptions3.value,this.form.controls.descriptions4.value,this.form.controls.descriptions5.value)+"\n"+this.form.controls.descriptions.value,
+        descriptions: this.descriptions(this.form.controls.descriptions1.value, this.form.controls.descriptions2.value, this.form.controls.descriptions3.value, this.form.controls.descriptions4.value, this.form.controls.descriptions5.value) + "\n" + this.form.controls.descriptions.value,
         minPrice: this.form.controls.minPrice.value,
         maxPrice: this.form.controls.maxPrice.value,
         r_status: this.form.controls.r_status.value,
         g_status: this.form.controls.g_status.value,
         b_status: this.form.controls.b_status.value,
         b_range: this.form.controls.b_range.value,
+        profile_status: true
       }
       console.log(user);
 
