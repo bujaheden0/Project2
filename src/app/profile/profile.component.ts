@@ -63,19 +63,19 @@ export class ProfileComponent implements OnInit {
   }
   descriptions(req1,req2,req3,req4,req5){
     if(req1==true){
-      req1 = "สูบบุหรี่";
+      req1 = "สูบบุหรี่ได้";
     }
     if(req2==true){
-      req2 = "สูบบุหรี่2";
+      req2 = "ละเลยการทำความสะอาดได้";
     }
     if(req3==true){
-      req3 = "สูบบุหรี่3";
+      req3 = "เลี้ยงสัตว์ได้";
     }
     if(req4==true){
-      req4 = "สูบบุหรี่4";
+      req4 = "ส่งเสียงดังได้";
     }
     if(req5==true){
-      req5 = "สูบบุหรี่5";
+      req5 = "พาเพื่อนเข้าห้องได้";
     }
     return req1+"\n"+req2+"\n"+req3+"\n"+req4+"\n"+req5;
   }
@@ -139,8 +139,6 @@ export class ProfileComponent implements OnInit {
         ]],
       descriptions: [null,
         [
-          
-          
           //Validators.required,
         ]],
       descriptions1: [null,
