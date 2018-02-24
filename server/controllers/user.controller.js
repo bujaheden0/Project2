@@ -165,20 +165,29 @@ exports.UpdateProfiles = function (req, res) {
       'details.occupation': req.body.occupation,
       'details.sleep_time': req.body.sleep_time,
       'details.hobbies': req.body.hobbies,
-      'details.address':  req.body.address,
+      'details.address': req.body.address,
       'details.descriptions': req.body.descriptions,
       'details.price.min': req.body.minPrice,
       'details.price.max': req.body.maxPrice,
       'details.r_status': req.body.r_status,
-      'details.g_status' : req.body.g_status,
+      'details.g_status': req.body.g_status,
       'details.b_range': req.body.b_status,
       'details.b_range': req.body.b_range,
+      'profile_status': req.body.profile_status,
     }
   }, function (err, user) {
     if (err) res.send(err);
     res.send(user);
   });
 }
-
+exports.showProfile = function (req, res) {
+  // find each person with a last name matching 'Ghost', selecting the `name` and `occupation` fields
+  console.log('11-21-25');
+  User.findOne({ firstname: 'Ragxush' }, function (err, user) {
+    if (err) return handleError(err);
+    // Prints "Space Ghost is a talk show host".
+    res.send(user);
+  });
+}
 
 
