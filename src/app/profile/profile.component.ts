@@ -64,20 +64,20 @@ export class ProfileComponent implements OnInit {
   descriptions(req1,req2,req3,req4,req5){
     if(req1==true){
       req1 = "สูบบุหรี่ได้";
-    }
+    }else{req1 = "";}
     if(req2==true){
       req2 = "ละเลยการทำความสะอาดได้";
-    }
+    }else{req2 = "";}
     if(req3==true){
       req3 = "เลี้ยงสัตว์ได้";
-    }
+    }else{req3 = "";}
     if(req4==true){
       req4 = "ส่งเสียงดังได้";
-    }
+    }else{req4 = "";}
     if(req5==true){
       req5 = "พาเพื่อนเข้าห้องได้";
-    }
-    return req1+"\n"+req2+"\n"+req3+"\n"+req4+"\n"+req5;
+    }else{req5 = "";}
+    return req1+" "+req2+" "+req3+" "+req4+" "+req5;
   }
 
   createFormValidate() {
@@ -137,27 +137,27 @@ export class ProfileComponent implements OnInit {
           Validators.required,
           Validators.pattern(/^(?=.*[0-9])(?=.*[ต])(?=.*[อ])(?=.*[จ])(?=.*[.])[a-zA-Zก-๗0-9!@#$%^&*. ]{6,160}$/)
         ]],
-      descriptions: [null,
+      descriptions: ["",
         [
           //Validators.required,
         ]],
-      descriptions1: [null,
+      descriptions1: [,
         [
           //Validators.required,
         ]],
-      descriptions2: [null,
+      descriptions2: [,
         [
           //Validators.required,
         ]],
-      descriptions3: [null,
+      descriptions3: [,
         [
           //Validators.required,
         ]],
-      descriptions4: [null,
+      descriptions4: [,
         [
           //Validators.required,
         ]],
-      descriptions5: [null,
+      descriptions5: [,
         [
           //Validators.required,
         ]],
@@ -203,8 +203,6 @@ export class ProfileComponent implements OnInit {
   }
 
   onSubmit() {
-    
-    console.log()
     //this.form.controls.descriptions.value+this.form.controls.descriptions1.value+this.form.controls.descriptions2.value+this.form.controls.descriptions3.value+this.form.controls.descriptions4.value+this.form.controls.descriptions5.value
     console.log(this.form)
     if (this.form.valid) {
@@ -220,7 +218,7 @@ export class ProfileComponent implements OnInit {
         sleep_time: this.form.controls.sleep_time.value,
         hobbies: this.form.controls.hobbies.value,
         address: this.form.controls.address.value,
-        descriptions: this.form.controls.descriptions.value+"\n"+this.descriptions(this.form.controls.descriptions1.value,this.form.controls.descriptions2.value,this.form.controls.descriptions3.value,this.form.controls.descriptions4.value,this.form.controls.descriptions5.value),
+        descriptions: this.descriptions(this.form.controls.descriptions1.value,this.form.controls.descriptions2.value,this.form.controls.descriptions3.value,this.form.controls.descriptions4.value,this.form.controls.descriptions5.value)+"\n"+this.form.controls.descriptions.value,
         minPrice: this.form.controls.minPrice.value,
         maxPrice: this.form.controls.maxPrice.value,
         r_status: this.form.controls.r_status.value,
