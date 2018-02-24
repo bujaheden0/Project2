@@ -19,6 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './header/header.component';
 import { MapComponent } from './map/map.component';
 import { PassportComponent } from './passport/passport.component';
+import { VerifyOtpComponent } from './verify-otp/verify-otp.component';
+import { VerifyOtpService } from './services/verify-otp.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { PassportComponent } from './passport/passport.component';
     TestValidateComponent,
     HeaderComponent,
     MapComponent,
-    PassportComponent
+    PassportComponent,
+    VerifyOtpComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +46,11 @@ import { PassportComponent } from './passport/passport.component';
     HttpModule,
     HttpClientModule
   ],
-  providers: [ AuthenticationService,AuthGuard, Mbti16typedatailService ],
+  providers: [ AuthenticationService,
+               AuthGuard, 
+               Mbti16typedatailService,
+               VerifyOtpService
+],  
   bootstrap: [AppComponent]
 })
 export class AppModule { }

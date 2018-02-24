@@ -12,6 +12,7 @@ import { AuthenticationService } from './services/authentication.service';
 import { HeaderComponent } from './header/header.component';
 import { PassportComponent } from './passport/passport.component';
 import { MapComponent } from './map/map.component';
+import { VerifyOtpComponent } from './verify-otp/verify-otp.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent},
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'head', component: HeaderComponent},
   { path: 'passport/:id/:userId', component: PassportComponent },
   { path: 'map', component: MapComponent},
+  { path: 'verify', component: VerifyOtpComponent}
 
 ];
 

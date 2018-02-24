@@ -1,7 +1,7 @@
-
 const User = require('mongoose').model('User');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
+const sendOtp = require('./verify.controller');
 
 exports.register = function (req, res) {
   const users = new User({
@@ -9,12 +9,18 @@ exports.register = function (req, res) {
     lastname: req.body.lastname,
     username: req.body.username,
     password: req.body.password,
-    email: req.body.email
+    email: req.body.email,
+    tel: req.body.tel
   });
+  const userDataforOtp = {
+    username : req.body.username,
+    password : req.body.password,
+    tel      : req.body.tel
+  }
   users.save((err) => {
     if (err) {
       if (err.name === 'MongoError' && err.code === 11000) {
-        res.json({ success: false, message: 'Email หรือ Username นี้มีอยู่ในระบบแล้วกรูณาลองใหม่อีกครั้ง' });
+        res.json({ success: false, message: 'Email , Username หรือ เบอร์โทรศัพท์ นี้มีอยู่ในระบบแล้วกรูณาลองใหม่อีกครั้ง' });
         res.status(500);
         return;
       }
@@ -24,11 +30,12 @@ exports.register = function (req, res) {
       success: true,
       message: 'การสมัครสมาชิกของท่านเสร็จสมบูรณ์'
     });
+    sendOtp.keepUserData(userDataforOtp);
   });
+  
 }// Register
 
 exports.login = function (req, res) {
-
   passport.authenticate('local', function (err, user, info) {
     var token;
 
@@ -39,14 +46,13 @@ exports.login = function (req, res) {
     }
 
     // If a user is found
-    if (user) {
+    if (user && user.verify) {
       token = user.generateJwt();
-      const decode = jwt.verify(token, 'MY_SECRET')
-      console.log(decode);
       res.status(200);
       res.json({
         success: true,
-        message: "Loggin successfully",
+        verify : user.verify,
+        message: "๊Username และ Password ถูกต้องเรากำลังพาท่านเข้าสู่ระบบ",
         user: {
           id: user._id,
           email: user.email,
@@ -58,9 +64,25 @@ exports.login = function (req, res) {
       });
 
 
+    } else if(user && !user.verify) {
+        res.json({
+          success : false,
+          userFound : true,
+          verify : user.verify,
+          message : "ท่านยังไม่ได้ทำการยืนยันตัวตน กรุณายืนยันตัวตนให้เสร็จเรียบร้อย",
+        })
+        userData = {
+          username : user.username,
+          password : req.body.password,
+          tel      : user.tel
+        }
+        sendOtp.keepUserData(userData)
     } else {
-      // If user is not found
-      res.status(401).json(info);
+      res.json({
+        success : false,
+        userFound : false,
+        message : "Username หรือ Password ไม่ถูกต้องหรือไม่มีในระบบกรุณาลองใหม่อีกครั้ง"
+      })
     }
   })(req, res);
 }
@@ -166,4 +188,5 @@ exports.showProfile = function (req, res) {
     res.send(user);
   });
 }
+
 

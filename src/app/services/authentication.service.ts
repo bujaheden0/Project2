@@ -65,13 +65,19 @@ export class AuthenticationService {
     return this.userDetails;
   }
 
-
-
-
-
   loggedIn() {
     return tokenNotExpired('id_token');
   }
 
+<<<<<<< HEAD
 
+=======
+  logOut(){
+    this.authToken = null;
+    this.userDetails = null;
+    localStorage.clear();
+  }
+
+  
+>>>>>>> 8592e9ae464423d9bd212e192ae27c53358e4a61
 }

@@ -6,6 +6,10 @@
     color:#d6d8db;
 }
 
+.header a.currentUser{
+    color:white;
+}
+
 a.navbar-brand{
     color:white;
 }
@@ -20,3 +24,27 @@ a.navbar-brand{
     border-color: rgba(0, 0, 0, 0.125);
     margin: 0px 2px;
 }
+
+a.dropdown{
+    padding: 0px;
+    top:7px;
+    color:#d6d8db;
+}
+
+li.sign-up:hover , li.sign-in:hover  {
+    background: rgba(0, 0, 0, 0.100);
+    border-radius: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

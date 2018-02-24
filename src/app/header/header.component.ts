@@ -8,7 +8,8 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
   currentUser : Object;
-  constructor(public auth : AuthenticationService) { }
+  constructor(public auth : AuthenticationService,
+              private router : Router) { }
 
   ngOnInit() {
     if(this.auth.loggedIn()){
@@ -16,4 +17,10 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  onLogOut(){
+    this.auth.logOut();
+    if(!this.auth.loggedIn()){
+      this.router.navigate[('/')]
+    }
+  }
 }

@@ -2,7 +2,8 @@ import { Component, OnInit, Inject} from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators,NgForm } from '@angular/forms';
 import { group,trigger,style,transition,animate,keyframes,query,stagger,state } from '@angular/animations';
 import { AuthenticationService} from '../services/authentication.service';
-
+import { Router } from '@angular/router';
+import { VerifyOtpService } from '../services/verify-otp.service';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -19,12 +20,18 @@ import { AuthenticationService} from '../services/authentication.service';
       ])
     ]),
 
-    trigger('slideSuceeded', [
-      transition('void => *',[
-      style({ opacity: 0, transform: 'translateY(-20px)'}),
-      animate(300)
-      ])
-    ])
+    trigger(
+      'slideSuceeded', [
+        transition(':enter', [
+          style({transform: 'translateY(-20px)', opacity: 0}),
+          animate('300ms', style({transform: 'translateX(0)', opacity: 1}))
+        ]),
+        transition(':leave', [
+          style({transform: 'translateY(0)', opacity: 1}),
+          animate('500ms', style({transform: 'translateY(-20px)', opacity: 0}))
+        ])
+      ]
+    )
   
     
   ]
@@ -33,9 +40,12 @@ export class SignUpComponent implements OnInit {
   
   form: FormGroup;
   errorMessage = Object;
-  isValid = false;
+  isNotValid = false;
   UserDetails : Object;
-  constructor(private fb: FormBuilder, private authenticationService : AuthenticationService) { 
+  constructor(private fb: FormBuilder, 
+              private authenticationService : AuthenticationService,
+              private router : Router,
+              private verify : VerifyOtpService) { 
       
   }
 
@@ -90,25 +100,47 @@ export class SignUpComponent implements OnInit {
               [
                 Validators.required, 
                 Validators.minLength(8),
-                Validators.pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)]]
+                Validators.pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)]
+              ],
+          tel:[null,
+              [
+                Validators.required,
+                Validators.minLength(10),
+                Validators.maxLength(10),
+              Validators.pattern(/^[0-9]*$/)
+              ]
+              ]
     })
   }
 
   onSubmit(){
     console.log(this.form)
       if(this.form.valid){
+        this.isNotValid = false;
+        var telephone = this.form.controls.tel.value;
+            telephone = telephone.slice(1,10);
+            telephone = "66" + telephone;
         const user = {
           firstname : this.form.controls.firstname.value,
           lastname  : this.form.controls.lastname.value,
           email     : this.form.controls.email.value,
           username  : this.form.controls.username.value,
           password  : this.form.controls.password.value,
+          tel       : telephone
         }
         this.authenticationService.register(user).subscribe(res => {
               this.errorMessage = res;
+        if(res.success){
+          this.verify.getOtp().subscribe(data => {
+            if(data.success){
+              this.router.navigate(['/verify'])
+            }
+          });
+        }
         })
 
       }else{
+        this.isNotValid = true;
         this.validateAllFormFields(this.form);
       }
     }
