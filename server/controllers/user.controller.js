@@ -10,7 +10,8 @@ exports.register = function (req, res) {
     username: req.body.username,
     password: req.body.password,
     email: req.body.email,
-    tel: req.body.tel
+    tel: req.body.tel,
+    provider : "local"
   });
   const userDataforOtp = {
     username : req.body.username,
@@ -139,8 +140,7 @@ exports.saveOAuthUserProfile = function (req, profile, done) {
           user = new User(profile);
           user.save(function (err) {
             if (err) {
-              res.json({ success: false, message: "Cannot save facebook Account" }),
-                res.status(500);
+              console.log(err);
             }
             return done(err, user);
           })
