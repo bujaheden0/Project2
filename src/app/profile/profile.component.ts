@@ -31,6 +31,7 @@ import { AuthenticationService } from '../services/authentication.service';
 
   ]
 })
+
 export class ProfileComponent implements OnInit {
   form: FormGroup;
   errorMessage = Boolean;
@@ -43,6 +44,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.createFormValidate();
   }
+  
 
   isFieldNotValid(field: string) {
     return !this.form.get(field).valid && this.form.get(field).touched
@@ -87,6 +89,7 @@ export class ProfileComponent implements OnInit {
         ]
       ],
       facebook: [null,
+        //this.auth.userDetails.firstname+this.auth.userDetails.lastname
         [
           Validators.required,
 
@@ -117,7 +120,7 @@ export class ProfileComponent implements OnInit {
         ]],
       descriptions: [null,
         [
-          Validators.required,
+          //Validators.required,
         ]],
       minPrice: [0,
         [
@@ -143,9 +146,9 @@ export class ProfileComponent implements OnInit {
           //Validators.minLength(8),
           //Validators.pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)
         ]],
-      b_status: [false,
+      b_status: [true,
         [
-          Validators.required,
+          //Validators.required,
           //Validators.minLength(8),
           //Validators.pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)
         ]],

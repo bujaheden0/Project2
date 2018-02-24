@@ -1,37 +1,42 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers} from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { tokenNotExpired } from 'angular2-jwt';
 
 @Injectable()
 export class AuthenticationService {
-  authToken : any;
-  userDetails : Object;
-  constructor(private http : Http) { 
-    if(this.loggedIn()){
+  authToken: any;
+  userDetails: Object;
+  constructor(private http: Http) {
+    if (this.loggedIn()) {
       this.getCurrentUser();
     }
   }
 
-  register(data){
+  register(data) {
     return this.http.post('/api/user/regis', data).map(res => res.json());
   }
 
-  profile(data){
+  profile(data) {
     return this.http.post('/api/user/profile', data).map(res => res.json());
-  }
+  } 
 
-  login(data){
+  // showProfile(data) {
+  //   return this.http.post('/api/user/showProfile', data).map(res => res.json());
+  // }
+
+
+  login(data) {
     return this.http.post('/api/user/login', data).map(res => res.json());
   }
 
-  getFaceBookUser(data){
+  getFaceBookUser(data) {
     return this.http.post('/api/user/detail', data).map(res => res.json());
   }
 
 
 
-  storeUserData(token, user){
+  storeUserData(token, user) {
     localStorage.setItem('id_token', token);
     localStorage.setItem('user', JSON.stringify(user));
     this.authToken = token;
@@ -39,10 +44,10 @@ export class AuthenticationService {
 
 
 
-  
+
   loadToken() {
-      const token = localStorage.getItem('id_token');
-      this.authToken = "Bearer " + token;
+    const token = localStorage.getItem('id_token');
+    this.authToken = "Bearer " + token;
   }
 
   getProfile() {
@@ -50,14 +55,14 @@ export class AuthenticationService {
     this.loadToken();
     headers.append('Authorization', this.authToken);
     headers.append('Content-Type', 'application/json');
-    return this.http.get('/api/user/login', {headers: headers})
+    return this.http.get('/api/user/login', { headers: headers })
       .map(res => res.json());
   }
 
-  getCurrentUser(){
-      this.userDetails = JSON.parse(localStorage.getItem('user'));
-      console.log(this.userDetails);
-      return this.userDetails;
+  getCurrentUser() {
+    this.userDetails = JSON.parse(localStorage.getItem('user'));
+    console.log(this.userDetails);
+    return this.userDetails;
   }
 
 
@@ -68,5 +73,5 @@ export class AuthenticationService {
     return tokenNotExpired('id_token');
   }
 
-  
+
 }
