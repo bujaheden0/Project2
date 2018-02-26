@@ -4,7 +4,8 @@
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a class="navbar-brand" routerLink="/">RoommateFinder</a>
+      <a class="navbar-brand" routerLink="/" *ngIf="!auth.loggedIn()">RoommateFinder</a>
+      <a class="navbar-brand" routerLink="/main" *ngIf="auth.loggedIn()">RoommateFinder</a>
       <div class="collapse navbar-collapse" id="navbarSupportedContent" aria-controls="navbarSupportedContent">
         <ul class="navbar-nav ml-auto" *ngIf="!auth.loggedIn()">
           <li class="sign-up nav-item">

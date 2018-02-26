@@ -104,8 +104,7 @@ const userSchema = new schema({
     profile_status : {
         type : Boolean,
         default : false
-    },//ช่วยกุด้วย ทำยังไงให้เพื่มในดาต้าเบสได้
-
+    }
 });
 
 

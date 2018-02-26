@@ -20,7 +20,17 @@ module.exports = function(app){
     app.get('/api/oauth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
     app.get('/api/oauth/google/callback', (req, res, next) => {
         passport.authenticate('google', (err, user) => {
+            if(err) {
+                res.json({
+                    success : false,
+                    error : "อีเมลล์นี้มีอยู่แล้วในระบบไม่สามารถใช้ได้"
+                })
+            }
             if (user) {
+                res.json({
+                    success : true,
+                    error : "ท่านเข้าสู่ระบบเรียบร้อยแล้ว"
+                })
                 token = user.generateJwt();
                 res.redirect('/passport/' + token + "/" + user._id);
             }
@@ -30,6 +40,9 @@ module.exports = function(app){
     app.post('/api/user/detail', user.getProfile);
     app.get('/api/oauth/facebook/callback', (req, res, next) => {
         passport.authenticate('facebook', (err, user) => {
+            if(err) {
+                res.redirect('/passport');
+            }
             if (user) {
                 token = user.generateJwt();
                 res.redirect('/passport/' + token + "/" + user._id);

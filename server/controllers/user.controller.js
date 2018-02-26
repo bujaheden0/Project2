@@ -53,6 +53,7 @@ exports.login = function (req, res) {
       res.json({
         success: true,
         verify : user.verify,
+        profile_status : user.profile_status,
         message: "๊Username และ Password ถูกต้องเรากำลังพาท่านเข้าสู่ระบบ",
         user: {
           id: user._id,
@@ -140,7 +141,7 @@ exports.saveOAuthUserProfile = function (req, profile, done) {
           user = new User(profile);
           user.save(function (err) {
             if (err) {
-              console.log(err);
+              return done(err);
             }
             return done(err, user);
           })

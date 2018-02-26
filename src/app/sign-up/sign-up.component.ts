@@ -113,6 +113,11 @@ export class SignUpComponent implements OnInit {
     })
   }
 
+  onFacebookSignup(){
+    this.authenticationService.getPassportFacebookCallback().subscribe(res => {
+      console.log(res);
+    })
+  }
   onSubmit(){
     console.log(this.form)
       if(this.form.valid){

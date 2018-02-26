@@ -18,6 +18,7 @@ export class PassportComponent implements OnInit {
 
   getCallbackfromFacebook(){
     this.route.params.subscribe(token => {
+      if(token.id){
       const data = {
         userId : token.userId
       }
@@ -26,10 +27,13 @@ export class PassportComponent implements OnInit {
           this.auth.storeUserData(token.id,res.user);
         if(this.auth.loggedIn()){
           this.auth.getCurrentUser();
-          this.router.navigate(['/']);
+          this.router.navigate(['/main']);
               }
             }
           })
+        } else {
+          this.router.navigate(['/signup']);
+        }
         })
       }
 
