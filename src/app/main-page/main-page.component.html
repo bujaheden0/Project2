@@ -1,3 +1,28 @@
-<p>
-  main-page works!
-</p>
+<div class="container">
+  <div class="showPeople">
+    <div class="searchBar">
+    </div>
+      <div class="row" *ngIf="perfectUser">
+        <div class="card" *ngFor="let perfectUser of perfectUser">
+          <div class="card-block">
+              <div class="progress mb-4">
+                  <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 95%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">นิสัยคล้ายกัน 95%</div>
+                </div>
+              <div class="row justify-content-between">
+                <div class="col-4"><img src="https://wordsandvideos.com/wp-content/uploads/2016/12/common.png" alt="..." class="rounded-circle"></div>
+                <div class="col-8" style="line-height: 200%;">ชื่อ : {{ perfectUser.firstname }}  {{ perfectUser.lastname }}<br>
+                                  ศาสนา : {{ perfectUser.details.religion }}<br>
+                                  อายุ :<br>
+                                  อาชีพ : {{ perfectUser.details.occupation }} <br>
+                                  นิสัย : {{ perfectUser.habit }}
+                </div>
+              </div>
+              <div class="row justify-content-around mt-4">
+                  <button type="button" class="btn btn-outline-primary"><i class="fas fa-info-circle"></i> ดูรายละเอียดเพิ่มเติม</button>
+                  <button type="button" class="btn btn-outline-danger"><i class="fab fa-gratipay"></i> สนใจ</button>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>

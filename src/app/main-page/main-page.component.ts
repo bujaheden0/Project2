@@ -7,7 +7,9 @@ import { MatchPeopleService } from '../services/match-people.service';
   styleUrls: ['./main-page.component.css']
 })
 export class MainPageComponent implements OnInit {
-
+   perfectUser;
+   possibleUser;
+   leastUser;
   constructor(private auth : AuthenticationService,
               private matchPeople : MatchPeopleService) { }
 
@@ -22,7 +24,10 @@ export class MainPageComponent implements OnInit {
       userDetails : this.auth.userDetails
     }
     this.matchPeople.getAllMatchedPeople(data).subscribe(res => {
-      console.log(res);
+       this.perfectUser = res[0];
+       this.possibleUser = res[1];
+       this.leastUser = res[2];
+       console.log(this.perfectUser[0].firstname);
     })
   }
 

@@ -10,8 +10,8 @@ exports.findMatchedPeople = function(req, res, next){
                         User.find({ habit : { $in : habit.match_type.perfect }, _id : { $ne : req.body.userDetails.id }}),
                         User.find({ habit : { $in : habit.match_type.possible }}),
                         User.find({ habit : { $in : habit.match_type.least }})
-                    ]).then( ([user1,user2,user3]) => {
-                        res.json([user1,user2,user3]);
+                    ]).then( (perfectUser,possibleuser,leastUser) => {
+                        res.json(perfectUser,possibleuser,leastUser);
                     })
                 }
             })
