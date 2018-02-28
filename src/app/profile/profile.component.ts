@@ -52,8 +52,8 @@ export class ProfileComponent implements OnInit {
     console.log(user);
 
     this.auth.getSettingProfile(user).subscribe(res => {
-      this.responseMessage = res.user.id
-      console.log(res.user.id);
+      this.responseMessage = res.user
+      console.log(res.user);
     })
   }
 
@@ -248,7 +248,7 @@ export class ProfileComponent implements OnInit {
       this.auth.profile(user).subscribe(res => {
         console.log(res);
       })
-
+      this.router.navigate(['/questionnaire'])
 
     } else {
       this.validateAllFormFields(this.form);
