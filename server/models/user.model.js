@@ -22,6 +22,7 @@ const userSchema = new schema({
     verify : {
         type : Boolean,
         default : false
+        
     },
     details : {
         religion : {
@@ -99,8 +100,11 @@ const userSchema = new schema({
         type : String,
         default : ""
     },
-    providerData:{}
-
+    providerData:{},
+    profile_status : {
+        type : Boolean,
+        default : false
+    }
 });
 
 

@@ -70,7 +70,11 @@ export class VerifyOtpComponent implements OnInit {
             this.auth.storeUserData(res.token, res.user)
             if(this.auth.loggedIn()){
               this.auth.getCurrentUser();
-              this.route.navigate(['/'])
+              if(res.profile_status){
+                this.route.navigate(['/']);
+              }else{
+                this.route.navigate(['/profile'])
+              }
             }
           }
         })

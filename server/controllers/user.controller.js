@@ -10,7 +10,8 @@ exports.register = function (req, res) {
     username: req.body.username,
     password: req.body.password,
     email: req.body.email,
-    tel: req.body.tel
+    tel: req.body.tel,
+    provider : "local"
   });
   const userDataforOtp = {
     username : req.body.username,
@@ -52,6 +53,7 @@ exports.login = function (req, res) {
       res.json({
         success: true,
         verify : user.verify,
+        profile_status : user.profile_status,
         message: "๊Username และ Password ถูกต้องเรากำลังพาท่านเข้าสู่ระบบ",
         user: {
           id: user._id,
@@ -139,8 +141,7 @@ exports.saveOAuthUserProfile = function (req, profile, done) {
           user = new User(profile);
           user.save(function (err) {
             if (err) {
-              res.json({ success: false, message: "Cannot save facebook Account" }),
-                res.status(500);
+              return done(err);
             }
             return done(err, user);
           })
@@ -165,14 +166,15 @@ exports.UpdateProfiles = function (req, res) {
       'details.occupation': req.body.occupation,
       'details.sleep_time': req.body.sleep_time,
       'details.hobbies': req.body.hobbies,
-      'details.address':  req.body.address,
+      'details.address': req.body.address,
       'details.descriptions': req.body.descriptions,
       'details.price.min': req.body.minPrice,
       'details.price.max': req.body.maxPrice,
       'details.r_status': req.body.r_status,
-      'details.g_status' : req.body.g_status,
+      'details.g_status': req.body.g_status,
       'details.b_range': req.body.b_status,
       'details.b_range': req.body.b_range,
+      'profile_status': req.body.profile_status,
     }
   }, function (err, user) {
     if (err) res.send(err);
@@ -192,5 +194,14 @@ exports.UpdateHabit = function (req, res) {
   });
 }
 
+exports.showProfile = function (req, res) {
+  // find each person with a last name matching 'Ghost', selecting the `name` and `occupation` fields
+  console.log('11-21-25');
+  User.findOne({ firstname: 'Ragxush' }, function (err, user) {
+    if (err) return handleError(err);
+    // Prints "Space Ghost is a talk show host".
+    res.send(user);
+  });
+}
 
 

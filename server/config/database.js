@@ -10,5 +10,8 @@ module.exports = function(){
         console.log('Connected to database : ' + config.mongoUri);
     })
     require('../models/user.model');
+    require('../models/habit.model');
+    require('../models/dorm.model');
+    require('../models/reserve.model');
     return db;
 }

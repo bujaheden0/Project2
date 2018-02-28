@@ -8,8 +8,12 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class AppComponent implements OnInit {
  
-  constructor(private auth : AuthenticationService){}
+  constructor(private auth : AuthenticationService,
+              private route : Router){}
   ngOnInit() {
+    if(this.auth.loggedIn && this.auth.userDetails){
+      this.route.navigate(['/main']);
+    }
   }
 
   

@@ -21,6 +21,8 @@ import { MapComponent } from './map/map.component';
 import { PassportComponent } from './passport/passport.component';
 import { VerifyOtpComponent } from './verify-otp/verify-otp.component';
 import { VerifyOtpService } from './services/verify-otp.service';
+import { MainPageComponent } from './main-page/main-page.component';
+import { MatchPeopleService } from './services/match-people.service';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,8 @@ import { VerifyOtpService } from './services/verify-otp.service';
     HeaderComponent,
     MapComponent,
     PassportComponent,
-    VerifyOtpComponent
+    VerifyOtpComponent,
+    MainPageComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +52,8 @@ import { VerifyOtpService } from './services/verify-otp.service';
   providers: [ AuthenticationService,
                AuthGuard, 
                Mbti16typedatailService,
-               VerifyOtpService
+               VerifyOtpService,
+               MatchPeopleService
 ],  
   bootstrap: [AppComponent]
 })

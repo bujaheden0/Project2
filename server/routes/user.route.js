@@ -17,24 +17,41 @@ module.exports = function(app){
     app.post('/api/user/habit',user.UpdateHabit);
     
     app.get('/api/oauth/facebook', passport.authenticate('facebook' ,{ scope : ['public_profile', 'email'] }));
+    app.post('/api/user/profile', user.UpdateProfiles);
+    app.get('/api/user/showProfile', user.showProfile);
+
+    app.get('/api/oauth/facebook', passport.authenticate('facebook', { scope: ['public_profile', 'email'] }));
     app.get('/api/oauth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
     app.get('/api/oauth/google/callback', (req, res, next) => {
-        passport.authenticate('google', (err,user) => {
-            if(user){
-                token = user.generateJwt();
-                res.redirect('/passport/' + token +"/" + user._id);
+        passport.authenticate('google', (err, user) => {
+            if(err) {
+                res.json({
+                    success : false,
+                    error : "อีเมลล์นี้มีอยู่แล้วในระบบไม่สามารถใช้ได้"
+                })
             }
-            
+            if (user) {
+                res.json({
+                    success : true,
+                    error : "ท่านเข้าสู่ระบบเรียบร้อยแล้ว"
+                })
+                token = user.generateJwt();
+                res.redirect('/passport/' + token + "/" + user._id);
+            }
+
         })(req, res, next);
     });
     app.post('/api/user/detail', user.getProfile);
     app.get('/api/oauth/facebook/callback', (req, res, next) => {
-        passport.authenticate('facebook', (err,user) => {
-            if(user){
-                token = user.generateJwt();
-                res.redirect('/passport/' + token +"/" + user._id);
+        passport.authenticate('facebook', (err, user) => {
+            if(err) {
+                res.redirect('/passport');
             }
-            
+            if (user) {
+                token = user.generateJwt();
+                res.redirect('/passport/' + token + "/" + user._id);
+            }
+
         })(req, res, next);
     });
 

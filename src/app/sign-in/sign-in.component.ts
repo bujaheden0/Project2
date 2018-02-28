@@ -56,7 +56,11 @@ export class SignInComponent implements OnInit {
         this.authenticationService.storeUserData(res.token, res.user)
         if(this.authenticationService.loggedIn()){
           this.authenticationService.getCurrentUser();
-          this.router.navigate(['/']);
+          if(res.profile_status){
+          this.router.navigate(['/main']);
+          }else {
+            this.router.navigate(['/profile'])
+          }
         }
       } else if(res.userFound  && !res.verify){
         this.verify.getOtp().subscribe(res => {

@@ -1,0 +1,27 @@
+.showPeople{
+    margin-top: 20px;
+    height: auto;
+    padding-top: 15px;
+}
+
+.searchBar{
+    margin:0 auto;
+    width: 90%;
+    height: 50px;
+    margin-bottom: 20px;
+}
+
+.card{
+    float: left;
+    width: 348px;
+    height: auto;
+    margin-bottom: 32px;
+    margin-left : 16px;
+    margin-right: 16px;
+}
+
+.rounded-circle{
+    width: 95px;
+    height: 95px;
+    margin-left: 5px
+}
