@@ -11,12 +11,12 @@ exports.register = function (req, res) {
     password: req.body.password,
     email: req.body.email,
     tel: req.body.tel,
-    provider : "local"
+    provider: "local"
   });
   const userDataforOtp = {
-    username : req.body.username,
-    password : req.body.password,
-    tel      : req.body.tel
+    username: req.body.username,
+    password: req.body.password,
+    tel: req.body.tel
   }
   users.save((err) => {
     if (err) {
@@ -33,7 +33,7 @@ exports.register = function (req, res) {
     });
     sendOtp.keepUserData(userDataforOtp);
   });
-  
+
 }// Register
 
 exports.login = function (req, res) {
@@ -52,8 +52,8 @@ exports.login = function (req, res) {
       res.status(200);
       res.json({
         success: true,
-        verify : user.verify,
-        profile_status : user.profile_status,
+        verify: user.verify,
+        profile_status: user.profile_status,
         message: "๊Username และ Password ถูกต้องเรากำลังพาท่านเข้าสู่ระบบ",
         user: {
           id: user._id,
@@ -66,24 +66,24 @@ exports.login = function (req, res) {
       });
 
 
-    } else if(user && !user.verify) {
-        res.json({
-          success : false,
-          userFound : true,
-          verify : user.verify,
-          message : "ท่านยังไม่ได้ทำการยืนยันตัวตน กรุณายืนยันตัวตนให้เสร็จเรียบร้อย",
-        })
-        userData = {
-          username : user.username,
-          password : req.body.password,
-          tel      : user.tel
-        }
-        sendOtp.keepUserData(userData)
+    } else if (user && !user.verify) {
+      res.json({
+        success: false,
+        userFound: true,
+        verify: user.verify,
+        message: "ท่านยังไม่ได้ทำการยืนยันตัวตน กรุณายืนยันตัวตนให้เสร็จเรียบร้อย",
+      })
+      userData = {
+        username: user.username,
+        password: req.body.password,
+        tel: user.tel
+      }
+      sendOtp.keepUserData(userData)
     } else {
       res.json({
-        success : false,
-        userFound : false,
-        message : "Username หรือ Password ไม่ถูกต้องหรือไม่มีในระบบกรุณาลองใหม่อีกครั้ง"
+        success: false,
+        userFound: false,
+        message: "Username หรือ Password ไม่ถูกต้องหรือไม่มีในระบบกรุณาลองใหม่อีกครั้ง"
       })
     }
   })(req, res);
@@ -162,7 +162,6 @@ exports.UpdateProfiles = function (req, res) {
       'details.gender': req.body.gender,
       'details.birthDate': req.body.birthday,
       'details.facebook': req.body.facebook,
-      'details.tel': req.body.tel,
       'details.occupation': req.body.occupation,
       'details.sleep_time': req.body.sleep_time,
       'details.hobbies': req.body.hobbies,
@@ -174,6 +173,7 @@ exports.UpdateProfiles = function (req, res) {
       'details.g_status': req.body.g_status,
       'details.b_range': req.body.b_status,
       'details.b_range': req.body.b_range,
+      'tel': req.body.tel,
       'profile_status': req.body.profile_status,
     }
   }, function (err, user) {
@@ -191,4 +191,38 @@ exports.showProfile = function (req, res) {
   });
 }
 
-
+exports.settingProfile = function (req, res) {
+  User.findOne({ _id: req.body.userDetails.id }, function (err, user) {
+    if (err) throw (err);
+    if (user) {
+      res.status(200);
+      res.json({
+        success: true,
+        message: "Loggin successfully",
+        user: {
+          id: user._id,
+          username: user.username,
+          descriptions: user.details.descriptions,
+          religion: user.details.religion,
+          gender: user.details.gender,
+          birthday: user.details.birthDate,
+          facebook: user.details.facebook,
+          occupation: user.details.occupation,
+          sleep_time: user.details.sleep_time,
+          hobbies: user.details.hobbies,
+          address: user.details.address,
+          descriptions: user.details.descriptions,
+          minPrice: user.details.price.min,
+          maxPrice: user.details.price.max,
+          r_status: user.details.r_status,
+          g_status: user.details.g_status,
+          b_status: user.details.b_range,
+          b_range: user.details.b_range,
+          tel: user.tel,
+          profile_status: user.profile_status,
+          habit: user.habit
+        }
+      });
+    }
+  });
+}

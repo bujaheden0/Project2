@@ -37,6 +37,7 @@ export class ProfileComponent implements OnInit {
   errorMessage = Boolean;
   isValid = false;
   description = String;
+  responseMessage = Object;
   constructor(private fb: FormBuilder, private auth: AuthenticationService, private router: Router) {
 
   }
@@ -44,6 +45,16 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.createFormValidate();
+    const user = {
+      //image: this.form.controls.image.value,
+      userDetails: this.auth.userDetails,
+    }
+    console.log(user);
+
+    this.auth.getSettingProfile(user).subscribe(res => {
+      this.responseMessage = res.user.id
+      console.log(res.user.id);
+    })
   }
 
   isFieldNotValid(field: string) {

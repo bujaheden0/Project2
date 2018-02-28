@@ -33,10 +33,13 @@ export class AuthenticationService {
   getFaceBookUser(data) {
     return this.http.post('/api/user/detail', data).map(res => res.json());
   }
-
+  getSettingProfile(data){
+    return this.http.post('/api/user/settingProfile', data).map(res => res.json());
+  }
   getPassportFacebookCallback(){
     return this.http.get('/api/oauth/facebook/callback').map(res => res.json());
   }
+
 
   getPassportGoogleCallback(){
     return this.http.get('/api/oauth/google/callback').map(res => res.json());

@@ -9,17 +9,24 @@
           <form [formGroup]="form" (ngSubmit)="onSubmit()">
             <div class="row">
               <div class="col-lg-6">
-                <form>
+                <!-- <form>
                   <div class="form-group">
-                    <label for="exampleFormControlFile1">รูปประจำตัว</label>
+                    <label class="lebel">รูปประจำตัว</label>
                     <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                    <input type="file" name="myfile" ng-disabled="uploading" style="display: none;">
+                    <button class="btn btn-primary" ng-disabled="uploading">Upload</button>
                   </div>
-
                 </form>
-
+                <div>
+                  <img src="{{ thumbnail.dataUrl || 'http://emblemsbattlefield.com/uploads/posts/2014/10/facebook-default-photo-male_1.jpg' }}"
+                    alt="">
+                  <div ng-show="message">
+                    <div ng-class="alert">{{ message }}</div>
+                  </div>
+                </div> -->
                 <div class="form-group">
                   <form class="form-inline" [formGroup]="form">
-                    <label class="mr-sm-2" for="inlineFormCustomSelect">ศาสนา</label>
+                    <label class="mr-sm-2" for="inlineFormCustomSelect">{{ responseMessage }}</label>
                     <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect" formControlName="religion" required>
                       <option selected>เลือก...</option>
                       <option value="พุทธ">พุทธ</option>
@@ -211,7 +218,7 @@
 
               </div>
               <div class="b">
-                <button type="submit" class="btn btn-primary">Sign in</button>
+                <button type="submit" class="btn btn-primary">บันทึก</button>
               </div>
             </div>
           </form>
