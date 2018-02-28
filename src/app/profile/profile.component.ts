@@ -36,26 +36,25 @@ export class ProfileComponent implements OnInit {
   form: FormGroup;
   errorMessage = Boolean;
   isValid = false;
-  description = String;
-  responseMessage = Object;
+  profile: any = {};
   constructor(private fb: FormBuilder, private auth: AuthenticationService, private router: Router) {
-
   }
-
-
-  ngOnInit() {
-    this.createFormValidate();
-    const user = {
-      //image: this.form.controls.image.value,
+  unknown(user){
+    user = {
       userDetails: this.auth.userDetails,
     }
-    console.log(user);
-
     this.auth.getSettingProfile(user).subscribe(res => {
-      this.responseMessage = res.user
-      console.log(res.user);
+      this.profile = res;
+      console.log(this.profile);
     })
   }
+
+  ngOnInit() {
+    this.unknown(this.auth.userDetails);
+    //console.log(this.profile.details.descriptions)
+    this.createFormValidate();
+  }
+
 
   isFieldNotValid(field: string) {
     return !this.form.get(field).valid && this.form.get(field).touched
@@ -102,7 +101,6 @@ export class ProfileComponent implements OnInit {
       religion: [null,
         [
           Validators.required,
-
         ]
       ],
       gender: [null,
@@ -118,18 +116,17 @@ export class ProfileComponent implements OnInit {
           //Validators.pattern(/^[A-Za-z0-9]+(?:[_-][A-Za-z0-9]+)*$/)
         ]
       ],
-      facebook: [null,
-        //this.auth.userDetails.firstname+this.auth.userDetails.lastname
-        [
-          Validators.required,
-
-        ]
+      facebook: ["",
+      //this.auth.userDetails.firstname+this.auth.userDetails.lastname
+      [   
+        Validators.required,
+      ]
       ],
-      tel: [null,
+      tel: ["",
         [
           Validators.required,
-          Validators.pattern(/^[0-9]{10,10}$/)]],
-      occupation: [null,
+          Validators.pattern(/^[0-9]{11,11}$/)]],
+      occupation: ["",
         [
           Validators.required,
         ]],
@@ -139,11 +136,11 @@ export class ProfileComponent implements OnInit {
           // Validators.minLength(8),
           //Validators.pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)
         ]],
-      hobbies: [null,
+      hobbies: ["",
         [
           Validators.required,
         ]],
-      address: [null,
+      address: ["",
         [
           Validators.required,
           Validators.pattern(/^(?=.*[0-9])(?=.*[ต])(?=.*[อ])(?=.*[จ])(?=.*[.])[a-zA-Zก-๗0-9!@#$%^&*. ]{6,160}$/)
@@ -152,23 +149,23 @@ export class ProfileComponent implements OnInit {
         [
           //Validators.required,
         ]],
-      descriptions1: [,
+      descriptions1: [false,
         [
           //Validators.required,
         ]],
-      descriptions2: [,
+      descriptions2: [false,
         [
           //Validators.required,
         ]],
-      descriptions3: [,
+      descriptions3: [false,
         [
           //Validators.required,
         ]],
-      descriptions4: [,
+      descriptions4: [false,
         [
           //Validators.required,
         ]],
-      descriptions5: [,
+      descriptions5: [false,
         [
           //Validators.required,
         ]],
@@ -178,7 +175,7 @@ export class ProfileComponent implements OnInit {
           //Validators.minLength(8),
           //Validators.pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)
         ]],
-      maxPrice: [10000,
+      maxPrice: [5000,
         [
           Validators.required,
           //Validators.minLength(8),
@@ -196,7 +193,7 @@ export class ProfileComponent implements OnInit {
           //Validators.minLength(8),
           //Validators.pattern(/^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/)
         ]],
-      b_status: [true,
+      b_status: [false,
         [
           //Validators.required,
           //Validators.minLength(8),
@@ -216,12 +213,15 @@ export class ProfileComponent implements OnInit {
 
     });
   }
-
+  test(){
+    this.router.navigate(['/questionnaire'])
+  }
   onSubmit() {
+    
     //this.form.controls.descriptions.value+this.form.controls.descriptions1.value+this.form.controls.descriptions2.value+this.form.controls.descriptions3.value+this.form.controls.descriptions4.value+this.form.controls.descriptions5.value
     console.log(this.form)
     if (this.form.valid) {
-      
+        
       const user = {
         //image: this.form.controls.image.value,
         userDetails: this.auth.userDetails,
@@ -234,7 +234,12 @@ export class ProfileComponent implements OnInit {
         sleep_time: this.form.controls.sleep_time.value,
         hobbies: this.form.controls.hobbies.value,
         address: this.form.controls.address.value,
-        descriptions: this.descriptions(this.form.controls.descriptions1.value, this.form.controls.descriptions2.value, this.form.controls.descriptions3.value, this.form.controls.descriptions4.value, this.form.controls.descriptions5.value) + "\n" + this.form.controls.descriptions.value,
+        descriptions: this.form.controls.descriptions.value +"\n"+this.descriptions(this.form.controls.descriptions1.value, this.form.controls.descriptions2.value, this.form.controls.descriptions3.value, this.form.controls.descriptions4.value, this.form.controls.descriptions5.value),
+        // descriptions1: this.form.controls.descriptions1.value,
+        // descriptions2: this.form.controls.descriptions2.value,
+        // descriptions3: this.form.controls.descriptions3.value,
+        // descriptions4: this.form.controls.descriptions4.value,
+        // descriptions5: this.form.controls.descriptions5.value,//สเตมบายรอดาต้าเบสพร้อม
         minPrice: this.form.controls.minPrice.value,
         maxPrice: this.form.controls.maxPrice.value,
         r_status: this.form.controls.r_status.value,
@@ -243,12 +248,19 @@ export class ProfileComponent implements OnInit {
         b_range: this.form.controls.b_range.value,
         profile_status: true
       }
+      
       console.log(user);
 
       this.auth.profile(user).subscribe(res => {
         console.log(res);
       })
-      this.router.navigate(['/questionnaire'])
+      if(this.profile.habit){
+        this.router.navigate(['/main'])
+      }else{
+        this.router.navigate(['/questionnaire'])
+      }
+        
+      
 
     } else {
       this.validateAllFormFields(this.form);

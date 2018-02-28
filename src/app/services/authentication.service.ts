@@ -7,6 +7,7 @@ import { tokenNotExpired } from 'angular2-jwt';
 export class AuthenticationService {
   authToken: any;
   userDetails: Object;
+  userTest:Object;
   constructor(private http: Http) {
     if (this.loggedIn()) {
       this.getCurrentUser();
@@ -22,6 +23,9 @@ export class AuthenticationService {
   }
   habit(data){
     return this.http.post('/api/user/habit', data).map(res => res.json());
+  }
+  testprofile(data){
+    return this.http.post('/api/user/testprofile', data).map(res => res.json());
   }
   
 

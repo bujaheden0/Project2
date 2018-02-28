@@ -26,8 +26,9 @@
                 </div> -->
                 <div class="form-group">
                   <form class="form-inline" [formGroup]="form">
-                    <label class="mr-sm-2" for="inlineFormCustomSelect">{{ responseMessage }}</label>
-                    <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect" formControlName="religion" required>
+                    <label class="mr-sm-2" for="inlineFormCustomSelect">ศาสนา</label>
+                    <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect" formControlName="religion" [(ngModel)]="profile.details.religion"
+                      name="religion" required>
                       <option selected>เลือก...</option>
                       <option value="พุทธ">พุทธ</option>
                       <option value="อิสลาม">อิสลาม</option>
@@ -41,7 +42,7 @@
 
                     <div class="c">
                       <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-                        <input type="checkbox" class="custom-control-input" formControlName="r_status" value="true">
+                        <input type="checkbox" class="custom-control-input" formControlName="r_status" [(ngModel)]="profile.details.r_status" name="r_status">
                         <span class="custom-control-indicator"></span>
                         <span class="custom-control-description">คุณยินดีที่จะอยู่กับศาสนาอื่นด้วย</span>
                       </label>
@@ -52,15 +53,15 @@
                   <form class="form-inline" [formGroup]="form">
                     <label class="mr-sm-4" for="inlineFormCustomSelect">เพศ</label>
                     <input class="form-check-input " type="radio" id="gridRadios1" [ngClass]="validatorInputCss('gender')" formControlName="gender"
-                      value="ชาย"> ชาย
+                      [(ngModel)]="profile.details.gender" name="gender" value="ชาย"> ชาย
                     <input class="form-check-input " type="radio" id="gridRadios2" [ngClass]="validatorInputCss('gender')" formControlName="gender"
-                      value="หญิง"> หญิง
+                      [(ngModel)]="profile.details.gender" name="gender" value="หญิง"> หญิง
                     <div class="form-control-feedback" *ngIf="this.form.controls.gender.errors && (this.form.controls.gender.touched || this.form.controls.gender.dirty)">
                       <p *ngIf="this.form.controls.gender.errors.required " [ngStyle]="{'color': '#cc3300'}">กรุณาเลือกเพศ</p>
                     </div>
                     <div class="c">
                       <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-                        <input type="checkbox" class="custom-control-input" formControlName="g_status" value="true">
+                        <input type="checkbox" class="custom-control-input" formControlName="g_status" [(ngModel)]="profile.details.g_status" name="g_status">
                         <span class="custom-control-indicator"></span>
                         <span class="custom-control-description">คุณยินดีที่จะอยู่กับเพศตรงข้ามด้วย</span>
                       </label>
@@ -71,7 +72,7 @@
                   <label for="example-date-input" class="col-2 col-form-label">วันเกิด</label>
                   <div class="col-10">
                     <input class="form-control" type="date" [ngClass]="validatorInputCss('birthday')" formControlName="birthday" id="example-date-input"
-                      required>
+                      [(ngModel)]="profile.details.birthDate" name="birthDate" required>
                     <div class="form-control-feedback" *ngIf="this.form.controls.birthday.errors && (this.form.controls.birthday.touched || this.form.controls.birthday.dirty)">
                       <p *ngIf="this.form.controls.birthday.errors.required ">กรุณากรอกข้อมูลให้ครบถ้วน</p>
                     </div>
@@ -79,8 +80,23 @@
                 </div>
                 <fieldset class="form-group row">
                   <legend class="col-form-legend col-sm-6">รายละเอียดเพื่มเติมสำหรับอายุ</legend>
-                  <div class="col-sm-10">
-                    <div class="form-check">
+                  <div class="col-sm-12">
+                    <div class="row">
+                      <div class="col-sm-9">
+                        <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+                          <input type="checkbox" class="custom-control-input" formControlName="b_status" [(ngModel)]="profile.details.b_status" name="b_status">
+                          <span class="custom-control-indicator"></span>
+                          <span class="custom-control-description">กำหนดช่วงอายุเป้าหมาย ขออายุไม่มากหรือน้อยกว่า</span>
+                        </label>
+                      </div>
+                      <div class="col-sm-3">
+                        <input type="number" min="0" class="form-control form-control-sm" formControlName="b_range" [(ngModel)]="profile.details.b_range"
+                          name="b_range" value="0" pattern="[0-9]*">
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- <div class="form-check">
                       <label class="form-check-label">
                         <input class="form-check-input" type="radio" id="gridRadios1" formControlName="b_status" value="true" checked> ไม่สนใจเรื่องอายุ
                       </label>
@@ -93,19 +109,16 @@
                           </label>
                         </div>
                       </div>
-                      <div class="col-sm-3">
-                        <input type="number" min="0" class="form-control form-control-sm" formControlName="b_range" value="0" pattern="[0-9]*">
-                      </div>
-                    </div>
+                    </div> -->
 
-                  </div>
+
                 </fieldset>
 
                 <div class="form-group row" [ngClass]="ValidatorDisplayCss('facebook')">
                   <label for="example-text-input" class="col-2 col-form-label">Facebook</label>
                   <div class="col-10 ">
                     <input type="text" class="form-control" [ngClass]="validatorInputCss('facebook')" id="example-text-input" formControlName="facebook"
-                      required>
+                      [(ngModel)]="profile.details.facebook" name="facebook" required>
                     <div class="form-control-feedback" *ngIf="this.form.controls.facebook.errors && (this.form.controls.facebook.touched || this.form.controls.facebook.dirty)">
                       <p *ngIf="this.form.controls.facebook.errors.required ">กรุณากรอกข้อมูลให้ครบถ้วน</p>
                     </div>
@@ -114,8 +127,8 @@
                 <div class="form-group row" [ngClass]="ValidatorDisplayCss('tel')">
                   <label for="example-text-input" class="col-2 col-form-label">เบอร์โทรศัพท์</label>
                   <div class="col-10">
-                    <input type="text" class="form-control" [ngClass]="validatorInputCss('tel')" placeholder="0881231234" id="example-text-input"
-                      formControlName="tel" required>
+                    <input type="text" class="form-control" [ngClass]="validatorInputCss('tel')" placeholder="เเทน 0 ด้วย 66 เเล้วตามด้วยตัวเลขที่เหลือ (66811231234)"
+                      id="example-text-input" formControlName="tel" [(ngModel)]="profile.tel" name="tel" required>
                     <div class="form-control-feedback" *ngIf="this.form.controls.tel.errors && (this.form.controls.tel.touched || this.form.controls.tel.dirty)">
                       <p *ngIf="this.form.controls.tel.errors.required ">กรุณากรอกข้อมูลให้ครบถ้วน</p>
                     </div>
@@ -125,7 +138,7 @@
                   <label for="example-text-input" class="col-2 col-form-label">อาชีพ</label>
                   <div class="col-10">
                     <input class="form-control" type="text" placeholder="นักศึกษา" [ngClass]="validatorInputCss('occupation')" id="example-text-input"
-                      formControlName="occupation" required>
+                      formControlName="occupation" [(ngModel)]="profile.details.occupation" name="occupation" required>
                     <div class="form-control-feedback" *ngIf="this.form.controls.occupation.errors && (this.form.controls.occupation.touched || this.form.controls.occupation.dirty)">
                       <p *ngIf="this.form.controls.occupation.errors.required ">กรุณากรอกข้อมูลให้ครบถ้วน</p>
                     </div>
@@ -134,15 +147,30 @@
                 <div class="form-group row " [ngClass]="ValidatorDisplayCss('sleep_time')">
                   <label for="example-time-input" class="col-2 col-form-label">เวลาเรื่มเข้านอน</label>
                   <div class="col-10">
-                    <input class="form-control" type="time" [ngClass]="validatorInputCss('sleep_time')" formControlName="sleep_time" required>
+                    <input class="form-control" type="time" [ngClass]="validatorInputCss('sleep_time')" formControlName="sleep_time" [(ngModel)]="profile.details.sleep_time"
+                      name="sleep_time" required>
                     <div class="form-control-feedback" *ngIf="this.form.controls.occupation.errors && (this.form.controls.occupation.touched || this.form.controls.occupation.dirty)">
 
                     </div>
                   </div>
                 </div>
 
-
-
+                <div class="form-group row">
+                  <label for="example-number-input" class="col-6 col-form-label">ราคาหอพัก</label>
+                  <div class="col-lg-12">
+                    <div class="row">
+                      <div class="col-lg-5">
+                        <input class="form-control" type="number" id="example-number-input" min="0" placeholder="ต่ำสุด" pattern="[0-9]*" formControlName="minPrice"
+                          [(ngModel)]="profile.details.price.min" name="minPrice" required>
+                      </div>
+                      <div class="col-lg-1">-</div>
+                      <div class="col-lg-5">
+                        <input class="form-control" type="number" id="example-number-input" min="0" placeholder="สูงสุด" pattern="[0-9]*" formControlName="maxPrice"
+                          [(ngModel)]="profile.details.price.max" name="maxPrice" required>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
               </div>
               <div class="col-sm-1 hidden-md-down">
@@ -150,25 +178,12 @@
                 </div>
               </div>
               <div class="col-lg-5 ">
-                <div class="form-group row">
-                  <label for="example-number-input" class="col-6 col-form-label">ราคาหอพัก</label>
-                  <div class="row">
-                    <div class="col-lg-5">
-                      <input class="form-control" type="number" id="example-number-input" min="0" placeholder="ต่ำสุด" pattern="[0-9]*" formControlName="minPrice"
-                        required>
-                    </div>
-                    <div class="col-lg-1">-</div>
-                    <div class="col-lg-5">
-                      <input class="form-control" type="number" id="example-number-input" min="0" placeholder="สูงสุด" pattern="[0-9]*" formControlName="maxPrice"
-                        required>
-                    </div>
-                  </div>
-                </div>
+
 
                 <div class="form-group row" [ngClass]="ValidatorDisplayCss('hobbies')">
                   <label for="example-text-input" class="col-8 col-form-label">งานอดิเรกเวลาอยู่ที่ห้อง</label>
                   <input class="form-control" type="text" placeholder="ดูหนัง" [ngClass]="validatorInputCss('hobbies')" id="example-text-input"
-                    formControlName="hobbies" required>
+                    formControlName="hobbies" [(ngModel)]="profile.details.hobbies" name="hobbies" required>
                   <div class="form-control-feedback" *ngIf="this.form.controls.hobbies.errors && (this.form.controls.hobbies.touched || this.form.controls.hobbies.dirty)">
                     <p *ngIf="this.form.controls.hobbies.errors.required ">กรุณากรอกข้อมูลให้ครบถ้วน</p>
                   </div>
@@ -176,7 +191,8 @@
                 <div class="form-group row" [ngClass]="ValidatorDisplayCss('address')">
                   <label for="exampleFormControlTextarea1" class="col-8 col-form-label">ที่อยู่ปัจจุบัน</label>
                   <textarea class="form-control" placeholder="111 ม.0 ต.ตำบล อ.อำเภอ จ.จังหวัด 00000" rows="3" [ngClass]="validatorInputCss('address')"
-                    id="exampleFormControlTextarea1" formControlName="address" required></textarea>
+                    id="exampleFormControlTextarea1" formControlName="address" [(ngModel)]="profile.details.address" name="address"
+                    required></textarea>
                   <div class="form-control-feedback" *ngIf="this.form.controls.address.errors && (this.form.controls.address.touched || this.form.controls.address.dirty)">
                     <p *ngIf="this.form.controls.address.errors.required ">กรุณากรอกข้อมูลให้ครบถ้วน</p>
                   </div>
@@ -186,42 +202,56 @@
                   <div>
                     <div class="form-check">
                       <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input" formControlName="descriptions1" id="checkBoxValue" value="สูบบูหรี่"> สูบบูหรี่ได้
+                        <input type="checkbox" class="form-check-input" formControlName="descriptions1" id="checkBoxValue" value="สูบบูหรี่ได้"> สูบบูหรี่ได้
+                          <!-- <input type="checkbox" class="form-check-input" formControlName="descriptions1" id="checkBoxValue" [(ngModel)]="profile.details.descriptionsEx.c1"name="descriptions1" value="สูบบูหรี่ได้"> สูบบูหรี่ได้ -->
                       </label>
                     </div>
                     <div class="form-check">
                       <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input" formControlName="descriptions2" id="checkbox" value="ละเลยการทำความสะอาด"> ละเลยการทำความสะอาดได้
+                        <input type="checkbox" class="form-check-input" formControlName="descriptions2" id="checkbox"  value="ละเลยการทำความสะอาดได้"> ละเลยการทำความสะอาดได้
+                          <!-- <input type="checkbox" class="form-check-input" formControlName="descriptions2" id="checkbox" [(ngModel)]="profile.details.descriptionsEx.c2"name="descriptions2" value="ละเลยการทำความสะอาดได้"> ละเลยการทำความสะอาดได้ -->
                       </label>
                     </div>
                     <div class="form-check">
                       <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input" formControlName="descriptions3" id="checkbox3" value="สัตว์เลี้ยง"> เลี้ยงสัตว์ได้
+                        <input type="checkbox" class="form-check-input" formControlName="descriptions3" id="checkbox3" value="สัตว์เลี้ยงได้"> เลี้ยงสัตว์ได้
+                        <!-- <input type="checkbox" class="form-check-input" formControlName="descriptions3" id="checkbox3" [(ngModel)]="profile.details.descriptionsEx.c3"name="descriptions3" value="สัตว์เลี้ยงได้"> เลี้ยงสัตว์ได้ -->
                       </label>
                     </div>
                     <div class="form-check">
                       <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input" formControlName="descriptions4" id="checkbox4" value="ส่งเสียงดัง"> ส่งเสียงดังได้
+                        <input type="checkbox" class="form-check-input" formControlName="descriptions4" id="checkbox4"  value="ส่งเสียงดังได้"> ส่งเสียงดังได้
+                          <!-- <input type="checkbox" class="form-check-input" formControlName="descriptions4" id="checkbox4" [(ngModel)]="profile.details.descriptionsEx.c4"name="descriptions4" value="ส่งเสียงดังได้"> ส่งเสียงดังได้ -->
                       </label>
                     </div>
                     <div class="form-check">
                       <label class="form-check-label">
-                        <input type="checkbox" class="form-check-input" formControlName="descriptions5" id="checkbox5" value="พาเพื่อนเข้าห้อง"> พาเพื่อนเข้าห้องได้
+                        <input type="checkbox" class="form-check-input" formControlName="descriptions5" id="checkbox5" value="พาเพื่อนเข้าห้องได้"> พาเพื่อนเข้าห้องได้
+                        <!-- <input type="checkbox" class="form-check-input" formControlName="descriptions5" id="checkbox5" [(ngModel)]="profile.details.descriptionsEx.c5"name="descriptions5" value="พาเพื่อนเข้าห้องได้"> พาเพื่อนเข้าห้องได้ -->
                       </label>
                     </div>
                     <div class="form-check">
                       <label class="form-check-label">อื่่นๆโปรดระบุ...</label>
                     </div>
                   </div>
-                  <textarea class="form-control" placeholder=" เเพ้เเป้ง" rows="3" id="exampleFormControlTextarea1" formControlName="descriptions" ></textarea>
+                  <textarea class="form-control" placeholder=" เเพ้เเป้ง" rows="3" id="exampleFormControlTextarea1" formControlName="descriptions"
+                    [(ngModel)]="profile.details.descriptions" name="descriptions"></textarea>
                 </div>
 
               </div>
+
               <div class="b">
                 <button type="submit" class="btn btn-primary">บันทึก</button>
               </div>
             </div>
           </form>
+          <div class="form-group">
+            <label for="name">habit</label>
+            <input type="text" class="form-control" [(ngModel)]="profile.habit" name="habit" disabled required>
+          </div>
+          <div class="b">
+            <button type="submit" class="btn btn-primary" (click)="test()">ทำใหม่</button>
+          </div>
         </div>
       </div>
     </div>

@@ -20,6 +20,7 @@ module.exports = function(app){
     app.post('/api/user/profile', user.UpdateProfiles);
     app.get('/api/user/showProfile', user.showProfile);
     app.post('/api/user/settingProfile', user.settingProfile);
+    app.post('/api/user/testprofile', user.testprofile);
 
     app.get('/api/oauth/facebook', passport.authenticate('facebook', { scope: ['public_profile', 'email'] }));
     app.get('/api/oauth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));

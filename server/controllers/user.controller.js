@@ -154,7 +154,16 @@ exports.saveOAuthUserProfile = function (req, profile, done) {
     }
   });
 }
-
+exports.testprofile = function(req, res){
+  User.update({ _id: req.body.userDetails.id }, {
+    $set: {
+      habit: req.body.habit.habit,
+    }
+  }, function (err, user) {
+    if (err) res.send(err);
+    res.send(user);
+  });
+}
 exports.UpdateProfiles = function (req, res) {
   User.update({ _id: req.body.userDetails.id }, {
     $set: {
@@ -175,6 +184,11 @@ exports.UpdateProfiles = function (req, res) {
       'details.b_range': req.body.b_range,
       'tel': req.body.tel,
       'profile_status': req.body.profile_status,
+      // 'details.descriptionsEx.c1': req.body.descriptions1,
+      // 'details.descriptionsEx.c2': req.body.descriptions2,
+      // 'details.descriptionsEx.c3': req.body.descriptions3,
+      // 'details.descriptionsEx.c4': req.body.descriptions4,
+      // 'details.descriptionsEx.c5': req.body.descriptions5,//สเเตมบายรอดาต้าเบสพร้อม
     }
   }, function (err, user) {
     if (err) res.send(err);
@@ -194,16 +208,26 @@ exports.UpdateHabit = function (req, res) {
   });
 }
 
-exports.showProfile = function (req, res) {
-  // find each person with a last name matching 'Ghost', selecting the `name` and `occupation` fields
-  console.log('11-21-25');
-  User.findOne({ firstname: 'Ragxush' }, function (err, user) {
-    if (err) return handleError(err);
-    // Prints "Space Ghost is a talk show host".
-    res.send(user);
-  });
-}
+// exports.showProfile = function (req, res) {
+//   // find each person with a last name matching 'Ghost', selecting the `name` and `occupation` fields
+//   console.log('11-21-25');
+//   User.findOne({ firstname: 'Ragxush' }, function (err, user) {
+//     if (err) return handleError(err);
+//     // Prints "Space Ghost is a talk show host".
+//     res.send(user);
+//   });
+// }
 
+// exports.settingProfile = function (req, res) {
+//   User.findOne({ _id: req.body.userDetails.id }, function (err, user) {
+//     if (err) throw (err);
+//     if (user) {
+//       res.status(200);
+//       res.json(user);
+      
+//     }
+//   });
+// }
 exports.settingProfile = function (req, res) {
   User.findOne({ _id: req.body.userDetails.id }, function (err, user) {
     if (err) throw (err);
@@ -233,7 +257,12 @@ exports.settingProfile = function (req, res) {
           b_range: user.details.b_range,
           tel: user.tel,
           profile_status: user.profile_status,
-          habit: user.habit
+          habit: user.habit,
+          // descriptions1: user.details.descriptionsEx.c1,
+          // descriptions2: user.details.descriptionsEx.c2,
+          // descriptions3: user.details.descriptionsEx.c3,
+          // descriptions4: user.details.descriptionsEx.c4,
+          // descriptions5: user.details.descriptionsEx.c5,//สเตมบายรอดาต้าเยสพร้อม
         }
       });
     }
