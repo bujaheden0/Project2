@@ -234,7 +234,7 @@ export class ProfileComponent implements OnInit {
         sleep_time: this.form.controls.sleep_time.value,
         hobbies: this.form.controls.hobbies.value,
         address: this.form.controls.address.value,
-        descriptions: this.form.controls.descriptions.value +"\n"+this.descriptions(this.form.controls.descriptions1.value, this.form.controls.descriptions2.value, this.form.controls.descriptions3.value, this.form.controls.descriptions4.value, this.form.controls.descriptions5.value),
+        descriptions: this.form.controls.descriptions.value ,
         // descriptions1: this.form.controls.descriptions1.value,
         // descriptions2: this.form.controls.descriptions2.value,
         // descriptions3: this.form.controls.descriptions3.value,

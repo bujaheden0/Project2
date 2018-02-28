@@ -208,15 +208,15 @@ exports.UpdateHabit = function (req, res) {
   });
 }
 
-// exports.showProfile = function (req, res) {
-//   // find each person with a last name matching 'Ghost', selecting the `name` and `occupation` fields
-//   console.log('11-21-25');
-//   User.findOne({ firstname: 'Ragxush' }, function (err, user) {
-//     if (err) return handleError(err);
-//     // Prints "Space Ghost is a talk show host".
-//     res.send(user);
-//   });
-// }
+exports.showProfile = function (req, res) {
+  // find each person with a last name matching 'Ghost', selecting the `name` and `occupation` fields
+  console.log('11-21-25');
+  User.findOne({ firstname: 'Ragxush' }, function (err, user) {
+    if (err) return handleError(err);
+    // Prints "Space Ghost is a talk show host".
+    res.send(user);
+  });
+}
 
 // exports.settingProfile = function (req, res) {
 //   User.findOne({ _id: req.body.userDetails.id }, function (err, user) {
