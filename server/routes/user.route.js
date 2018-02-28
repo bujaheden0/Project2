@@ -13,6 +13,10 @@ module.exports = function(app){
     app.post('/api/user/regis', user.register);
     app.post('/api/user/login', user.login);
     app.get('/api/user/login', auth, user.profileRead);
+    app.post('/api/user/profile',user.UpdateProfiles);
+    app.post('/api/user/habit',user.UpdateHabit);
+    
+    app.get('/api/oauth/facebook', passport.authenticate('facebook' ,{ scope : ['public_profile', 'email'] }));
     app.post('/api/user/profile', user.UpdateProfiles);
     app.get('/api/user/showProfile', user.showProfile);
     app.post('/api/user/settingProfile', user.settingProfile);

@@ -181,6 +181,19 @@ exports.UpdateProfiles = function (req, res) {
     res.send(user);
   });
 }
+
+exports.UpdateHabit = function (req, res) {
+  console.log('dfd');
+  User.update({ _id: req.body.userDetails.id }, {
+    $set: {
+      habit: req.body.habit,
+    }
+  }, function (err, user) {
+    if (err) res.send(err);
+    res.send(user);
+  });
+}
+
 exports.showProfile = function (req, res) {
   // find each person with a last name matching 'Ghost', selecting the `name` and `occupation` fields
   console.log('11-21-25');

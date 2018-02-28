@@ -19,7 +19,11 @@ export class AuthenticationService {
 
   profile(data) {
     return this.http.post('/api/user/profile', data).map(res => res.json());
-  } 
+  }
+  habit(data){
+    return this.http.post('/api/user/habit', data).map(res => res.json());
+  }
+  
 
   // showProfile(data) {
   //   return this.http.post('/api/user/showProfile', data).map(res => res.json());

@@ -4,6 +4,7 @@ import { QUESTIONS } from '../mock-queslist';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { Mbti16typedatailService } from '../services/mbti16typedatail.service';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-questionnaire',
@@ -25,7 +26,7 @@ export class QuestionnaireComponent implements OnInit {
   public habit: string = "";
   habitdetail: string = "";
 
-  constructor(private mbtiservice : Mbti16typedatailService) { }
+  constructor(private mbtiservice : Mbti16typedatailService, private auth: AuthenticationService) { }
 
   ngOnInit() {
     
@@ -223,5 +224,16 @@ export class QuestionnaireComponent implements OnInit {
     this.type3 = "";
     this.type4 = "";
     this.pb = 0;
+  }
+  SendHabit(){
+    const user = {
+      userDetails: this.auth.userDetails,
+      habit: this.habit
+    }
+    console.log(user);
+    this.auth.habit(user).subscribe(res => {
+      console.log(res);
+    })
+
   }
 }
