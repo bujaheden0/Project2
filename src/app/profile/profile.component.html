@@ -95,23 +95,6 @@
                       </div>
                     </div>
                   </div>
-
-                  <!-- <div class="form-check">
-                      <label class="form-check-label">
-                        <input class="form-check-input" type="radio" id="gridRadios1" formControlName="b_status" value="true" checked> ไม่สนใจเรื่องอายุ
-                      </label>
-                    </div>
-                    <div class="row">
-                      <div class="col-sm-8">
-                        <div class="form-check">
-                          <label class="form-check-label">
-                            <input class="form-check-input" type="radio" id="gridRadios2" formControlName="b_status" value="false"> ยินดีจะอยู่กับรูมเมทที่อายุไม่ห่างกันกี่ปี
-                          </label>
-                        </div>
-                      </div>
-                    </div> -->
-
-
                 </fieldset>
 
                 <div class="form-group row" [ngClass]="ValidatorDisplayCss('facebook')">
@@ -127,7 +110,7 @@
                 <div class="form-group row" [ngClass]="ValidatorDisplayCss('tel')">
                   <label for="example-text-input" class="col-2 col-form-label">เบอร์โทรศัพท์</label>
                   <div class="col-10">
-                    <input type="text" class="form-control" [ngClass]="validatorInputCss('tel')" placeholder="เเทน 0 ด้วย 66 เเล้วตามด้วยตัวเลขที่เหลือ (66811231234)"
+                    <input type="text" class="form-control" [ngClass]="validatorInputCss('tel')" placeholder="*ตัวอย่าง 66811231234 (เเทน 0 ด้วย 66 เเล้วตามด้วยตัวเลขที่เหลือ)"
                       id="example-text-input" formControlName="tel" [(ngModel)]="profile.tel" name="tel" required>
                     <div class="form-control-feedback" *ngIf="this.form.controls.tel.errors && (this.form.controls.tel.touched || this.form.controls.tel.dirty)">
                       <p *ngIf="this.form.controls.tel.errors.required ">กรุณากรอกข้อมูลให้ครบถ้วน</p>
@@ -137,7 +120,7 @@
                 <div class="form-group row" [ngClass]="ValidatorDisplayCss('occupation')">
                   <label for="example-text-input" class="col-2 col-form-label">อาชีพ</label>
                   <div class="col-10">
-                    <input class="form-control" type="text" placeholder="นักศึกษา" [ngClass]="validatorInputCss('occupation')" id="example-text-input"
+                    <input class="form-control" type="text" placeholder="*ตัวอย่าง นักศึกษา" [ngClass]="validatorInputCss('occupation')" id="example-text-input"
                       formControlName="occupation" [(ngModel)]="profile.details.occupation" name="occupation" required>
                     <div class="form-control-feedback" *ngIf="this.form.controls.occupation.errors && (this.form.controls.occupation.touched || this.form.controls.occupation.dirty)">
                       <p *ngIf="this.form.controls.occupation.errors.required ">กรุณากรอกข้อมูลให้ครบถ้วน</p>
@@ -182,7 +165,7 @@
 
                 <div class="form-group row" [ngClass]="ValidatorDisplayCss('hobbies')">
                   <label for="example-text-input" class="col-8 col-form-label">งานอดิเรกเวลาอยู่ที่ห้อง</label>
-                  <input class="form-control" type="text" placeholder="ดูหนัง" [ngClass]="validatorInputCss('hobbies')" id="example-text-input"
+                  <input class="form-control" type="text" placeholder="*ตัวอย่าง ดูหนัง" [ngClass]="validatorInputCss('hobbies')" id="example-text-input"
                     formControlName="hobbies" [(ngModel)]="profile.details.hobbies" name="hobbies" required>
                   <div class="form-control-feedback" *ngIf="this.form.controls.hobbies.errors && (this.form.controls.hobbies.touched || this.form.controls.hobbies.dirty)">
                     <p *ngIf="this.form.controls.hobbies.errors.required ">กรุณากรอกข้อมูลให้ครบถ้วน</p>
@@ -190,7 +173,7 @@
                 </div>
                 <div class="form-group row" [ngClass]="ValidatorDisplayCss('address')">
                   <label for="exampleFormControlTextarea1" class="col-8 col-form-label">ที่อยู่ปัจจุบัน</label>
-                  <textarea class="form-control" placeholder="111 ม.0 ต.ตำบล อ.อำเภอ จ.จังหวัด 00000" rows="3" [ngClass]="validatorInputCss('address')"
+                  <textarea class="form-control" placeholder="*ตัวอย่าง 111 ม.0 ต.ตำบล อ.อำเภอ จ.จังหวัด 00000" rows="3" [ngClass]="validatorInputCss('address')"
                     id="exampleFormControlTextarea1" formControlName="address" [(ngModel)]="profile.details.address" name="address"
                     required></textarea>
                   <div class="form-control-feedback" *ngIf="this.form.controls.address.errors && (this.form.controls.address.touched || this.form.controls.address.dirty)">
@@ -234,24 +217,24 @@
                       <label class="form-check-label">อื่่นๆโปรดระบุ...</label>
                     </div>
                   </div>
-                  <textarea class="form-control" placeholder=" เเพ้เเป้ง" rows="3" id="exampleFormControlTextarea1" formControlName="descriptions"
+                  <textarea class="form-control" placeholder="*ตัวอย่าง เเพ้เเป้ง" rows="3" id="exampleFormControlTextarea1" formControlName="descriptions"
                     [(ngModel)]="profile.details.descriptions" name="descriptions"></textarea>
                 </div>
 
               </div>
 
               <div class="b">
-                <button type="submit" class="btn btn-primary">บันทึก</button>
+                <button type="submit" class="btn btn-primary">บันทึกข้อมูล</button>
               </div>
             </div>
           </form>
           <div class="form-group">
-            <label for="name">habit</label>
-            <input type="text" class="form-control" [(ngModel)]="profile.habit" name="habit" disabled required>
+            <label for="name">กลุ่มนิสัยปัจจุบันของคุณคือ</label>
+            <input type="text" class="form-control" placeholder="ยังไม่ได้รับ กรอกข้อมูลให้ครบเเล้วไปทำเเบบสอบถามสิ" [(ngModel)]="profile.habit" name="habit" disabled required>
           </div>
-          <div class="b">
-            <button type="submit" class="btn btn-primary" (click)="test()">ทำใหม่</button>
-          </div>
+          <!-- <div class="b">
+            <button type="submit" class="btn btn-primary" (click)="test()">ขอทำเเบบสอบถามใหม่</button>
+          </div> -->
         </div>
       </div>
     </div>
