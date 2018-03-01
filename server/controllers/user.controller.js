@@ -184,11 +184,11 @@ exports.UpdateProfiles = function (req, res) {
       'details.b_range': req.body.b_range,
       'tel': req.body.tel,
       'profile_status': req.body.profile_status,
-      // 'details.descriptionsEx.c1': req.body.descriptions1,
-      // 'details.descriptionsEx.c2': req.body.descriptions2,
-      // 'details.descriptionsEx.c3': req.body.descriptions3,
-      // 'details.descriptionsEx.c4': req.body.descriptions4,
-      // 'details.descriptionsEx.c5': req.body.descriptions5,//สเเตมบายรอดาต้าเบสพร้อม
+      'details.descriptionsEx.c1': req.body.descriptions1,
+      'details.descriptionsEx.c2': req.body.descriptions2,
+      'details.descriptionsEx.c3': req.body.descriptions3,
+      'details.descriptionsEx.c4': req.body.descriptions4,
+      'details.descriptionsEx.c5': req.body.descriptions5,
     }
   }, function (err, user) {
     if (err) res.send(err);
@@ -218,53 +218,53 @@ exports.showProfile = function (req, res) {
   });
 }
 
-// exports.settingProfile = function (req, res) {
-//   User.findOne({ _id: req.body.userDetails.id }, function (err, user) {
-//     if (err) throw (err);
-//     if (user) {
-//       res.status(200);
-//       res.json(user);
-      
-//     }
-//   });
-// }
 exports.settingProfile = function (req, res) {
   User.findOne({ _id: req.body.userDetails.id }, function (err, user) {
     if (err) throw (err);
     if (user) {
       res.status(200);
-      res.json({
-        success: true,
-        message: "Loggin successfully",
-        user: {
-          id: user._id,
-          username: user.username,
-          descriptions: user.details.descriptions,
-          religion: user.details.religion,
-          gender: user.details.gender,
-          birthday: user.details.birthDate,
-          facebook: user.details.facebook,
-          occupation: user.details.occupation,
-          sleep_time: user.details.sleep_time,
-          hobbies: user.details.hobbies,
-          address: user.details.address,
-          descriptions: user.details.descriptions,
-          minPrice: user.details.price.min,
-          maxPrice: user.details.price.max,
-          r_status: user.details.r_status,
-          g_status: user.details.g_status,
-          b_status: user.details.b_range,
-          b_range: user.details.b_range,
-          tel: user.tel,
-          profile_status: user.profile_status,
-          habit: user.habit,
-          // descriptions1: user.details.descriptionsEx.c1,
-          // descriptions2: user.details.descriptionsEx.c2,
-          // descriptions3: user.details.descriptionsEx.c3,
-          // descriptions4: user.details.descriptionsEx.c4,
-          // descriptions5: user.details.descriptionsEx.c5,//สเตมบายรอดาต้าเยสพร้อม
-        }
-      });
+      res.json(user);
+      
     }
   });
 }
+// exports.settingProfile = function (req, res) {
+//   User.findOne({ _id: req.body.userDetails.id }, function (err, user) {
+//     if (err) throw (err);
+//     if (user) {
+//       res.status(200);
+//       res.json({
+//         success: true,
+//         message: "Loggin successfully",
+//         user: {
+//           id: user._id,
+//           username: user.username,
+//           descriptions: user.details.descriptions,
+//           religion: user.details.religion,
+//           gender: user.details.gender,
+//           birthday: user.details.birthDate,
+//           facebook: user.details.facebook,
+//           occupation: user.details.occupation,
+//           sleep_time: user.details.sleep_time,
+//           hobbies: user.details.hobbies,
+//           address: user.details.address,
+//           descriptions: user.details.descriptions,
+//           minPrice: user.details.price.min,
+//           maxPrice: user.details.price.max,
+//           r_status: user.details.r_status,
+//           g_status: user.details.g_status,
+//           b_status: user.details.b_range,
+//           b_range: user.details.b_range,
+//           tel: user.tel,
+//           profile_status: user.profile_status,
+//           habit: user.habit,
+//           // descriptions1: user.details.descriptionsEx.c1,
+//           // descriptions2: user.details.descriptionsEx.c2,
+//           // descriptions3: user.details.descriptionsEx.c3,
+//           // descriptions4: user.details.descriptionsEx.c4,
+//           // descriptions5: user.details.descriptionsEx.c5,//สเตมบายรอดาต้าเยสพร้อม
+//         }
+//       });
+//     }
+//   });
+// }
