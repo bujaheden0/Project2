@@ -69,3 +69,7 @@
 .modal-lg {
     max-width: 80% !important;
 }
+.mbtititle{
+    text-align: center;
+    margin: auto;
+}
