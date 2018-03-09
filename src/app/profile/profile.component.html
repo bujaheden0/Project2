@@ -16,14 +16,7 @@
                     <input type="file" name="myfile" ng-disabled="uploading" style="display: none;">
                     <button class="btn btn-primary" ng-disabled="uploading">Upload</button>
                   </div>
-                </form>
-                <div>
-                  <img src="{{ thumbnail.dataUrl || 'http://emblemsbattlefield.com/uploads/posts/2014/10/facebook-default-photo-male_1.jpg' }}"
-                    alt="">
-                  <div ng-show="message">
-                    <div ng-class="alert">{{ message }}</div>
-                  </div>
-                </div> -->
+                </form> -->
                 <div class="form-group">
                   <form class="form-inline" [formGroup]="form">
                     <label class="mr-sm-2" for="inlineFormCustomSelect">ศาสนา</label>
@@ -229,8 +222,8 @@
             </div>
           </form>
           <div class="form-group">
-            <label for="name">กลุ่มนิสัยปัจจุบันของคุณคือ</label>
-            <input type="text" class="form-control" placeholder="ยังไม่ได้รับ กรอกข้อมูลให้ครบเเล้วไปทำเเบบสอบถามสิ" [(ngModel)]="profile.habit" name="habit" disabled required>
+            <label for="name">กลุ่มนิสัยของคุณคือ</label>
+            <input type="text" class="form-control" placeholder="-" [(ngModel)]="profile.habit" name="habit" disabled required>
           </div>
           <!-- <div class="b">
             <button type="submit" class="btn btn-primary" (click)="test()">ขอทำเเบบสอบถามใหม่</button>
