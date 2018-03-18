@@ -10,4 +10,8 @@ export class MatchPeopleService {
     return this.http.post('/api/user/match', data).map(res => res.json());
   }
 
+  postMatchPeopleforQueries_user_hadDorm(data){
+    return this.http.post('/api/user/match/dorm', data).map(res => res.json());
+  }
+
 }

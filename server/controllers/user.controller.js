@@ -165,6 +165,7 @@ exports.testprofile = function(req, res){
   });
 }
 exports.UpdateProfiles = function (req, res) {
+  console.log(req.body.userDetails);
   User.update({ _id: req.body.userDetails.id }, {
     $set: {
       'details.religion': req.body.religion,

@@ -8,8 +8,7 @@ const reserveSchema = new schema({
     dorm : {
         type : schema.ObjectId,
         ref : 'Dorm'
-    },
-    status : Boolean
+    }
 })
 
 mongoose.model('Reserve', reserveSchema);

@@ -12,8 +12,8 @@ module.exports =  {
         callbackUrl : 'http://localhost:4200/api/oauth/google/callback'
     },
     nexmo : {
-        apiKey : 'f5ae8142',
-        apiSecret : '4b0aaa4024f53c09',
+        apiKey : '52626001',
+        apiSecret : 'ZDRqe1UMNZHtGXgR',
         apiNumber : '14155551234'
     }
 }

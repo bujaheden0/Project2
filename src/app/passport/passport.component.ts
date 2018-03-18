@@ -8,6 +8,7 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./passport.component.css']
 })
 export class PassportComponent implements OnInit {
+  userObject;
   constructor(private auth : AuthenticationService,
               private route : ActivatedRoute,
               private router : Router) { }
@@ -27,7 +28,16 @@ export class PassportComponent implements OnInit {
           this.auth.storeUserData(token.id,res.user);
         if(this.auth.loggedIn()){
           this.auth.getCurrentUser();
-          this.router.navigate(['/main']);
+          this.auth.getProfile().subscribe(res => {
+            this.userObject = res;
+            if(this.userObject.profile_status){
+              this.router.navigate(['/main']);
+            } else {
+              this.router.navigate(['/profile']);
+            }
+          })
+          
+          
               }
             }
           })

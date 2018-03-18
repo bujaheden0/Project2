@@ -2,27 +2,408 @@
   <div class="showPeople">
     <div class="searchBar">
     </div>
-      <div class="row" *ngIf="perfectUser">
-        <div class="card" *ngFor="let perfectUser of perfectUser">
-          <div class="card-block">
+      <h5 class="display-5">มีหอพัก</h5>
+      <div class="row" *ngIf="perfectUser_hadDorm || possibleUser_hadDorm || leastUser_hadDorm">
+        <!-- PerfectUserCard -->
+        <div class="card"  *ngFor="let perfectUser_hadDorm of perfectUser_hadDorm">
+          <div class="card-block" *ngIf="perfectUser_hadDorm">
               <div class="progress mb-4">
-                  <div class="progress-bar progress-bar-striped" role="progressbar" style="width: 95%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">นิสัยคล้ายกัน 95%</div>
+                  <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 95%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"><b>ลักษณะนิสัยคล้ายกัน</b></div>
+                </div>
+              <div class="row justify-content-between">
+                <div class="col-4"><img src="https://wordsandvideos.com/wp-content/uploads/2016/12/common.png" alt="..." class="rounded-circle"></div>
+                <div class="col-8" style="line-height: 200%;">ชื่อ : {{ perfectUser_hadDorm.user.firstname }}  {{ perfectUser_hadDorm.user.lastname }}<br>
+                                  ศาสนา : {{ perfectUser_hadDorm.user.details.religion }}<br>
+                                  อายุ : {{ perfectUser_hadDorm.user.details.age }}<br>
+                                  อาชีพ : {{ perfectUser_hadDorm.user.details.occupation }} <br>
+                                  นิสัย : {{ perfectUser_hadDorm.user.habit }} <br>
+                                  เพศ : {{ perfectUser_hadDorm.user.details.gender }}
+                </div>
+              </div>
+              <div class="row justify-content-around mt-4">
+                  <button type="button" class="btn btn-outline-primary" (click)=" getPerfectUserInfo(perfectUser_hadDorm.user._id,2)" data-toggle="modal" data-target="#perfectUserModal_hadDorm"><i class="fas fa-info-circle"></i> ดูรายละเอียดเพิ่มเติม</button>
+                  <button type="button" class="btn btn-outline-danger"><i class="fab fa-gratipay"></i> สนใจ</button>
+                </div>
+            </div>
+        </div>
+        <!-- PossibleUserCard -->
+        <div class="card"  *ngFor="let possibleUser_hadDorm of possibleUser_hadDorm">
+          <div class="card-block" *ngIf="possibleUser_hadDorm">
+              <div class="progress mb-4">
+                  <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 75%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"><b>ลักษณะนิสัยคล้ายกัน</b></div>
+                </div>
+              <div class="row justify-content-between">
+                <div class="col-4"><img src="https://wordsandvideos.com/wp-content/uploads/2016/12/common.png" alt="..." class="rounded-circle"></div>
+                <div class="col-8" style="line-height: 200%;">ชื่อ : {{ possibleUser_hadDorm.user.firstname }}  {{ possibleUser_hadDorm.user.lastname }}<br>
+                                  ศาสนา : {{ possibleUser_hadDorm.user.details.religion }}<br>
+                                  อายุ : {{ possibleUser_hadDorm.user.details.age }}<br>
+                                  อาชีพ : {{ possibleUser_hadDorm.user.details.occupation }} <br>
+                                  นิสัย : {{ possibleUser_hadDorm.user.habit }} <br>
+                                  เพศ : {{ possibleUser_hadDorm.user.details.gender }}
+                </div>
+              </div>
+              <div class="row justify-content-around mt-4">
+                  <button type="button" class="btn btn-outline-primary" (click)="getPossibleUserInfo(possibleUser_hadDorm.user._id,2)" data-toggle="modal" data-target="#possibleUserModal_hadDorm"><i class="fas fa-info-circle"></i> ดูรายละเอียดเพิ่มเติม</button>
+                  <button type="button" class="btn btn-outline-danger"><i class="fab fa-gratipay"></i> สนใจ</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- LeastUserCard -->
+        <div class="card"  *ngFor="let leastUser_hadDorm of leastUser_hadDorm">
+            <div class="card-block" *ngIf="leastUser_hadDorm">
+                <div class="progress mb-4">
+                    <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 55%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"><b>ลักษณะนิสัยคล้ายกัน</b></div>
+                  </div>
+                <div class="row justify-content-between">
+                  <div class="col-4"><img src="https://wordsandvideos.com/wp-content/uploads/2016/12/common.png" alt="..." class="rounded-circle"></div>
+                  <div class="col-8" style="line-height: 200%;">ชื่อ : {{ leastUser_hadDorm.user.firstname }}  {{ leastUser_hadDorm.user.lastname }}<br>
+                                    ศาสนา : {{ leastUser_hadDorm.user.details.religion }}<br>
+                                    อายุ : {{ leastUser_hadDorm.user.details.age }}<br>
+                                    อาชีพ : {{ leastUser_hadDorm.user.details.occupation }} <br>
+                                    นิสัย : {{ leastUser_hadDorm.user.habit }} <br>
+                                    เพศ : {{ leastUser_hadDorm.user.details.gender }}
+                  </div>
+                </div>
+                <div class="row justify-content-around mt-4">
+                    <button type="button" class="btn btn-outline-primary" (click)="getLeastUserInfo(leastUser_hadDorm.user._id,2)" data-toggle="modal" data-target="#leastUserModal_hadDorm"><i class="fas fa-info-circle"></i> ดูรายละเอียดเพิ่มเติม</button>
+                    <button type="button" class="btn btn-outline-danger"><i class="fab fa-gratipay"></i> สนใจ</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <h5 class="display-5">ไม่มีหอพัก</h5>
+      <div class="row" *ngIf="perfectUser || possibleUser || leastUser">
+        <!-- PerfectUserCard -->
+        <div class="card"  *ngFor="let perfectUser of perfectUser">
+          <div class="card-block" *ngIf="perfectUser">
+              <div class="progress mb-4">
+                  <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 95%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"><b>ลักษณะนิสัยคล้ายกัน</b></div>
                 </div>
               <div class="row justify-content-between">
                 <div class="col-4"><img src="https://wordsandvideos.com/wp-content/uploads/2016/12/common.png" alt="..." class="rounded-circle"></div>
                 <div class="col-8" style="line-height: 200%;">ชื่อ : {{ perfectUser.firstname }}  {{ perfectUser.lastname }}<br>
                                   ศาสนา : {{ perfectUser.details.religion }}<br>
-                                  อายุ :<br>
+                                  อายุ : {{ perfectUser.details.age }}<br>
                                   อาชีพ : {{ perfectUser.details.occupation }} <br>
-                                  นิสัย : {{ perfectUser.habit }}
+                                  นิสัย : {{ perfectUser.habit }} <br>
+                                  เพศ : {{ perfectUser.details.gender }}
                 </div>
               </div>
               <div class="row justify-content-around mt-4">
-                  <button type="button" class="btn btn-outline-primary"><i class="fas fa-info-circle"></i> ดูรายละเอียดเพิ่มเติม</button>
+                  <button type="button" class="btn btn-outline-primary" (click)=" getPerfectUserInfo(perfectUser._id,1)" data-toggle="modal" data-target="#perfectUserModal"><i class="fas fa-info-circle"></i> ดูรายละเอียดเพิ่มเติม</button>
                   <button type="button" class="btn btn-outline-danger"><i class="fab fa-gratipay"></i> สนใจ</button>
                 </div>
             </div>
         </div>
+        <!-- PossibleUserCard -->
+        <div class="card"  *ngFor="let possibleUser of possibleUser">
+          <div class="card-block" *ngIf="possibleUser">
+              <div class="progress mb-4">
+                  <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 75%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"><b>ลักษณะนิสัยคล้ายกัน</b></div>
+                </div>
+              <div class="row justify-content-between">
+                <div class="col-4"><img src="https://wordsandvideos.com/wp-content/uploads/2016/12/common.png" alt="..." class="rounded-circle"></div>
+                <div class="col-8" style="line-height: 200%;">ชื่อ : {{ possibleUser.firstname }}  {{ possibleUser.lastname }}<br>
+                                  ศาสนา : {{ possibleUser.details.religion }}<br>
+                                  อายุ : {{ possibleUser.details.age }}<br>
+                                  อาชีพ : {{ possibleUser.details.occupation }} <br>
+                                  นิสัย : {{ possibleUser.habit }} <br>
+                                  เพศ : {{ possibleUser.details.gender }}
+                </div>
+              </div>
+              <div class="row justify-content-around mt-4">
+                  <button type="button" class="btn btn-outline-primary" (click)="getPossibleUserInfo(possibleUser._id,1)" data-toggle="modal" data-target="#possibleUserModal"><i class="fas fa-info-circle"></i> ดูรายละเอียดเพิ่มเติม</button>
+                  <button type="button" class="btn btn-outline-danger"><i class="fab fa-gratipay"></i> สนใจ</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- LeastUserCard -->
+        <div class="card"  *ngFor="let leastUser of leastUser">
+            <div class="card-block" *ngIf="leastUser">
+                <div class="progress mb-4">
+                    <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 55%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"><b>ลักษณะนิสัยคล้ายกัน</b></div>
+                  </div>
+                <div class="row justify-content-between">
+                  <div class="col-4"><img src="https://wordsandvideos.com/wp-content/uploads/2016/12/common.png" alt="..." class="rounded-circle"></div>
+                  <div class="col-8" style="line-height: 200%;">ชื่อ : {{ leastUser.firstname }}  {{ leastUser.lastname }}<br>
+                                    ศาสนา : {{ leastUser.details.religion }}<br>
+                                    อายุ : {{ leastUser.details.age }}<br>
+                                    อาชีพ : {{ leastUser.details.occupation }} <br>
+                                    นิสัย : {{ leastUser.habit }} <br>
+                                    เพศ : {{ leastUser.details.gender }}
+                  </div>
+                </div>
+                <div class="row justify-content-around mt-4">
+                    <button type="button" class="btn btn-outline-primary" (click)="getLeastUserInfo(leastUser._id,1)" data-toggle="modal" data-target="#leastUserModal"><i class="fas fa-info-circle"></i> ดูรายละเอียดเพิ่มเติม</button>
+                    <button type="button" class="btn btn-outline-danger"><i class="fab fa-gratipay"></i> สนใจ</button>
+                  </div>
+              </div>
+          </div>
       </div>
+
+      <!-- PerfectUserModal -->
+      <div class="modal fade" id="perfectUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">รายละเอียดเพิ่มเติม</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" *ngIf="selectedPerfectUserInfo">
+              <div class="row justify-content-between">
+                <div class="col-6 text-center">
+                      <img src="https://wordsandvideos.com/wp-content/uploads/2016/12/common.png" alt="..." class="rounded-circle">
+                </div>
+                <div class="information col-6">
+                  ชื่อ : {{ selectedPerfectUserInfo.firstname }}  {{ selectedPerfectUserInfo.lastname }} <br>
+                  ศาสนา : {{ selectedPerfectUserInfo.details.religion }}<br>
+                  อายุ : {{ selectedPerfectUserInfo.details.age }}<br>
+                </div>
+              </div> 
+              <div class="row">
+                  <div class="information col mt-2">
+                    <p class="pl-4">
+                      งานอดิเรก : {{ selectedPerfectUserInfo.details.hobbies }} <br>
+                      ที่อยู่ : {{ selectedPerfectUserInfo.details.address }} <br>
+                      เพิ่มเติม : {{ selectedPerfectUserInfo.details.descriptions }}
+                    </p>
+                  </div>
+                  <div class="information col mt-2">
+                      อาชีพ : {{ selectedPerfectUserInfo.details.occupation }} <br>
+                      นิสัย : {{ selectedPerfectUserInfo.habit }} <br>
+                      เวลานอน : {{ selectedPerfectUserInfo.details.sleep_time }}
+                  </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PossibleUserModel -->
+      <div class="modal fade" id="possibleUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">รายละเอียดเพิ่มเติม</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" *ngIf="selectedPossibleUserInfo">
+              <div class="row justify-content-between">
+                <div class="col-6 text-center">
+                      <img src="https://wordsandvideos.com/wp-content/uploads/2016/12/common.png" alt="..." class="rounded-circle">
+                </div>
+                <div class="information col-6">
+                  ชื่อ : {{ selectedPossibleUserInfo.firstname }}  {{ selectedPossibleUserInfo.lastname }} <br>
+                  ศาสนา : {{ selectedPossibleUserInfo.details.religion }}<br>
+                  อายุ : {{ selectedPossibleUserInfo.details.age }}<br>
+                </div>
+              </div> 
+              <div class="row">
+                  <div class="information col mt-2">
+                    <p class="pl-4">
+                      งานอดิเรก : {{ selectedPossibleUserInfo.details.hobbies }} <br>
+                      ที่อยู่ : {{ selectedPossibleUserInfo.details.address }} <br>
+                      เพิ่มเติม : {{ selectedPossibleUserInfo.details.descriptions }}
+                    </p>
+                  </div>
+                  <div class="information col mt-2">
+                      อาชีพ : {{ selectedPossibleUserInfo.details.occupation }} <br>
+                      นิสัย : {{ selectedPossibleUserInfo.habit }} <br>
+                      เวลานอน : {{ selectedPossibleUserInfo.details.sleep_time }}
+                  </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- LeastUserModel -->
+      <div class="modal fade" id="leastUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">รายละเอียดเพิ่มเติม</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body" *ngIf="selectedLeastUserInfo">
+                <div class="row justify-content-between">
+                  <div class="col-6 text-center">
+                        <img src="https://wordsandvideos.com/wp-content/uploads/2016/12/common.png" alt="..." class="rounded-circle">
+                  </div>
+                  <div class="information col-6">
+                    ชื่อ : {{ selectedLeastUserInfo.firstname }}  {{ selectedLeastUserInfo.lastname }} <br>
+                    ศาสนา : {{ selectedLeastUserInfo.details.religion }}<br>
+                    อายุ : {{ selectedLeastUserInfo.details.age }}<br>
+                  </div>
+                </div> 
+                <div class="row">
+                    <div class="information col mt-2">
+                      <p class="pl-4">
+                        งานอดิเรก : {{ selectedLeastUserInfo.details.hobbies }} <br>
+                        ที่อยู่ : {{ selectedLeastUserInfo.details.address }} <br>
+                        เพิ่มเติม : {{ selectedLeastUserInfo.details.descriptions }}
+                      </p>
+                    </div>
+                    <div class="information col mt-2">
+                        อาชีพ : {{ selectedLeastUserInfo.details.occupation }} <br>
+                        นิสัย : {{ selectedLeastUserInfo.habit }} <br>
+                        เวลานอน : {{ selectedLeastUserInfo.details.sleep_time }}
+                    </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PerfectUserModal_hadDorm -->
+      <div class="modal fade" id="perfectUserModal_hadDorm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">รายละเอียดเพิ่มเติม</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body" *ngIf="selectedPerfectUserInfo_hadDorm">
+                <div class="row justify-content-between">
+                  <div class="col-6 text-center">
+                        <img src="https://wordsandvideos.com/wp-content/uploads/2016/12/common.png" alt="..." class="rounded-circle">
+                  </div>
+                  <div class="information col-6">
+                    ชื่อ : {{ selectedPerfectUserInfo_hadDorm.user.firstname }}  {{ selectedPerfectUserInfo_hadDorm.user.lastname }} <br>
+                    ศาสนา : {{ selectedPerfectUserInfo_hadDorm.user.details.religion }}<br>
+                    อายุ : {{ selectedPerfectUserInfo_hadDorm.user.details.age }}<br>
+                  </div>
+                </div> 
+                <div class="row">
+                    <div class="information col mt-2">
+                      <p class="pl-4">
+                        งานอดิเรก : {{ selectedPerfectUserInfo_hadDorm.user.details.hobbies }} <br>
+                        ที่อยู่ : {{ selectedPerfectUserInfo_hadDorm.user.details.address }} <br>
+                        เพิ่มเติม : {{ selectedPerfectUserInfo_hadDorm.user.details.descriptions }}
+                      </p>
+                    </div>
+                    <div class="information col mt-2">
+                        อาชีพ : {{ selectedPerfectUserInfo_hadDorm.user.details.occupation }} <br>
+                        นิสัย : {{ selectedPerfectUserInfo_hadDorm.user.habit }} <br>
+                        เวลานอน : {{ selectedPerfectUserInfo_hadDorm.user.details.sleep_time }}
+                    </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <!-- PossibleUserModel_hadDorm -->
+        <div class="modal fade" id="possibleUserModal_hadDorm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">รายละเอียดเพิ่มเติม</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body" *ngIf="selectedPossibleUserInfo_hadDorm">
+                <div class="row justify-content-between">
+                  <div class="col-6 text-center">
+                        <img src="https://wordsandvideos.com/wp-content/uploads/2016/12/common.png" alt="..." class="rounded-circle">
+                  </div>
+                  <div class="information col-6">
+                    ชื่อ : {{ selectedPossibleUserInfo_hadDorm.user.firstname }}  {{ selectedPossibleUserInfo_hadDorm.user.lastname }} <br>
+                    ศาสนา : {{ selectedPossibleUserInfo_hadDorm.user.details.religion }}<br>
+                    อายุ : {{ selectedPossibleUserInfo_hadDorm.user.details.age }}<br>
+                  </div>
+                </div> 
+                <div class="row">
+                    <div class="information col mt-2">
+                      <p class="pl-4">
+                        งานอดิเรก : {{ selectedPossibleUserInfo_hadDorm.user.details.hobbies }} <br>
+                        ที่อยู่ : {{ selectedPossibleUserInfo_hadDorm.user.details.address }} <br>
+                        เพิ่มเติม : {{ selectedPossibleUserInfo_hadDorm.user.details.descriptions }}
+                      </p>
+                    </div>
+                    <div class="information col mt-2">
+                        อาชีพ : {{ selectedPossibleUserInfo_hadDorm.user.details.occupation }} <br>
+                        นิสัย : {{ selectedPossibleUserInfo_hadDorm.user.habit }} <br>
+                        เวลานอน : {{ selectedPossibleUserInfo_hadDorm.user.details.sleep_time }}
+                    </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- LeastUserModel_hadDorm -->
+        <div class="modal fade" id="leastUserModal_hadDorm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">รายละเอียดเพิ่มเติม</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body" *ngIf="selectedLeastUserInfo_hadDorm">
+                  <div class="row justify-content-between">
+                    <div class="col-6 text-center">
+                          <img src="https://wordsandvideos.com/wp-content/uploads/2016/12/common.png" alt="..." class="rounded-circle">
+                    </div>
+                    <div class="information col-6">
+                      ชื่อ : {{ selectedLeastUserInfo_hadDorm.user.firstname }}  {{ selectedLeastUserInfo_hadDorm.user.lastname }} <br>
+                      ศาสนา : {{ selectedLeastUserInfo_hadDorm.user.details.religion }}<br>
+                      อายุ : {{ selectedLeastUserInfo_hadDorm.user.details.age }}<br>
+                    </div>
+                  </div> 
+                  <div class="row">
+                      <div class="information col mt-2">
+                        <p class="pl-4">
+                          งานอดิเรก : {{ selectedLeastUserInfo_hadDorm.user.details.hobbies }} <br>
+                          ที่อยู่ : {{ selectedLeastUserInfo_hadDorm.user.details.address }} <br>
+                          เพิ่มเติม : {{ selectedLeastUserInfo_hadDorm.user.details.descriptions }}
+                        </p>
+                      </div>
+                      <div class="information col mt-2">
+                          อาชีพ : {{ selectedLeastUserInfo_hadDorm.user.details.occupation }} <br>
+                          นิสัย : {{ selectedLeastUserInfo_hadDorm.user.habit }} <br>
+                          เวลานอน : {{ selectedLeastUserInfo_hadDorm.user.details.sleep_time }}
+                      </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
     </div>
 </div>

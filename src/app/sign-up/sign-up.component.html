@@ -7,7 +7,7 @@
           </div>
           <div class="card-block">
                 <div class="alert alert-success" *ngIf="this.errorMessage.success === true" role="alert"  @slideSuceeded>
-                    <strong>สำเร็จ</strong> กรุณาตรวจสอบอีเมล์ของท่านเพื่อทำการยืนยันการสมัครสมาชิก
+                    <strong>สำเร็จ</strong> กรุณาตรวจสอบรหัส OTP ที่ได้ในโทรศัพท์
                   </div>
                   <div class="alert alert-danger" *ngIf="this.errorMessage.success === false" role="alert"  @slideSuceeded>
                     <strong>ผิดพลาด</strong>  {{ errorMessage.message }}

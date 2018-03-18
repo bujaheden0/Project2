@@ -50,6 +50,8 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log("This is a User Profile : ");
+    console.log(this.auth.userDetails);
     this.unknown(this.auth.userDetails);
     //console.log(this.profile.details.descriptions)
     this.createFormValidate();
