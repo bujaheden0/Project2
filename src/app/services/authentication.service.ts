@@ -27,6 +27,7 @@ export class AuthenticationService {
   testprofile(data){
     return this.http.post('/api/user/testprofile', data).map(res => res.json());
   }
+
   
 
   // showProfile(data) {
@@ -93,5 +94,8 @@ export class AuthenticationService {
     localStorage.clear();
   }
 
+  getDorm(){
+    return this.http.get('/api/user/dorm', ).map(res => res.json());
+  }
   
 }
