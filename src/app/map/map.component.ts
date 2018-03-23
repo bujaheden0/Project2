@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { LOCATIONS } from './mock-locationlist'
 import { Location } from './map'
 import { FormBuilder, FormGroup, FormControl, Validators, NgForm, ReactiveFormsModule, FormsModule, SelectControlValueAccessor } from '@angular/forms';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-map',
@@ -21,9 +22,23 @@ export class MapComponent implements OnInit {
   locations = LOCATIONS;
   form: FormGroup;
   Province;
+  Dorm: any = {}
+  x: number;
+  y: number;
+  constructor(private auth: AuthenticationService) { }
 
   ngOnInit() {
-    var myLatLng = { lat: 7.895167, lng: 98.352083 };
+    
+    this.auth.getDorm().subscribe(res => {
+      this.Dorm = res;
+      console.log(this.Dorm[0].lat);
+
+    
+
+    // var number = Number(this.Dorm[0].lat)+number;
+    // var number2 = Number(this.Dorm[0].long)+number2;
+    console.log(this.Dorm[0].lat);
+    var myLatLng = { lat: this.Dorm[0].lat, lng: this.Dorm[0].long };
     var infoWindow;
 
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -34,7 +49,7 @@ export class MapComponent implements OnInit {
     var contentString = '<div id="content">' +
       '<div id="siteNotice">' +
       '</div>' +
-      '<h1 id="firstHeading" class="firstHeading">Uluru</h1>' +
+      '<h3 id="firstHeading" class="firstHeading">A Dommitory</h3>' +
       '<div id="bodyContent">' +
       '<p><b>554</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
       'sandstone rock formation in the southern part of the ' +
@@ -89,6 +104,7 @@ export class MapComponent implements OnInit {
       // Browser doesn't support Geolocation
       this.handleLocationError(false, infoWindow, map.getCenter());
     }
+  })
   }
 
 
