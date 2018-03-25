@@ -1,15 +1,17 @@
 <div class="signUp">
-    <div class="container" @signupTrigger>
-      <div class="signUp-form">
-        <div class="card">
-          <div class="card-header">
-            ค้นหาหอพัก____________________________________________________
-            Swap to 
-            <button type="button" class="swapMain">
-              Show User Page
-            </button>
-          </div>
-  
+  <div class="container">
+    <div class="signUp-form">
+      <div class="right">
+        Swap to
+          <a routerLink="/main" class="btn btn-warning">
+          Show User Page
+        </a>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          ค้นหาหอพัก
+        </div>
+        <div class="card-header">
           <form class="form-inline">
             <label class="mr-sm-2" for="inlineFormCustomSelect">Location</label>
             <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
@@ -20,32 +22,17 @@
             </select>
             <button type="submit" class="btn btn-primary">ค้นหา</button>
           </form>
-  
-          <div class="list-group">
-            <button type="button" class="list-group-item list-group-item-action active">
-              Cras justo odio
-              <span class="badge badge-default badge-pill">14</span>
-            </button>
-            <br>
-            <button type="button" class="list-group-item list-group-item-action">Dapibus ac facilisis in
-              <span class="badge badge-default badge-pill">2</span>
-            </button>
-            <br>
-            <button type="button" class="list-group-item list-group-item-action">Morbi leo risus
-              <span class="badge badge-default badge-pill">1</span>
-            </button>
-            <br>
-            <button type="button" class="list-group-item list-group-item-action">Porta ac consectetur ac
-              <span class="badge badge-default badge-pill">4</span>
-            </button>
-            <br>
-            <button type="button" class="list-group-item list-group-item-action">Vestibulum at eros
-              <span class="badge badge-default badge-pill">1</span>
+        </div>
+        <br>
+        <div class="card-header" >
+          <div class="list-group" *ngFor="let dorm of Dorm">
+            <button type="button" class="list-group-item list-group-item-action">{{dorm.name}} &nbsp;
+              <span class="badge badge-default badge-pill" [ngStyle]="{'align': 'right'}">{{dorm.electric_unit}}</span>
             </button>
             <br>
           </div>
-  
         </div>
       </div>
     </div>
   </div>
+</div>
