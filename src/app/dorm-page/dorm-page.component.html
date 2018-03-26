@@ -1,0 +1,38 @@
+<div class="signUp">
+  <div class="container">
+    <div class="signUp-form">
+      <div class="right">
+        Swap to
+          <a routerLink="/main" class="btn btn-warning">
+          Show User Page
+        </a>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          ค้นหาหอพัก
+        </div>
+        <div class="card-header">
+          <form class="form-inline">
+            <label class="mr-sm-2" for="inlineFormCustomSelect">Location</label>
+            <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect">
+              <option selected>All</option>
+              <option value="1">อำเภอกะทู้</option>
+              <option value="2">อำเภอถลาง</option>
+              <option value="3">อำเภอเมืองภูเก็ต</option>
+            </select>
+            <button type="submit" class="btn btn-primary">ค้นหา</button>
+          </form>
+        </div>
+        <br>
+        <div class="card-header" >
+          <div class="list-group" *ngFor="let dorm of Dorm">
+            <button type="button" class="list-group-item list-group-item-action">{{dorm.name}} &nbsp;
+              <span class="badge badge-default badge-pill" [ngStyle]="{'align': 'right'}">{{dorm.electric_unit}}</span>
+            </button>
+            <br>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,5 @@
 const User = require('mongoose').model('User');
+const Dorm = require('mongoose').model('Dorm');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const sendOtp = require('./verify.controller');
@@ -237,6 +238,7 @@ exports.settingProfile = function (req, res) {
     }
   });
 }
+<<<<<<< HEAD
 
 exports.testPicture = function(req, res){
   console.log(req.body);
@@ -281,3 +283,15 @@ exports.testPicture = function(req, res){
 //     }
 //   });
 // }
+=======
+exports.GetDorm = function (req, res) {
+  console.log(req.body);
+  Dorm.find( function (err, dorm) {
+    if (err) throw (err);
+    if (dorm) {
+      res.status(200);
+      res.json(dorm);
+    }
+  });
+}
+>>>>>>> 9276b63cec631452024e724e8ae71a82b97c3468

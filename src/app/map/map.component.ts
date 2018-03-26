@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { LOCATIONS } from './mock-locationlist'
 import { Location } from './map'
 import { FormBuilder, FormGroup, FormControl, Validators, NgForm, ReactiveFormsModule, FormsModule, SelectControlValueAccessor } from '@angular/forms';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-map',
@@ -21,6 +22,10 @@ export class MapComponent implements OnInit {
   locations = LOCATIONS;
   form: FormGroup;
   Province;
+  Dorm: any = {}
+  x: number;
+  y: number;
+  constructor(private auth: AuthenticationService) { }
 
   ngOnInit() {
     var myLatLng = { lat: 7.895167, lng: 98.352083 };
@@ -85,10 +90,32 @@ export class MapComponent implements OnInit {
       }, function () {
         this.handleLocationError(true, infoWindow, map.getCenter());
       });
-    } else {
-      // Browser doesn't support Geolocation
-      this.handleLocationError(false, infoWindow, map.getCenter());
-    }
+      }
+
+
+      infoWindow = new google.maps.InfoWindow;
+
+      // Try HTML5 geolocation.
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+          var pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          };
+
+          infoWindow.setPosition(pos);
+          infoWindow.setContent('คุณอยู่ที่นี่');
+          infoWindow.open(map);
+          map.setCenter(pos);
+          map.setZoom(15);
+        }, function () {
+          this.handleLocationError(true, infoWindow, map.getCenter());
+        });
+      } else {
+        // Browser doesn't support Geolocation
+        this.handleLocationError(false, infoWindow, map.getCenter());
+      }
+    })
   }
 
 
@@ -109,14 +136,70 @@ export class MapComponent implements OnInit {
     this.map.setCenter(new google.maps.LatLng(this.latitude, this.longitude));
   }
   Changelocation() {
-    // console.log(this.Province.Lat);
-    // this.map.setCenter({ lat: 13.926706, lng: 100.629410 });
-    // this.map.setZoom(7);
-    var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: this.Province.zoom,
-      center: { lat: this.Province.Lat, lng: this.Province.Lng },
-    });
+    this.auth.getDorm().subscribe(res => {
+      this.Dorm = res;
+      var obj = Object.keys(this.Dorm).length;
+      var markers = [];
 
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: this.Province.zoom,
+        center: { lat: this.Province.Lat, lng: this.Province.Lng },
+      });
+
+      if (this.Province.name == "อำเภอกะทู้") {
+
+        for (let i = 0; i < obj; i++) {
+          if (this.Dorm[i].type == "กะทู้") {
+            var myLatLng = { lat: this.Dorm[i].lat, lng: this.Dorm[i].long };
+            // console.log(myLatLng);
+            var marker = new google.maps.Marker({
+              position: myLatLng,
+              map: map,
+              draggable: true,
+              animation: google.maps.Animation.DROP,
+              title: 'Hello World!'
+            });
+            markers.push(marker);
+          }
+        }
+
+
+
+      } else if (this.Province.name == "อำเภอเมืองภูเก็ต") {
+        // for (var i = 0; i < markers.length; i++) {
+        //   markers[i].setMap(null);
+        // }
+        // markers = [];
+        for (let i = 0; i < obj; i++) {
+          if (this.Dorm[i].type == "เมืองภูเก็ต") {
+            var myLatLng = { lat: this.Dorm[i].lat, lng: this.Dorm[i].long };
+            // console.log(myLatLng);
+            var marker = new google.maps.Marker({
+              position: myLatLng,
+              map: map,
+              draggable: true,
+              animation: google.maps.Animation.DROP,
+              title: 'Hello World!'
+            });
+          }
+        }
+      } else if (this.Province.name == "อำเภอถลาง") {
+
+        for (let i = 0; i < obj; i++) {
+          if (this.Dorm[i].type == "ถลาง") {
+            var myLatLng = { lat: this.Dorm[i].lat, lng: this.Dorm[i].long };
+            // console.log(myLatLng);
+            var marker = new google.maps.Marker({
+              position: myLatLng,
+              map: map,
+              draggable: true,
+              animation: google.maps.Animation.DROP,
+              title: 'Hello World!'
+            });
+          }
+        }
+      }
+    })
   }
 
 }

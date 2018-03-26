@@ -101,5 +101,8 @@ export class AuthenticationService {
     localStorage.clear();
   }
 
+  getDorm(){
+    return this.http.get('/api/user/dorm', ).map(res => res.json());
+  }
   
 }
