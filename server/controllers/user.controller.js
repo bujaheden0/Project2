@@ -238,11 +238,7 @@ exports.settingProfile = function (req, res) {
     }
   });
 }
-<<<<<<< HEAD
 
-exports.testPicture = function(req, res){
-  console.log(req.body);
-}
 // exports.settingProfile = function (req, res) {
 //   User.findOne({ _id: req.body.userDetails.id }, function (err, user) {
 //     if (err) throw (err);
@@ -283,7 +279,6 @@ exports.testPicture = function(req, res){
 //     }
 //   });
 // }
-=======
 exports.GetDorm = function (req, res) {
   console.log(req.body);
   Dorm.find( function (err, dorm) {
@@ -294,4 +289,3 @@ exports.GetDorm = function (req, res) {
     }
   });
 }
->>>>>>> 9276b63cec631452024e724e8ae71a82b97c3468

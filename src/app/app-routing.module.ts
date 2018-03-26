@@ -27,7 +27,8 @@ const routes: Routes = [
   { path: 'passport',             component : PassportComponent },
   { path: 'map',                  component : MapComponent},
   { path: 'verify',               component : VerifyOtpComponent},
-  { path: 'main',                 component : MainPageComponent}
+  { path: 'main',                 component : MainPageComponent},
+  { path: 'dorm', component: DormPageComponent}
 
 
 ];

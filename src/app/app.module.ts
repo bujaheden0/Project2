@@ -23,11 +23,7 @@ import { VerifyOtpComponent } from './verify-otp/verify-otp.component';
 import { VerifyOtpService } from './services/verify-otp.service';
 import { MainPageComponent } from './main-page/main-page.component';
 import { MatchPeopleService } from './services/match-people.service';
-<<<<<<< HEAD
-import { UploadpictureComponent } from './uploadpicture/uploadpicture.component';
-=======
 import { DormPageComponent } from './dorm-page/dorm-page.component';
->>>>>>> 9276b63cec631452024e724e8ae71a82b97c3468
 
 @NgModule({
   declarations: [
@@ -44,11 +40,7 @@ import { DormPageComponent } from './dorm-page/dorm-page.component';
     PassportComponent,
     VerifyOtpComponent,
     MainPageComponent,
-<<<<<<< HEAD
-    UploadpictureComponent
-=======
     DormPageComponent
->>>>>>> 9276b63cec631452024e724e8ae71a82b97c3468
   ],
   imports: [
     BrowserModule,

@@ -90,14 +90,14 @@ module.exports = function(app){
        });
 
 
-    app.post('/api/test/picture', upload.array('uploads'), function (req, res) {
-        //console.log('files', req.files);
-        var Data = JSON.parse(req.body.data);
-        console.log(Data.name);
-        console.log(req.files);
-        res.send(req.files);
+    // app.post('/api/test/picture', upload.array('uploads'), function (req, res) {
+    //     //console.log('files', req.files);
+    //     var Data = JSON.parse(req.body.data);
+    //     console.log(Data.name);
+    //     console.log(req.files);
+    //     res.send(req.files);
         
-      });
+    //   });
     
 
 }
