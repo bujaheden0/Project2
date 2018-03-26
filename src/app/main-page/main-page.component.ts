@@ -1,12 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild  } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
 import { MatchPeopleService } from '../services/match-people.service';
+import { } from '@types/googlemaps';
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.css']
 })
 export class MainPageComponent implements OnInit {
+  map: google.maps.Map;
+
+  latitude: any;
+  longitude: any;
+   singles;
    perfectUser;
    possibleUser;
    leastUser;
@@ -30,6 +36,16 @@ export class MainPageComponent implements OnInit {
         this.getAllMatchedPeople();
       })
     }
+    var myLatLng = { lat: 7.895167, lng: 98.352083 };
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 6,
+      center: { lat: 7.895167, lng: 98.352083 },
+    });
+    }
+
+    onSubmit(){
+      console.log(this.singles);
     }
 
   //รับค่า Array ทุกนิสัยที่ Matched กับ นิสัยที่ log in

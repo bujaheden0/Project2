@@ -114,6 +114,10 @@ const userSchema = new schema({
         type: String,
         default: ""
     },
+    profile_picture : {
+        type: String,
+        default : ""
+    },
     providerId: {
         type: String,
         default: ""

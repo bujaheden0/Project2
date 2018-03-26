@@ -14,19 +14,21 @@ import { PassportComponent } from './passport/passport.component';
 import { MapComponent } from './map/map.component';
 import { VerifyOtpComponent } from './verify-otp/verify-otp.component';
 import { MainPageComponent } from './main-page/main-page.component';
+import { UploadpictureComponent } from './uploadpicture/uploadpicture.component';
 const routes: Routes = [
-  { path: '', component: LandingPageComponent},
-  { path: 'signup', component : SignUpComponent},
-  { path: 'signin', component : SignInComponent},
-  { path: 'questionnaire', component : QuestionnaireComponent},
-  { path: 'profile', component : ProfileComponent },
-  { path: 'test', component : TestValidateComponent},
-  { path: 'head', component: HeaderComponent},
-  { path: 'passport/:id/:userId', component: PassportComponent },
-  { path: 'passport', component: PassportComponent },
-  { path: 'map', component: MapComponent},
-  { path: 'verify', component: VerifyOtpComponent},
-  { path: 'main', component: MainPageComponent}
+  { path: '',                     component : LandingPageComponent},
+  { path: 'signup',               component : SignUpComponent},
+  { path: 'signin',               component : SignInComponent},
+  { path: 'questionnaire',        component : QuestionnaireComponent},
+  { path: 'profile',              component : ProfileComponent },
+  { path: 'test',                 component : TestValidateComponent},
+  { path: 'head',                 component : HeaderComponent},
+  { path: 'passport/:id/:userId', component : PassportComponent },
+  { path: 'passport',             component : PassportComponent },
+  { path: 'map',                  component : MapComponent},
+  { path: 'verify',               component : VerifyOtpComponent},
+  { path: 'main',                 component : MainPageComponent},
+  { path: 'uppic',                component : UploadpictureComponent }
 
 
 ];

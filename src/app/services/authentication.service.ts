@@ -14,6 +14,10 @@ export class AuthenticationService {
     }
   }
 
+  testpic(data){
+    return this.http.post('/api/test/picture', data).map(res => res.json());
+  }
+
   register(data) {
     return this.http.post('/api/user/regis', data).map(res => res.json());
   }
@@ -26,6 +30,10 @@ export class AuthenticationService {
   }
   testprofile(data){
     return this.http.post('/api/user/testprofile', data).map(res => res.json());
+  }
+
+  getImage(){
+    return this.http.get('/api/user/image').map(res => res.json());
   }
   
 

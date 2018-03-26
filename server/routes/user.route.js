@@ -3,7 +3,20 @@ const jwt = require('express-jwt');
 const passport = require('passport');
 const config = require('../config/env/development');
 const Nexmo = require('../config/verify');
+const multer = require('multer');
+const path = require('path');
+//const upload = multer({ dest:'uploads/'});
 
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'src/assets/uploads')
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.fieldname + '-' + Date.now())
+    }
+  })
+   
+  var upload = multer({ storage: storage })
 nexmo = Nexmo.nexmo;
 module.exports = function(app){
     const auth = jwt({
@@ -13,11 +26,10 @@ module.exports = function(app){
     app.post('/api/user/regis', user.register);
     app.post('/api/user/login', user.login);
     app.get('/api/user/login', auth, user.profileRead);
-    app.post('/api/user/profile',user.UpdateProfiles);
     app.post('/api/user/habit',user.UpdateHabit);
     
     app.get('/api/oauth/facebook', passport.authenticate('facebook' ,{ scope : ['public_profile', 'email'] }));
-    app.post('/api/user/profile', user.UpdateProfiles);
+    app.post('/api/user/profile',upload.array('uploads'), user.UpdateProfiles);
     app.get('/api/user/showProfile', user.showProfile);
     app.post('/api/user/settingProfile', user.settingProfile);
     app.post('/api/user/testprofile', user.testprofile);
@@ -76,6 +88,15 @@ module.exports = function(app){
         );
        });
 
+
+    app.post('/api/test/picture', upload.array('uploads'), function (req, res) {
+        //console.log('files', req.files);
+        var Data = JSON.parse(req.body.data);
+        console.log(Data.name);
+        console.log(req.files);
+        res.send(req.files);
+        
+      });
     
 
 }

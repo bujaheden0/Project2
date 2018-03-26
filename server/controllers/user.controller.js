@@ -165,31 +165,40 @@ exports.testprofile = function(req, res){
   });
 }
 exports.UpdateProfiles = function (req, res) {
-  console.log(req.body.userDetails);
-  User.update({ _id: req.body.userDetails.id }, {
+  var data = JSON.parse(req.body.data);
+  if(req.files != ""){
+  var path = req.files[0].path.split("\\");
+  path = "../../" + path[1] + "/" + path[2] + "/" +path[3];
+  console.log(path);
+  } else {
+    path = data.profile_picture;
+    console.log(path);
+  }
+  User.update({ _id: data.userDetails.id }, {
     $set: {
-      'details.religion': req.body.religion,
-      'details.gender': req.body.gender,
-      'details.birthDate': req.body.birthday,
-      'details.facebook': req.body.facebook,
-      'details.occupation': req.body.occupation,
-      'details.sleep_time': req.body.sleep_time,
-      'details.hobbies': req.body.hobbies,
-      'details.address': req.body.address,
-      'details.descriptions': req.body.descriptions,
-      'details.price.min': req.body.minPrice,
-      'details.price.max': req.body.maxPrice,
-      'details.r_status': req.body.r_status,
-      'details.g_status': req.body.g_status,
-      'details.b_range': req.body.b_status,
-      'details.b_range': req.body.b_range,
-      'tel': req.body.tel,
-      'profile_status': req.body.profile_status,
-      'details.descriptionsEx.c1': req.body.descriptions1,
-      'details.descriptionsEx.c2': req.body.descriptions2,
-      'details.descriptionsEx.c3': req.body.descriptions3,
-      'details.descriptionsEx.c4': req.body.descriptions4,
-      'details.descriptionsEx.c5': req.body.descriptions5,
+      'profile_picture' : path,
+      'details.religion': data.religion,
+      'details.gender': data.gender,
+      'details.birthDate': data.birthday,
+      'details.facebook': data.facebook,
+      'details.occupation': data.occupation,
+      'details.sleep_time': data.sleep_time,
+      'details.hobbies': data.hobbies,
+      'details.address': data.address,
+      'details.descriptions': data.descriptions,
+      'details.price.min': data.minPrice,
+      'details.price.max': data.maxPrice,
+      'details.r_status': data.r_status,
+      'details.g_status': data.g_status,
+      'details.b_range': data.b_status,
+      'details.b_range': data.b_range,
+      'tel': data.tel,
+      'profile_status': data.profile_status,
+      'details.descriptionsEx.c1': data.descriptions1,
+      'details.descriptionsEx.c2': data.descriptions2,
+      'details.descriptionsEx.c3': data.descriptions3,
+      'details.descriptionsEx.c4': data.descriptions4,
+      'details.descriptionsEx.c5': data.descriptions5,
     }
   }, function (err, user) {
     if (err) res.send(err);
@@ -225,9 +234,12 @@ exports.settingProfile = function (req, res) {
     if (user) {
       res.status(200);
       res.json(user);
-      
     }
   });
+}
+
+exports.testPicture = function(req, res){
+  console.log(req.body);
 }
 // exports.settingProfile = function (req, res) {
 //   User.findOne({ _id: req.body.userDetails.id }, function (err, user) {

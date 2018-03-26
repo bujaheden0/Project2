@@ -11,7 +11,7 @@
                   <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 95%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"><b>ลักษณะนิสัยคล้ายกัน</b></div>
                 </div>
               <div class="row justify-content-between">
-                <div class="col-4"><img src="https://wordsandvideos.com/wp-content/uploads/2016/12/common.png" alt="..." class="rounded-circle"></div>
+                <div class="col-4"><img src="{{perfectUser_hadDorm.user.profile_picture}}" alt="..." class="rounded-circle"></div>
                 <div class="col-8" style="line-height: 200%;">ชื่อ : {{ perfectUser_hadDorm.user.firstname }}  {{ perfectUser_hadDorm.user.lastname }}<br>
                                   ศาสนา : {{ perfectUser_hadDorm.user.details.religion }}<br>
                                   อายุ : {{ perfectUser_hadDorm.user.details.age }}<br>
@@ -33,7 +33,7 @@
                   <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 75%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"><b>ลักษณะนิสัยคล้ายกัน</b></div>
                 </div>
               <div class="row justify-content-between">
-                <div class="col-4"><img src="https://wordsandvideos.com/wp-content/uploads/2016/12/common.png" alt="..." class="rounded-circle"></div>
+                <div class="col-4"><img src="{{ possibleUser_hadDorm.user.profile_picture }}" alt="..." class="rounded-circle"></div>
                 <div class="col-8" style="line-height: 200%;">ชื่อ : {{ possibleUser_hadDorm.user.firstname }}  {{ possibleUser_hadDorm.user.lastname }}<br>
                                   ศาสนา : {{ possibleUser_hadDorm.user.details.religion }}<br>
                                   อายุ : {{ possibleUser_hadDorm.user.details.age }}<br>
@@ -56,7 +56,7 @@
                     <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 55%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"><b>ลักษณะนิสัยคล้ายกัน</b></div>
                   </div>
                 <div class="row justify-content-between">
-                  <div class="col-4"><img src="https://wordsandvideos.com/wp-content/uploads/2016/12/common.png" alt="..." class="rounded-circle"></div>
+                  <div class="col-4"><img src="{{ leastUser_hadDorm.user.profile_picture }}" alt="..." class="rounded-circle"></div>
                   <div class="col-8" style="line-height: 200%;">ชื่อ : {{ leastUser_hadDorm.user.firstname }}  {{ leastUser_hadDorm.user.lastname }}<br>
                                     ศาสนา : {{ leastUser_hadDorm.user.details.religion }}<br>
                                     อายุ : {{ leastUser_hadDorm.user.details.age }}<br>
@@ -81,7 +81,7 @@
                   <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 95%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"><b>ลักษณะนิสัยคล้ายกัน</b></div>
                 </div>
               <div class="row justify-content-between">
-                <div class="col-4"><img src="https://wordsandvideos.com/wp-content/uploads/2016/12/common.png" alt="..." class="rounded-circle"></div>
+                <div class="col-4"><img src="{{ perfectUser.profile_picture }}" alt="..." class="rounded-circle"></div>
                 <div class="col-8" style="line-height: 200%;">ชื่อ : {{ perfectUser.firstname }}  {{ perfectUser.lastname }}<br>
                                   ศาสนา : {{ perfectUser.details.religion }}<br>
                                   อายุ : {{ perfectUser.details.age }}<br>
@@ -103,7 +103,7 @@
                   <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 75%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"><b>ลักษณะนิสัยคล้ายกัน</b></div>
                 </div>
               <div class="row justify-content-between">
-                <div class="col-4"><img src="https://wordsandvideos.com/wp-content/uploads/2016/12/common.png" alt="..." class="rounded-circle"></div>
+                <div class="col-4"><img src="{{ possibleUser.profile_picture }}" alt="..." class="rounded-circle"></div>
                 <div class="col-8" style="line-height: 200%;">ชื่อ : {{ possibleUser.firstname }}  {{ possibleUser.lastname }}<br>
                                   ศาสนา : {{ possibleUser.details.religion }}<br>
                                   อายุ : {{ possibleUser.details.age }}<br>
@@ -126,7 +126,7 @@
                     <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 55%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"><b>ลักษณะนิสัยคล้ายกัน</b></div>
                   </div>
                 <div class="row justify-content-between">
-                  <div class="col-4"><img src="https://wordsandvideos.com/wp-content/uploads/2016/12/common.png" alt="..." class="rounded-circle"></div>
+                  <div class="col-4"><img src="{{ leastUser.profile_picture }}" alt="..." class="rounded-circle"></div>
                   <div class="col-8" style="line-height: 200%;">ชื่อ : {{ leastUser.firstname }}  {{ leastUser.lastname }}<br>
                                     ศาสนา : {{ leastUser.details.religion }}<br>
                                     อายุ : {{ leastUser.details.age }}<br>
@@ -287,7 +287,7 @@
               <div class="modal-body" *ngIf="selectedPerfectUserInfo_hadDorm">
                 <div class="row justify-content-between">
                   <div class="col-6 text-center">
-                        <img src="https://wordsandvideos.com/wp-content/uploads/2016/12/common.png" alt="..." class="rounded-circle">
+                        <img src="{{ selectedPerfectUserInfo_hadDorm.user.profile_picture }}" alt="..." class="rounded-circle">
                   </div>
                   <div class="information col-6">
                     ชื่อ : {{ selectedPerfectUserInfo_hadDorm.user.firstname }}  {{ selectedPerfectUserInfo_hadDorm.user.lastname }} <br>
@@ -308,6 +308,9 @@
                         นิสัย : {{ selectedPerfectUserInfo_hadDorm.user.habit }} <br>
                         เวลานอน : {{ selectedPerfectUserInfo_hadDorm.user.details.sleep_time }}
                     </div>
+                </div>
+                <div class="row">
+                  <p class="pl-4">Dormitory Location</p>
                 </div>
               </div>
               <div class="modal-footer">
@@ -331,7 +334,7 @@
               <div class="modal-body" *ngIf="selectedPossibleUserInfo_hadDorm">
                 <div class="row justify-content-between">
                   <div class="col-6 text-center">
-                        <img src="https://wordsandvideos.com/wp-content/uploads/2016/12/common.png" alt="..." class="rounded-circle">
+                        <img src="{{ selectedPossibleUserInfo_hadDorm.user.profile_picture }}" alt="..." class="rounded-circle">
                   </div>
                   <div class="information col-6">
                     ชื่อ : {{ selectedPossibleUserInfo_hadDorm.user.firstname }}  {{ selectedPossibleUserInfo_hadDorm.user.lastname }} <br>
@@ -374,7 +377,7 @@
                 <div class="modal-body" *ngIf="selectedLeastUserInfo_hadDorm">
                   <div class="row justify-content-between">
                     <div class="col-6 text-center">
-                          <img src="https://wordsandvideos.com/wp-content/uploads/2016/12/common.png" alt="..." class="rounded-circle">
+                          <img src="{{ selectedLeastUserInfo_hadDorm.user.profile_picture }}" alt="..." class="rounded-circle">
                     </div>
                     <div class="information col-6">
                       ชื่อ : {{ selectedLeastUserInfo_hadDorm.user.firstname }}  {{ selectedLeastUserInfo_hadDorm.user.lastname }} <br>
@@ -404,6 +407,7 @@
               </div>
             </div>
           </div>
+
 
     </div>
 </div>

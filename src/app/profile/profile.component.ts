@@ -37,6 +37,8 @@ export class ProfileComponent implements OnInit {
   errorMessage = Boolean;
   isValid = false;
   profile: any = {};
+  filesToUpload;
+  picture;
   constructor(private fb: FormBuilder, private auth: AuthenticationService, private router: Router) {
   }
   unknown(user){
@@ -53,6 +55,9 @@ export class ProfileComponent implements OnInit {
     console.log("This is a User Profile : ");
     console.log(this.auth.userDetails);
     this.unknown(this.auth.userDetails);
+    this.auth.getImage().subscribe(res => {
+      this.picture = res;
+    });
     //console.log(this.profile.details.descriptions)
     this.createFormValidate();
   }
@@ -221,9 +226,12 @@ export class ProfileComponent implements OnInit {
   onSubmit() {
     
     //this.form.controls.descriptions.value+this.form.controls.descriptions1.value+this.form.controls.descriptions2.value+this.form.controls.descriptions3.value+this.form.controls.descriptions4.value+this.form.controls.descriptions5.value
-    console.log(this.form)
+    if(!this.form.valid){
+      console.log("กรอกข้อมูลให้ครบดิวะ");
+      console.log(this.form);
+    }
     if (this.form.valid) {
-        
+      console.log("กรอกข้อมูลครบแล้ว")
       const user = {
         //image: this.form.controls.image.value,
         userDetails: this.auth.userDetails,
@@ -248,12 +256,20 @@ export class ProfileComponent implements OnInit {
         g_status: this.form.controls.g_status.value,
         b_status: this.form.controls.b_status.value,
         b_range: this.form.controls.b_range.value,
+        profile_picture : this.profile.profile_picture,
         profile_status: true
       }
+      const formData: any = new FormData();
+      if(this.filesToUpload){
+      const files = this.filesToUpload;
+      formData.append("uploads", files);
+      }
       
+      var details = JSON.stringify(user);
+      formData.append("data", details);
       console.log(user);
 
-      this.auth.profile(user).subscribe(res => {
+      this.auth.profile(formData).subscribe(res => {
         console.log(res);
       })
       if(this.profile.habit){
@@ -280,6 +296,22 @@ export class ProfileComponent implements OnInit {
       }
     })
   }
+
+
+  fileChangeEvent(fileInput: any) {
+    this.filesToUpload = fileInput.target.files[0];
+    //this.product.photo = fileInput.target.files[0]['name'];
+    console.log(this.filesToUpload);
+    if (fileInput.target.files && fileInput.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function (e : any) {
+          document.getElementById("preview").setAttribute("src",e.target.result);
+      }
+
+      reader.readAsDataURL(fileInput.target.files[0]);
+  }
+}
 
 
 }

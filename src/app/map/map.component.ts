@@ -27,7 +27,7 @@ export class MapComponent implements OnInit {
     var infoWindow;
 
     var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 6,
+      zoom: 16,
       center: { lat: 13.926706, lng: 100.629410 },
     });
 
