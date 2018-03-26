@@ -23,6 +23,7 @@ import { VerifyOtpComponent } from './verify-otp/verify-otp.component';
 import { VerifyOtpService } from './services/verify-otp.service';
 import { MainPageComponent } from './main-page/main-page.component';
 import { MatchPeopleService } from './services/match-people.service';
+import { DormPageComponent } from './dorm-page/dorm-page.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { MatchPeopleService } from './services/match-people.service';
     MapComponent,
     PassportComponent,
     VerifyOtpComponent,
-    MainPageComponent
+    MainPageComponent,
+    DormPageComponent
   ],
   imports: [
     BrowserModule,
