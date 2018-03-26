@@ -36,52 +36,62 @@ export class MapComponent implements OnInit {
       // console.log(this.Dorm[0].lat);
 
       var infoWindow;
-
+      var markers = [];
+      var contentString = [];
       var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 6,
-        center: { lat: 13.926706, lng: 100.629410 },
+        zoom: 15,
+        center: { lat: 7.894866, lng: 98.352092 },
       });
       for (let i = 0; i < obj; i++) {
         var myLatLng = { lat: this.Dorm[i].lat, lng: this.Dorm[i].long };
         // console.log(myLatLng);
-        var marker = new google.maps.Marker({
+        markers[i] = new google.maps.Marker({
           position: myLatLng,
           map: map,
+          draggable: true,
+          animation: google.maps.Animation.DROP,
           title: 'Hello World!'
         });
+        // markers.push(marker);
+
+
+        var contentString1 = '<div id="content">' +
+          '<div id="siteNotice">' +
+          '</div>' +
+          '<h3 id="firstHeading" class="firstHeading">' + this.Dorm[i].name + '</h3>' +
+          '<div id="bodyContent">' +
+          '<p><b>554</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
+          'sandstone rock formation in the southern part of the ' +
+          'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) ' +
+          'south west of the nearest large town, Alice Springs; 450&#160;km ' +
+          '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major ' +
+          'features of the Uluru - Kata Tjuta National Park. Uluru is ' +
+          'sacred to the Pitjantjatjara and Yankunytjatjara, the ' +
+          'Aboriginal people of the area. It has many springs, waterholes, ' +
+          'rock caves and ancient paintings. Uluru is listed as a World ' +
+          'Heritage Site.</p>' +
+          '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">' +
+          'https://en.wikipedia.org/w/index.php?title=Uluru</a> ' +
+          '(last visited June 22, 2009).</p>' +
+          '</div>' +
+          '</div>';
+        contentString.push(contentString1);
+      }
+      var infowindow;
+      for (var i = 0; i < contentString.length; i++) {
+         infowindow = new google.maps.InfoWindow({
+          content: contentString[i],
+          maxWidth: 200
+        });
+      }
+      for (var i = 0; i < markers.length; i++) {
+      markers[i].addListener('click', function () {
+        // if (markers[i] = contentString[i]) {
+        infowindow.open(map, markers[i]);
+        // }
+      });
       }
 
-      var contentString = '<div id="content">' +
-        '<div id="siteNotice">' +
-        '</div>' +
-        '<h3 id="firstHeading" class="firstHeading">A Dommitory</h3>' +
-        '<div id="bodyContent">' +
-        '<p><b>554</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
-        'sandstone rock formation in the southern part of the ' +
-        'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) ' +
-        'south west of the nearest large town, Alice Springs; 450&#160;km ' +
-        '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major ' +
-        'features of the Uluru - Kata Tjuta National Park. Uluru is ' +
-        'sacred to the Pitjantjatjara and Yankunytjatjara, the ' +
-        'Aboriginal people of the area. It has many springs, waterholes, ' +
-        'rock caves and ancient paintings. Uluru is listed as a World ' +
-        'Heritage Site.</p>' +
-        '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">' +
-        'https://en.wikipedia.org/w/index.php?title=Uluru</a> ' +
-        '(last visited June 22, 2009).</p>' +
-        '</div>' +
-        '</div>';
-
-
-
-      var infowindow = new google.maps.InfoWindow({
-        content: contentString,
-        maxWidth: 200
-      });
-
-      marker.addListener('click', function () {
-        infowindow.open(map, marker);
-      });
 
       infoWindow = new google.maps.InfoWindow;
 
@@ -126,14 +136,70 @@ export class MapComponent implements OnInit {
     this.map.setCenter(new google.maps.LatLng(this.latitude, this.longitude));
   }
   Changelocation() {
-    // console.log(this.Province.Lat);
-    // this.map.setCenter({ lat: 13.926706, lng: 100.629410 });
-    // this.map.setZoom(7);
-    var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: this.Province.zoom,
-      center: { lat: this.Province.Lat, lng: this.Province.Lng },
-    });
+    this.auth.getDorm().subscribe(res => {
+      this.Dorm = res;
+      var obj = Object.keys(this.Dorm).length;
+      var markers = [];
 
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: this.Province.zoom,
+        center: { lat: this.Province.Lat, lng: this.Province.Lng },
+      });
+
+      if (this.Province.name == "อำเภอกะทู้") {
+
+        for (let i = 0; i < obj; i++) {
+          if (this.Dorm[i].type == "กะทู้") {
+            var myLatLng = { lat: this.Dorm[i].lat, lng: this.Dorm[i].long };
+            // console.log(myLatLng);
+            var marker = new google.maps.Marker({
+              position: myLatLng,
+              map: map,
+              draggable: true,
+              animation: google.maps.Animation.DROP,
+              title: 'Hello World!'
+            });
+            markers.push(marker);
+          }
+        }
+
+
+
+      } else if (this.Province.name == "อำเภอเมืองภูเก็ต") {
+        // for (var i = 0; i < markers.length; i++) {
+        //   markers[i].setMap(null);
+        // }
+        // markers = [];
+        for (let i = 0; i < obj; i++) {
+          if (this.Dorm[i].type == "เมืองภูเก็ต") {
+            var myLatLng = { lat: this.Dorm[i].lat, lng: this.Dorm[i].long };
+            // console.log(myLatLng);
+            var marker = new google.maps.Marker({
+              position: myLatLng,
+              map: map,
+              draggable: true,
+              animation: google.maps.Animation.DROP,
+              title: 'Hello World!'
+            });
+          }
+        }
+      } else if (this.Province.name == "อำเภอถลาง") {
+
+        for (let i = 0; i < obj; i++) {
+          if (this.Dorm[i].type == "ถลาง") {
+            var myLatLng = { lat: this.Dorm[i].lat, lng: this.Dorm[i].long };
+            // console.log(myLatLng);
+            var marker = new google.maps.Marker({
+              position: myLatLng,
+              map: map,
+              draggable: true,
+              animation: google.maps.Animation.DROP,
+              title: 'Hello World!'
+            });
+          }
+        }
+      }
+    })
   }
 
 }
