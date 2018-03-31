@@ -3,7 +3,7 @@
     <div class="signUp-form">
       <div class="right">
         Swap to
-          <a routerLink="/main" class="btn btn-warning">
+        <a routerLink="/main" class="btn btn-warning">
           Show User Page
         </a>
       </div>
@@ -24,14 +24,64 @@
           </form>
         </div>
         <br>
-        <div class="card-header" >
+        <div class="card-header">
           <div class="list-group" *ngFor="let dorm of Dorm">
-            <button type="button" class="list-group-item list-group-item-action">{{dorm.name}} &nbsp;
+            <button type="button" class="list-group-item list-group-item-action" (click)=" getPerfectUserInfo(perfectUser_hadDorm.user._id,2)" data-toggle="modal"
+            data-target="#perfectUserModal_hadDorm">{{dorm.name}} &nbsp;
               <span class="badge badge-default badge-pill" [ngStyle]="{'align': 'right'}">{{dorm.electric_unit}}</span>
             </button>
             <br>
           </div>
         </div>
+
+        <!-- PerfectUserModal_hadDorm -->
+        <div class="modal fade" id="perfectUserModal_hadDorm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">รายละเอียดเพิ่มเติม</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body" *ngIf="selectedPerfectUserInfo_hadDorm">
+                <div class="row justify-content-between">
+                  <div class="col-6 text-center">
+                    <img src="{{ selectedPerfectUserInfo_hadDorm.user.profile_picture }}" alt="..." class="rounded-circle">
+                  </div>
+                  <div class="information col-6">
+                    ชื่อ : {{ selectedPerfectUserInfo_hadDorm.user.firstname }} {{ selectedPerfectUserInfo_hadDorm.user.lastname }}
+                    <br> ศาสนา : {{ selectedPerfectUserInfo_hadDorm.user.details.religion }}
+                    <br> อายุ : {{ selectedPerfectUserInfo_hadDorm.user.details.age }}
+                    <br>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="information col mt-2">
+                    <p class="pl-4">
+                      งานอดิเรก : {{ selectedPerfectUserInfo_hadDorm.user.details.hobbies }}
+                      <br> ที่อยู่ : {{ selectedPerfectUserInfo_hadDorm.user.details.address }}
+                      <br> เพิ่มเติม : {{ selectedPerfectUserInfo_hadDorm.user.details.descriptions }}
+                    </p>
+                  </div>
+                  <div class="information col mt-2">
+                    อาชีพ : {{ selectedPerfectUserInfo_hadDorm.user.details.occupation }}
+                    <br> นิสัย : {{ selectedPerfectUserInfo_hadDorm.user.habit }}
+                    <br> เวลานอน : {{ selectedPerfectUserInfo_hadDorm.user.details.sleep_time }}
+                  </div>
+                </div>
+                <div class="row">
+                  <p class="pl-4">Dormitory Location</p>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
