@@ -11,6 +11,7 @@
         <div class="card-header">
           ค้นหาหอพัก
         </div>
+        
         <div class="card-header">
           <form class="form-inline">
             <label class="mr-sm-2" for="inlineFormCustomSelect">Location</label>
@@ -26,8 +27,7 @@
         <br>
         <div class="card-header">
           <div class="list-group" *ngFor="let dorm of Dorm">
-            <button type="button" class="list-group-item list-group-item-action" (click)=" getPerfectUserInfo(perfectUser_hadDorm.user._id,2)" data-toggle="modal"
-            data-target="#perfectUserModal_hadDorm">{{dorm.name}} &nbsp;
+            <button type="button" class="list-group-item list-group-item-action" (click)="getSeletedDormInfo(dorm._id)" data-toggle="modal" data-target="#perfectUserModal_hadDorm">{{dorm.name}} &nbsp;
               <span class="badge badge-default badge-pill" [ngStyle]="{'align': 'right'}">{{dorm.electric_unit}}</span>
             </button>
             <br>
@@ -39,44 +39,53 @@
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">รายละเอียดเพิ่มเติม</h5>
+                <h5 class="modal-title" id="exampleModalLabel">รายละเอียดหอ</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body" *ngIf="selectedPerfectUserInfo_hadDorm">
+              <div class="modal-body" >
                 <div class="row justify-content-between">
-                  <div class="col-6 text-center">
+                  <!-- <div class="col-6 text-center">
                     <img src="{{ selectedPerfectUserInfo_hadDorm.user.profile_picture }}" alt="..." class="rounded-circle">
-                  </div>
+                  </div> -->
                   <div class="information col-6">
-                    ชื่อ : {{ selectedPerfectUserInfo_hadDorm.user.firstname }} {{ selectedPerfectUserInfo_hadDorm.user.lastname }}
-                    <br> ศาสนา : {{ selectedPerfectUserInfo_hadDorm.user.details.religion }}
-                    <br> อายุ : {{ selectedPerfectUserInfo_hadDorm.user.details.age }}
+                    ชื่อหอ : {{ seleteDorm.name }}
+                    <br> ที่อยู่ : {{ seleteDorm.address }}
+                    <br> เบอร์โทร : {{ seleteDorm.tel }}
                     <br>
                   </div>
                 </div>
                 <div class="row">
                   <div class="information col mt-2">
                     <p class="pl-4">
-                      งานอดิเรก : {{ selectedPerfectUserInfo_hadDorm.user.details.hobbies }}
-                      <br> ที่อยู่ : {{ selectedPerfectUserInfo_hadDorm.user.details.address }}
-                      <br> เพิ่มเติม : {{ selectedPerfectUserInfo_hadDorm.user.details.descriptions }}
+                      ค่าไฟ : {{ seleteDorm.electric_unit }}
+                      <br> ค่าน้ำ : {{ seleteDorm.water_bill }}
+                      <br> รายละเอียด : {{ seleteDorm.description }}
                     </p>
                   </div>
                   <div class="information col mt-2">
-                    อาชีพ : {{ selectedPerfectUserInfo_hadDorm.user.details.occupation }}
-                    <br> นิสัย : {{ selectedPerfectUserInfo_hadDorm.user.habit }}
-                    <br> เวลานอน : {{ selectedPerfectUserInfo_hadDorm.user.details.sleep_time }}
+                    ประเภท : {{ seleteDorm.type }}
+                    <br> lat : {{ seleteDorm.lat }}
+                    <br> long : {{ seleteDorm.long }}
                   </div>
                 </div>
-                <div class="row">
+                <!-- <div class="row"> -->
                   <p class="pl-4">Dormitory Location</p>
-                </div>
+                  <div class="row">
+                    <div class="col-lg-12">
+                      <div class="text-center">
+                        <h3>
+                          <div id="map" style="width:100%;height:550px"></div>
+                        </h3>
+                      </div>
+                    </div>
+                  </div>
+                  
+                <!-- </div> -->
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
               </div>
             </div>
           </div>
