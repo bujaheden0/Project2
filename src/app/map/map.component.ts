@@ -35,8 +35,9 @@ export class MapComponent implements OnInit {
       // console.log(obj); 
       // console.log(this.Dorm[0].lat);
       var infoWindow;
-      var markers = [];
-      var contentString = [];
+      var marker;
+      var contentString;
+      var contentStrings = [];
       var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 15,
         center: { lat: 7.894866, lng: 98.352092 },
@@ -44,7 +45,7 @@ export class MapComponent implements OnInit {
       for (let i = 0; i < obj; i++) {
         var myLatLng = { lat: this.Dorm[i].lat, lng: this.Dorm[i].long };
         // console.log(myLatLng);
-        markers[i] = new google.maps.Marker({
+        marker = new google.maps.Marker({
           position: myLatLng,
           map: map,
           draggable: true,
@@ -53,46 +54,34 @@ export class MapComponent implements OnInit {
         });
         // markers.push(marker);
 
-        var contentString1 = '<div id="content">' +
+        contentString = '<div id="content">' +
           '<div id="siteNotice">' +
           '</div>' +
-          '<h3 id="firstHeading" class="firstHeading">' + this.Dorm[i].name + '</h3>' +
+          '<h2 id="firstHeading" class="firstHeading">' + this.Dorm[i].name + '</h2>' +
           '<div id="bodyContent">' +
-          '<p><b>554</b>, also referred to as <b>Ayers Rock</b>, is a large ' +
-          'sandstone rock formation in the southern part of the ' +
-          'Northern Territory, central Australia. It lies 335&#160;km (208&#160;mi) ' +
-          'south west of the nearest large town, Alice Springs; 450&#160;km ' +
-          '(280&#160;mi) by road. Kata Tjuta and Uluru are the two major ' +
-          'features of the Uluru - Kata Tjuta National Park. Uluru is ' +
-          'sacred to the Pitjantjatjara and Yankunytjatjara, the ' +
-          'Aboriginal people of the area. It has many springs, waterholes, ' +
-          'rock caves and ancient paintings. Uluru is listed as a World ' +
-          'Heritage Site.</p>' +
-          '<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">' +
-          'https://en.wikipedia.org/w/index.php?title=Uluru</a> ' +
-          '(last visited June 22, 2009).</p>' +
+          '<p><h5>ที่อยู่: </h5>' + this.Dorm[i].address +
+          '<h5>เบอร์โทรศัพท์: </h5>' + this.Dorm[i].tel +
+          '<h5>ยูนิตไฟฟ้า: </h5>' + this.Dorm[i].electric_unit +
+          '<h5>ค่าน้ำ: </h5>' + this.Dorm[i].water_bill +
+          '<h5>ราคาห้องพัดลม: </h5>' + this.Dorm[i].price.fan_price +
+          '<h5>ราคาห้องแอร์: </h5>' + this.Dorm[i].price.air_price +
+          '<h5>คำอธิบาย: </h5>' + this.Dorm[i].description +
+          '<h5>ประเภท: </h5>' + this.Dorm[i].type + '</p>' +
           '</div>' +
           '</div>';
-        contentString.push(contentString1);
-      }
-      var infowindow;
-      for (var i = 0; i < contentString.length; i++) {
-         infowindow = new google.maps.InfoWindow({
-          content: contentString[i],
+
+        contentStrings.push(contentString);
+        var infowindow = new google.maps.InfoWindow({
           maxWidth: 200
         });
+        google.maps.event.addListener(marker, 'click', (function (marker, i) {
+          return function () {
+            infowindow.setContent(contentStrings[i]);
+            infowindow.open(map, marker);
+          }
+        })(marker, i));
       }
-      for (var i = 0; i < markers.length; i++) {
-      markers[i].addListener('click', function () {
-        // if (markers[i] = contentString[i]) {
-        infowindow.open(map, markers[i]);
-        // }
-      });
-      }
-
-
       infoWindow = new google.maps.InfoWindow;
-
       // Try HTML5 geolocation.
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
@@ -135,8 +124,10 @@ export class MapComponent implements OnInit {
   Changelocation() {
     this.auth.getDorm().subscribe(res => {
       this.Dorm = res;
+      var infoWindow;
+      var contentString;
+      var contentStrings = [];
       var obj = Object.keys(this.Dorm).length;
-      var markers = [];
 
       var map = new google.maps.Map(document.getElementById('map'), {
         zoom: this.Province.zoom,
@@ -144,9 +135,10 @@ export class MapComponent implements OnInit {
       });
 
       if (this.Province.name == "อำเภอกะทู้") {
-
+         contentStrings = [];
         for (let i = 0; i < obj; i++) {
           if (this.Dorm[i].type == "กะทู้") {
+            
             var myLatLng = { lat: this.Dorm[i].lat, lng: this.Dorm[i].long };
             // console.log(myLatLng);
             var marker = new google.maps.Marker({
@@ -156,19 +148,43 @@ export class MapComponent implements OnInit {
               animation: google.maps.Animation.DROP,
               title: 'Hello World!'
             });
-            markers.push(marker);
+
+            contentString = '<div id="content">' +
+              '<div id="siteNotice">' +
+              '</div>' +
+              '<h2 id="firstHeading" class="firstHeading">' + this.Dorm[i].name + '</h2>' +
+              '<div id="bodyContent">' +
+              '<p><h5>ที่อยู่: </h5>' + this.Dorm[i].address +
+              '<h5>เบอร์โทรศัพท์: </h5>' + this.Dorm[i].tel +
+              '<h5>ยูนิตไฟฟ้า: </h5>' + this.Dorm[i].electric_unit +
+              '<h5>ค่าน้ำ: </h5>' + this.Dorm[i].water_bill +
+              '<h5>ราคาห้องพัดลม: </h5>' + this.Dorm[i].price.fan_price +
+              '<h5>ราคาห้องแอร์: </h5>' + this.Dorm[i].price.air_price +
+              '<h5>คำอธิบาย: </h5>' + this.Dorm[i].description +
+              '<h5>ประเภท: </h5>' + this.Dorm[i].type + '</p>' +
+              '</div>' +
+              '</div>';
+
+            contentStrings.push(contentString);
+            var infowindow = new google.maps.InfoWindow({
+              maxWidth: 200
+            });
+            google.maps.event.addListener(marker, 'click', (function (marker, i) {
+              return function () {
+                infowindow.setContent(contentStrings[0]);
+                infowindow.open(map, marker);
+              }
+            })(marker, i));
           }
         }
 
 
 
       } else if (this.Province.name == "อำเภอเมืองภูเก็ต") {
-        // for (var i = 0; i < markers.length; i++) {
-        //   markers[i].setMap(null);
-        // }
-        // markers = [];
+         contentStrings = [];
         for (let i = 0; i < obj; i++) {
           if (this.Dorm[i].type == "เมืองภูเก็ต") {
+            
             var myLatLng = { lat: this.Dorm[i].lat, lng: this.Dorm[i].long };
             // console.log(myLatLng);
             var marker = new google.maps.Marker({
@@ -178,10 +194,38 @@ export class MapComponent implements OnInit {
               animation: google.maps.Animation.DROP,
               title: 'Hello World!'
             });
+
+            contentString = '<div id="content">' +
+            '<div id="siteNotice">' +
+            '</div>' +
+            '<h2 id="firstHeading" class="firstHeading">' + this.Dorm[i].name + '</h2>' +
+            '<div id="bodyContent">' +
+            '<p><h5>ที่อยู่: </h5>' + this.Dorm[i].address +
+            '<h5>เบอร์โทรศัพท์: </h5>' + this.Dorm[i].tel +
+            '<h5>ยูนิตไฟฟ้า: </h5>' + this.Dorm[i].electric_unit +
+            '<h5>ค่าน้ำ: </h5>' + this.Dorm[i].water_bill +
+            '<h5>ราคาห้องพัดลม: </h5>' + this.Dorm[i].price.fan_price +
+            '<h5>ราคาห้องแอร์: </h5>' + this.Dorm[i].price.air_price +
+            '<h5>คำอธิบาย: </h5>' + this.Dorm[i].description +
+            '<h5>ประเภท: </h5>' + this.Dorm[i].type + '</p>' +
+            '</div>' +
+            '</div>';
+  
+          contentStrings.push(contentString);
+          var infowindow = new google.maps.InfoWindow({
+            maxWidth: 200
+          });
+          google.maps.event.addListener(marker, 'click', (function (marker, i) {
+            return function () {
+              infowindow.setContent(contentStrings[0]);
+              infowindow.open(map, marker);
+            }
+          })(marker, i)); 
           }
         }
-      } else if (this.Province.name == "อำเภอถลาง") {
 
+      } else if (this.Province.name == "อำเภอถลาง") {
+        contentStrings = [];
         for (let i = 0; i < obj; i++) {
           if (this.Dorm[i].type == "ถลาง") {
             var myLatLng = { lat: this.Dorm[i].lat, lng: this.Dorm[i].long };
@@ -193,6 +237,33 @@ export class MapComponent implements OnInit {
               animation: google.maps.Animation.DROP,
               title: 'Hello World!'
             });
+
+            contentString = '<div id="content">' +
+            '<div id="siteNotice">' +
+            '</div>' +
+            '<h2 id="firstHeading" class="firstHeading">' + this.Dorm[i].name + '</h2>' +
+            '<div id="bodyContent">' +
+            '<p><h5>ที่อยู่: </h5>' + this.Dorm[i].address +
+            '<h5>เบอร์โทรศัพท์: </h5>' + this.Dorm[i].tel +
+            '<h5>ยูนิตไฟฟ้า: </h5>' + this.Dorm[i].electric_unit +
+            '<h5>ค่าน้ำ: </h5>' + this.Dorm[i].water_bill +
+            '<h5>ราคาห้องพัดลม: </h5>' + this.Dorm[i].price.fan_price +
+            '<h5>ราคาห้องแอร์: </h5>' + this.Dorm[i].price.air_price +
+            '<h5>คำอธิบาย: </h5>' + this.Dorm[i].description +
+            '<h5>ประเภท: </h5>' + this.Dorm[i].type + '</p>' +
+            '</div>' +
+            '</div>';
+  
+          contentStrings.push(contentString);
+          var infowindow = new google.maps.InfoWindow({
+            maxWidth: 200
+          });
+          google.maps.event.addListener(marker, 'click', (function (marker, i) {
+            return function () {
+              infowindow.setContent(contentStrings[0]);
+              infowindow.open(map, marker);
+            }
+          })(marker, i));
           }
         }
       }
