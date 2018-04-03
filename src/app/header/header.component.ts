@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
+import { MatchingService } from '../services/matching.service';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-header',
@@ -7,16 +8,21 @@ import { Router } from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  currentUser : Object;
+  messages : Object;
   constructor(public auth : AuthenticationService,
-              private router : Router) { }
+              private router : Router,
+              private matching : MatchingService) { }
 
-  ngOnInit() {
-    if(this.auth.loggedIn()){
-      console.log(this.auth.userDetails);
+
+  ngOnInit(){}
+
+
+  getMessages(){
+    if(this.auth.loggedIn){
+      this.messages = this.matching.fetch();
+      console.log(this.messages);
     }
   }
-
   onLogOut(){
     this.auth.logOut();
     if(!this.auth.loggedIn()){

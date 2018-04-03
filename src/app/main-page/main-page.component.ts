@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild  } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
 import { MatchPeopleService } from '../services/match-people.service';
+import { MatchingService } from '../services/matching.service';
 import { } from '@types/googlemaps';
 @Component({
   selector: 'app-main-page',
@@ -9,7 +10,8 @@ import { } from '@types/googlemaps';
 })
 export class MainPageComponent implements OnInit {
   map: google.maps.Map;
-
+  text;
+  messages;
   latitude: any;
   longitude: any;
    singles;
@@ -27,21 +29,25 @@ export class MainPageComponent implements OnInit {
    selectedPossibleUserInfo_hadDorm;
    selectedLeastUserInfo_hadDorm;
   constructor(private auth : AuthenticationService,
-              private matchPeople : MatchPeopleService) { }
+              private matchPeople : MatchPeopleService,
+              private matching : MatchingService) { }
 
   ngOnInit() {
     if(this.auth.userDetails){
       this.auth.getProfile().subscribe(res => {
         this.currentUser = res;
+        console.log(this.currentUser._id);
         this.getAllMatchedPeople();
+        const data = {
+          id : this.currentUser._id
+        }
+        this.matching.findMessage(data).subscribe(res => {
+          this.messages = res;
+          //console.log(this.messages);
+          this.matching.save(this.messages);
+        })
       })
     }
-    var myLatLng = { lat: 7.895167, lng: 98.352083 };
-
-    var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 6,
-      center: { lat: 7.895167, lng: 98.352083 },
-    });
     }
 
     onSubmit(){
@@ -96,6 +102,14 @@ export class MainPageComponent implements OnInit {
           this.getMinutesSleepTimeForHousandMinutes(this.perfectUser_hadDorm,2);
           this.getMinutesSleepTimeForHousandMinutes(this.possibleUser_hadDorm,2);
           this.getMinutesSleepTimeForHousandMinutes(this.leastUser_hadDorm,2);
+
+          this.check_description(this.perfectUser,1);
+          this.check_description(this.possibleUser,1);
+          this.check_description(this.leastUser,1);
+
+          this.check_description(this.perfectUser_hadDorm,2);
+          this.check_description(this.possibleUser_hadDorm,2);
+          this.check_description(this.leastUser_hadDorm,2);
       })
     })
   }
@@ -400,6 +414,51 @@ export class MainPageComponent implements OnInit {
         }
     }
     }
+
+  check_description(user = [],type){
+    if(type == 1){
+    for (var i = 0; i<user.length; i++){
+      if(user[i].details.descriptionsEx.c1){
+        user[i].details.descriptionsEx.text1 = "สูบบุหรี่ได้"
+      } else if(user[i].details.descriptionsEx.c2){
+        user[i].details.descriptionsEx.text2 = "ละเลยการทำความสะอาดได้"
+      } else if(user[i].details.descriptionsEx.c3){
+        user[i].details.descriptionsEx.text3 = "เลี้ยงสัตว์ได้"
+      } else if(user[i].details.descriptionsEx.c4){
+        user[i].details.descriptionsEx.text4 = "ส่งเสียงดังได้"
+      } else if(user[i].details.descriptionsEx.c5){
+        user[i].details.descriptionsEx.text5 = "พาเพื่อนเข้าห้องได้"
+      }
+    }
+    } else if(type == 2){
+      for (var i = 0; i<user.length; i++){
+        if(user[i].user.details.descriptionsEx.c1){
+          user[i].user.details.descriptionsEx.text1 = "สูบบุหรี่ได้"
+        } else if(user[i].user.details.descriptionsEx.c2){
+          user[i].user.details.descriptionsEx.text2 = "ละเลยการทำความสะอาดได้"
+        } else if(user[i].user.details.descriptionsEx.c3){
+          user[i].user.details.descriptionsEx.text3 = "เลี้ยงสัตว์ได้"
+        } else if(user[i].user.details.descriptionsEx.c4){
+          user[i].user.details.descriptionsEx.text4 = "ส่งเสียงดังได้"
+        } else if(user[i].user.details.descriptionsEx.c5){
+          user[i].user.details.descriptionsEx.text5 = "พาเพื่อนเข้าห้องได้"
+        }
+      }
+    }
+  }
+
+  addInterestedPeople(actioner,victim){
+    const data = {
+      actioner : actioner,
+      victim : victim,
+      status : "isMatching"
+    }
+
+    this.matching.addInterestedPeople(data).subscribe(res => {
+      console.log(res);
+    })
+    
+  }
   }
   
 

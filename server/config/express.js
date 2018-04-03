@@ -25,6 +25,8 @@ module.exports = function(){
     require('../routes/verify.route')(app);
     require('../routes/habit.route')(app);
     require('../routes/user-match.route')(app);
+    require('../routes/matching.route')(app);
+    require('../routes/notification.route')(app);
     return app;
 
 

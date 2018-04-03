@@ -13,5 +13,7 @@ module.exports = function(){
     require('../models/habit.model');
     require('../models/dorm.model');
     require('../models/reserve.model');
+    require('../models/matching.model');
+    require('../models/notification.model');
     return db;
 }

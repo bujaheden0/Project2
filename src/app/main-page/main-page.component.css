@@ -19,11 +19,9 @@
     margin-left : 16px;
     margin-right: 16px;
 }
-
 .rounded-circle{
-    width: 95px;
-    height: 95px;
-    margin-left: 5px
+    width: 7em;
+    height : auto;
 }
 
 .information{

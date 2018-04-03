@@ -36,6 +36,18 @@ li.sign-up:hover , li.sign-in:hover  {
     border-radius: 5px;
 }
 
+.notification i{
+    color:white;
+    margin-top: 12px;
+    margin-right: 2px;
+}
+
+.dropdown-notification{
+    position: absolute;
+    width: 450px;
+    right: 160px;
+}
+
 
 
 

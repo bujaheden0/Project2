@@ -87,7 +87,6 @@ export class AuthenticationService {
 
   getCurrentUser() {
     this.userDetails = JSON.parse(localStorage.getItem('user'));
-    console.log(this.userDetails);
     return this.userDetails;
   }
 

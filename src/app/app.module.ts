@@ -24,6 +24,7 @@ import { VerifyOtpService } from './services/verify-otp.service';
 import { MainPageComponent } from './main-page/main-page.component';
 import { MatchPeopleService } from './services/match-people.service';
 import { DormPageComponent } from './dorm-page/dorm-page.component';
+import { MatchingService } from './services/matching.service';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { DormPageComponent } from './dorm-page/dorm-page.component';
                AuthGuard, 
                Mbti16typedatailService,
                VerifyOtpService,
-               MatchPeopleService
+               MatchPeopleService,
+               MatchingService
 ],  
   bootstrap: [AppComponent]
 })
