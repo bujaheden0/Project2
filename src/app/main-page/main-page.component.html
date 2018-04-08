@@ -3,7 +3,7 @@
   <div class="showPeople">
     <div class="searchBar">
     </div>
-      <h5 class="display-5">มีหอพัก</h5>
+      <h5 class="display-5 typeDorm" *ngIf="show_hadDorm">มีหอพัก</h5>
       <div class="row" *ngIf="perfectUser_hadDorm || possibleUser_hadDorm || leastUser_hadDorm">
         <!-- PerfectUserCard -->
         <div class="card"  *ngFor="let perfectUser_hadDorm of perfectUser_hadDorm">
@@ -12,8 +12,9 @@
                   <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 95%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"><b>ลักษณะนิสัยคล้ายกัน</b></div>
                 </div>
               <div class="row justify-content-between">
-                <div class="col-4"><img src="{{perfectUser_hadDorm.user.profile_picture}}" alt="..." class="rounded-circle"></div>
-                <div class="col-8" style="line-height: 200%;">ชื่อ : {{ perfectUser_hadDorm.user.firstname }}  {{ perfectUser_hadDorm.user.lastname }}<br>
+                <div class="col-5"><img src="{{perfectUser_hadDorm.user.profile_picture}}" alt="..." class="rounded"></div>
+                <div class="col-7" style="line-height: 200%;">ชื่อ : {{ perfectUser_hadDorm.user.firstname }} <br> 
+                                  นามสกุล :  {{ perfectUser_hadDorm.user.lastname }}<br>
                                   ศาสนา : {{ perfectUser_hadDorm.user.details.religion }}<br>
                                   อายุ : {{ perfectUser_hadDorm.user.details.age }}<br>
                                   อาชีพ : {{ perfectUser_hadDorm.user.details.occupation }} <br>
@@ -34,8 +35,9 @@
                   <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 75%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"><b>ลักษณะนิสัยคล้ายกัน</b></div>
                 </div>
               <div class="row justify-content-between">
-                <div class="col-4"><img src="{{ possibleUser_hadDorm.user.profile_picture }}" alt="..." class="rounded-circle"></div>
-                <div class="col-8" style="line-height: 200%;">ชื่อ : {{ possibleUser_hadDorm.user.firstname }}  {{ possibleUser_hadDorm.user.lastname }}<br>
+                <div class="col-5"><img src="{{ possibleUser_hadDorm.user.profile_picture }}" alt="..." class="rounded"></div>
+                <div class="col-7" style="line-height: 200%;">ชื่อ : {{ possibleUser_hadDorm.user.firstname }} <br>
+                                  นามสกุล : {{ possibleUser_hadDorm.user.lastname }}<br>
                                   ศาสนา : {{ possibleUser_hadDorm.user.details.religion }}<br>
                                   อายุ : {{ possibleUser_hadDorm.user.details.age }}<br>
                                   อาชีพ : {{ possibleUser_hadDorm.user.details.occupation }} <br>
@@ -57,8 +59,9 @@
                     <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 55%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"><b>ลักษณะนิสัยคล้ายกัน</b></div>
                   </div>
                 <div class="row justify-content-between">
-                  <div class="col-4"><img src="{{ leastUser_hadDorm.user.profile_picture }}"  class="rounded-circle"></div>
-                  <div class="col-8" style="line-height: 200%;">ชื่อ : {{ leastUser_hadDorm.user.firstname }}  {{ leastUser_hadDorm.user.lastname }}<br>
+                  <div class="col-5"><img src="{{ leastUser_hadDorm.user.profile_picture }}"  class="rounded"></div>
+                  <div class="col-7" style="line-height: 200%;">ชื่อ : {{ leastUser_hadDorm.user.firstname }} <br>
+                                    นามสกุล : {{ leastUser_hadDorm.user.lastname }}<br>
                                     ศาสนา : {{ leastUser_hadDorm.user.details.religion }}<br>
                                     อายุ : {{ leastUser_hadDorm.user.details.age }}<br>
                                     อาชีพ : {{ leastUser_hadDorm.user.details.occupation }} <br>
@@ -73,7 +76,7 @@
               </div>
           </div>
       </div>
-      <h5 class="display-5">ไม่มีหอพัก</h5>
+      <h5 class="display-5 typeDorm" *ngIf="perfectUser || possibleUser || leastUser">ไม่มีหอพัก</h5>
       <div class="row" *ngIf="perfectUser || possibleUser || leastUser">
         <!-- PerfectUserCard -->
         <div class="card"  *ngFor="let perfectUser of perfectUser">
@@ -82,8 +85,9 @@
                   <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 95%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"><b>ลักษณะนิสัยคล้ายกัน</b></div>
                 </div>
               <div class="row justify-content-between">
-                <div class="col-4"><img src="{{ perfectUser.profile_picture }}" alt="..." class="rounded-circle"></div>
-                <div class="col-8" style="line-height: 200%;">ชื่อ : {{ perfectUser.firstname }}  {{ perfectUser.lastname }}<br>
+                <div class="col-5"><img src="{{ perfectUser.profile_picture }}" alt="..." class="rounded"></div>
+                <div class="col-7" style="line-height: 200%;">ชื่อ : {{ perfectUser.firstname }} <br>
+                                  นามสกุล : {{ perfectUser.lastname }}<br>
                                   ศาสนา : {{ perfectUser.details.religion }}<br>
                                   อายุ : {{ perfectUser.details.age }}<br>
                                   อาชีพ : {{ perfectUser.details.occupation }} <br>
@@ -104,8 +108,9 @@
                   <div class="progress-bar progress-bar-striped bg-warning" role="progressbar" style="width: 75%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"><b>ลักษณะนิสัยคล้ายกัน</b></div>
                 </div>
               <div class="row justify-content-between">
-                <div class="col-4"><img src="{{ possibleUser.profile_picture }}" alt="..." class="rounded-circle"></div>
-                <div class="col-8" style="line-height: 200%;">ชื่อ : {{ possibleUser.firstname }}  {{ possibleUser.lastname }}<br>
+                <div class="col-5"><img src="{{ possibleUser.profile_picture }}" alt="..." class="rounded"></div>
+                <div class="col-7" style="line-height: 200%;">ชื่อ : {{ possibleUser.firstname }} <br>
+                                  นามสกุล : {{ possibleUser.lastname }}<br>
                                   ศาสนา : {{ possibleUser.details.religion }}<br>
                                   อายุ : {{ possibleUser.details.age }}<br>
                                   อาชีพ : {{ possibleUser.details.occupation }} <br>
@@ -127,8 +132,9 @@
                     <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" style="width: 55%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"><b>ลักษณะนิสัยคล้ายกัน</b></div>
                   </div>
                 <div class="row justify-content-between">
-                  <div class="col-4"><img src="{{ leastUser.profile_picture }}" class="rounded-circle"></div>
-                  <div class="col-8" style="line-height: 200%;">ชื่อ : {{ leastUser.firstname }}  {{ leastUser.lastname }}<br>
+                  <div class="col-5"><img src="{{ leastUser.profile_picture }}" class="rounded"></div>
+                  <div class="col-7" style="line-height: 200%;">ชื่อ : {{ leastUser.firstname }} <br>
+                                    นามสกุล : {{ leastUser.lastname }}<br>
                                     ศาสนา : {{ leastUser.details.religion }}<br>
                                     อายุ : {{ leastUser.details.age }}<br>
                                     อาชีพ : {{ leastUser.details.occupation }} <br>
@@ -155,19 +161,20 @@
               </button>
             </div>
             <div class="modal-body" *ngIf="selectedPerfectUserInfo">
-              <div class="row justify-content-between">
-                <div class="col-6 text-center">
-                      <img src="https://wordsandvideos.com/wp-content/uploads/2016/12/common.png" alt="..." class="rounded-circle">
+              <div class="row justify-content-center">
+                <div class="col-6" >
+                      <img src="{{ selectedPerfectUserInfo.profile_picture }}"  class="rounded popup-picture">
                 </div>
-                <div class="information col-6">
-                  ชื่อ : {{ selectedPerfectUserInfo.firstname }}  {{ selectedPerfectUserInfo.lastname }} <br>
+                <div class="information col-4 mt-2">
+                  ชื่อ : {{ selectedPerfectUserInfo.firstname }} <br> 
+                  นามสกุล : {{ selectedPerfectUserInfo.lastname }} <br>
                   ศาสนา : {{ selectedPerfectUserInfo.details.religion }}<br>
                   อายุ : {{ selectedPerfectUserInfo.details.age }}<br>
                 </div>
               </div> 
               <div class="row">
-                  <div class="information col mt-2">
-                    <p class="pl-4">
+                  <div class="information col-7 mt-2">
+                    <p class="pl-4 text-left">
                       งานอดิเรก : {{ selectedPerfectUserInfo.details.hobbies }} <br>
                       ที่อยู่ : {{ selectedPerfectUserInfo.details.address }} <br>
                       สิ่งที่อนุญาติให้ทำ  <br>
@@ -178,7 +185,7 @@
                       <li *ngIf="selectedPerfectUserInfo.details.descriptionsEx.text5"> {{ selectedPerfectUserInfo.details.descriptionsEx.text5 }}  </li>
                     </p>
                   </div>
-                  <div class="information col mt-2">
+                  <div class="information col-4 mt-2">
                       อาชีพ : {{ selectedPerfectUserInfo.details.occupation }} <br>
                       นิสัย : {{ selectedPerfectUserInfo.habit }} <br>
                       เวลานอน : {{ selectedPerfectUserInfo.details.sleep_time }} <br>
@@ -187,8 +194,8 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary" (click)="addInterestedPeople(this.currentUser._id, selectedPerfectUserInfo._id)" data-dismiss="modal">สนใจ</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
             </div>
           </div>
         </div>
@@ -205,19 +212,19 @@
               </button>
             </div>
             <div class="modal-body" *ngIf="selectedPossibleUserInfo">
-              <div class="row justify-content-between">
-                <div class="col-6 text-center">
-                      <img src="https://wordsandvideos.com/wp-content/uploads/2016/12/common.png" alt="..." class="rounded-circle">
+              <div class="row justify-content-center">
+                <div class="col-6">
+                      <img src="{{ selectedPossibleUserInfo.profile_picture }}" class="rounded popup-picture">
                 </div>
-                <div class="information col-6">
+                <div class="information col-4 mt-2">
                   ชื่อ : {{ selectedPossibleUserInfo.firstname }}  {{ selectedPossibleUserInfo.lastname }} <br>
                   ศาสนา : {{ selectedPossibleUserInfo.details.religion }}<br>
                   อายุ : {{ selectedPossibleUserInfo.details.age }}<br>
                 </div>
               </div> 
               <div class="row">
-                  <div class="information col mt-2">
-                    <p class="pl-4">
+                  <div class="information col-7 mt-2">
+                    <p class="pl-4 text-left">
                       งานอดิเรก : {{ selectedPossibleUserInfo.details.hobbies }} <br>
                       ที่อยู่ : {{ selectedPossibleUserInfo.details.address }} <br>
                       สิ่งที่อนุญาติให้ทำ <br>
@@ -228,7 +235,7 @@
                       <li *ngIf="selectedPossibleUserInfo.details.descriptionsEx.text5"> {{ selectedPossibleUserInfo.details.descriptionsEx.text5 }}  </li>
                     </p>
                   </div>
-                  <div class="information col mt-2">
+                  <div class="information col-4 mt-2">
                       อาชีพ : {{ selectedPossibleUserInfo.details.occupation }} <br>
                       นิสัย : {{ selectedPossibleUserInfo.habit }} <br>
                       เวลานอน : {{ selectedPossibleUserInfo.details.sleep_time }} <br>
@@ -237,8 +244,8 @@
               </div>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary" (click)="addInterestedPeople(this.currentUser._id, selectedPossibleUserInfo._id)" data-dismiss="modal">สนใจ</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
             </div>
           </div>
         </div>
@@ -254,19 +261,19 @@
                 </button>
               </div>
               <div class="modal-body" *ngIf="selectedLeastUserInfo">
-                <div class="row justify-content-between">
-                  <div class="col-6 text-center">
-                        <img src="https://wordsandvideos.com/wp-content/uploads/2016/12/common.png" alt="..." class="rounded-circle">
+                <div class="row justify-content-center">
+                  <div class="col-6">
+                        <img src="{{ selectedLeastUserInfo.profile_picture }}" class="rounded popup-picture">
                   </div>
-                  <div class="information col-6">
+                  <div class="information col-4 mt-2">
                     ชื่อ : {{ selectedLeastUserInfo.firstname }}  {{ selectedLeastUserInfo.lastname }} <br>
                     ศาสนา : {{ selectedLeastUserInfo.details.religion }}<br>
                     อายุ : {{ selectedLeastUserInfo.details.age }}<br>
                   </div>
                 </div> 
                 <div class="row">
-                    <div class="information col mt-2">
-                      <p class="pl-4">
+                    <div class="information col-7 mt-2">
+                      <p class="pl-4 text-left">
                         งานอดิเรก : {{ selectedLeastUserInfo.details.hobbies }} <br>
                         ที่อยู่ : {{ selectedLeastUserInfo.details.address }} <br>
                         สิ่งที่อนุญาติให้ทำ <br>
@@ -278,7 +285,7 @@
                         
                       </p>
                     </div>
-                    <div class="information col mt-2">
+                    <div class="information col-4 mt-2">
                         อาชีพ : {{ selectedLeastUserInfo.details.occupation }} <br>
                         นิสัย : {{ selectedLeastUserInfo.habit }} <br>
                         เวลานอน : {{ selectedLeastUserInfo.details.sleep_time }} <br>
@@ -287,8 +294,8 @@
                 </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                  <button type="button" class="btn btn-primary" (click)="addInterestedPeople(this.currentUser._id, selectedLeastUserInfo._id)" data-dismiss="modal">สนใจ</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
               </div>
             </div>
           </div>
@@ -305,8 +312,8 @@
                 </button>
               </div>
               <div class="modal-body" *ngIf="selectedPerfectUserInfo_hadDorm">
-                <div class="row justify-content-between">
-                  <div class="col-6 text-center">
+                <div class="row justify-content-center">
+                  <div class="col-6">
                         <img src="{{ selectedPerfectUserInfo_hadDorm.user.profile_picture }}" alt="..." class="rounded-circle">
                   </div>
                   <div class="information col-6">
@@ -316,14 +323,14 @@
                   </div>
                 </div> 
                 <div class="row">
-                    <div class="information col mt-2">
+                    <div class="information col-7 mt-2">
                       <p class="pl-4">
                         งานอดิเรก : {{ selectedPerfectUserInfo_hadDorm.user.details.hobbies }} <br>
                         ที่อยู่ : {{ selectedPerfectUserInfo_hadDorm.user.details.address }} <br>
                         เพิ่มเติม : {{ selectedPerfectUserInfo_hadDorm.user.details.descriptions }}
                       </p>
                     </div>
-                    <div class="information col mt-2">
+                    <div class="information col-4 mt-2">
                         อาชีพ : {{ selectedPerfectUserInfo_hadDorm.user.details.occupation }} <br>
                         นิสัย : {{ selectedPerfectUserInfo_hadDorm.user.habit }} <br>
                         เวลานอน : {{ selectedPerfectUserInfo_hadDorm.user.details.sleep_time }}
@@ -334,8 +341,8 @@
                 </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                  <button type="button" class="btn btn-primary" (click)="addInterestedPeople(this.currentUser._id, selectedPerfectUserInfo_hadDorm._id)" data-dismiss="modal">สนใจ</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
               </div>
             </div>
           </div>
@@ -352,8 +359,8 @@
                 </button>
               </div>
               <div class="modal-body" *ngIf="selectedPossibleUserInfo_hadDorm">
-                <div class="row justify-content-between">
-                  <div class="col-6 text-center">
+                <div class="row justify-content-center">
+                  <div class="col-6">
                         <img src="{{ selectedPossibleUserInfo_hadDorm.user.profile_picture }}" alt="..." class="rounded-circle">
                   </div>
                   <div class="information col-6">
@@ -378,8 +385,8 @@
                 </div>
               </div>
               <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                  <button type="button" class="btn btn-primary" (click)="addInterestedPeople(this.currentUser._id, selectedPossibleUserInfo_hadDorm._id)" data-dismiss="modal">สนใจ</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
               </div>
             </div>
           </div>
@@ -421,8 +428,8 @@
                   </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">ตกลง</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+                    <button type="button" class="btn btn-primary" (click)="addInterestedPeople(this.currentUser._id, selectedLeastUserInfo_hadDorm._id)" data-dismiss="modal">สนใจ</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
                 </div>
               </div>
             </div>
@@ -432,13 +439,13 @@
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">สนใจ Perfect</h5>
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                <div class="modal-body" *ngIf="selectedPerfectUserInfo">
-                  <h4 class="display-5">คุณต้องการที่จะอยู่กับ {{ selectedPerfectUserInfo.firstname }} {{ selectedPerfectUserInfo.lastname }} </h4>
+                <div class="modal-body text-center" *ngIf="selectedPerfectUserInfo">
+                  <h5 class="display-5 headText">คุณสนใจที่จะอยู่ร่วมกับ </h5><h5 class="display-5"> {{ selectedPerfectUserInfo.firstname }} {{ selectedPerfectUserInfo.lastname }} </h5>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" (click)="addInterestedPeople(this.currentUser._id, selectedPerfectUserInfo._id)" data-dismiss="modal">ตกลง</button>
@@ -452,13 +459,13 @@
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">สนใจ Possible</h5>
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                <div class="modal-body" *ngIf="selectedPossibleUserInfo">
-                    <h4 class="display-5">คุณต้องการที่จะอยู่กับ {{ selectedPossibleUserInfo.firstname }} {{ selectedPossibleUserInfo.lastname }} </h4>
+                <div class="modal-body text-center" *ngIf="selectedPossibleUserInfo">
+                    <h5 class="display-5 headText">คุณสนใจที่จะอยู่ร่วมกับ </h5><h5 class="display-5"> {{ selectedPossibleUserInfo.firstname }} {{ selectedPossibleUserInfo.lastname }} </h5>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" (click)="addInterestedPeople(this.currentUser._id, selectedPossibleUserInfo._id)" data-dismiss="modal">ตกลง</button>
@@ -472,13 +479,13 @@
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">สนใจ Least</h5>
+                  <h5 class="modal-title" id="exampleModalLabel"></h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
                 </div>
-                <div class="modal-body" *ngIf="selectedLeastUserInfo">
-                    <h4 class="display-5">คุณต้องการที่จะอยู่กับ {{ selectedLeastUserInfo.firstname }} {{ selectedLeastUserInfo.lastname }} </h4>
+                <div class="modal-body text-center" *ngIf="selectedLeastUserInfo">
+                    <h5 class="display-5 headText">คุณสนใจที่จะอยู่ร่วมกับ </h5><h5 class="display-5"> {{ selectedLeastUserInfo.firstname }} {{ selectedLeastUserInfo.lastname }} </h5>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" (click)="addInterestedPeople(this.currentUser._id, selectedLeastUserInfo._id)" data-dismiss="modal">ตกลง</button>

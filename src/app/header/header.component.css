@@ -12,6 +12,7 @@
 
 a.navbar-brand{
     color:white;
+    font-family: 'Courgette', cursive;
 }
 
 .navbar-brand:hover, .header a:hover , .navbar-brand:focus{
@@ -31,6 +32,10 @@ a.dropdown{
     color:#d6d8db;
 }
 
+a.currentUser{
+    font-family: 'Prompt', sans-serif;
+}
+
 li.sign-up:hover , li.sign-in:hover  {
     background: rgba(0, 0, 0, 0.100);
     border-radius: 5px;
@@ -46,6 +51,31 @@ li.sign-up:hover , li.sign-in:hover  {
     position: absolute;
     width: 450px;
     right: 160px;
+}
+
+.circleNotification{
+    padding: 2px;
+    background-color: red;
+    color: white;
+    border-radius: 20px;
+    position : absolute;
+    bottom : 15px;
+    left : 3px;
+}
+
+.indicator{
+    position: absolute;
+    top: 4px;
+    font-size: 10px;
+    margin-left: 5px;
+}
+
+.text-warning i {
+    color: red!important;
+}
+
+.nav-item{
+    font-family: 'Open Sans', sans-serif;
 }
 
 

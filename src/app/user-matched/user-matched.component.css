@@ -1,0 +1,12 @@
+.matchedPeople{
+    margin-top: 20px;
+}
+
+#profile_picture{
+    width: 150px;
+    height: 150px;
+}
+
+.card-block , .card-header, button{
+    font-family: 'Prompt', sans-serif;
+}

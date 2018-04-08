@@ -19,11 +19,34 @@
     margin-left : 16px;
     margin-right: 16px;
 }
-.rounded-circle{
-    width: 7em;
-    height : auto;
-}
+
 
 .information{
     line-height: 200%;
 }
+
+.card-block{
+    border-width: 0px 10px 10px 0px;
+    border-style: outset;
+    border-color: rgba(0, 0, 0, 0.125);
+    font-family: 'Prompt', sans-serif;
+}
+
+.typeDorm , button.btn , .modal-body , .modal-title{
+    font-family: 'Prompt', sans-serif;
+}
+
+img {
+    display: block;
+    max-height:135px;
+    width: 100px;
+    height: auto;
+  }
+
+ .popup-picture{
+     margin: 0 auto;
+ }
+
+ .headText{
+     color : rgba(0, 0, 0, 0.500);
+ }

@@ -22,6 +22,25 @@ export class MatchingService {
     return this.messages;
   }
 
+  getInterestedPeople(data){
+    return this.http.post('/api/match/getInfo', data).map(res => res.json());
+  }
+
+  setReadStatus(data){
+    return this.http.post('/api/notifications/update', data).map(res => res.json());
+  }
+
+  updateMatchingStatus_agree(data){
+    return this.http.post('/api/match/agree',data).map(res => res.json());
+  }
+
+  updateMatchingStatus_reject(data){
+    return this.http.post('/api/match/reject',data).map(res => res.json());
+  }
+
+  findMatchedPeopleInfo(data){
+    return this.http.post('/api/match/find',data).map(res => res.json());
+  }
 
 
 

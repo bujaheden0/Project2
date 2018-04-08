@@ -15,6 +15,8 @@ import { MapComponent } from './map/map.component';
 import { VerifyOtpComponent } from './verify-otp/verify-otp.component';
 import { MainPageComponent } from './main-page/main-page.component';
 import { DormPageComponent } from './dorm-page/dorm-page.component';
+import { InterestedPeopleComponent } from './interested-people/interested-people.component';
+import { UserMatchedComponent } from './user-matched/user-matched.component';
 const routes: Routes = [
   { path: '',                     component : LandingPageComponent},
   { path: 'signup',               component : SignUpComponent},
@@ -28,7 +30,9 @@ const routes: Routes = [
   { path: 'map',                  component : MapComponent},
   { path: 'verify',               component : VerifyOtpComponent},
   { path: 'main',                 component : MainPageComponent},
-  { path: 'dorm', component: DormPageComponent}
+  { path: 'dorm',                 component : DormPageComponent},
+  { path: 'user/:userId/:messageId',         component : InterestedPeopleComponent},
+  { path: 'userMatched/:userId/:messageId',    component : UserMatchedComponent}
 
 
 ];

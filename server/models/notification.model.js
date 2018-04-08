@@ -13,6 +13,9 @@ const notificationSchema = new schema({
         type : String,
         require : true
     },
+    type : {
+        type : Number
+    },
     read : Boolean
 })
 

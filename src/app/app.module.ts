@@ -25,6 +25,8 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { MatchPeopleService } from './services/match-people.service';
 import { DormPageComponent } from './dorm-page/dorm-page.component';
 import { MatchingService } from './services/matching.service';
+import { InterestedPeopleComponent } from './interested-people/interested-people.component';
+import { UserMatchedComponent } from './user-matched/user-matched.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { MatchingService } from './services/matching.service';
     PassportComponent,
     VerifyOtpComponent,
     MainPageComponent,
-    DormPageComponent
+    DormPageComponent,
+    InterestedPeopleComponent,
+    UserMatchedComponent
   ],
   imports: [
     BrowserModule,

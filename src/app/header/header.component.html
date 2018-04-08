@@ -19,21 +19,23 @@
         </ul>
         <ul class="navbar-nav ml-auto" *ngIf="auth.loggedIn() && auth.userDetails ">
           <li class="nav-item">
-            <a href="" class="notification" id="messagesDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-bell" (click)="getMessages()"></i></a>
+            <a href="" class="notification" id="messagesDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-bell"></i>
+              
+              <span *ngFor="let messages of messages" class="indicator text-warning d-none d-lg-block">
+                <i *ngIf="!messages.read" class="fa fa-fw fa-circle"></i>
+              </span>
+            </a>
             <div class="dropdown-notification dropdown-menu dropdown-menu-right" aria-labelledby="messagesDropdown">
-                <h6 class="dropdown-header">New Messages:</h6>
+                <h6 class="dropdown-header">{{ this.count_message }} ข้อความใหม่</h6>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">
-                  <strong>David Miller</strong>
+                <div *ngFor="let messages of messages"> 
+                <a class="dropdown-item"  (click)="onClick(messages.sender._id,messages._id,messages.type)">
+                  <strong>{{ messages.sender.firstname }} {{ messages.sender.lastname }}</strong>
+                  <span class="small float-right text-muted">11:21 AM</span>
+                  <div class="dropdown-message small">{{ messages.sender.firstname }} {{ messages.sender.lastname }} {{ messages.message}}</div>
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">
-                  <strong>Jane Smith</strong>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">
-                  <strong>John Doe</strong>
-                </a>
+              </div>
               </div>
           </li>
           <li class="nav-item" >

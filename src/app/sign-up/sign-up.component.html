@@ -57,10 +57,10 @@
                   <div class="form-group col-lg-10" [ngClass]="ValidatorDisplayCss('password')">
                       <label for="password">รหัสผ่าน</label>
                       <input type="password" class="form-control" [ngClass]="validatorInputCss('password')" id="password" aria-describedby="passwordHelp" formControlName="password" data-toggle="tooltip" data-placement="left" title="Tooltip on left">
-                      <!--<div class="form-control-feedback"
+                      <!-- <div class="form-control-feedback"
                       *ngIf="this.form.controls.password.errors && (this.form.controls.password.touched || this.form.controls.password.dirty)">
                        <p *ngIf="this.form.controls.password.errors.required">กรุณากรอกข้อมูลให้ครบถ้วน</p>
-                      </div>-->
+                      </div> -->
                       <small id="passwordHelp" class="form-text text-muted">( อย่างน้อย 6 ตัวอักษร รวมทั้งตัวเลขและอักขระพิเศษ)</small>
                     </div>
                     <div class="form-group col-lg-10" [ngClass]="ValidatorDisplayCss('tel')">

@@ -28,6 +28,7 @@ export class MainPageComponent implements OnInit {
    selectedPerfectUserInfo_hadDorm;
    selectedPossibleUserInfo_hadDorm;
    selectedLeastUserInfo_hadDorm;
+   show_hadDorm = false;
   constructor(private auth : AuthenticationService,
               private matchPeople : MatchPeopleService,
               private matching : MatchingService) { }
@@ -38,14 +39,8 @@ export class MainPageComponent implements OnInit {
         this.currentUser = res;
         console.log(this.currentUser._id);
         this.getAllMatchedPeople();
-        const data = {
-          id : this.currentUser._id
-        }
-        this.matching.findMessage(data).subscribe(res => {
-          this.messages = res;
-          //console.log(this.messages);
-          this.matching.save(this.messages);
-        })
+        setInterval(() => {
+        this.findMessage()},1000);
       })
     }
     }
@@ -53,7 +48,15 @@ export class MainPageComponent implements OnInit {
     onSubmit(){
       console.log(this.singles);
     }
-
+    findMessage(){
+      const data = {
+        id : this.currentUser._id
+      }
+      this.matching.findMessage(data).subscribe(res => {
+        this.messages = res;
+        this.matching.save(this.messages);
+      })
+    }
   //รับค่า Array ทุกนิสัยที่ Matched กับ นิสัยที่ log in
   getAllMatchedPeople(){
     const data = {
@@ -64,6 +67,7 @@ export class MainPageComponent implements OnInit {
       this.perfectUser = res[0];
       this.possibleUser = res[1];
       this.leastUser = res[2];
+      console.log("ไม่มีหอ");
       console.log(res);
       // แปลงค่าวันเกิดให้เป็นอายุ
       this.getAgeFromBirthDay(this.perfectUser,1);
@@ -85,6 +89,10 @@ export class MainPageComponent implements OnInit {
           this.perfectUser_hadDorm = res[0];
           this.possibleUser_hadDorm = res[1];
           this.leastUser_hadDorm = res[2];
+          console.log("มีหอ");
+          if((this.perfectUser_hadDorm.length || this.possibleUser_hadDorm || this.leastUser_hadDorm) > 0 ){
+            this.show_hadDorm = true;
+          }
           console.log(res);
           // นำไปเช็คว่าถ้ามี User ซ้ำกับ User ที่ไม่มีหอ ให้เอา User คนนั้นออก
           this.checkIfArrays_areEqual(this.perfectUser,this.perfectUser_hadDorm );
@@ -420,13 +428,21 @@ export class MainPageComponent implements OnInit {
     for (var i = 0; i<user.length; i++){
       if(user[i].details.descriptionsEx.c1){
         user[i].details.descriptionsEx.text1 = "สูบบุหรี่ได้"
-      } else if(user[i].details.descriptionsEx.c2){
+      } 
+      
+      if(user[i].details.descriptionsEx.c2){
         user[i].details.descriptionsEx.text2 = "ละเลยการทำความสะอาดได้"
-      } else if(user[i].details.descriptionsEx.c3){
+      } 
+      
+      if(user[i].details.descriptionsEx.c3){
         user[i].details.descriptionsEx.text3 = "เลี้ยงสัตว์ได้"
-      } else if(user[i].details.descriptionsEx.c4){
+      }
+      
+      if(user[i].details.descriptionsEx.c4){
         user[i].details.descriptionsEx.text4 = "ส่งเสียงดังได้"
-      } else if(user[i].details.descriptionsEx.c5){
+      }
+      
+      if(user[i].details.descriptionsEx.c5){
         user[i].details.descriptionsEx.text5 = "พาเพื่อนเข้าห้องได้"
       }
     }
@@ -434,13 +450,21 @@ export class MainPageComponent implements OnInit {
       for (var i = 0; i<user.length; i++){
         if(user[i].user.details.descriptionsEx.c1){
           user[i].user.details.descriptionsEx.text1 = "สูบบุหรี่ได้"
-        } else if(user[i].user.details.descriptionsEx.c2){
+        }
+        
+        if(user[i].user.details.descriptionsEx.c2){
           user[i].user.details.descriptionsEx.text2 = "ละเลยการทำความสะอาดได้"
-        } else if(user[i].user.details.descriptionsEx.c3){
+        }
+        
+        if(user[i].user.details.descriptionsEx.c3){
           user[i].user.details.descriptionsEx.text3 = "เลี้ยงสัตว์ได้"
-        } else if(user[i].user.details.descriptionsEx.c4){
+        } 
+        
+        if(user[i].user.details.descriptionsEx.c4){
           user[i].user.details.descriptionsEx.text4 = "ส่งเสียงดังได้"
-        } else if(user[i].user.details.descriptionsEx.c5){
+        } 
+        
+        if(user[i].user.details.descriptionsEx.c5){
           user[i].user.details.descriptionsEx.text5 = "พาเพื่อนเข้าห้องได้"
         }
       }
