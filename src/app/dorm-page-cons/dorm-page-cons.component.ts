@@ -7,22 +7,22 @@ import { FormBuilder, FormGroup, FormControl, Validators, NgForm, ReactiveFormsM
 import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
-  selector: 'app-dorm-page',
-  templateUrl: './dorm-page.component.html',
-  styleUrls: ['./dorm-page.component.css']
+  selector: 'app-dorm-page-cons',
+  templateUrl: './dorm-page-cons.component.html',
+  styleUrls: ['./dorm-page-cons.component.css']
 })
-export class DormPageComponent implements OnInit {
+export class DormPageConsComponent implements OnInit {
+
   router: any;
   Dorm: any;
   map: google.maps.Map;
   seleteDorm:any;
+  dorm_id = "5ab91841e90436d93ab598de";
   constructor(private auth: AuthenticationService) { }
 
   ngOnInit() {
-    this.auth.getDorm().subscribe(res => {
-      this.Dorm = res;
-      var obj = Object.keys(this.Dorm).length;
-    })
+    
+    this.getSeletedDormInfo(this.dorm_id)
     // var map = new google.maps.Map(document.getElementById('map'), {
     //   zoom: 15,
     //   center: { lat: 7.894866, lng: 98.352092 },
@@ -31,7 +31,7 @@ export class DormPageComponent implements OnInit {
   
    //รับค่าจากหอ
    getSeletedDormInfo(dorm_id){
-     console.log(dorm_id);
+    console.log(dorm_id);
     this.auth.getDorm().subscribe(res => {
       this.Dorm = res;
       var marker;
@@ -58,3 +58,4 @@ export class DormPageComponent implements OnInit {
     })
   }
 }
+
