@@ -103,5 +103,8 @@ export class AuthenticationService {
   getDorm(){
     return this.http.get('/api/user/dorm', ).map(res => res.json());
   }
+  GetDormbyDistrict(data){
+    return this.http.post('/api/user/dormbydistrict', data).map(res => res.json());
+  }
   
 }

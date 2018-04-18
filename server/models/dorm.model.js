@@ -16,7 +16,8 @@ const dormSchema = new schema({
     description : String,
     lat : Number,
     long : Number,
-    type : String
+    type : String,
+    district : String
 })
 
 mongoose.model('Dorm', dormSchema);

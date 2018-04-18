@@ -23,6 +23,7 @@ export class MapComponent implements OnInit {
   form: FormGroup;
   Province;
   Dorm: any = {}
+  Dorm2: any = {}
   x: number;
   y: number;
   constructor(private auth: AuthenticationService) { }
@@ -32,7 +33,7 @@ export class MapComponent implements OnInit {
     this.auth.getDorm().subscribe(res => {
       this.Dorm = res;
       var obj = Object.keys(this.Dorm).length;
-      // console.log(obj); 
+      console.log(this.Dorm);
       // console.log(this.Dorm[0].lat);
       var infoWindow;
       var marker;
@@ -122,80 +123,41 @@ export class MapComponent implements OnInit {
     this.map.setCenter(new google.maps.LatLng(this.latitude, this.longitude));
   }
   Changelocation() {
-    this.auth.getDorm().subscribe(res => {
-      this.Dorm = res;
-      var infoWindow;
-      var contentString;
-      var contentStrings = [];
-      var obj = Object.keys(this.Dorm).length;
+    var infoWindow;
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: this.Province.zoom,
+      center: { lat: this.Province.Lat, lng: this.Province.Lng },
+    });
 
-      var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: this.Province.zoom,
-        center: { lat: this.Province.Lat, lng: this.Province.Lng },
-      });
+    if (this.Province.name == "อำเภอกะทู้") {
+      const dorm = {
+        District: "กะทู้"
+      }
+      this.auth.GetDormbyDistrict(dorm).subscribe(res => {
+        this.Dorm = res;
+        console.log(this.Dorm);
 
-      if (this.Province.name == "อำเภอกะทู้") {
-         contentStrings = [];
+        var marker;
+        var contentString;
+        var contentStrings = [];
+        var obj = Object.keys(this.Dorm).length;
+        // console.log(obj+"sdsd"+this.Dorm.lat);
+
         for (let i = 0; i < obj; i++) {
-          if (this.Dorm[i].type == "กะทู้") {
-            
-            var myLatLng = { lat: this.Dorm[i].lat, lng: this.Dorm[i].long };
-            // console.log(myLatLng);
-            var marker = new google.maps.Marker({
-              position: myLatLng,
-              map: map,
-              draggable: true,
-              animation: google.maps.Animation.DROP,
-              title: 'Hello World!'
-            });
 
-            contentString = '<div id="content">' +
-              '<div id="siteNotice">' +
-              '</div>' +
-              '<h2 id="firstHeading" class="firstHeading">' + this.Dorm[i].name + '</h2>' +
-              '<div id="bodyContent">' +
-              '<p><h5>ที่อยู่: </h5>' + this.Dorm[i].address +
-              '<h5>เบอร์โทรศัพท์: </h5>' + this.Dorm[i].tel +
-              '<h5>ยูนิตไฟฟ้า: </h5>' + this.Dorm[i].electric_unit +
-              '<h5>ค่าน้ำ: </h5>' + this.Dorm[i].water_bill +
-              '<h5>ราคาห้องพัดลม: </h5>' + this.Dorm[i].price.fan_price +
-              '<h5>ราคาห้องแอร์: </h5>' + this.Dorm[i].price.air_price +
-              '<h5>คำอธิบาย: </h5>' + this.Dorm[i].description +
-              '<h5>ประเภท: </h5>' + this.Dorm[i].type + '</p>' +
-              '</div>' +
-              '</div>';
+          // console.log("wtf")
+          var myLatLng = { lat: this.Dorm[i].lat, lng: this.Dorm[i].long };
 
-            contentStrings.push(contentString);
-            var infowindow = new google.maps.InfoWindow({
-              maxWidth: 200
-            });
-            google.maps.event.addListener(marker, 'click', (function (marker, i) {
-              return function () {
-                infowindow.setContent(contentStrings[0]);
-                infowindow.open(map, marker);
-              }
-            })(marker, i));
-          }
-        }
+          marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            draggable: true,
+            animation: google.maps.Animation.DROP,
+            title: 'Hello World!'
+          });
+          // markers.push(marker);
 
-
-
-      } else if (this.Province.name == "อำเภอเมืองภูเก็ต") {
-         contentStrings = [];
-        for (let i = 0; i < obj; i++) {
-          if (this.Dorm[i].type == "เมืองภูเก็ต") {
-            
-            var myLatLng = { lat: this.Dorm[i].lat, lng: this.Dorm[i].long };
-            // console.log(myLatLng);
-            var marker = new google.maps.Marker({
-              position: myLatLng,
-              map: map,
-              draggable: true,
-              animation: google.maps.Animation.DROP,
-              title: 'Hello World!'
-            });
-
-            contentString = '<div id="content">' +
+          contentString = '<div id="content">' +
             '<div id="siteNotice">' +
             '</div>' +
             '<h2 id="firstHeading" class="firstHeading">' + this.Dorm[i].name + '</h2>' +
@@ -210,64 +172,167 @@ export class MapComponent implements OnInit {
             '<h5>ประเภท: </h5>' + this.Dorm[i].type + '</p>' +
             '</div>' +
             '</div>';
-  
+
           contentStrings.push(contentString);
           var infowindow = new google.maps.InfoWindow({
             maxWidth: 200
           });
           google.maps.event.addListener(marker, 'click', (function (marker, i) {
             return function () {
-              infowindow.setContent(contentStrings[0]);
-              infowindow.open(map, marker);
-            }
-          })(marker, i)); 
-          }
-        }
-
-      } else if (this.Province.name == "อำเภอถลาง") {
-        contentStrings = [];
-        for (let i = 0; i < obj; i++) {
-          if (this.Dorm[i].type == "ถลาง") {
-            var myLatLng = { lat: this.Dorm[i].lat, lng: this.Dorm[i].long };
-            // console.log(myLatLng);
-            var marker = new google.maps.Marker({
-              position: myLatLng,
-              map: map,
-              draggable: true,
-              animation: google.maps.Animation.DROP,
-              title: 'Hello World!'
-            });
-
-            contentString = '<div id="content">' +
-            '<div id="siteNotice">' +
-            '</div>' +
-            '<h2 id="firstHeading" class="firstHeading">' + this.Dorm[i].name + '</h2>' +
-            '<div id="bodyContent">' +
-            '<p><h5>ที่อยู่: </h5>' + this.Dorm[i].address +
-            '<h5>เบอร์โทรศัพท์: </h5>' + this.Dorm[i].tel +
-            '<h5>ยูนิตไฟฟ้า: </h5>' + this.Dorm[i].electric_unit +
-            '<h5>ค่าน้ำ: </h5>' + this.Dorm[i].water_bill +
-            '<h5>ราคาห้องพัดลม: </h5>' + this.Dorm[i].price.fan_price +
-            '<h5>ราคาห้องแอร์: </h5>' + this.Dorm[i].price.air_price +
-            '<h5>คำอธิบาย: </h5>' + this.Dorm[i].description +
-            '<h5>ประเภท: </h5>' + this.Dorm[i].type + '</p>' +
-            '</div>' +
-            '</div>';
-  
-          contentStrings.push(contentString);
-          var infowindow = new google.maps.InfoWindow({
-            maxWidth: 200
-          });
-          google.maps.event.addListener(marker, 'click', (function (marker, i) {
-            return function () {
-              infowindow.setContent(contentStrings[0]);
+              infowindow.setContent(contentStrings[i]);
               infowindow.open(map, marker);
             }
           })(marker, i));
-          }
         }
-      }
-    })
-  }
 
+      })
+    }
+    else if (this.Province.name == "อำเภอเมืองภูเก็ต") {
+      const dorm = {
+        District: "เมืองภูเก็ต"
+      }
+      this.auth.GetDormbyDistrict(dorm).subscribe(res => {
+        this.Dorm = res;
+        console.log(this.Dorm);
+
+        var marker;
+        var contentString;
+        var contentStrings = [];
+        var obj = Object.keys(this.Dorm).length;
+        // console.log(obj+"sdsd"+this.Dorm.lat);
+
+        for (let i = 0; i < obj; i++) {
+
+          // console.log("wtf")
+          var myLatLng = { lat: this.Dorm[i].lat, lng: this.Dorm[i].long };
+
+          marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            draggable: true,
+            animation: google.maps.Animation.DROP,
+            title: 'Hello World!'
+          });
+          // markers.push(marker);
+
+          contentString = '<div id="content">' +
+            '<div id="siteNotice">' +
+            '</div>' +
+            '<h2 id="firstHeading" class="firstHeading">' + this.Dorm[i].name + '</h2>' +
+            '<div id="bodyContent">' +
+            '<p><h5>ที่อยู่: </h5>' + this.Dorm[i].address +
+            '<h5>เบอร์โทรศัพท์: </h5>' + this.Dorm[i].tel +
+            '<h5>ยูนิตไฟฟ้า: </h5>' + this.Dorm[i].electric_unit +
+            '<h5>ค่าน้ำ: </h5>' + this.Dorm[i].water_bill +
+            '<h5>ราคาห้องพัดลม: </h5>' + this.Dorm[i].price.fan_price +
+            '<h5>ราคาห้องแอร์: </h5>' + this.Dorm[i].price.air_price +
+            '<h5>คำอธิบาย: </h5>' + this.Dorm[i].description +
+            '<h5>ประเภท: </h5>' + this.Dorm[i].type + '</p>' +
+            '</div>' +
+            '</div>';
+
+          contentStrings.push(contentString);
+          var infowindow = new google.maps.InfoWindow({
+            maxWidth: 200
+          });
+          google.maps.event.addListener(marker, 'click', (function (marker, i) {
+            return function () {
+              infowindow.setContent(contentStrings[i]);
+              infowindow.open(map, marker);
+            }
+          })(marker, i));
+        }
+
+      })
+    }
+    else if (this.Province.name == "อำเภอถลาง") {
+      const dorm = {
+        District: "ถลาง"
+      }
+      this.auth.GetDormbyDistrict(dorm).subscribe(res => {
+        this.Dorm = res;
+        console.log(this.Dorm);
+
+        var marker;
+        var contentString;
+        var contentStrings = [];
+        var obj = Object.keys(this.Dorm).length;
+        // console.log(obj+"sdsd"+this.Dorm.lat);
+
+        for (let i = 0; i < obj; i++) {
+
+          // console.log("wtf")
+          var myLatLng = { lat: this.Dorm[i].lat, lng: this.Dorm[i].long };
+
+          marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            draggable: true,
+            animation: google.maps.Animation.DROP,
+            title: 'Hello World!'
+          });
+          // markers.push(marker);
+
+          contentString = '<div id="content">' +
+            '<div id="siteNotice">' +
+            '</div>' +
+            '<h2 id="firstHeading" class="firstHeading">' + this.Dorm[i].name + '</h2>' +
+            '<div id="bodyContent">' +
+            '<p><h5>ที่อยู่: </h5>' + this.Dorm[i].address +
+            '<h5>เบอร์โทรศัพท์: </h5>' + this.Dorm[i].tel +
+            '<h5>ยูนิตไฟฟ้า: </h5>' + this.Dorm[i].electric_unit +
+            '<h5>ค่าน้ำ: </h5>' + this.Dorm[i].water_bill +
+            '<h5>ราคาห้องพัดลม: </h5>' + this.Dorm[i].price.fan_price +
+            '<h5>ราคาห้องแอร์: </h5>' + this.Dorm[i].price.air_price +
+            '<h5>คำอธิบาย: </h5>' + this.Dorm[i].description +
+            '<h5>ประเภท: </h5>' + this.Dorm[i].type + '</p>' +
+            '</div>' +
+            '</div>';
+
+          contentStrings.push(contentString);
+          var infowindow = new google.maps.InfoWindow({
+            maxWidth: 200
+          });
+          google.maps.event.addListener(marker, 'click', (function (marker, i) {
+            return function () {
+              infowindow.setContent(contentStrings[i]);
+              infowindow.open(map, marker);
+            }
+          })(marker, i));
+        }
+
+      })
+    }
+    infoWindow = new google.maps.InfoWindow;
+  }
+  CheckMarker() {
+    
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 15,
+      center: { lat: 7.894866, lng: 98.352092 },
+    });
+    var infoWindow = new google.maps.InfoWindow;
+    
+    if (navigator.geolocation) {
+     
+      navigator.geolocation.getCurrentPosition(function (position) {
+        var pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+
+        infoWindow.setPosition(pos);
+        infoWindow.setContent('คุณอยู่ที่นี่');
+        infoWindow.open(map);
+        map.setCenter(pos);
+        map.setZoom(15);
+      }, function () {
+        this.handleLocationError(true, infoWindow, map.getCenter());
+      });
+    } else {
+      // Browser doesn't support Geolocation
+      this.handleLocationError(false, infoWindow, map.getCenter());
+    }
+
+  }
 }

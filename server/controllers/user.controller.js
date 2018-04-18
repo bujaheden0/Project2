@@ -289,3 +289,14 @@ exports.GetDorm = function (req, res) {
     }
   });
 }
+
+exports.GetDormbyDistrict = function (req, res) {
+  console.log("dfdf");
+  Dorm.find({ District: req.body.District }, function (err, dorm) {
+    if (err) throw (err);
+    if (dorm) {
+      res.status(200);
+      res.json(dorm);
+    }
+  });
+}
