@@ -471,15 +471,36 @@ export class MainPageComponent implements OnInit {
     }
   }
 
-  addInterestedPeople(actioner,victim){
+  addInterestedPeople(actioner,victim,type){
     const data = {
       actioner : actioner,
       victim : victim,
       status : "isMatching"
     }
-
     this.matching.addInterestedPeople(data).subscribe(res => {
       console.log(res);
+    })
+
+    this.matching.check_ifIsMatching(data).subscribe(res => {
+      console.log(res);
+      if(res[0].status == "isMatching"){
+        alert("คุณได้ทำการกดสนใจบุคคลนี้ไปแล้ว รอคำตอบรับของอีกฝ่่าย");
+      } else {
+        if(type == 1){
+          var answer = confirm("คุณต้องการที่จะอยู่กับคนนี้");
+        if(answer){
+          this.matching.addInterestedPeople(data).subscribe(res => {
+            console.log(res);
+          })
+        }
+        } else {
+          this.matching.addInterestedPeople(data).subscribe(res => {
+            console.log(res);
+          })
+        }
+      }
+
+
     })
     
   }

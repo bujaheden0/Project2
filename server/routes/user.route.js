@@ -29,7 +29,7 @@ module.exports = function(app){
     app.post('/api/user/habit',user.UpdateHabit);
     app.get('/api/user/dorm',user.GetDorm);
     app.post('/api/user/dormbydistrict',user.GetDormbyDistrict);
-    
+    app.post('/api/user/getPeopleHadDorm', user.getPeopleHadDorm);
     app.get('/api/oauth/facebook', passport.authenticate('facebook' ,{ scope : ['public_profile', 'email'] }));
     app.post('/api/user/profile',upload.array('uploads'), user.UpdateProfiles);
     app.get('/api/user/showProfile', user.showProfile);

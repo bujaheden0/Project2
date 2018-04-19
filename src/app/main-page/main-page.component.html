@@ -194,7 +194,7 @@
               </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" (click)="addInterestedPeople(this.currentUser._id, selectedPerfectUserInfo._id)" data-dismiss="modal">สนใจ</button>
+                <button type="button" class="btn btn-primary" (click)="addInterestedPeople(this.currentUser._id, selectedPerfectUserInfo._id,1)" data-dismiss="modal">สนใจ</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
             </div>
           </div>
@@ -488,7 +488,7 @@
                     <h5 class="display-5 headText">คุณสนใจที่จะอยู่ร่วมกับ </h5><h5 class="display-5"> {{ selectedLeastUserInfo.firstname }} {{ selectedLeastUserInfo.lastname }} </h5>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" (click)="addInterestedPeople(this.currentUser._id, selectedLeastUserInfo._id)" data-dismiss="modal">ตกลง</button>
+                    <button type="button" class="btn btn-primary" (click)="addInterestedPeople(this.currentUser._id, selectedLeastUserInfo._id,2)" data-dismiss="modal">ตกลง</button>
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
                 </div>
               </div>

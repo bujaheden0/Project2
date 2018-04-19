@@ -57,4 +57,14 @@ export class DormPageComponent implements OnInit {
       }
     })
   }
+
+  getPeopleHadDorm(dorm_id){
+    console.log("This is Dorm Id : " + dorm_id);
+    const data = {
+      dorm_id : dorm_id
+    }
+    this.auth.getPeopleHadDorm(data).subscribe(res => {
+      console.log(res);
+    })
+  }
 }

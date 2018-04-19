@@ -3,6 +3,7 @@ const Dorm = require('mongoose').model('Dorm');
 const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const sendOtp = require('./verify.controller');
+const Reserve = require('mongoose').model('Reserve');
 
 exports.register = function (req, res) {
   const users = new User({
@@ -299,4 +300,14 @@ exports.GetDormbyDistrict = function (req, res) {
       res.json(dorm);
     }
   });
+}
+
+exports.getPeopleHadDorm = async function(req,res){
+  console.log(req.body);
+  try {
+  const Users = await Reserve.find({ dorm : req.body.dorm_id }).populate('user').populate('dorm');
+  res.json(Users);
+ } catch(error){
+  console.log(error);
+ }
 }
