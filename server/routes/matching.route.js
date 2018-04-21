@@ -6,4 +6,5 @@ module.exports = function(app){
     app.post('/api/match/agree', matching.updateMatchingStatus_Agree);
     app.post('/api/match/reject', matching.updateMatchingStatus_Reject);
     app.post('/api/match/find', matching.findMatchedPeopleInfo);
+    app.post('/api/match/check', matching.check_ifIsMatching);
 }

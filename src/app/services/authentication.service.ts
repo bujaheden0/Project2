@@ -106,5 +106,9 @@ export class AuthenticationService {
   GetDormbyDistrict(data){
     return this.http.post('/api/user/dormbydistrict', data).map(res => res.json());
   }
+
+  getPeopleHadDorm(data){
+    return this.http.post('/api/user/getPeopleHadDorm',data).map(res => res.json());
+  }
   
 }

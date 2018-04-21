@@ -106,3 +106,15 @@ exports.findMatchedPeopleInfo = async function(req, res){
         console.error(error.message);
     }
 }
+
+exports.check_ifIsMatching = function(req,res){
+    Matching.find({ actioner : req.body.actioner, victim : req.body.victim }, function(err, data){
+        if(err) console.log(err);
+        if(data){ res.json(data);}
+        else {
+            res.json({
+                message : "Cannot find data"
+            })
+        }
+    })
+}

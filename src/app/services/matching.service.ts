@@ -42,6 +42,10 @@ export class MatchingService {
     return this.http.post('/api/match/find',data).map(res => res.json());
   }
 
+  check_ifIsMatching(data){
+    return this.http.post('/api/match/check', data).map(res => res.json());
+  }
+
 
 
 }
