@@ -110,5 +110,8 @@ export class AuthenticationService {
   getPeopleHadDorm(data){
     return this.http.post('/api/user/getPeopleHadDorm',data).map(res => res.json());
   }
-  
+  createReserve(data){
+    return this.http.post('/api/post/reserve',data).map(res => res.json());
+  }
+
 }

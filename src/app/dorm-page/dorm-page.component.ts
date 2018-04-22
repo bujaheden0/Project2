@@ -66,7 +66,7 @@ export class DormPageComponent implements OnInit {
         dormId : id.dorm_id
       }
       this.auth.getPeopleHadDorm(data).subscribe(res => {
-        console.log("dorm/getPeopleHadDorm/getPeopleHadDorm id.dorm_id :"+dorm_id);
+        console.log("Run dorm/getPeopleHadDorm/getPeopleHadDorm parameter :"+dorm_id);
         this.router.navigate(['/dormCons/' + dorm_id ]);
       })
 

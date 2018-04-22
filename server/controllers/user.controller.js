@@ -303,7 +303,7 @@ exports.GetDormbyDistrict = function (req, res) {
 }
 
 exports.getPeopleHadDorm = async function(req,res){
-  console.log("user.controller/getPeopleHadDorm req :"+req.body);
+  console.log("Run user.controller/getPeopleHadDorm");
   try {
   const Users = await Reserve.find({ dorm : req.body.dorm_id }).populate('user').populate('dorm');
   res.json(Users);
@@ -311,3 +311,5 @@ exports.getPeopleHadDorm = async function(req,res){
   console.log(error);
  }
 }
+
+
