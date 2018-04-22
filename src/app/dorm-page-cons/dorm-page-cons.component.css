@@ -55,3 +55,55 @@
     text-align: right ;
     margin-bottom:  10px;
 }
+.showPeople{
+    margin-top: 20px;
+    height: auto;
+    padding-top: 15px;
+}
+
+.searchBar{
+    margin:0 auto;
+    width: 90%;
+    height: 50px;
+    margin-bottom: 20px;
+}
+
+.card{
+    float: left;
+    width: 348px;
+    height: auto;
+    margin-bottom: 32px;
+    margin-left : 16px;
+    margin-right: 16px;
+}
+
+
+.information{
+    line-height: 200%;
+}
+
+.card-block{
+    border-width: 0px 10px 10px 0px;
+    border-style: outset;
+    border-color: rgba(0, 0, 0, 0.125);
+    font-family: 'Prompt', sans-serif;
+}
+
+.typeDorm , button.btn , .modal-body , .modal-title{
+    font-family: 'Prompt', sans-serif;
+}
+
+img {
+    display: block;
+    max-height:135px;
+    width: 100px;
+    height: auto;
+  }
+
+ .popup-picture{
+     margin: 0 auto;
+ }
+
+ .headText{
+     color : rgba(0, 0, 0, 0.500);
+ }

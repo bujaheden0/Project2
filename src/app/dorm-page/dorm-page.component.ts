@@ -12,11 +12,12 @@ import { AuthenticationService } from '../services/authentication.service';
   styleUrls: ['./dorm-page.component.css']
 })
 export class DormPageComponent implements OnInit {
-  router: any;
   Dorm: any;
   map: google.maps.Map;
   seleteDorm:any;
-  constructor(private auth: AuthenticationService) { }
+  constructor(private route : ActivatedRoute,
+    private auth : AuthenticationService,
+    private router : Router) { }
 
   ngOnInit() {
     this.auth.getDorm().subscribe(res => {
@@ -59,12 +60,23 @@ export class DormPageComponent implements OnInit {
   }
 
   getPeopleHadDorm(dorm_id){
-    console.log("This is Dorm Id : " + dorm_id);
-    const data = {
-      dorm_id : dorm_id
-    }
-    this.auth.getPeopleHadDorm(data).subscribe(res => {
-      console.log(res);
-    })
+    console.log("dorm/getPeopleHadDorm Dorm Id : " + dorm_id);
+    this.route.params.subscribe(id => {
+      const data = {
+        dormId : id.dorm_id
+      }
+      this.auth.getPeopleHadDorm(data).subscribe(res => {
+        console.log("dorm/getPeopleHadDorm/getPeopleHadDorm id.dorm_id :"+dorm_id);
+        this.router.navigate(['/dormCons/' + dorm_id ]);
+      })
+
+    });
+    // const data = {
+    //   dorm_id : dorm_id
+    // }
+    // this.auth.getPeopleHadDorm(data).subscribe(res => {
+    //   console.log("dorm/getPeopleHadDorm/getPeopleHadDorm");
+    //   this.router.navigate(['/dormCons'])
+    // })
   }
 }

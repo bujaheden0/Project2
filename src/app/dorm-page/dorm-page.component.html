@@ -27,7 +27,7 @@
         <br>
         <div class="card-header">
           <div class="list-group" *ngFor="let dorm of Dorm">
-            <button type="button" class="list-group-item list-group-item-action" (click)="getSeletedDormInfo(dorm._id)" data-toggle="modal" data-target="#perfectUserModal_hadDorm">{{dorm.name}} &nbsp;
+            <button type="button" class="list-group-item list-group-item-action" (click)="getPeopleHadDorm(dorm._id)" >{{dorm.name}} &nbsp;
               <span class="badge badge-default badge-pill" [ngStyle]="{'align': 'right'}">{{dorm.electric_unit}}</span>
             </button>
             <br>
@@ -35,7 +35,7 @@
         </div>
 
         <!-- PerfectUserModal_hadDorm -->
-        <div class="modal fade" id="perfectUserModal_hadDorm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- <div class="modal fade" id="perfectUserModal_hadDorm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog" role="document">
             <div class="modal-content">
               <div class="modal-header">
@@ -46,9 +46,6 @@
               </div>
               <div class="modal-body" >
                 <div class="row justify-content-between">
-                  <!-- <div class="col-6 text-center">
-                    <img src="{{ selectedPerfectUserInfo_hadDorm.user.profile_picture }}" alt="..." class="rounded-circle">
-                  </div> -->
                   <div class="information col-6">
                     ชื่อหอ : {{ seleteDorm.name }}
                     <br> ที่อยู่ : {{ seleteDorm.address }}
@@ -70,7 +67,6 @@
                     <br> long : {{ seleteDorm.long }}
                   </div>
                 </div>
-                <!-- <div class="row"> -->
                   <p class="pl-4">Dormitory Location</p>
                   <div class="row">
                     <div class="col-lg-12">
@@ -81,18 +77,16 @@
                       </div>
                     </div>
                   </div>
-                  
-                <!-- </div> -->
               </div>
               <div class="modal-footer">
-                <a  class="btn btn-primary" data-dismiss="modal" (click)="getPeopleHadDorm(seleteDorm._id)">
+                <a class="btn btn-primary" data-dismiss="modal" (click)="getPeopleHadDorm(seleteDorm._id)">
                   ดูคู่จอง
                 </a>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
 
       </div>
     </div>

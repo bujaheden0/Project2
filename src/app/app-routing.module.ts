@@ -34,7 +34,7 @@ const routes: Routes = [
   { path: 'dorm',                 component : DormPageComponent},
   { path: 'user/:userId/:messageId',         component : InterestedPeopleComponent},
   { path: 'userMatched/:userId/:messageId',    component : UserMatchedComponent},
-  { path: 'dormCons',             component : DormPageConsComponent}
+  { path: 'dormCons/:dormId',             component : DormPageConsComponent}
 
 
 ];

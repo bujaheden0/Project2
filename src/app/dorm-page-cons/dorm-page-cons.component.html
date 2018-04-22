@@ -1,7 +1,7 @@
 <div class="signUp">
   <div class="container">
     <div class="signUp-form">
-      <div class="card">
+      <!-- <div class="card"> -->
 
         <div class="modal-body">
           <div class="row justify-content-between">
@@ -43,33 +43,26 @@
 
           <!-- </div> -->
           <p class="pl-4">ผู้ใช้งานที่หาเพื่อนร่วมห้องหอนี้อยู่ในขณะนี้</p>
-          <!-- PerfectUserCard -->
-          <div class="row col-12">
+          <!-- UserCard -->
+          <div class="modal-body" *ngFor="let DormInfo of DormInfo">
             <div class="card">
               <div class="card-block">
-                <div class="progress mb-4">
-                  <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 95%" aria-valuenow="10" aria-valuemin="0"
-                    aria-valuemax="100">
-                    <b>ลักษณะนิสัยคล้ายกัน</b>
-                  </div>
-                </div>
                 <div class="row justify-content-between">
-                  <div class="col-5">
+                  <!-- <div class="col-5">
                     <img src="{{perfectUser_hadDorm.user.profile_picture}}" alt="..." class="rounded">
-                  </div>
+                  </div> -->
                   <div class="col-7" style="line-height: 200%;">
-                    ชื่อ : ดำรง
-                    <br> นามสกุล : ทงสิน
-                    <br> ศาสนา : พุทธ
-                    <br> อายุ : 0
-                    <br> อาชีพ : aaaa
-                    <br> นิสัย : ESTJ
-                    <br> เพศ : ชาย
+                    ชื่อ : {{ DormInfo.user.firstname }}
+                    <br> นามสกุล : {{ DormInfo.user.lastname }}
+                    <br> ศาสนา : {{ DormInfo.user.details.religion }}
+                    <br> อายุ : ?
+                    <br> อาชีพ : {{ DormInfo.user.details.occupation }}
+                    <br> นิสัย : {{ DormInfo.user.habit }}
+                    <br> เพศ : {{ DormInfo.user.details.gender }}
                   </div>
                 </div>
                 <div class="row justify-content-around mt-4">
-                  <button type="button" class="btn btn-outline-primary" (click)=" getPerfectUserInfo(perfectUser_hadDorm.user._id,2)" data-toggle="modal"
-                    data-target="#perfectUserModal_hadDorm">
+                  <button type="button" class="btn btn-outline-primary" >
                     <i class="fas fa-info-circle"></i> ดูรายละเอียดเพิ่มเติม</button>
                   <button type="button" class="btn btn-outline-danger">
                     <i class="fab fa-gratipay"></i> สนใจ</button>
@@ -85,7 +78,7 @@
             กลับ
           </a>
         </div>
-      </div>
+      <!-- </div> -->
     </div>
   </div>
 </div>

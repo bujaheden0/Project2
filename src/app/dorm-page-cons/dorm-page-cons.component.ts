@@ -13,16 +13,31 @@ import { AuthenticationService } from '../services/authentication.service';
 })
 export class DormPageConsComponent implements OnInit {
 
-  router: any;
   Dorm: any;
+  DormInfo: any;
+  userInfo: any;
   map: google.maps.Map;
   seleteDorm:any;
-  dorm_id = "5ab91841e90436d93ab598de";
-  constructor(private auth: AuthenticationService) { }
+  constructor(private route : ActivatedRoute,
+    private auth: AuthenticationService,
+    private router : Router) { }
 
   ngOnInit() {
+    console.log("app.dormCons/ngOnInit")
+    this.route.params.subscribe(id => {
+      const data = {
+        dorm_id : id.dormId
+      }
+      this.getSeletedDormInfo(id.dormId)
+      
+      this.auth.getPeopleHadDorm(data).subscribe(res => {
+        console.log("app.dormCons/ngOnInit/getPeopleHadDorm res :"+res)
+        console.log(res)
+        this.DormInfo = res;
+      })
+   })
     
-    this.getSeletedDormInfo(this.dorm_id)
+
     // var map = new google.maps.Map(document.getElementById('map'), {
     //   zoom: 15,
     //   center: { lat: 7.894866, lng: 98.352092 },
@@ -31,7 +46,7 @@ export class DormPageConsComponent implements OnInit {
   
    //รับค่าจากหอ
    getSeletedDormInfo(dorm_id){
-    console.log(dorm_id);
+    console.log("app.dormCons/getSeletedDormInfo dorm_id :"+dorm_id);
     this.auth.getDorm().subscribe(res => {
       this.Dorm = res;
       var marker;
