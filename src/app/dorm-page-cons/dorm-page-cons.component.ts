@@ -13,7 +13,7 @@ import { Message } from '@angular/compiler/src/i18n/i18n_ast';
   styleUrls: ['./dorm-page-cons.component.css']
 })
 export class DormPageConsComponent implements OnInit {
-
+  userDetails;
   Dorm: any;
   DormInfo: any;
   userInfo: any;
@@ -80,8 +80,15 @@ export class DormPageConsComponent implements OnInit {
 
   onSubmit() {
     console.log("Run app.dormCons/onSubmit");
+    const data = {
+      userDetails : this.auth.userDetails
+    }
+
+    this.auth.checkDormId(data).subscribe(res => {
+      this.userDetails = res;
+      console.log(this.userDetails._id);
     for (let i = 0; i < this.DormInfo.length; i++) {
-      if (this.DormInfo[i].user._id == this.auth.userDetails.id) {
+      if (this.DormInfo[i].user._id == this.userDetails._id) {
         this.reserveStatus = true;
       }
     }
@@ -92,7 +99,7 @@ export class DormPageConsComponent implements OnInit {
       var answer = confirm("คุณแน่ใจที่จะรออยู่ที่หอนี้?");
       if (answer) {
         const user = {
-          user: this.auth.userDetails.id, //ไอเเดงๆนี่มันเเก้ไงอะ หรือ มันดึงค่า ไอดีได้จากที่อื่น
+          user: this.userDetails._id, //ไอเเดงๆนี่มันเเก้ไงอะ หรือ มันดึงค่า ไอดีได้จากที่อื่น
           dorm: this.sendDorm_id
         }
         this.auth.createReserve(user).subscribe(res => {
@@ -100,9 +107,8 @@ export class DormPageConsComponent implements OnInit {
         })
       }
     }
-
-
-
+    })
+    
   }
 }
 

@@ -130,7 +130,8 @@ const userSchema = new schema({
     profile_status: {
         type: Boolean,
         default: false
-    }
+    },
+    matchedStatus : Boolean
 });
 
 

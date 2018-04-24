@@ -516,12 +516,26 @@ export class MainPageComponent implements OnInit {
       victim : victim,
       status : "isMatching"
     }
-    this.matching.addInterestedPeople(data).subscribe(res => {
-      console.log(res);
-    })
+    // this.matching.addInterestedPeople(data).subscribe(res => {
+    //   console.log(res);
+    // })
 
     this.matching.check_ifIsMatching(data).subscribe(res => {
-      console.log(res);
+      console.log(res.length);
+      if(res.length == 0){
+        if(type == 1){
+          var answer = confirm("คุณต้องการที่จะอยู่กับคนนี้");
+        if(answer){
+          this.matching.addInterestedPeople(data).subscribe(res => {
+            console.log(res);
+          })
+        }
+        } else {
+          this.matching.addInterestedPeople(data).subscribe(res => {
+            console.log(res);
+          })
+        }
+      } else {
       if(res[0].status == "isMatching"){
         alert("คุณได้ทำการกดสนใจบุคคลนี้ไปแล้ว รอคำตอบรับของอีกฝ่่าย");
       } else {
@@ -537,6 +551,7 @@ export class MainPageComponent implements OnInit {
             console.log(res);
           })
         }
+      }
       }
 
 

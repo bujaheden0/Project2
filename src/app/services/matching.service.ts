@@ -46,6 +46,9 @@ export class MatchingService {
     return this.http.post('/api/match/check', data).map(res => res.json());
   }
 
+  updateUserStatus_Matched(data){
+    return this.http.post('/api/match/setUserStatus',data).map(res => res.json());
+  }
 
 
 }

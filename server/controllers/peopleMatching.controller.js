@@ -13,7 +13,8 @@ exports.findMatchedPeople = async function(req, res, next){
                     },
                     'details.price.max' : {
                         $lte : user.details.price.max
-                    }
+                    },
+                    matchedStatus : false
         }),
         User.find({ habit : { $in : habit.match_type.possible },
                     _id : { $ne : req.body.userDetails.id },
@@ -22,7 +23,8 @@ exports.findMatchedPeople = async function(req, res, next){
                     },
                     'details.price.max' : {
                         $lte : user.details.price.max
-                    }
+                    },
+                    matchedStatus : false
         }),
         User.find({ habit : { $in : habit.match_type.least },
                     _id : { $ne : req.body.userDetails.id },
@@ -31,7 +33,8 @@ exports.findMatchedPeople = async function(req, res, next){
                     },
                     'details.price.max' : {
                         $lte : user.details.price.max
-                    }
+                    },
+                    matchedStatus : false
         })
     ])
     // const perfectUserMap  =  perfectUser.map(x => x._id);
