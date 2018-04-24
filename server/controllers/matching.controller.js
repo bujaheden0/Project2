@@ -118,3 +118,22 @@ exports.check_ifIsMatching = function(req,res){
         }
     })
 }
+
+exports.updateUserStatus_Matched = function(req,res){
+    User.update({ _id : req.body.actionId },{
+        $set : {
+            matchedStatus : true
+        }
+    },function(err, update){
+        if(err)console.log(err)
+    })
+
+    User.update({ _id : req.body.victim.id },{
+        $set : {
+            matchedStatus : true
+        }
+    },function(err, update1){
+        if(err)console.log(err)
+        if(update1) res.json(update1);
+    })
+} 

@@ -34,6 +34,7 @@ module.exports = function(app){
     app.post('/api/user/profile',upload.array('uploads'), user.UpdateProfiles);
     app.get('/api/user/showProfile', user.showProfile);
     app.post('/api/user/settingProfile', user.settingProfile);
+    app.post('/api/user/checkDormId', user.settingProfile);
     app.post('/api/user/testprofile', user.testprofile);
 
     app.get('/api/oauth/facebook', passport.authenticate('facebook', { scope: ['public_profile', 'email'] }));

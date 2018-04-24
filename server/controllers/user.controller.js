@@ -231,6 +231,7 @@ exports.showProfile = function (req, res) {
 }
 
 exports.settingProfile = function (req, res) {
+  console.log(req.body);
   User.findOne({ _id: req.body.userDetails.id }, function (err, user) {
     if (err) throw (err);
     if (user) {
@@ -292,7 +293,6 @@ exports.GetDorm = function (req, res) {
 }
 
 exports.GetDormbyDistrict = function (req, res) {
-  console.log("dfdf");
   Dorm.find({ District: req.body.District }, function (err, dorm) {
     if (err) throw (err);
     if (dorm) {

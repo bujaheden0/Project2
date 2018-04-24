@@ -114,4 +114,8 @@ export class AuthenticationService {
     return this.http.post('/api/post/reserve',data).map(res => res.json());
   }
 
+  checkDormId(data){
+    return this.http.post('/api/user/checkDormId',data).map(res => res.json());
+  }
+
 }

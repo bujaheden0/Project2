@@ -87,6 +87,10 @@ export class InterestedPeopleComponent implements OnInit {
           actionId : id.userId,
           victim : this.auth.userDetails
         }
+
+        this.matching.updateUserStatus_Matched(data).subscribe(res => {
+          console.log(res);
+        })
         this.matching.updateMatchingStatus_agree(data).subscribe(res => {
           this.router.navigate(['/userMatched/' + id.userId + '/' + id.messageId]);
         })
