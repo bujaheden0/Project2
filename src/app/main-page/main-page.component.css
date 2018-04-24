@@ -50,3 +50,8 @@ img {
  .headText{
      color : rgba(0, 0, 0, 0.500);
  }
+ .right{
+    
+    text-align: right ;
+    margin-bottom:  10px;
+}
