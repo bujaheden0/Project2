@@ -9,11 +9,11 @@ import { } from '@types/googlemaps';
   styleUrls: ['./main-page.component.css']
 })
 export class MainPageComponent implements OnInit {
-  map: google.maps.Map;
+  // map: google.maps.Map;
   text;
   messages;
-  latitude: any;
-  longitude: any;
+  // latitude: any;
+  // longitude: any;
    singles;
    perfectUser;
    possibleUser;
@@ -139,6 +139,19 @@ export class MainPageComponent implements OnInit {
         if(user_id === user.user._id){
           this.selectedPerfectUserInfo_hadDorm = user;
           console.log(this.selectedPerfectUserInfo);
+         // map 
+          var map = new google.maps.Map(document.getElementById('map1'), {
+            zoom: 15,
+            center: { lat: this.selectedPerfectUserInfo_hadDorm.dorm.lat, lng: this.selectedPerfectUserInfo_hadDorm.dorm.long },
+          });
+          var marker = new google.maps.Marker({
+            position: { lat: this.selectedPerfectUserInfo_hadDorm.dorm.lat, lng: this.selectedPerfectUserInfo_hadDorm.dorm.long },
+            map: map,
+            draggable: true,
+            animation: google.maps.Animation.DROP,
+            title: 'Hello World!'
+          });
+
           return;
         }
       });
@@ -160,6 +173,19 @@ export class MainPageComponent implements OnInit {
         if(user_id === user.user._id){
           this.selectedPossibleUserInfo_hadDorm = user;
           console.log(this.selectedPossibleUserInfo);
+         // map 
+          var map = new google.maps.Map(document.getElementById('map2'), {
+            zoom: 15,
+            center: { lat: this.selectedPossibleUserInfo_hadDorm.dorm.lat, lng: this.selectedPossibleUserInfo_hadDorm.dorm.long },
+          });
+          var marker = new google.maps.Marker({
+            position: { lat: this.selectedPossibleUserInfo_hadDorm.dorm.lat, lng: this.selectedPossibleUserInfo_hadDorm.dorm.long },
+            map: map,
+            draggable: true,
+            animation: google.maps.Animation.DROP,
+            title: 'Hello World!'
+          });
+
           return;
         }
       });
@@ -181,6 +207,19 @@ export class MainPageComponent implements OnInit {
         if(user_id === user.user._id){
           this.selectedLeastUserInfo_hadDorm = user;
           console.log(this.selectedLeastUserInfo);
+          // map 
+          var map = new google.maps.Map(document.getElementById('map3'), {
+            zoom: 15,
+            center: { lat: this.selectedLeastUserInfo_hadDorm.dorm.lat, lng: this.selectedLeastUserInfo_hadDorm.dorm.long },
+          });
+          var marker = new google.maps.Marker({
+            position: { lat: this.selectedLeastUserInfo_hadDorm.dorm.lat, lng: this.selectedLeastUserInfo_hadDorm.dorm.long },
+            map: map,
+            draggable: true,
+            animation: google.maps.Animation.DROP,
+            title: 'Hello World!'
+          });
+
           return;
         }
       });
