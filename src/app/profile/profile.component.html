@@ -18,9 +18,17 @@
                     <button class="btn btn-primary" ng-disabled="uploading">Upload</button>
                   </div>
                 </form> -->
-                <img id="preview"  src="{{'data:image/png;charset=utf-8;base64,' + this.picture}}" style="width:200px; height:200px;" >
-                <input id="picture" name="picture" type="file" (change)="fileChangeEvent($event)" placeholder="Upload a file...">
-                <div class="form-group">
+                <div class="row mb-2" *ngIf="profile">
+                  <div class="col text-center">
+                      <img id="preview"  src="{{profile.profile_picture}}">
+                  </div>
+                </div>
+                <div class="row mb-2">
+                    <div class="col text-center">
+                        <input id="picture" name="picture" type="file" (change)="fileChangeEvent($event)" placeholder="Upload a file...">
+                    </div>
+                  </div>
+                <div class="form-group" *ngIf="profile">
                   <form class="form-inline" [formGroup]="form">
                     <label class="mr-sm-2" for="inlineFormCustomSelect">ศาสนา</label>
                     <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect" formControlName="religion" [(ngModel)]="profile.details.religion"
@@ -45,7 +53,7 @@
                     </div>
                   </form>
                 </div>
-                <div class="form-group">
+                <div class="form-group" *ngIf="profile">
                   <form class="form-inline" [formGroup]="form">
                     <label class="mr-sm-4" for="inlineFormCustomSelect">เพศ</label>
                     <input class="form-check-input " type="radio" id="gridRadios1" [ngClass]="validatorInputCss('gender')" formControlName="gender"
@@ -64,7 +72,7 @@
                     </div>
                   </form>
                 </div>
-                <div class="form-group row" [ngClass]="ValidatorDisplayCss('birthday')">
+                <div class="form-group row" [ngClass]="ValidatorDisplayCss('birthday')" *ngIf="profile">
                   <label for="example-date-input" class="col-2 col-form-label">วันเกิด</label>
                   <div class="col-10">
                     <input class="form-control" type="date" [ngClass]="validatorInputCss('birthday')" formControlName="birthday" id="example-date-input"
@@ -74,7 +82,7 @@
                     </div>
                   </div>
                 </div>
-                <fieldset class="form-group row">
+                <fieldset class="form-group row" *ngIf="profile">
                   <legend class="col-form-legend col-sm-6">รายละเอียดเพื่มเติมสำหรับอายุ</legend>
                   <div class="col-sm-12">
                     <div class="row">
@@ -93,7 +101,7 @@
                   </div>
                 </fieldset>
 
-                <div class="form-group row" [ngClass]="ValidatorDisplayCss('facebook')">
+                <div class="form-group row" [ngClass]="ValidatorDisplayCss('facebook')" *ngIf="profile">
                   <label for="example-text-input" class="col-2 col-form-label">Facebook</label>
                   <div class="col-10 ">
                     <input type="text" class="form-control" [ngClass]="validatorInputCss('facebook')" id="example-text-input" formControlName="facebook"
@@ -103,7 +111,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="form-group row" [ngClass]="ValidatorDisplayCss('tel')">
+                <div class="form-group row" [ngClass]="ValidatorDisplayCss('tel')" *ngIf="profile">
                   <label for="example-text-input" class="col-2 col-form-label">เบอร์โทรศัพท์</label>
                   <div class="col-10">
                     <input type="text" class="form-control" [ngClass]="validatorInputCss('tel')" placeholder="*ตัวอย่าง 66811231234 (เเทน 0 ด้วย 66 เเล้วตามด้วยตัวเลขที่เหลือ)"
@@ -113,7 +121,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="form-group row" [ngClass]="ValidatorDisplayCss('occupation')">
+                <div class="form-group row" [ngClass]="ValidatorDisplayCss('occupation')" *ngIf="profile">
                   <label for="example-text-input" class="col-2 col-form-label">อาชีพ</label>
                   <div class="col-10">
                     <input class="form-control" type="text" placeholder="*ตัวอย่าง นักศึกษา" [ngClass]="validatorInputCss('occupation')" id="example-text-input"
@@ -123,7 +131,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="form-group row " [ngClass]="ValidatorDisplayCss('sleep_time')">
+                <div class="form-group row " [ngClass]="ValidatorDisplayCss('sleep_time')" *ngIf="profile">
                   <label for="example-time-input" class="col-2 col-form-label">เวลาเรื่มเข้านอน</label>
                   <div class="col-10">
                     <input class="form-control" type="time" [ngClass]="validatorInputCss('sleep_time')" formControlName="sleep_time" [(ngModel)]="profile.details.sleep_time"
@@ -134,7 +142,7 @@
                   </div>
                 </div>
 
-                <div class="form-group row">
+                <div class="form-group row" *ngIf="profile">
                   <label for="example-number-input" class="col-6 col-form-label">ราคาหอพัก</label>
                   <div class="col-lg-12">
                     <div class="row">
@@ -159,7 +167,7 @@
               <div class="col-lg-5 ">
 
 
-                <div class="form-group row" [ngClass]="ValidatorDisplayCss('hobbies')">
+                <div class="form-group row" [ngClass]="ValidatorDisplayCss('hobbies')" *ngIf="profile">
                   <label for="example-text-input" class="col-8 col-form-label">งานอดิเรกเวลาอยู่ที่ห้อง</label>
                   <input class="form-control" type="text" placeholder="*ตัวอย่าง ดูหนัง" [ngClass]="validatorInputCss('hobbies')" id="example-text-input"
                     formControlName="hobbies" [(ngModel)]="profile.details.hobbies" name="hobbies" required>
@@ -167,7 +175,7 @@
                     <p *ngIf="this.form.controls.hobbies.errors.required ">กรุณากรอกข้อมูลให้ครบถ้วน</p>
                   </div>
                 </div>
-                <div class="form-group row" [ngClass]="ValidatorDisplayCss('address')">
+                <div class="form-group row" [ngClass]="ValidatorDisplayCss('address')" *ngIf="profile">
                   <label for="exampleFormControlTextarea1" class="col-8 col-form-label">ที่อยู่ปัจจุบัน</label>
                   <textarea class="form-control" placeholder="*ตัวอย่าง 111 ม.0 ต.ตำบล อ.อำเภอ จ.จังหวัด 00000" rows="3" [ngClass]="validatorInputCss('address')"
                     id="exampleFormControlTextarea1" formControlName="address" [(ngModel)]="profile.details.address" name="address"
@@ -176,7 +184,7 @@
                     <p *ngIf="this.form.controls.address.errors.required ">กรุณากรอกข้อมูลให้ครบถ้วน</p>
                   </div>
                 </div>
-                <div class="form-group row" [ngClass]="ValidatorDisplayCss('descriptions')">
+                <div class="form-group row" [ngClass]="ValidatorDisplayCss('descriptions')" *ngIf="profile">
                   <label for="exampleFormControlTextarea1" class="col-12 col-form-label">รายละเอียดเพื่มเติมที่สำคัญ (ติ๊กถูกหากอนุญาติให้ทำได้)</label>
                   <div>
                     <div class="form-check">
@@ -224,7 +232,7 @@
               </div>
             </div>
           </form>
-          <div class="form-group">
+          <div class="form-group" *ngIf="profile">
             <label for="name">กลุ่มนิสัยของคุณคือ</label>
             <input type="text" class="form-control" placeholder="-" [(ngModel)]="profile.habit" name="habit" disabled required>
           </div>

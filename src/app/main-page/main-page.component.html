@@ -1,4 +1,4 @@
-<div class="right">
+<!--<div class="right">
     switch to
     <a class="btn btn-danger">
       User Page
@@ -9,11 +9,26 @@
     <a routerLink="/map" class="btn btn-warning">
       Map Page
     </a>
-  </div>
+  </div>-->
+<div class="showPeople">
 <div class="container">
-  <div class="showPeople">
-      
-    <div class="searchBar">
+    <div class="tabBar">
+      <div class="buttonBar">
+          <a routerLink="/roommate/{{roommate_id}}" class="btn btn-success" *ngIf="had_roommate">
+              Roommate
+            </a>
+            <div class="float-rigt" style="float:right;">
+                <a class="btn btn-danger">
+                    User Page
+                  </a>
+                  <a routerLink="/dorm" class="btn btn-warning">
+                    Dorm Page
+                  </a>
+                  <a routerLink="/map" class="btn btn-warning">
+                    Map Page
+                  </a>
+            </div>
+      </div>
     </div>
       <h5 class="display-5 typeDorm" *ngIf="show_hadDorm">มีหอพัก</h5>
       <div class="row" *ngIf="perfectUser_hadDorm || possibleUser_hadDorm || leastUser_hadDorm">
@@ -35,8 +50,8 @@
                 </div>
               </div>
               <div class="row justify-content-around mt-4">
-                  <button type="button" class="btn btn-outline-primary" (click)=" getPerfectUserInfo(perfectUser_hadDorm.user._id,2)" data-toggle="modal" data-target="#perfectUserModal_hadDorm"><i class="fas fa-info-circle"></i> ดูรายละเอียดเพิ่มเติม</button>
-                  <button type="button" class="btn btn-outline-danger"><i class="fab fa-gratipay"></i> สนใจ</button>
+                  <button type="button" class="btn btn-outline-primary" (click)="getPerfectUserInfo(perfectUser_hadDorm.user._id,2)" data-toggle="modal" data-target="#perfectUserModal_hadDorm"><i class="fas fa-info-circle"></i> ดูรายละเอียดเพิ่มเติม</button>
+                  <button type="button" class="btn btn-outline-danger" (click)="getPerfectUserInfo(perfectUser_hadDorm.user._id,2)" data-toggle="modal" data-target="#interestedPerfectModel_hadDorm"><i class="fab fa-gratipay"></i> สนใจ</button>
                 </div>
             </div>
         </div>
@@ -59,7 +74,7 @@
               </div>
               <div class="row justify-content-around mt-4">
                   <button type="button" class="btn btn-outline-primary" (click)="getPossibleUserInfo(possibleUser_hadDorm.user._id,2)" data-toggle="modal" data-target="#possibleUserModal_hadDorm"><i class="fas fa-info-circle"></i> ดูรายละเอียดเพิ่มเติม</button>
-                  <button type="button" class="btn btn-outline-danger"><i class="fab fa-gratipay"></i> สนใจ</button>
+                  <button type="button" class="btn btn-outline-danger" (click)="getPossibleUserInfo(possibleUser_hadDorm.user._id,2)" data-toggle="modal" data-target="#interestedPossibleModel_hadDorm"><i class="fab fa-gratipay"></i> สนใจ</button>
                 </div>
             </div>
         </div>
@@ -83,7 +98,7 @@
                 </div>
                 <div class="row justify-content-around mt-4">
                     <button type="button" class="btn btn-outline-primary" (click)="getLeastUserInfo(leastUser_hadDorm.user._id,2)" data-toggle="modal" data-target="#leastUserModal_hadDorm"><i class="fas fa-info-circle"></i> ดูรายละเอียดเพิ่มเติม</button>
-                    <button type="button" class="btn btn-outline-danger"><i class="fab fa-gratipay"></i> สนใจ</button>
+                    <button type="button" class="btn btn-outline-danger" (click)="getLeastUserInfo(leastUser_hadDorm.user._id,2)" data-toggle="modal" data-target="#interestedLeastModel_hadDorm"><i class="fab fa-gratipay"></i> สนใจ</button>
                   </div>
               </div>
           </div>
@@ -229,7 +244,8 @@
                       <img src="{{ selectedPossibleUserInfo.profile_picture }}" class="rounded popup-picture">
                 </div>
                 <div class="information col-4 mt-2">
-                  ชื่อ : {{ selectedPossibleUserInfo.firstname }}  {{ selectedPossibleUserInfo.lastname }} <br>
+                  ชื่อ : {{ selectedPossibleUserInfo.firstname }} <br> 
+                  นามสกุล :{{ selectedPossibleUserInfo.lastname }} <br>
                   ศาสนา : {{ selectedPossibleUserInfo.details.religion }}<br>
                   อายุ : {{ selectedPossibleUserInfo.details.age }}<br>
                 </div>
@@ -278,7 +294,8 @@
                         <img src="{{ selectedLeastUserInfo.profile_picture }}" class="rounded popup-picture">
                   </div>
                   <div class="information col-4 mt-2">
-                    ชื่อ : {{ selectedLeastUserInfo.firstname }}  {{ selectedLeastUserInfo.lastname }} <br>
+                    ชื่อ : {{ selectedLeastUserInfo.firstname }} <br>
+                    นามสกุล : {{ selectedLeastUserInfo.lastname }} <br>
                     ศาสนา : {{ selectedLeastUserInfo.details.religion }}<br>
                     อายุ : {{ selectedLeastUserInfo.details.age }}<br>
                   </div>
@@ -326,10 +343,11 @@
               <div class="modal-body" *ngIf="selectedPerfectUserInfo_hadDorm">
                 <div class="row justify-content-center">
                   <div class="col-6">
-                        <img src="{{ selectedPerfectUserInfo_hadDorm.user.profile_picture }}" alt="..." class="rounded-circle">
+                        <img src="{{ selectedPerfectUserInfo_hadDorm.user.profile_picture }}"  class="rounded popup-picture">
                   </div>
-                  <div class="information col-6">
-                    ชื่อ : {{ selectedPerfectUserInfo_hadDorm.user.firstname }}  {{ selectedPerfectUserInfo_hadDorm.user.lastname }} <br>
+                  <div class="information col-4 mt-2">
+                    ชื่อ : {{ selectedPerfectUserInfo_hadDorm.user.firstname }} <br>  
+                    นามสกุล : {{ selectedPerfectUserInfo_hadDorm.user.lastname }} <br>
                     ศาสนา : {{ selectedPerfectUserInfo_hadDorm.user.details.religion }}<br>
                     อายุ : {{ selectedPerfectUserInfo_hadDorm.user.details.age }}<br>
                   </div>
@@ -382,10 +400,11 @@
               <div class="modal-body" *ngIf="selectedPossibleUserInfo_hadDorm">
                 <div class="row justify-content-center">
                   <div class="col-6">
-                        <img src="{{ selectedPossibleUserInfo_hadDorm.user.profile_picture }}" alt="..." class="rounded-circle">
+                        <img src="{{ selectedPossibleUserInfo_hadDorm.user.profile_picture }}" class="rounded popup-picture">
                   </div>
                   <div class="information col-6">
-                    ชื่อ : {{ selectedPossibleUserInfo_hadDorm.user.firstname }}  {{ selectedPossibleUserInfo_hadDorm.user.lastname }} <br>
+                    ชื่อ : {{ selectedPossibleUserInfo_hadDorm.user.firstname }} <br>
+                    นามสกุล : {{ selectedPossibleUserInfo_hadDorm.user.lastname }} <br>
                     ศาสนา : {{ selectedPossibleUserInfo_hadDorm.user.details.religion }}<br>
                     อายุ : {{ selectedPossibleUserInfo_hadDorm.user.details.age }}<br>
                   </div>
@@ -437,10 +456,11 @@
                 <div class="modal-body" *ngIf="selectedLeastUserInfo_hadDorm">
                   <div class="row justify-content-between">
                     <div class="col-6 text-center">
-                          <img src="{{ selectedLeastUserInfo_hadDorm.user.profile_picture }}" alt="..." class="rounded-circle">
+                          <img src="{{ selectedLeastUserInfo_hadDorm.user.profile_picture }}" class="rounded popup-picture">
                     </div>
                     <div class="information col-6">
-                      ชื่อ : {{ selectedLeastUserInfo_hadDorm.user.firstname }}  {{ selectedLeastUserInfo_hadDorm.user.lastname }} <br>
+                      ชื่อ : {{ selectedLeastUserInfo_hadDorm.user.firstname }} <br>
+                      นามสกุล : {{ selectedLeastUserInfo_hadDorm.user.lastname }} <br>
                       ศาสนา : {{ selectedLeastUserInfo_hadDorm.user.details.religion }}<br>
                       อายุ : {{ selectedLeastUserInfo_hadDorm.user.details.age }}<br>
                     </div>
@@ -539,6 +559,67 @@
               </div>
             </div>
           </div>
+
+          <div class="modal fade" id="interestedPerfectModel_hadDorm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body text-center" *ngIf="selectedPerfectUserInfo_hadDorm">
+                  <h5 class="display-5 headText">คุณสนใจที่จะอยู่ร่วมกับ </h5><h5 class="display-5"> {{ selectedPerfectUserInfo_hadDorm.user.firstname }} {{ selectedPerfectUserInfo_hadDorm.user.lastname }} </h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" (click)="addInterestedPeople(this.currentUser._id, selectedPerfectUserInfo_hadDorm.user._id)" data-dismiss="modal">ตกลง</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal fade" id="interestedPossibleModel_hadDorm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body text-center" *ngIf="selectedPossibleUserInfo_hadDorm">
+                    <h5 class="display-5 headText">คุณสนใจที่จะอยู่ร่วมกับ </h5><h5 class="display-5"> {{ selectedPossibleUserInfo_hadDorm.user.firstname }} {{ selectedPossibleUserInfo_hadDorm.user.lastname }} </h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" (click)="addInterestedPeople(this.currentUser._id, selectedPossibleUserInfo_hadDorm.user._id)" data-dismiss="modal">ตกลง</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="modal fade" id="interestedLeastModel_hadDorm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel"></h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body text-center" *ngIf="selectedLeastUserInfo_hadDorm">
+                    <h5 class="display-5 headText">คุณสนใจที่จะอยู่ร่วมกับ </h5><h5 class="display-5"> {{ selectedLeastUserInfo_hadDorm.user.firstname }} {{ selectedLeastUserInfo_hadDorm.user.lastname }} </h5>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" (click)="addInterestedPeople(this.currentUser._id, selectedLeastUserInfo_hadDorm.user._id,2)" data-dismiss="modal">ตกลง</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
 
 
     </div>

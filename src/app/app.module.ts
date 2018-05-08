@@ -28,6 +28,7 @@ import { MatchingService } from './services/matching.service';
 import { InterestedPeopleComponent } from './interested-people/interested-people.component';
 import { UserMatchedComponent } from './user-matched/user-matched.component';
 import { DormPageConsComponent } from './dorm-page-cons/dorm-page-cons.component';
+import { RoommateComponent } from './roommate/roommate.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { DormPageConsComponent } from './dorm-page-cons/dorm-page-cons.component
     DormPageComponent,
     InterestedPeopleComponent,
     UserMatchedComponent,
-    DormPageConsComponent
+    DormPageConsComponent,
+    RoommateComponent
   ],
   imports: [
     BrowserModule,

@@ -3,3 +3,16 @@
     text-align: right ;
     margin-bottom:  10px;
 }
+
+.searchBar{
+    margin:0 auto;
+    width: 90%;
+    height: 50px;
+    margin-bottom: 20px;
+}
+
+.buttonBar{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
