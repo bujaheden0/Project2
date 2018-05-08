@@ -21,8 +21,8 @@ export class MapComponent implements OnInit {
   longitude: number;
   locations = LOCATIONS;
   form: FormGroup;
-  Province;
-  Radius: number;
+  Province ="ทั้งหมด";
+  Radius ="เลือก";
   Dorm: any = {}
   Dorm2: any = {}
   x: number;
@@ -41,7 +41,7 @@ export class MapComponent implements OnInit {
       var contentString;
       var contentStrings = [];
       var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 15,
+        zoom: 11,
         center: { lat: 7.894866, lng: 98.352092 },
       });
       for (let i = 0; i < obj; i++) {
@@ -125,11 +125,68 @@ export class MapComponent implements OnInit {
   }
   Changelocation() {
     var infoWindow;
-    var map = new google.maps.Map(document.getElementById('map'), {
-      zoom: this.Province.zoom,
-      center: { lat: this.Province.Lat, lng: this.Province.Lng },
-    });
+    
 
+    if (this.Province == "ทั้งหมด") {
+      this.auth.getDorm().subscribe(res => {
+        this.Dorm = res;
+        var obj = Object.keys(this.Dorm).length;
+        console.log(this.Dorm);
+        // console.log(this.Dorm[0].lat);
+        var infoWindow;
+        var marker;
+        var contentString;
+        var contentStrings = [];
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 11,
+          center: { lat: 7.894866, lng: 98.352092 },
+        });
+        for (let i = 0; i < obj; i++) {
+          var myLatLng = { lat: this.Dorm[i].lat, lng: this.Dorm[i].long };
+          // console.log(myLatLng);
+          marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            draggable: true,
+            animation: google.maps.Animation.DROP,
+            title: 'Hello World!'
+          });
+          // markers.push(marker);
+  
+          contentString = '<div id="content">' +
+            '<div id="siteNotice">' +
+            '</div>' +
+            '<h2 id="firstHeading" class="firstHeading">' + this.Dorm[i].name + '</h2>' +
+            '<div id="bodyContent">' +
+            '<p><h5>ที่อยู่: </h5>' + this.Dorm[i].address +
+            '<h5>เบอร์โทรศัพท์: </h5>' + this.Dorm[i].tel +
+            '<h5>ยูนิตไฟฟ้า: </h5>' + this.Dorm[i].electric_unit +
+            '<h5>ค่าน้ำ: </h5>' + this.Dorm[i].water_bill +
+            '<h5>ราคาห้องพัดลม: </h5>' + this.Dorm[i].price.fan_price +
+            '<h5>ราคาห้องแอร์: </h5>' + this.Dorm[i].price.air_price +
+            '<h5>คำอธิบาย: </h5>' + this.Dorm[i].description +
+            '<h5>ประเภท: </h5>' + this.Dorm[i].type + '</p>' +
+            '</div>' +
+            '</div>';
+  
+          contentStrings.push(contentString);
+          var infowindow = new google.maps.InfoWindow({
+            maxWidth: 200
+          });
+          google.maps.event.addListener(marker, 'click', (function (marker, i) {
+            return function () {
+              infowindow.setContent(contentStrings[i]);
+              infowindow.open(map, marker);
+            }
+          })(marker, i));
+        }
+        infoWindow = new google.maps.InfoWindow;
+      })
+    }else{
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: this.Province.zoom,
+        center: { lat: this.Province.Lat, lng: this.Province.Lng },
+      });
     if (this.Province.name == "อำเภอกะทู้") {
       const dorm = {
         District: "กะทู้"
@@ -306,6 +363,7 @@ export class MapComponent implements OnInit {
     }
     infoWindow = new google.maps.InfoWindow;
   }
+  }
   CheckMarker() {
     this.auth.getDorm().subscribe(res => {
       this.Dorm = res;
@@ -346,15 +404,7 @@ export class MapComponent implements OnInit {
         var myLatLng = { lat: dorm[i].lat, lng: dorm[i].long };
         // var marker_lat_lng = new google.maps.LatLng(location.lat, location.lng);
         var distance_from_location = google.maps.geometry.spherical.computeDistanceBetween(mylocation, myLatLng1); //distance in meters between your location and the marker
-        if (distance_from_location <= radius1 * 1000) {
-          var marker = new google.maps.Marker({
-            position: myLatLng,
-            map: map,
-            animation: google.maps.Animation.DROP,
-            title: 'hello world'
-          });
-
-          contentString = '<div id="content">' +
+        contentString = '<div id="content">' +
             '<div id="siteNotice">' +
             '</div>' +
             '<h2 id="firstHeading" class="firstHeading">' + dorm[i].name + '</h2>' +
@@ -371,6 +421,15 @@ export class MapComponent implements OnInit {
             '</div>';
 
           contentStrings.push(contentString);
+        if (distance_from_location <= radius1 * 1000) {
+          var marker = new google.maps.Marker({
+            position: myLatLng,
+            map: map,
+            animation: google.maps.Animation.DROP,
+            title: 'hello world'
+          });
+
+          
           infowindow = new google.maps.InfoWindow({
             maxWidth: 200
           });
