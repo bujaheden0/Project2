@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl, Validators, NgForm, ReactiveFormsModule, FormsModule, SelectControlValueAccessor } from '@angular/forms';
 import { AuthenticationService } from '../services/authentication.service';
 import { Message } from '@angular/compiler/src/i18n/i18n_ast';
+import { MatchPeopleService } from '../services/match-people.service';
+import { MatchingService } from '../services/matching.service';
 
 @Component({
   selector: 'app-dorm-page-cons',
@@ -21,12 +23,40 @@ export class DormPageConsComponent implements OnInit {
   seleteDorm: any;
   sendDorm_id: string;
   reserveStatus = false;
+  text;
+  messages;
+  firstname;
+  // latitude: any;
+  // longitude: any;
+   singles;
+   perfectUser;
+   possibleUser;
+   leastUser;
+   perfectUser_hadDorm;
+   possibleUser_hadDorm;
+   leastUser_hadDorm;
+   currentUser;
+   selectedPerfectUserInfo;
+   selectedPossibleUserInfo;
+   selectedLeastUserInfo;
+   selectedPerfectUserInfo_hadDorm;
+   selectedPossibleUserInfo_hadDorm;
+   selectedLeastUserInfo_hadDorm;
+   show_hadDorm = false;
   constructor(private route: ActivatedRoute,
     private auth: AuthenticationService,
-    private router: Router) { }
+    private router: Router,
+    private matchPeople : MatchPeopleService,
+    private matching : MatchingService) { }
 
   ngOnInit() {
     console.log("Run app.dormCons/ngOnInit")
+    if(this.auth.userDetails){
+      this.auth.getProfile().subscribe(res => {
+        this.currentUser = res;
+        console.log("currentUser._id :"+this.currentUser._id);
+      })
+    }
     this.route.params.subscribe(id => {
       const data = {
         dorm_id: id.dormId
@@ -108,7 +138,74 @@ export class DormPageConsComponent implements OnInit {
       }
     }
     })
+  }
+
+//รับค่าจาก คนที่เลือก
+getPerfectUserInfo(user_id){
+  console.log("app/dormpagecon/ts this.currentUser._id :" +this.currentUser._id);
+  console.log(user_id);
+    const data = {
+      userid  : user_id,
+    }
+    console.log(data);
+  this.auth.getSeletePeopleinDorm(data).subscribe(res => {
+    //  console.log("Run app.dormCons/ngOnInit/getPeopleHadDorm res :" + res)
+     this.userInfo = res;
+    console.log("userInfo return userInfo:"+this.userInfo);
+  })
+}
+
+  addInterestedPeople(actioner,victim,type){
+    console.log("Run app/addInterestedPeople/ts")
+    console.log(actioner);
+    console.log(victim);
+    const data = {
+      actioner : actioner,
+      victim : victim,
+      status : "isMatching"
+    }
+    // this.matching.addInterestedPeople(data).subscribe(res => {
+    //   console.log(res);
+    // })
+
+    this.matching.check_ifIsMatching(data).subscribe(res => {
+      console.log(res.length);
+      if(res.length == 0){
+        if(type == 1){
+          var answer = confirm("คุณต้องการที่จะอยู่กับคนนี้");
+        if(answer){
+          this.matching.addInterestedPeople(data).subscribe(res => {
+            console.log(res);
+          })
+        }
+        } else {
+          this.matching.addInterestedPeople(data).subscribe(res => {
+            console.log(res);
+          })
+        }
+      } else {
+      if(res[0].status == "isMatching"){
+        alert("คุณได้ทำการกดสนใจบุคคลนี้ไปแล้ว รอคำตอบรับของอีกฝ่่าย");
+      } else {
+        if(type == 1){
+          var answer = confirm("คุณต้องการที่จะอยู่กับคนนี้");
+        if(answer){
+          this.matching.addInterestedPeople(data).subscribe(res => {
+            console.log(res);
+          })
+        }
+        } else {
+          this.matching.addInterestedPeople(data).subscribe(res => {
+            console.log(res);
+          })
+        }
+      }
+      }
+
+
+    })
     
   }
+
 }
 

@@ -24,7 +24,7 @@
           
             <label class="" for="inlineFormCustomSelect">เลือกอำเภอ</label>
             <select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="inlineFormCustomSelect" [(ngModel)]="Province" name="Province">
-              <!-- <option selected disabled>Choose...</option> -->
+              <option selected >ทั้งหมด</option>
               <option [ngValue]="location" *ngFor="let location of locations">{{location.name}}</option>
               <!-- <option value="2">Two</option>
           <option value="3">Three</option> -->
@@ -37,7 +37,7 @@
          
               <label class="" for="inlineFormCustomSelect">ค้นหารอบตัว</label>
             <select class="form-control" id="inputState" [(ngModel)]="Radius" name="Radius">
-              <!-- <option selected >Choose...</option> -->
+              <option selected disabled>เลือก</option>
               <option value=1>1km</option>
               <option value=2>2km</option>
               <option value=5>5km</option>

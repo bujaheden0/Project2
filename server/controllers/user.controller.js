@@ -312,4 +312,14 @@ exports.getPeopleHadDorm = async function(req,res){
  }
 }
 
+exports.getSeletePeopleinDorm = function (req, res) {
+  console.log("controller/getSeletePeopleinDorm req.body.userid  :"+req.body.userid );
+  User.findOne({ _id: req.body.userid }, function (err, user) {
+    if (err) throw (err);
+    if (user) {
+      res.status(200);
+      res.json(user);
+    }
+  });
+}
 

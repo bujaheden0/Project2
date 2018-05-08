@@ -36,6 +36,7 @@ module.exports = function(app){
     app.post('/api/user/settingProfile', user.settingProfile);
     app.post('/api/user/checkDormId', user.settingProfile);
     app.post('/api/user/testprofile', user.testprofile);
+    app.post('/api/user/getSeletePeopleinDorm', user.getSeletePeopleinDorm)
 
     app.get('/api/oauth/facebook', passport.authenticate('facebook', { scope: ['public_profile', 'email'] }));
     app.get('/api/oauth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));

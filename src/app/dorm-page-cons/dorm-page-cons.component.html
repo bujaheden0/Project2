@@ -59,14 +59,17 @@
                     <br> อาชีพ : {{ DormInfo.user.details.occupation }}
                     <br> นิสัย : {{ DormInfo.user.habit }}
                     <br> เพศ : {{ DormInfo.user.details.gender }}
+                    <br> เพศ : {{ firstname }}
                   </div>
                 </div>
+                
                 <div class="row justify-content-around mt-4">
-                  <button type="button" class="btn btn-outline-primary" >
+                  <button type="button" class="btn btn-outline-primary" (click)=" getPerfectUserInfo(DormInfo.user._id)" data-toggle="modal" data-target="#perfectUserModal">
                     <i class="fas fa-info-circle"></i> ดูรายละเอียดเพิ่มเติม</button>
-                  <button type="button" class="btn btn-outline-danger">
+                  <button type="button" class="btn btn-outline-danger" (click)=" getPerfectUserInfo(DormInfo.user._id)"  data-toggle="modal" data-target="#interestedPerfectModel">
                     <i class="fab fa-gratipay"></i> สนใจ</button>
                 </div>
+                
               </div>
             </div>
           </div>
@@ -82,3 +85,77 @@
     </div>
   </div>
 </div>
+
+ <!-- PerfectUserModal -->
+ <!-- <div class="modal fade" id="perfectUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">รายละเอียดเพิ่มเติม</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> -->
+          <!-- <span aria-hidden="true">&times;</span> -->
+        <!-- </button>
+      </div>
+      <div class="modal-body" *ngIf="DormInfo">
+        <div class="row justify-content-center"> -->
+          <!-- <div class="col-6" >
+                <img src="{{ DormInfo.user.profile_picture }}"  class="rounded popup-picture">
+          </div> -->
+          <!-- <div class="information col-4 mt-2">
+            ชื่อ : {{ DormInfo.user.firstname }} <br> 
+            นามสกุล : {{ DormInfo.user.lastname }} <br>
+            ศาสนา : {{ DormInfo.user.details.religion }}<br>
+            อายุ : {{ DormInfo.user.details.age }}<br>
+          </div>
+        </div> 
+        <div class="row">
+            <div class="information col-7 mt-2">
+              <p class="pl-4 text-left">
+                งานอดิเรก : {{ DormInfo.user.details.hobbies }} <br>
+                ที่อยู่ : {{ DormInfo.user.details.address }} <br>
+                สิ่งที่อนุญาติให้ทำ  <br>
+                <li *ngIf="selectedPerfectUserInfo.details.descriptionsEx.text1"> {{ DormInfo.user.details.descriptionsEx.text1 }}  </li>
+                <li *ngIf="selectedPerfectUserInfo.details.descriptionsEx.text2"> {{ DormInfo.user.details.descriptionsEx.text2 }}  </li>
+                <li *ngIf="selectedPerfectUserInfo.details.descriptionsEx.text3"> {{ DormInfo.user.details.descriptionsEx.text3 }}  </li>
+                <li *ngIf="selectedPerfectUserInfo.details.descriptionsEx.text4"> {{ DormInfo.user.details.descriptionsEx.text4 }}  </li> 
+                <li *ngIf="selectedPerfectUserInfo.details.descriptionsEx.text5"> {{ DormInfo.user.details.descriptionsEx.text5 }}  </li>
+              </p>
+            </div>
+            <div class="information col-4 mt-2">
+                อาชีพ : {{ DormInfo.user.details.occupation }} <br>
+                นิสัย : {{ DormInfo.user.habit }} <br>
+                เวลานอน : {{ DormInfo.user.details.sleep_time }} <br>
+                เพิ่มเติม : {{ DormInfo.user.details.descriptions }} <br>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-primary" (click)="addInterestedPeople(this.currentUser._id, DormInfo.user._id,1)" data-dismiss="modal">สนใจ</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+<div class="modal fade" id="interestedPerfectModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center" >
+        <h5 class="display-5 headText">คุณสนใจที่จะอยู่ร่วมกับ </h5>
+        <h5 class="display-5"> {{ userInfo.firstname }} {{ userInfo.lastname }}  </h5>
+       
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-primary" (click)="addInterestedPeople(currentUser._id, userInfo._id, 1)" data-dismiss="modal">ตกลง</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
+      </div>
+    </div>
+  </div>
+</div> 
