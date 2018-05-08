@@ -110,6 +110,7 @@ export class MainPageComponent implements OnInit {
           this.possibleUser_hadDorm = res[1];
           this.leastUser_hadDorm = res[2];
           console.log("มีหอ");
+          console.log(this.possibleUser_hadDorm);
           if((this.perfectUser_hadDorm.length || this.possibleUser_hadDorm.length || this.leastUser_hadDorm.length) > 0 ){
             this.show_hadDorm = true;
           }
@@ -192,7 +193,7 @@ export class MainPageComponent implements OnInit {
       this.possibleUser_hadDorm.forEach(user => {
         if(user_id === user.user._id){
           this.selectedPossibleUserInfo_hadDorm = user;
-          console.log(this.selectedPossibleUserInfo);
+          console.log(this.selectedPossibleUserInfo_hadDorm.dorm.name);
          // map 
           var map = new google.maps.Map(document.getElementById('map2'), {
             zoom: 15,

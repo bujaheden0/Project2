@@ -67,6 +67,8 @@ export class DormPageConsComponent implements OnInit {
         console.log("Run app.dormCons/ngOnInit/getPeopleHadDorm parameter :" + res)
         console.log(res)
         this.DormInfo = res;
+        this.getAgeFromBirthDay(this.DormInfo);
+        console.log(this.DormInfo);
       })
     })
 
@@ -151,7 +153,10 @@ getPerfectUserInfo(user_id){
   this.auth.getSeletePeopleinDorm(data).subscribe(res => {
     //  console.log("Run app.dormCons/ngOnInit/getPeopleHadDorm res :" + res)
      this.userInfo = res;
-    console.log("userInfo return userInfo:"+this.userInfo);
+    console.log(this.userInfo);
+    this.getAgeFromBirthDayV2(this.userInfo);
+    this.getMinutesSleepTimeForHousandMinutes(this.userInfo);
+    this.check_description(this.userInfo);
   })
 }
 
@@ -207,5 +212,54 @@ getPerfectUserInfo(user_id){
     
   }
 
+  getAgeFromBirthDay(user = []){
+    user.forEach(user => {
+      var ageDifMs = Date.now() - new Date(user.user.details.birthDate).getTime();
+      var ageDate = new Date(ageDifMs); // miliseconds from epoch
+      user.user.details.age = Math.abs(ageDate.getUTCFullYear() - 1970);
+      return;
+    })
+  }
+
+  getAgeFromBirthDayV2(user){
+      var ageDifMs = Date.now() - new Date(user.details.birthDate).getTime();
+      var ageDate = new Date(ageDifMs); // miliseconds from epoch
+      user.details.age = Math.abs(ageDate.getUTCFullYear() - 1970);
+      return;
+  }
+
+  getMinutesSleepTimeForHousandMinutes(user){
+      var sleepTime = user.details.sleep_time;
+      var hours = Math.floor(sleepTime/60).toString();
+      if(hours == '24'){
+        hours = '00';
+      }
+      var minutes = (sleepTime % 60).toString();
+      if(minutes == "0") minutes = minutes + "0";
+      user.details.sleep_time = `${hours}.${minutes}`;
+      return;
+    } 
+
+    check_description(user){
+        if(user.details.descriptionsEx.c1){
+          user.details.descriptionsEx.text1 = "สูบบุหรี่ได้"
+        } 
+        
+        if(user.details.descriptionsEx.c2){
+          user.details.descriptionsEx.text2 = "ละเลยการทำความสะอาดได้"
+        } 
+        
+        if(user.details.descriptionsEx.c3){
+          user.details.descriptionsEx.text3 = "เลี้ยงสัตว์ได้"
+        }
+        
+        if(user.details.descriptionsEx.c4){
+          user.details.descriptionsEx.text4 = "ส่งเสียงดังได้"
+        }
+        
+        if(user.details.descriptionsEx.c5){
+          user.details.descriptionsEx.text5 = "พาเพื่อนเข้าห้องได้"
+        }
+    }
 }
 

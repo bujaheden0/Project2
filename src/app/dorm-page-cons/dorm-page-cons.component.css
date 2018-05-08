@@ -2,8 +2,10 @@
     margin-top: 20px;
 }
 
-.signUp-form{
-    margin: 0 auto;
+.dormForm{
+    margin-top:20px;
+    width: 100%;
+    height: auto;
 }
 .line{
     width: 15px;
@@ -68,7 +70,7 @@
     margin-bottom: 20px;
 }
 
-.card{
+.user.card{
     float: left;
     width: 348px;
     height: auto;
@@ -80,9 +82,10 @@
 
 .information{
     line-height: 200%;
+    font-family: 'Prompt', sans-serif;
 }
 
-.card-block{
+.user.card-block{
     border-width: 0px 10px 10px 0px;
     border-style: outset;
     border-color: rgba(0, 0, 0, 0.125);

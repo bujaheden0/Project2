@@ -204,6 +204,7 @@
                     <p class="pl-4 text-left">
                       งานอดิเรก : {{ selectedPerfectUserInfo.details.hobbies }} <br>
                       ที่อยู่ : {{ selectedPerfectUserInfo.details.address }} <br>
+                      ค่าหอ : {{ selectedPerfectUserInfo.details.price.min }} - {{ selectedPerfectUserInfo.details.price.max }} บาท<br>
                       สิ่งที่อนุญาติให้ทำ  <br>
                       <li *ngIf="selectedPerfectUserInfo.details.descriptionsEx.text1"> {{ selectedPerfectUserInfo.details.descriptionsEx.text1 }}  </li>
                       <li *ngIf="selectedPerfectUserInfo.details.descriptionsEx.text2"> {{ selectedPerfectUserInfo.details.descriptionsEx.text2 }}  </li>
@@ -255,6 +256,7 @@
                     <p class="pl-4 text-left">
                       งานอดิเรก : {{ selectedPossibleUserInfo.details.hobbies }} <br>
                       ที่อยู่ : {{ selectedPossibleUserInfo.details.address }} <br>
+                      ค่าหอ : {{ selectedPossibleUserInfo.details.price.min }} - {{ selectedPossibleUserInfo.details.price.max }} บาท<br>
                       สิ่งที่อนุญาติให้ทำ <br>
                       <li *ngIf="selectedPossibleUserInfo.details.descriptionsEx.text1"> {{ selectedPossibleUserInfo.details.descriptionsEx.text1 }}  </li>
                       <li *ngIf="selectedPossibleUserInfo.details.descriptionsEx.text2"> {{ selectedPossibleUserInfo.details.descriptionsEx.text2 }}  </li>
@@ -305,6 +307,7 @@
                       <p class="pl-4 text-left">
                         งานอดิเรก : {{ selectedLeastUserInfo.details.hobbies }} <br>
                         ที่อยู่ : {{ selectedLeastUserInfo.details.address }} <br>
+                        ค่าหอ : {{ selectedLeastUserInfo.details.price.min }} - {{ selectedLeastUserInfo.details.price.max }} บาท <br>
                         สิ่งที่อนุญาติให้ทำ <br>
                         <li *ngIf="selectedLeastUserInfo.details.descriptionsEx.text1"> {{ selectedLeastUserInfo.details.descriptionsEx.text1 }}  </li>
                         <li *ngIf="selectedLeastUserInfo.details.descriptionsEx.text2"> {{ selectedLeastUserInfo.details.descriptionsEx.text2 }}  </li>
@@ -357,6 +360,7 @@
                       <p class="pl-4">
                         งานอดิเรก : {{ selectedPerfectUserInfo_hadDorm.user.details.hobbies }} <br>
                         ที่อยู่ : {{ selectedPerfectUserInfo_hadDorm.user.details.address }} <br>
+                        ค่าหอ : {{ selectedPerfectUserInfo_hadDorm.user.details.price.min }} - {{ selectedPerfectUserInfo_hadDorm.user.details.price.max}} บาท <br>
                         เพิ่มเติม : {{ selectedPerfectUserInfo_hadDorm.user.details.descriptions }}
                       </p>
                     </div>
@@ -368,7 +372,25 @@
                 </div>
               </div>
               <!-- map -->
-              <p class="pl-4">Dormitory Location</p>
+              <p class="pl-4">Dormitory Location <br></p>
+              <div *ngIf="selectedPerfectUserInfo_hadDorm" class="row information">
+                  <div class="col">
+                      <p class="pl-4">
+                        หอพัก : {{ selectedPerfectUserInfo_hadDorm.dorm.name }} <br>
+                        ค่าไฟ : {{ selectedPerfectUserInfo_hadDorm.dorm.electric_unit }} บาท/หน่วย <br>
+                        ห้องพัดลม : {{ selectedPerfectUserInfo_hadDorm.dorm.price.fan_price}} บาท/เดือน <br>  
+                        ห้องแอร์ : {{ selectedPerfectUserInfo_hadDorm.dorm.price.air_price}} บาท/เดือน <br>
+                        เบอร์โทรติดต่อ : <br> {{ selectedPerfectUserInfo_hadDorm.dorm.tel }}           
+                      </p>
+                  </div>
+                  <div class="col">
+                    <p class="pl-4">
+                      ที่อยู่ : {{ selectedPerfectUserInfo_hadDorm.dorm.address }} <br> 
+                      ค่าน้ำ : {{ selectedPerfectUserInfo_hadDorm.dorm.water_bill}} บาท/หน่วย<br>
+                      
+                    </p>
+                  </div>
+                </div>
               <div class="row">
                 <div class="col-lg-12">
                   <div class="text-center">
@@ -414,6 +436,7 @@
                       <p class="pl-4">
                         งานอดิเรก : {{ selectedPossibleUserInfo_hadDorm.user.details.hobbies }} <br>
                         ที่อยู่ : {{ selectedPossibleUserInfo_hadDorm.user.details.address }} <br>
+                        ค่าหอ : {{ selectedPossibleUserInfo_hadDorm.user.details.price.min }} - {{ selectedPossibleUserInfo_hadDorm.user.details.price.max}} บาท <br>
                         เพิ่มเติม : {{ selectedPossibleUserInfo_hadDorm.user.details.descriptions }}
                       </p>
                     </div>
@@ -425,7 +448,25 @@
                 </div>
               </div>
               <!-- map -->
-              <p class="pl-4">Dormitory Location</p>
+              <p class="pl-4">Dormitory Location <br></p>
+              <div *ngIf="selectedPossibleUserInfo_hadDorm" class="row information">
+                  <div class="col">
+                      <p class="pl-4">
+                        หอพัก : {{ selectedPossibleUserInfo_hadDorm.dorm.name }} <br>
+                        ค่าไฟ : {{ selectedPossibleUserInfo_hadDorm.dorm.electric_unit }} บาท/หน่วย <br>
+                        ห้องพัดลม : {{ selectedPossibleUserInfo_hadDorm.dorm.price.fan_price}} บาท/เดือน <br> 
+                        ห้องแอร์ : {{ selectedPossibleUserInfo_hadDorm.dorm.price.air_price}} บาท/เดือน  <br>
+                        เบอร์โทรติดต่อ : <br> {{ selectedPossibleUserInfo_hadDorm.dorm.tel }}           
+                      </p>
+                  </div>
+                  <div class="col">
+                    <p class="pl-4">
+                      ที่อยู่ : {{ selectedPossibleUserInfo_hadDorm.dorm.address }} <br> 
+                      ค่าน้ำ : {{ selectedPossibleUserInfo_hadDorm.dorm.water_bill}} บาท/หน่วย<br>
+                      
+                    </p>
+                  </div>
+                </div>
               <div class="row">
                 <div class="col-lg-12">
                   <div class="text-center">
@@ -470,18 +511,37 @@
                         <p class="pl-4">
                           งานอดิเรก : {{ selectedLeastUserInfo_hadDorm.user.details.hobbies }} <br>
                           ที่อยู่ : {{ selectedLeastUserInfo_hadDorm.user.details.address }} <br>
+                          ค่าหอ : {{ selectedLeastUserInfo_hadDorm.user.details.price.min }} - {{ selectedLeastUserInfo_hadDorm.user.details.price.max}} บาท <br>
                           เพิ่มเติม : {{ selectedLeastUserInfo_hadDorm.user.details.descriptions }}
                         </p>
                       </div>
                       <div class="information col mt-2">
                           อาชีพ : {{ selectedLeastUserInfo_hadDorm.user.details.occupation }} <br>
                           นิสัย : {{ selectedLeastUserInfo_hadDorm.user.habit }} <br>
-                          เวลานอน : {{ selectedLeastUserInfo_hadDorm.user.details.sleep_time }}
+                          เวลานอน : {{ selectedLeastUserInfo_hadDorm.user.details.sleep_time }} 
                       </div>
                   </div>
                 </div>
               <!-- map -->
-                <p class="pl-4">Dormitory Location</p>
+                <p class="pl-4">Dormitory Location <br></p>
+                <div *ngIf="selectedLeastUserInfo_hadDorm" class="row information">
+                  <div class="col">
+                      <p class="pl-4">
+                        หอพัก : {{ selectedLeastUserInfo_hadDorm.dorm.name }} <br>
+                        ค่าไฟ : {{ selectedLeastUserInfo_hadDorm.dorm.electric_unit }} บาท/หน่วย <br>
+                        ห้องพัดลม : {{ selectedLeastUserInfo_hadDorm.dorm.price.fan_price}} บาท/เดือน<br> 
+                        ห้องแอร์ : {{ selectedLeastUserInfo_hadDorm.dorm.price.air_price}} บาท/เดือน <br> 
+                        เบอร์โทรติดต่อ : <br> {{ selectedLeastUserInfo_hadDorm.dorm.tel }}           
+                      </p>
+                  </div>
+                  <div class="col">
+                    <p class="pl-4">
+                      ที่อยู่ : {{ selectedLeastUserInfo_hadDorm.dorm.address }} <br> 
+                      ค่าน้ำ : {{ selectedLeastUserInfo_hadDorm.dorm.water_bill}} บาท/หน่วย<br>
+                      
+                    </p>
+                  </div>
+                </div>
                 <div class="row">
                   <div class="col-lg-12">
                     <div class="text-center">
