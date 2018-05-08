@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="matchedPeople">
+      <div class="card">
+        <div class="card-header">
+          รายละเอียดของรูมเมท
+        </div>
+        <div class="card-block" >
+          <div class="row justify-content-center" *ngIf="userInfo">
+            <img id="profile_picture" src="{{userInfo.profile_picture}}" alt="..." class="userImage">
+          </div>
+          <div class="row justify-content-center" *ngIf="userInfo">
+            <div class="col" style="line-height: 200%; text-align:center;">
+              ช่องทางในการติดต่อ <br>
+              เบอร์โทรศัพท์ : {{ userInfo.tel }} <br>
+              FaceBook : {{ userInfo.details.facebook }}
+            </div>
+          </div>
+        <div class="row justify-content-center mt-4">
+            <button type="button" class="btn btn-outline-primary" (click)="showInformation()">แสดงข้อมูล</button>
+        </div>
+        <div *ngIf="show">
+          <div class="row justify-content-center mt-4">
+              <div class="col-4" style="line-height: 200%; text-align:right;">
+                ชื่อ : {{ userInfo.firstname }} {{ userInfo.lastname }} <br>
+                อายุ : {{ userInfo.details.age }} <br>
+                นิสัย : {{ userInfo.habit }} <br>
+                เวลานอน : {{ userInfo.details.sleep_time }} <br>
+                งานอดิเรก : {{ userInfo.details.hobbies }} <br>
+                รายละเอียดเพิ่มเติม : {{ userInfo.details.descriptions }}
+              </div>
+              <div class="col-4" style="line-height: 200%;">
+                ศาสนา : {{ userInfo.details.religion }} <br>
+                อาชีพ : {{ userInfo.details.occupation }} <br>
+                เพศ : {{ userInfo.details.gender }} <br>
+                ที่อยู่ : {{ userInfo.details.address }} <br>
+                สิ่งที่อนุญาติให้ทำ : <br>
+                        <li *ngIf="userInfo.details.descriptionsEx.text1"> {{ userInfo.details.descriptionsEx.text1 }}  </li>
+                        <li *ngIf="userInfo.details.descriptionsEx.text2"> {{ userInfo.details.descriptionsEx.text2 }}  </li>
+                        <li *ngIf="userInfo.details.descriptionsEx.text3"> {{ userInfo.details.descriptionsEx.text3 }}  </li>
+                        <li *ngIf="userInfo.details.descriptionsEx.text4"> {{ userInfo.details.descriptionsEx.text4 }}  </li> 
+                        <li *ngIf="userInfo.details.descriptionsEx.text5"> {{ userInfo.details.descriptionsEx.text5 }}  </li>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>

@@ -18,6 +18,7 @@ import { DormPageComponent } from './dorm-page/dorm-page.component';
 import { InterestedPeopleComponent } from './interested-people/interested-people.component';
 import { UserMatchedComponent } from './user-matched/user-matched.component';
 import { DormPageConsComponent } from './dorm-page-cons/dorm-page-cons.component';
+import { RoommateComponent } from './roommate/roommate.component';
 const routes: Routes = [
   { path: '',                     component : LandingPageComponent},
   { path: 'signup',               component : SignUpComponent},
@@ -34,7 +35,8 @@ const routes: Routes = [
   { path: 'dorm',                 component : DormPageComponent},
   { path: 'user/:userId/:messageId',         component : InterestedPeopleComponent},
   { path: 'userMatched/:userId/:messageId',    component : UserMatchedComponent},
-  { path: 'dormCons/:dormId',             component : DormPageConsComponent}
+  { path: 'dormCons/:dormId',             component : DormPageConsComponent},
+  { path: 'roommate/:roommateId', component : RoommateComponent}
 
 
 ];

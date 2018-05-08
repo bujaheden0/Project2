@@ -50,5 +50,13 @@ export class MatchingService {
     return this.http.post('/api/match/setUserStatus',data).map(res => res.json());
   }
 
+  getRoommate(data){
+    return this.http.post('/api/match/getRoommate',data).map(res => res.json());
+  }
+
+  getRoommateInfo(data){
+    return this.http.post('/api/match/getRoommateInfo',data).map(res => res.json());
+  }
+
 
 }

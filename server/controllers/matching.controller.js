@@ -99,9 +99,8 @@ exports.updateMatchingStatus_Reject = function(req,res){
 
 exports.findMatchedPeopleInfo = async function(req, res){
     try{
-        const userMatch = await Matching.find({ $or :[{ actioner : req.body.actionerId, victim : req.body.user.id, status : "Matched" }, { actioner : req.body.user.id, victim : req.body.actionerId, status : "Matched" }] }).populate('actioner').populate('victim');
         const userInfo = await User.find({ _id : req.body.actionerId});
-        res.json([userMatch, userInfo]);
+        res.json([userInfo]);
     } catch(error){
         console.error(error.message);
     }
@@ -136,4 +135,20 @@ exports.updateUserStatus_Matched = function(req,res){
         if(err)console.log(err)
         if(update1) res.json(update1);
     })
-} 
+}
+
+exports.getRoommate_id = async function(req,res){
+    try{
+    const userMatch =  await Matching.find({ $or :[{ actioner : req.body.id},{ victim : req.body.id}] }).populate('actioner').populate('victim');
+    res.json([userMatch]);
+    } catch(err){
+        console.log(err);
+    };
+}
+
+exports.getRoommateInformation = function(req,res){
+    User.findById({ _id : req.body.id},function(err,roommateInfo){
+        if(err) console.log(err);
+        res.json(roommateInfo);
+    })
+}

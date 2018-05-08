@@ -29,6 +29,9 @@ export class MainPageComponent implements OnInit {
    selectedPossibleUserInfo_hadDorm;
    selectedLeastUserInfo_hadDorm;
    show_hadDorm = false;
+   had_roommate = false;
+   roommate;
+   roommate_id;
   constructor(private auth : AuthenticationService,
               private matchPeople : MatchPeopleService,
               private matching : MatchingService) { }
@@ -37,12 +40,29 @@ export class MainPageComponent implements OnInit {
     if(this.auth.userDetails){
       this.auth.getProfile().subscribe(res => {
         this.currentUser = res;
-        console.log(this.currentUser._id);
+        const data = {
+          id : this.currentUser._id
+        }
+
+        this.had_roommate = this.currentUser.matchedStatus;
+        if(this.had_roommate){
+          this.matching.getRoommate(data).subscribe(res1 => {
+            this.roommate = res1[0];
+            if(this.currentUser._id === this.roommate[0].actioner._id){
+              this.roommate_id = this.roommate[0].victim._id;
+            } else {
+              this.roommate_id = this.roommate[0].actioner._id;
+            }
+            console.log("THIS IS A ROOMMATE ID : " +this.roommate_id);
+          })
+        }
         this.getAllMatchedPeople();
         setInterval(() => {
         this.findMessage()},1000);
       })
     }
+
+    console.log("I am a main page");
     }
 
     onSubmit(){
@@ -90,7 +110,7 @@ export class MainPageComponent implements OnInit {
           this.possibleUser_hadDorm = res[1];
           this.leastUser_hadDorm = res[2];
           console.log("มีหอ");
-          if((this.perfectUser_hadDorm.length || this.possibleUser_hadDorm || this.leastUser_hadDorm) > 0 ){
+          if((this.perfectUser_hadDorm.length || this.possibleUser_hadDorm.length || this.leastUser_hadDorm.length) > 0 ){
             this.show_hadDorm = true;
           }
           console.log(res);
@@ -138,7 +158,7 @@ export class MainPageComponent implements OnInit {
       this.perfectUser_hadDorm.forEach(user => {
         if(user_id === user.user._id){
           this.selectedPerfectUserInfo_hadDorm = user;
-          console.log(this.selectedPerfectUserInfo);
+          console.log(this.selectedPerfectUserInfo_hadDorm.user.firstname);
          // map 
           var map = new google.maps.Map(document.getElementById('map1'), {
             zoom: 15,
@@ -253,8 +273,8 @@ export class MainPageComponent implements OnInit {
       if(hours == '24'){
         hours = '00';
       }
-      var minutes = sleepTime % 60;
-      minutes.toString();
+      var minutes = (sleepTime % 60).toString();
+      if(minutes == "0") minutes = minutes + "0";
       user.details.sleep_time = `${hours}.${minutes}`;
       return;
     })
@@ -385,24 +405,24 @@ export class MainPageComponent implements OnInit {
     var plusSleepTime = sleepTime + 120; 
     var minusSleepTime = sleepTime - 120; 
     
-    //กรณี 1 ถ้า sleeptime เกินเที่ยงคืนแต่ไม่เกิน ตี 2
-    if((sleepTime >= 0) && (sleepTime <= 120)){
-      console.log(minusSleepTime);
-      var minusTime = 1440 + minusSleepTime;
-      console.log(minusTime);
-      for(var i = user.length - 1; i >= 0; --i){
-        var userSleepTime = Number(user[i].details.sleep_time);
-        if((userSleepTime >= 0) && (userSleepTime <= 240)){
-          if(!((userSleepTime >= 0 ) && (userSleepTime <= plusSleepTime))){
-            user.splice(i,1);
-          }
-        } else {
-          if((minusTime >= userSleepTime)){
-            user.splice(i,1);
-          }
-        }
-      }
-    }
+    //กรณี 1 ถ้า sleeptime เที่ยงคืนเป็นต้นไป หรือ ตี 1 ถึง ตี 2 
+    // if((sleepTime >= 1440) || (sleepTime >= 60 && sleepTime <= 120)){
+    //   console.log(minusSleepTime);
+    //   var minusTime = 1440 + minusSleepTime;
+    //   console.log(minusTime);
+    //   for(var i = user.length - 1; i >= 0; --i){
+    //     var userSleepTime = Number(user[i].details.sleep_time);
+    //     if((userSleepTime >= 0) && (userSleepTime <= 240)){
+    //       if(!((userSleepTime >= 0 ) && (userSleepTime <= plusSleepTime))){
+    //         user.splice(i,1);
+    //       }
+    //     } else {
+    //       if((minusTime >= userSleepTime)){
+    //         user.splice(i,1);
+    //       }
+    //     }
+    //   }
+    // }
     
     //กรณี 2 ถ้า sleeptime มากกว่าหรือเท่ากับ 5 ทุ่ม
     if(sleepTime >= 1380){
@@ -428,16 +448,15 @@ export class MainPageComponent implements OnInit {
 
     //กรณี 3 ตั้งแต่มากกว่าตี 2 แต่ไม่เกิน 5 ทุ่ม
     if((sleepTime > 120) && (sleepTime < 1380)){
-      console.log("YEYEYYE");
       if(minusSleepTime < 60){
-        var minus = minusSleepTime + 1440;
-      } 
-      console.log("This is minusSleepTime : " + minusSleepTime);
-      console.log("This is Minus : " + minus);
+        minusSleepTime = minusSleepTime + 1440;
+      }
       for(var i = user.length - 1; i >= 0; --i){
         var userSleepTime = Number(user[i].details.sleep_time);
+        //ถ้าอยูู่ในช่วง 00.00 - 00.59
         if((userSleepTime > 1440) && (userSleepTime < 1500)){
-          if(userSleepTime <= minus){
+          
+          if(userSleepTime <= minusSleepTime){
             user.splice(i,1);
           }
         } else {
@@ -456,7 +475,10 @@ export class MainPageComponent implements OnInit {
         if(user[j]._id == user_hadDorm[i].user._id){
             console.log("Index I : " + i);
             console.log("Index J : " + j);
-            user.splice(i,1);
+            console.log("Firstname Nodorm : " + user[j].firstname);
+            console.log("Lastname Nodorm : " + user[j].lastname);
+            console.log("-----------------------------------------------------------------")
+            user.splice(j,1);
         }
         }
     }
@@ -522,6 +544,8 @@ export class MainPageComponent implements OnInit {
 
     this.matching.check_ifIsMatching(data).subscribe(res => {
       console.log(res.length);
+
+      if(!this.currentUser.matchedStatus){
       if(res.length == 0){
         if(type == 1){
           var answer = confirm("คุณต้องการที่จะอยู่กับคนนี้");
@@ -553,6 +577,9 @@ export class MainPageComponent implements OnInit {
         }
       }
       }
+    } else {
+      alert("คุณมีรูมเมทแล้วไม่สามารถ หารูมเมทคนใหม่ได้");
+    }
 
 
     })

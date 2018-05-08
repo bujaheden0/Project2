@@ -23,8 +23,7 @@ export class UserMatchedComponent implements OnInit {
         messageId : id.messageId
       }
       this.matching.findMatchedPeopleInfo(data).subscribe(res => {
-          this.matchedPeople = res[0];
-          this.userInfo = res[1];
+          this.userInfo = res[0];
           console.log(this.matchedPeople);
           this.check_description(this.userInfo);
           this.getAgeFromBirthDay(this.userInfo);
@@ -34,7 +33,6 @@ export class UserMatchedComponent implements OnInit {
             this.matchedPeople[0].actioner.details.facebook  = this.matchedPeople[0].victim.details.facebook
           }
       })
-
 
 
       this.matching.setReadStatus(data).subscribe(res => {
@@ -79,8 +77,10 @@ getMinutesSleepTimeForHousandMinutes(user){
   if(hours == '24'){
     hours = '00';
   }
-  var minutes = sleepTime % 60;
-  minutes.toString();
+  var minutes = (sleepTime % 60).toString();
+  if(minutes == "0"){
+    minutes = minutes + "0";
+  }
   user[0].details.sleep_time = `${hours}.${minutes}`;
 }
 

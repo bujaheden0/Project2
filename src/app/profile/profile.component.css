@@ -50,3 +50,10 @@
 .c{
     margin-left: 20px;
 }
+
+img#preview {
+    max-height:135px;
+    width: 100px;
+    height: auto;
+    margin: 0 auto;
+  }

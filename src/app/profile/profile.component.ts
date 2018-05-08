@@ -47,7 +47,18 @@ export class ProfileComponent implements OnInit {
     }
     this.auth.getSettingProfile(user).subscribe(res => {
       this.profile = res;
+      var hours = Math.floor(this.profile.details.sleep_time/60).toString();
+      var minutes = (this.profile.details.sleep_time%60).toString();
+      console.log("This is a Hours : " + hours);
+      console.log("This is a minutes : " + minutes);
+      if(hours == "24"){ hours = "00";}
+      if(minutes.length == 1){ minutes = "0" + minutes;}
+      console.log("This is a Hours : " + hours);
+      console.log("This is a minutes : " + minutes);
+      this.profile.details.sleep_time = hours + ":" + minutes;
+      console.log("This is a Profile Users");
       console.log(this.profile);
+      console.log("------------------------");
     })
   }
 
@@ -232,6 +243,14 @@ export class ProfileComponent implements OnInit {
     }
     if (this.form.valid) {
       console.log("กรอกข้อมูลครบแล้ว")
+      var sleepTime  = this.form.controls.sleep_time.value.toString();
+      var splitTime = sleepTime.split(":");
+      if(splitTime[0] == "00"){
+        splitTime[0] = "24";
+      }
+      var minuteSleeptime = splitTime[0]*60 + splitTime[1]*1;
+      console.log("This is b status : " + this.form.controls.b_status.value);
+      console.log(minuteSleeptime);
       const user = {
         //image: this.form.controls.image.value,
         userDetails: this.auth.userDetails,
@@ -241,7 +260,7 @@ export class ProfileComponent implements OnInit {
         facebook: this.form.controls.facebook.value,
         tel: this.form.controls.tel.value,
         occupation: this.form.controls.occupation.value,
-        sleep_time: this.form.controls.sleep_time.value,
+        sleep_time: minuteSleeptime,
         hobbies: this.form.controls.hobbies.value,
         address: this.form.controls.address.value,
         descriptions: this.form.controls.descriptions.value ,

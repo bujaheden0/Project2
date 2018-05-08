@@ -192,7 +192,7 @@ exports.UpdateProfiles = function (req, res) {
       'details.price.max': data.maxPrice,
       'details.r_status': data.r_status,
       'details.g_status': data.g_status,
-      'details.b_range': data.b_status,
+      'details.b_status': data.b_status,
       'details.b_range': data.b_range,
       'tel': data.tel,
       'profile_status': data.profile_status,
