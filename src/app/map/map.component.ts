@@ -21,8 +21,8 @@ export class MapComponent implements OnInit {
   longitude: number;
   locations = LOCATIONS;
   form: FormGroup;
-  Province ="ทั้งหมด";
-  Radius ="เลือก";
+  Province;
+  Radius;
   Dorm: any = {}
   Dorm2: any = {}
   x: number;
